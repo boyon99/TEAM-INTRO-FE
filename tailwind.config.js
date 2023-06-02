@@ -21,11 +21,6 @@ module.exports = {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
     },
-    screens: {
-      desktop: '1280px',
-      tablet: '768px',
-      mobile: '480px',
-    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
