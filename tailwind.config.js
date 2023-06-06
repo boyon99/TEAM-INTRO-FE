@@ -83,7 +83,10 @@ module.exports = {
       serif: ['Merriweather', 'serif'],
     },
     screens: {
-      desktop: '1240px',
+      desktop: '1280px',
+    },
+    width: {
+      '1280': '1280px',
     },
     extend: {
       backgroundImage: {
