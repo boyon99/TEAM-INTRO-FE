@@ -1,3 +1,4 @@
+import Button from "@/components/button";
 import Input from "@/components/input";
 import Image from "next/image";
 
@@ -32,7 +33,7 @@ export default function Login() {
                   <span className="w-[56px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">회원가입</span>
                   <span className="h-[16px] font-normal border-r text-GrayScalePrimary-900"/>
                   <span className="w-[105px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">비밀번호 재설정</span>
-                <button className="absolute w-[140px] h-[46px] right-0 top-[calc(50%-46px/2)] rounded-lg bg-GrayScalePrimary-300 text-GrayScaleNeutral-100 font-bold text-sm">이메일로 로그인</button>
+                <Button disable={true} text="이메일로 로그인" size="large"/>
                 </div>
               </div>
               <div className="flex flex-row justify-center items-center p-[8px_0px] gap-[8px] w-[360px] h-[46px] border border-solid border-GrayScalePrimary-300 rounded-lg">
