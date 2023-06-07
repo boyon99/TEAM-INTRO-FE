@@ -1,9 +1,13 @@
 import MainColor from "@/components/buider/MainColor";
 import React, { useState } from "react";
+import EditSiteInfo from "../EditSiteInfo";
 
 export default function TopBar() {
   // topbar 버튼 상태
-  const [isTopbarBtn, setIsTopbarBtn] = useState({ mainColorBtn: false });
+  const [isTopbarBtn, setIsTopbarBtn] = useState({
+    mainColorBtn: false,
+    editSiteInfoBtn: false,
+  });
 
   return (
     <>
@@ -15,14 +19,22 @@ export default function TopBar() {
             className="w-[170px] h-[50px] border mr-[15px]"
             onClick={() => {
               setIsTopbarBtn((prevState) => ({
-                ...prevState,
+                editSiteInfoBtn: false,
                 mainColorBtn: !prevState.mainColorBtn,
               }));
             }}
           >
             메인컬러
           </button>
-          <button className="h-[50px] w-[170px] border mr-[15px]">
+          <button
+            className="h-[50px] w-[170px] border mr-[15px]"
+            onClick={() => {
+              setIsTopbarBtn((prevState) => ({
+                mainColorBtn: false,
+                editSiteInfoBtn: !prevState.editSiteInfoBtn,
+              }));
+            }}
+          >
             사이트 정보 수정
           </button>
           <button className="h-[50px] w-[110px] border mr-[15px]">
@@ -30,6 +42,11 @@ export default function TopBar() {
           </button>
         </div>
         {isTopbarBtn.mainColorBtn ? <MainColor /> : <></>}
+        {isTopbarBtn.editSiteInfoBtn ? (
+          <EditSiteInfo setIsTopbarBtn={setIsTopbarBtn} />
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
