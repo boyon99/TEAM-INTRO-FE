@@ -1,13 +1,5 @@
+import { EditSiteInfoProps } from "@/types/builder";
 import React from "react";
-
-interface EditSiteInfoProps {
-  setIsTopbarBtn: React.Dispatch<
-    React.SetStateAction<{
-      mainColorBtn: boolean;
-      editSiteInfoBtn: boolean;
-    }>
-  >;
-}
 
 export default function EditSiteInfo({ setIsTopbarBtn }: EditSiteInfoProps) {
   return (
