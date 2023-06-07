@@ -6,7 +6,7 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <div className="w-1280 mx-8">
+    <div className="w-1280 ml-auto mr-auto">
       <main className="">{children}</main>
     </div>
   );
