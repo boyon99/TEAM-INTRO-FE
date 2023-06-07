@@ -69,6 +69,7 @@ module.exports = {
     },
     width: {
       '1280': '1280px',
+      '1200 ': '1200px',
     },
     extend: {
       backgroundImage: {
