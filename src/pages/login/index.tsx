@@ -17,7 +17,7 @@ interface EnterForm {
 export default function Login() {
   const [checked, setChecked] = useState(false)
   const navigate = useRouter()
-  const { register, handleSubmit, reset } = useForm<EnterForm>();
+  const { register, handleSubmit, formState: { errors } } = useForm<EnterForm>();
 
   const { mutate, error } = useMutation(login, {
     onSuccess: (data) => {
@@ -36,7 +36,7 @@ export default function Login() {
       console.log(err)
     },
   })
-
+ console.log(error)
   const onValid = (data: EnterForm) => {
     mutate(data)
   };
@@ -64,11 +64,21 @@ export default function Login() {
        <div className="absolute left-[50.16%] right-[-0.16%] top-0 bottom-0 rounded">
         <div className="absolute w-[360px] h-[427px] left-[calc(50%-360px/2)] top-[calc(50%-427px/2+0.5px)]">
             <span className="align-top not-italic text-GrayScalePrimary-800 font-black text-[27px]/[100%] absolute w-[85px] h-[32px] left-[137.5px] top-[2px] tracking-[0.03em] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">로그인</span>
-           <form onSubmit={handleSubmit(onValid)} className="flex flex-col p-0 gap-[30px] absolute w-[360px] h-[359px] left-0 top-[66px]">
-              <Input register={register('email')} required name="email" label="아이디" type="email" size="large"/>
-              <Input register={register('password')} required name="password" label="비밀번호" type="password" size="large"/>
-              <Input name="keep" type="checkbox" onClick={onClick} label="아이디" />
-              <div className="w-[360px] h-[46px] right-0 top-[237px]">
+           <form onSubmit={handleSubmit(onValid)} className="flex flex-col p-0 absolute w-[360px] h-[359px] left-0 top-[66px]">
+              <Input register={register('email',
+               {
+                required: "Email is required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+                  message: "이메일 형식이 아닙니다.",
+                },
+              }
+              )} name="email" label="아이디" type="email" size="large"/>
+              <Input register={register('password'       
+              )} required name="password" label="비밀번호" type="password" size="large"/>
+              {error && <span className="text-[red] text-sm">이메일 또는 비밀번호가 일치하지 않습니다</span>}
+              <Input name="keep" type="checkbox" onClick={onClick} />
+              <div className="w-[360px] h-[46px] right-0 top-[237px] mt-5">
                 <div className="relative flex flex-row items-center p-0 gap-1">
                   <span className="w-[56px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">회원가입</span>
                   <span className="h-[16px] font-normal border-r text-GrayScalePrimary-900"/>
@@ -79,6 +89,7 @@ export default function Login() {
               <div className="flex flex-row justify-center items-center p-[8px_0px] gap-[8px] w-[360px] h-[46px] border border-solid border-GrayScalePrimary-300 rounded-lg">
                  <Image src="/google.png" alt="google" height={28} width={28}/>
                  <span className="h-[16px] font-normal text-[15px]/[100%]">Google 로그인</span>
+       
               </div>
             </form> 
         </div>

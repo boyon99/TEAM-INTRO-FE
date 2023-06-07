@@ -6,14 +6,14 @@ import axios, { Axios } from "axios"
 
 
 export const login = async (user: LoginRequest) => {
-    try {
+    // try {
       const { data } = await axios.post<AuthResponse>('/api/login', user)
       const response = data.data;
       console.log(response)
       return response
-    } catch (error) {
-      console.log(error)
-    }
+    // } catch (error) {
+    //   console.log(error)
+    // }
   }
   
  
