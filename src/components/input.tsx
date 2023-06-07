@@ -1,12 +1,13 @@
 import { UseFormRegisterReturn } from "react-hook-form";
 
 interface InputProps {
-    label: string;
+    label?: string;
     name: string;
     size?: "small" | "large";
     type: string;
-    register: UseFormRegisterReturn;
+    register?: UseFormRegisterReturn;
     required?: boolean;
+    onClick?: () => void;
   }
   
   export default function Input({
@@ -15,6 +16,7 @@ interface InputProps {
     label,
     size,
     type,
+    onClick,
   }: InputProps) {
     return (
       <div>
@@ -34,7 +36,7 @@ interface InputProps {
         ) : null}
         {type === "checkbox" ? (
                 <div className="relative w-[131px] h-[24px]">
-                 <input type="checkbox" className="w-4 h-4 mt-1"/>
+                 <input type="checkbox" className="w-4 h-4 mt-1" onClick={onClick}/>
                  <span className="absolute w-[110px] h-[15px] left-[24px] top-[5px] font-medium text-[13px]/[100%] text-GrayScalePrimary-900">로그인 상태 유지</span>
                </div>
         ): null}

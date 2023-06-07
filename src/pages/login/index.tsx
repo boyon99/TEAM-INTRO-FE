@@ -8,20 +8,28 @@ import { AxiosError } from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-
+import {useState} from "react";
 interface EnterForm {
   email: string;
   password: string;
 }
 
 export default function Login() {
+  const [checked, setChecked] = useState(false)
   const navigate = useRouter()
   const { register, handleSubmit, reset } = useForm<EnterForm>();
 
   const { mutate, error } = useMutation(login, {
     onSuccess: (data) => {
+     if(checked) {
       setCookie('accessToken', getBearerToken(data?.accessToken), data && { path: '/', maxAge: 60*60*24 })
       setCookie('refreshToken', getBearerToken(data?.refreshToken), data && { path: '/', maxAge: 60*60*24 })
+     }
+     else {
+     setCookie('accessToken', getBearerToken(data?.accessToken), data && { path: '/'})
+     setCookie('refreshToken', getBearerToken(data?.refreshToken), data && { path: '/'})
+     }
+      
       // navigate.push("/")
     },
     onError: (err: AxiosError) => { 
@@ -32,6 +40,10 @@ export default function Login() {
   const onValid = (data: EnterForm) => {
     mutate(data)
   };
+
+  const onClick = () => {
+    setChecked(true)
+  }
 
     return (
       <div>
@@ -55,7 +67,7 @@ export default function Login() {
            <form onSubmit={handleSubmit(onValid)} className="flex flex-col p-0 gap-[30px] absolute w-[360px] h-[359px] left-0 top-[66px]">
               <Input register={register('email')} required name="email" label="아이디" type="email" size="large"/>
               <Input register={register('password')} required name="password" label="비밀번호" type="password" size="large"/>
-              {/* <Input name="keep" label="email" type="checkbox"/> */}
+              <Input name="keep" type="checkbox" onClick={onClick} label="아이디" />
               <div className="w-[360px] h-[46px] right-0 top-[237px]">
                 <div className="relative flex flex-row items-center p-0 gap-1">
                   <span className="w-[56px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">회원가입</span>
