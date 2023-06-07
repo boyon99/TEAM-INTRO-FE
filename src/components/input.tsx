@@ -5,9 +5,13 @@ interface InputProps {
     name: string;
     size?: "small" | "large";
     type: string;
+    register: UseFormRegisterReturn;
+    required: boolean;
   }
   
   export default function Input({
+    register,
+    required,
     label,
     size,
     type,
@@ -17,14 +21,14 @@ interface InputProps {
         {size === "large" && type === "email" ? (
         <div className="flex flex-col items-start gap-[8px] p-0 justify-center w-[360px] h-[70px]">
             <span className="w-[50px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800">{label}</span>
-            <input type="text" className="w-[360px] h-[43px] px-3 py-2 box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]"/>
+            <input type="text" {...register} required={required} className="w-[360px] h-[43px] px-3 py-2 box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]"/>
         </div>
         
         ) : null}
         {size === "large" && type === "password" ? (
         <div className="flex flex-col items-start gap-[8px] p-0 justify-center">
             <span className="w-[64px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800">{label}</span>
-            <input type="text" className="w-[360px] h-[43px] px-3 py-2 box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]"/>
+            <input type="password" {...register} required={required} className="w-[360px] h-[43px] px-3 py-2 box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]"/>
         </div>
         
         ) : null}
