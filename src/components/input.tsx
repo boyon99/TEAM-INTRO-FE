@@ -6,7 +6,7 @@ interface InputProps {
     size?: "small" | "large";
     type: string;
     register: UseFormRegisterReturn;
-    required: boolean;
+    required?: boolean;
   }
   
   export default function Input({

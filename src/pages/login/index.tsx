@@ -30,7 +30,7 @@ export default function Login() {
   };
 
     return (
-      <>
+      <div>
        <div className="absolute left-0 right-1/2 top-0 bottom-0 bg-primary-500">
          <div className="absolute left-[calc(50%_-_230px/2)] top-[26.44%] bottom-[45.91%]">
             <Image src="/emblem1.png" alt="emblem1" height={230} width={230}/>
@@ -67,6 +67,6 @@ export default function Login() {
             </form> 
         </div>
        </div>
-       </>
+       </div>
     )
 }
