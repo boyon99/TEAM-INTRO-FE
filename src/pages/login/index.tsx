@@ -1,10 +1,12 @@
 import { login } from "@/apis/auth";
 import Button from "@/components/button";
 import Input from "@/components/input";
+import { getBearerToken } from "@/utiles/bearerToken";
 import { setCookie } from "@/utiles/cookies";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
 interface EnterForm {
@@ -13,14 +15,16 @@ interface EnterForm {
 }
 
 export default function Login() {
+  const navigate = useRouter()
   const { register, handleSubmit, reset } = useForm<EnterForm>();
 
   const { mutate, error } = useMutation(login, {
     onSuccess: (data) => {
-      console.log(data)
-      setCookie('accessToken', data?.accessToken, data && { path: '/', maxAge: 60*60*24 })
+      setCookie('accessToken', getBearerToken(data?.accessToken), data && { path: '/', maxAge: 60*60*24 })
+      setCookie('refreshToken', getBearerToken(data?.refreshToken), data && { path: '/', maxAge: 60*60*24 })
+      // navigate.push("/")
     },
-    onError: (err: AxiosError) => {
+    onError: (err: AxiosError) => { 
       console.log(err)
     },
   })

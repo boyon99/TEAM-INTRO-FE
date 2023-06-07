@@ -8,8 +8,9 @@ import axios, { Axios } from "axios"
 export const login = async (user: LoginRequest) => {
     try {
       const { data } = await axios.post<AuthResponse>('/api/login', user)
-      console.log(data)
-      return data
+      const response = data.data;
+      console.log(response)
+      return response
     } catch (error) {
       console.log(error)
     }
