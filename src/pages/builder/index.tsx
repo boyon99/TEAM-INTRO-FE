@@ -6,13 +6,15 @@ import TopBar from "@/components/buider/TopBar";
 import React, { useState } from "react";
 
 export default function Builder() {
+  const [widgetList, setWidgetList] = useState(["Item 1", "Item 2", "Item 3"]);
+  console.log(widgetList);
   return (
     <>
       <TopBar />
       <div className="flex">
-        <LeftPanel />
-        <MiddlePanel />
-        <RightPanel />
+        <LeftPanel widgetList={widgetList} setWidgetList={setWidgetList} />
+        <MiddlePanel widgetList={widgetList} />
+        <RightPanel widgetList={widgetList} setWidgetList={setWidgetList} />
       </div>
     </>
   );
