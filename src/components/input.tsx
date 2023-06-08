@@ -19,7 +19,7 @@ interface InputProps {
     onClick,
   }: InputProps) {
     return (
-      <div>
+      <>
         {size === "large" && type === "email" ? (
         <div className="flex flex-col items-start gap-[8px] p-0 justify-center w-[360px] h-[70px]">
             <span className="w-[50px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800">{label}</span>
@@ -35,11 +35,11 @@ interface InputProps {
         
         ) : null}
         {type === "checkbox" ? (
-                <div className="relative w-[131px] h-[24px] mt-5">
+                <div className="relative w-[131px] h-[24px]">
                  <input type="checkbox" className="w-4 h-4 mt-1" onClick={onClick}/>
                  <span className="absolute w-[110px] h-[15px] left-[24px] top-[5px] font-medium text-[13px]/[100%] text-GrayScalePrimary-900">로그인 상태 유지</span>
                </div>
         ): null}
-      </div>
+      </>
     );
   }

@@ -25,16 +25,16 @@ export default function Button({
            </button>
     ): null}
     {size === "small" ? (
-        <div className="flex flex-row justify-center items-center p-[8px_16px] gap-[10px]">
+        // <div className="p-[8px_16px] gap-[10px]">
             <button
                 className={cls(
-                "absolute w-[88px] h-[46px] right-0 top-0 rounded-lg text-GrayScaleNeutral-100 font-bold text-sm",
+                "w-[100px] h-[46px] rounded-lg text-GrayScaleNeutral-100 font-bold text-sm",
                 disable ? "bg-GrayScalePrimary-300" : "bg-primary-500"
                 )}
             >
                 {text}
            </button>
-        </div>
+        // </div>
        
     ): null}
     {size === "large" ? (
