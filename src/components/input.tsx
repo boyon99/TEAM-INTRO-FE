@@ -81,6 +81,13 @@ interface InputProps {
                  <span className="absolute w-[110px] h-[15px] left-[24px] top-[5px] font-medium text-[14px]/[100%] text-GrayScalePrimary-700">전체동의</span>
                </div>
         ): null}
+       {size === "large" && type === "snsregister_email" ? (
+        <div>
+            <span className="w-[64px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800 mr-[95px]">{label}</span>
+            <input type="text" {...register} required={required} className="w-[358px] h-[43px] px- py-2 box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]"/>
+        </div>
+        
+        ) : null}
       </>
     );
   }
