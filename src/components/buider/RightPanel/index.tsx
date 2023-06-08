@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { List, arrayMove } from "react-movable";
 
-export default function RightPanel() {
-  const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
-
+export default function RightPanel({
+  widgetList,
+  setWidgetList,
+}: {
+  widgetList: string[];
+  setWidgetList: Function;
+}) {
   return (
     <div className="border w-[260px] h-[600px] ml-[30px] mt-[24px]">
-      적용 중인 위젯
+      <div className="bg-primary-200 w-[100%] h-[30px]">적용 중인 위젯</div>
+      {/* 위젯 제거 및 순서 변경 */}
       <List
-        values={items}
+        values={widgetList}
         onChange={({ oldIndex, newIndex }) =>
-          setItems(arrayMove(items, oldIndex, newIndex))
+          setWidgetList(arrayMove(widgetList, oldIndex, newIndex))
         }
         renderList={({ children, props, isDragged }) => (
           <ul
