@@ -17,7 +17,7 @@ interface EnterForm {
 export default function Login() {
   const [checked, setChecked] = useState(false)
   const navigate = useRouter()
-  const { register, handleSubmit, formState: { errors } } = useForm<EnterForm>();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<EnterForm>();
 
   const { mutate, error } = useMutation(login, {
     onSuccess: (data) => {
@@ -46,8 +46,8 @@ export default function Login() {
   }
 
     return (
-      <div className="flex">
-       <div className="w-[640px] h-[832px] bg-primary-500">
+      <div className="flex h-[100vh]">
+       <div className="w-[640px] bg-primary-500">
          <div className="ml-[calc(50%-230px/2)] pt-[220px] ">
             <Image src="/emblem1.png" alt="emblem1" height={230} width={230}/>
          </div>
@@ -57,11 +57,11 @@ export default function Login() {
          <div className="ml-[calc(50%-156px/2)] pt-[5px]">
            <span className="font-sans font-normal text-xs/[100%] text-primary-100 text-center underline">질링스 홈페이지 바로가기&rarr;</span>
          </div>
-         <div className="w-[280px] h-[22px] ml-[calc(50%-132px)] pt-[224px]">
+         <div className="w-[280px] h-[22px] ml-[calc(50%-132px)] pt-[170px]">
            <span className="font-sans font-bold text-[20px]/[100%] text-primary-100 text-center">회사소개페이지 제작 PLUG-IN</span>
          </div>
        </div>
-       <div className="w-[640px] h-[832px] bg-primary-100">
+       <div className="w-[640px] bg-primary-100">
         <div className="ml-[calc(50%-360px/2)] pt-[203px]">
             <span className="align-top not-italic text-GrayScalePrimary-800 font-black text-[27px]/[100%] w-[85px] h-[32px] ml-[137.5px] top-[2px] tracking-[0.03em] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">로그인</span>
            <form onSubmit={handleSubmit(onValid)} className="flex flex-col pt-[36px] w-[360px] h-[359px] left-0">
@@ -78,12 +78,9 @@ export default function Login() {
               )} required name="password" label="비밀번호" type="password" size="large"/>
               {error && <span className="text-[red] text-sm">이메일 또는 비밀번호가 일치하지 않습니다</span>}
               <div className="flex justify-between mt-4">
-                
+              
                <Input name="keep" type="checkbox" onClick={onClick}/>
-                {/* <div className="w-[360px] h-[46px] right-0 top-[237px] mt-5"> */}
-                
-                <Button disable={false} text="로그인" size="small"/>
-              {/* </div> */}
+                {watch('email') && watch('password') ? <Button disable={false} text="로그인" size="small"/> : <Button disable={true} text="로그인" size="small"/>}
               </div>
              
               <div className="flex flex-row justify-center items-center p-[8px_0px] mt-4 gap-[8px] w-[360px] h-[46px] border border-solid border-GrayScalePrimary-300 rounded-lg">
