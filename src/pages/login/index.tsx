@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import {useState} from "react";
+import Link from "next/link";
 interface EnterForm {
   email: string;
   password: string;
@@ -30,7 +31,7 @@ export default function Login() {
      setCookie('refreshToken', getBearerToken(data?.refreshToken), data && { path: '/'})
      }
       
-      // navigate.push("/")
+      navigate.push("/")
     },
     onError: (err: AxiosError) => { 
       console.log(err)
@@ -91,7 +92,9 @@ export default function Login() {
               <div className="relative flex flex-row items-center p-0 gap-1 mt-5">
                   <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">아이디/비밀번호 찾기</span>
                   <span className="h-[16px] font-normal border-r text-GrayScalePrimary-900"/>
+                  <Link href={'/register'}>
                   <span className="w-[56px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">회원가입</span>
+                  </Link>
                 </div>
             </form> 
         </div>
