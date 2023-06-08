@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import {useState} from "react";
+import Link from "next/link";
 interface EnterForm {
   email: string;
   password: string;
@@ -17,7 +18,7 @@ interface EnterForm {
 export default function Login() {
   const [checked, setChecked] = useState(false)
   const navigate = useRouter()
-  const { register, handleSubmit, formState: { errors } } = useForm<EnterForm>();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<EnterForm>();
 
   const { mutate, error } = useMutation(login, {
     onSuccess: (data) => {
@@ -30,7 +31,7 @@ export default function Login() {
      setCookie('refreshToken', getBearerToken(data?.refreshToken), data && { path: '/'})
      }
       
-      // navigate.push("/")
+      navigate.push("/")
     },
     onError: (err: AxiosError) => { 
       console.log(err)
@@ -46,25 +47,25 @@ export default function Login() {
   }
 
     return (
-      <div>
-       <div className="absolute left-0 right-1/2 top-0 bottom-0 bg-primary-500">
-         <div className="absolute left-[calc(50%_-_230px/2)] top-[26.44%] bottom-[45.91%]">
+      <div className="flex h-[100vh]">
+       <div className="w-[640px] bg-primary-500">
+         <div className="ml-[calc(50%-230px/2)] pt-[220px] ">
             <Image src="/emblem1.png" alt="emblem1" height={230} width={230}/>
          </div>
-         <div className="absolute left-[calc(50%-150px/2)] top-[60%] bottom-[39.63%]">
+         <div className="ml-[calc(50%-150px/2)] pt-[36px]">
              <Image src="/logo.png" alt="logo" height={16.27} width={150}/>
          </div>
-         <div className="absolute w-[156px] h-[14px] left-[calc(50%-156px/2)] top-[calc(50%-14px/2+107px)]">
+         <div className="ml-[calc(50%-156px/2)] pt-[5px]">
            <span className="font-sans font-normal text-xs/[100%] text-primary-100 text-center underline">질링스 홈페이지 바로가기&rarr;</span>
          </div>
-         <div className="absolute w-[280px] h-[22px] left-[calc(50%-132px)] top-[calc(50%+330px)]">
+         <div className="w-[280px] h-[22px] ml-[calc(50%-132px)] pt-[170px]">
            <span className="font-sans font-bold text-[20px]/[100%] text-primary-100 text-center">회사소개페이지 제작 PLUG-IN</span>
          </div>
        </div>
-       <div className="absolute left-[50.16%] right-[-0.16%] top-0 bottom-0 rounded">
-        <div className="absolute w-[360px] h-[427px] left-[calc(50%-360px/2)] top-[calc(50%-427px/2+0.5px)]">
-            <span className="align-top not-italic text-GrayScalePrimary-800 font-black text-[27px]/[100%] absolute w-[85px] h-[32px] left-[137.5px] top-[2px] tracking-[0.03em] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">로그인</span>
-           <form onSubmit={handleSubmit(onValid)} className="flex flex-col p-0 absolute w-[360px] h-[359px] left-0 top-[66px]">
+       <div className="w-[640px] bg-primary-100">
+        <div className="ml-[calc(50%-360px/2)] pt-[203px]">
+            <span className="align-top not-italic text-GrayScalePrimary-800 font-black text-[27px]/[100%] w-[85px] h-[32px] ml-[137.5px] top-[2px] tracking-[0.03em] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">로그인</span>
+           <form onSubmit={handleSubmit(onValid)} className="flex flex-col pt-[36px] w-[360px] h-[359px] left-0">
               <Input register={register('email',
                {
                 required: "Email is required",
@@ -77,20 +78,24 @@ export default function Login() {
               <Input register={register('password'       
               )} required name="password" label="비밀번호" type="password" size="large"/>
               {error && <span className="text-[red] text-sm">이메일 또는 비밀번호가 일치하지 않습니다</span>}
-              <Input name="keep" type="checkbox" onClick={onClick} />
-              <div className="w-[360px] h-[46px] right-0 top-[237px] mt-5">
-                <div className="relative flex flex-row items-center p-0 gap-1">
-                  <span className="w-[56px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">회원가입</span>
-                  <span className="h-[16px] font-normal border-r text-GrayScalePrimary-900"/>
-                  <span className="w-[105px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">비밀번호 재설정</span>
-                <Button disable={true} text="이메일로 로그인" size="large"/>
-                </div>
+              <div className="flex justify-between mt-4">
+              
+               <Input name="keep" type="checkbox" onClick={onClick}/>
+                {watch('email') && watch('password') ? <Button disable={false} text="로그인" size="small"/> : <Button disable={true} text="로그인" size="small"/>}
               </div>
-              <div className="flex flex-row justify-center items-center p-[8px_0px] gap-[8px] w-[360px] h-[46px] border border-solid border-GrayScalePrimary-300 rounded-lg">
+             
+              <div className="flex flex-row justify-center items-center p-[8px_0px] mt-4 gap-[8px] w-[360px] h-[46px] border border-solid border-GrayScalePrimary-300 rounded-lg">
                  <Image src="/google.png" alt="google" height={28} width={28}/>
                  <span className="h-[16px] font-normal text-[15px]/[100%]">Google 로그인</span>
        
               </div>
+              <div className="relative flex flex-row items-center p-0 gap-1 mt-5">
+                  <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">아이디/비밀번호 찾기</span>
+                  <span className="h-[16px] font-normal border-r text-GrayScalePrimary-900"/>
+                  <Link href={'/register'}>
+                  <span className="w-[56px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">회원가입</span>
+                  </Link>
+                </div>
             </form> 
         </div>
        </div>
