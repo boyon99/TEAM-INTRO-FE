@@ -80,7 +80,7 @@ export default function Login() {
               {error && <span className="text-[red] text-sm">이메일 또는 비밀번호가 일치하지 않습니다</span>}
               <div className="flex justify-between mt-4">
               
-               <Input name="keep" type="checkbox" onClick={onClick}/>
+               <Input name="keep" label="로그인 상태 유지" type="login_checkbox" onClick={onClick}/>
                 {watch('email') && watch('password') ? <Button disable={false} text="로그인" size="small"/> : <Button disable={true} text="로그인" size="small"/>}
               </div>
              
@@ -90,7 +90,13 @@ export default function Login() {
        
               </div>
               <div className="relative flex flex-row items-center p-0 gap-1 mt-5">
-                  <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">아이디/비밀번호 찾기</span>
+                <Link href={'/'}>
+                  <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">아이디</span>
+                </Link>
+                <span>/</span>
+                <Link href={'/'}>
+                  <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">비밀번호 찾기</span>
+                </Link>
                   <span className="h-[16px] font-normal border-r text-GrayScalePrimary-900"/>
                   <Link href={'/register'}>
                   <span className="w-[56px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">회원가입</span>
