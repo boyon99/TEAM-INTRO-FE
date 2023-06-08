@@ -2,7 +2,7 @@ import { cls } from "@/utiles/utile";
 
 
 interface ButtonProps {
-    size?: "small" | "medium" | "large" | "xlarge";
+    size?: "xsmall" | "small" | "medium" | "large" | "xlarge";
     text: string;
     disable: boolean;
   }
@@ -19,6 +19,16 @@ export default function Button({
                 className={cls(
                 "w-[128px] h-[48px] left-[calc(50%-128px/2+68px)] bottom-[44px] rounded-lg text-GrayScaleNeutral-100 font-bold text-lg/[100%]",
                 disable ? "bg-primary-500" : "bg-[#fffff] text-GrayScalePrimary-600 border border-solid border-[#000000]"
+                )}
+            >
+                {text}
+           </button>
+    ): null}
+    {size === "xsmall" ? (
+        <button
+                className={cls(
+                "w-[88px] h-[43px] ml-[8px] rounded-lg text-GrayScaleNeutral-100 font-medium text-sm/[100%]",
+                disable ? "bg-primary-500" : "bg-primary-150 text-[#fff]"
                 )}
             >
                 {text}
@@ -54,6 +64,7 @@ export default function Button({
                 {text}
            </button>
     ): null}
+     
     </>
   );
 }
