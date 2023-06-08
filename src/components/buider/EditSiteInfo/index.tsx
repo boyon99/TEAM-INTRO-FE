@@ -3,7 +3,7 @@ import React from "react";
 
 export default function EditSiteInfo({ setIsTopbarBtn }: EditSiteInfoProps) {
   return (
-    <div className="w-[400px] h-[800px] border rounded-[5px] mt-[20px] overflow-y-auto relative">
+    <div className="w-[400px] h-[800px] border rounded-[5px] mt-[20px] overflow-y-auto relative bg-[#fff]">
       <button
         className="w-[auto] fixed right-[5px] border absolute"
         onClick={() => {

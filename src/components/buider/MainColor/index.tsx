@@ -7,7 +7,7 @@ export default function MainColor() {
   const [mainColor, setMainColor] = useState("#8a8a8a");
 
   return (
-    <div className="w-[425px] h-[300px] rounded-[8px] bg-white border mt-[20px]">
+    <div className="w-[425px] h-[300px] rounded-[8px] bg-[#fff] border mt-[20px]">
       {/* 선택한 색상 보여주기 */}
       <div
         style={{
