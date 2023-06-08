@@ -6,7 +6,7 @@ import TopBar from "@/components/buider/TopBar";
 import React, { useState } from "react";
 
 export default function Builder() {
-  const [widgetList, setWidgetList] = useState(["Item 1", "Item 2", "Item 3"]);
+  const [widgetList, setWidgetList] = useState(["Fitness", "Cta", "Timeline"]);
   console.log(widgetList);
   return (
     <>
