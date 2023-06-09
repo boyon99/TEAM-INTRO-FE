@@ -5,18 +5,18 @@ import Link from 'next/link';
 import React from 'react'
 import { useForm } from 'react-hook-form';
 
-function Legister() {
+function SnsLegister() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
   return (
     <div>
        <div className='h-[65px] border-solid border-b-[1px] border-primary-500'>
         <Image src="/zlllinks.png" alt="emblem1" width={150} height={52.5} className='ml-[20px] mt-[10px]'/>
        </div>
-       <div className='w-[100px] h-[24px] m-[0_auto] mt-[50px]'>
-         <p className="text-2xl/[100%] font-bold ">회원가입</p>
+       <div className='w-[160px] h-[24px] m-[0_auto] mt-[60px]'>
+         <p className="text-2xl/[100%] font-bold ">소셜 회원가입</p>
        </div>
 
-       <div className='w-[501px] h-[542px] flex flex-col m-[0_auto] mt-[32px]'>
+       <div className='w-[501px] h-[542px] flex flex-col m-[0_auto] mt-[52px]'>
        <form>
         <div className='flex mb-[14px]'>
         <Input register={register('email',
@@ -32,24 +32,15 @@ function Legister() {
         </div>
         <div className='flex mb-[14px]'>
         <Input register={register('password'       
+              )} required name="password" label="이메일" type="snsregister_email" size="large"/>
+               
+        </div>
+        <div className='flex mb-[14px]'>
+        <Input register={register('password'       
               )} required name="password" label="사업자등록번호*" type="register_password" size="small"/>
                <Button disable={false} text="인증요청" size="xsmall"/>
         </div>
-        <div className='flex mb-[14px]'>
-        <Input register={register('password'       
-              )} required name="password" label="비밀번호*" type="register_password" size="large"/>
-               
-        </div>
-        <div className='flex mb-[14px]'>
-        <Input register={register('password'       
-              )} required name="password" label="비밀번호 확인*" type="register_password_check" size="large"/>
-               
-        </div>
-        <div className='flex mb-[14px]'>
-        <Input register={register('password'       
-              )} required name="password" label="이메일*" type="register_email" size="small"/>
-               <Button disable={false} text="인증요청" size="xsmall"/>
-        </div>
+        
 
         </form> 
         <div className='mt-[32px] pb-[14px] border-solid border-b-[1px] border-GrayScalePrimary-150'>
@@ -70,4 +61,4 @@ function Legister() {
   )
 }
 
-export default Legister
+export default SnsLegister
