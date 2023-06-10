@@ -5,12 +5,16 @@ interface ButtonProps {
     size?: "xsmall" | "small" | "medium" | "large" | "xlarge";
     text: string;
     disable: boolean;
+    form?: any;
+    type?: any;
   }
   
 export default function Button({
   size,
   text,
-  disable
+  disable,
+  form,
+  type,
 }:ButtonProps) {
   return (
     <>
@@ -26,6 +30,7 @@ export default function Button({
     ): null}
     {size === "xsmall" ? (
         <button
+    
                 className={cls(
                 "w-[88px] h-[43px] ml-[8px] rounded-lg text-GrayScaleNeutral-100 font-medium text-sm/[100%]",
                 disable ? "bg-primary-500" : "bg-primary-150 text-[#fff]"
@@ -36,6 +41,7 @@ export default function Button({
     ): null}
     {size === "small" ? (
             <button
+                
                 className={cls(
                 "w-[100px] h-[46px] rounded-lg text-GrayScaleNeutral-100 font-bold text-sm",
                 disable ? "bg-GrayScalePrimary-300" : "bg-primary-500"
