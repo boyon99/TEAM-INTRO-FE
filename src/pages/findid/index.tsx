@@ -49,18 +49,18 @@ function FindId() {
          <p className="text-[22px]/[100%] font-bold ">아이디 찾기</p>
        </div>
 
-     {/* <div>
+     <div>
         <span className="w-[252px] h-[16px] text-sm/[100%] ml-[441px]">고객님의 정보와 일치하는 아이디입니다.</span>
         <div className="relative w-[400px] h-[100px] ml-[calc(50%-400px/2)] mt-[24px] border border-solid border-[#cfced7] rounded-lg mb-[48px]">
          <span className="absolute text-2xl/[100%] font-bold text-[#403f4e] mt-[32px] ml-[132px]">example123</span>
         </div>
-        <div className="w-[376px] h-[46px] ml-[calc(50%-376px/2)]">
+        <div className="w-[376px] h-[46px] ml-[calc(50%-376px/2)] space-x-[16px]">
             <Button disable={false} text="로그인 하기" size="xlarge"/>
             <Button disable={false} text="비밀번호 찾기" size="xlarge"/>
         </div>
-     </div>  */}
+     </div> 
      
-       <>
+       {/* <>
        <div className="w-[400px] h-[46px] m-[0_auto] mt-[52px]">
          <button onClick={onEmailClick} className="w-[200px] h-[46px] border border-solid border-[#2824f0] rounded-[16px_16px_0px_0px] text-sm font-bold">이메일로 찾기</button>
          <button onClick={onPhoneClick} className="w-[200px] h-[46px] border border-solid border-[#2824f0] rounded-[16px_16px_0px_0px] text-sm font-bold">사업자등록번호로 찾기</button>
@@ -107,7 +107,7 @@ function FindId() {
              <Button disable={false} text="아이디 찾기" size="xlarge"/>
            </div>
            </div>
-           </>  
+           </>   */}
         </div>
       )
 }
