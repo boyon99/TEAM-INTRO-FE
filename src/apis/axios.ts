@@ -19,6 +19,7 @@ const getAxiosInstance = () => {
   instance.interceptors.request.use(
     (request) => {
       const token = getCookie('access_token')
+     
       if (token) request.headers['Authorization'] = `${token}`
       return request
     },
