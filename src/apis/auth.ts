@@ -11,14 +11,15 @@ export const login = async (user: LoginRequest) => {
       console.log(response)
       return response
   }
-export const findid = async (email: FindId) => {
+export const findidbyemail = async (email: FindId) => {
       const { data } = await axios.post<any>('/api/findIdByEmail  ', email)
       const response = data.data;
       console.log(response)
       return response
   }
-export const findbznum = async (bzmum: LoginRequest) => {
-      const { data } = await axios.post<AuthResponse>('/api/findIdByEmail  ', bzmum)
+
+export const findidbybznum = async (bznum: FindId) => {
+      const { data } = await axios.post<any>('/api/findIdByBizNum', bznum)
       const response = data.data;
       console.log(response)
       return response

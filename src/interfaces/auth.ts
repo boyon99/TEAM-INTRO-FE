@@ -14,5 +14,5 @@ export interface AuthResponse {
 
 export interface FindId {
   email: string;
-  bznum?: string;
+  bizNum: string;
 }
