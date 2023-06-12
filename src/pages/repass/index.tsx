@@ -16,7 +16,7 @@ function RePass() {
    </div>
 
  <div>
-    <div className='flex mb-[20px] ml-[415px]'>
+    <div className='flex mb-[20px] ml-[calc(50%-490px/2)]'>
             <Input register={register('email',
                 {
                     required: "Email is required",
@@ -25,10 +25,10 @@ function RePass() {
                     message: "이메일 형식이 아닙니다.",
                     },
                 }
-                )} name="email" label="비밀번호*" type="findpass_email" size="large"/>
+                )} name="repass" label="비밀번호*" type="password" size="large"/>
                 
     </div> 
-    <div className='flex mb-[14px] ml-[415px]'>
+    <div className='flex mb-[14px] ml-[calc(50%-490px/2)]'>
             <Input register={register('email',
                 {
                     required: "Email is required",
@@ -37,7 +37,7 @@ function RePass() {
                     message: "이메일 형식이 아닙니다.",
                     },
                 }
-                )} name="email" label="비밀번호 확인*" type="findpass_email" size="large"/>
+                )} name="repass_check" label="비밀번호 확인*" type="password" size="large"/>
                 
     </div> 
     <div className='ml-[550px] mt-[62px]'>

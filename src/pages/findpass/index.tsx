@@ -25,7 +25,7 @@ function FindPass() {
                         message: "이메일 형식이 아닙니다.",
                         },
                     }
-                    )} name="email" label="아이디*" type="findpass_email" size="large"/>
+                    )} name="findid_pass" label="아이디*" type="text" size="large"/>
                     
         </div> 
         <div className='flex mb-[14px] ml-[415px]'>
@@ -37,7 +37,7 @@ function FindPass() {
                         message: "이메일 형식이 아닙니다.",
                         },
                     }
-                    )} name="email" label="이메일*" type="findpass_email" size="large"/>
+                    )} name="findemail_pass" label="이메일*" type="text" size="large"/>
                     
         </div> 
         <div className='ml-[550px] mt-[62px]'>

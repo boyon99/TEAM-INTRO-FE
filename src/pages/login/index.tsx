@@ -66,7 +66,7 @@ export default function Login() {
                 //   message: "이메일 형식이 아닙니다.",
                 // },
               }
-              )} name="login_id" label="아이디" type="login_id" size="large"/>
+              )} name="login_id" label="아이디" type="text" size="large"/>
               <Input register={register('password'       
               )} required name="password" label="비밀번호" type="password" size="large"/>
               {error && <span className="text-[red] text-sm">이메일 또는 비밀번호가 일치하지 않습니다</span>}
@@ -82,11 +82,11 @@ export default function Login() {
        
               </div>
               <div className="relative flex flex-row items-center p-0 gap-1 mt-5">
-                <Link href={'/'}>
+                <Link href={'/findid'}>
                   <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">아이디</span>
                 </Link>
                 <span>/</span>
-                <Link href={'/'}>
+                <Link href={'/findpass'}>
                   <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">비밀번호 찾기</span>
                 </Link>
                   <span className="h-[16px] font-normal border-r text-GrayScalePrimary-900"/>

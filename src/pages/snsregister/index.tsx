@@ -19,7 +19,7 @@ function SnsLegister() {
        <div className='w-[501px] h-[542px] flex flex-col m-[0_auto] mt-[52px]'>
        <form>
         <div className='flex mb-[14px]'>
-        <Input register={register('email',
+        <Input register={register('id',
                {
                 required: "Email is required",
                 pattern: {
@@ -27,17 +27,17 @@ function SnsLegister() {
                   message: "이메일 형식이 아닙니다.",
                 },
               }
-              )} name="email" label="아이디*" type="register_id" size="small"/>
+              )} name="id" label="아이디*" type="text" size="small"/>
               <Button disable={false} text="중복확인" size="xsmall"/>
         </div>
         <div className='flex mb-[14px]'>
-        <Input register={register('password'       
-              )} required name="password" label="이메일" type="snsregister_email" size="large"/>
+        <Input register={register('email'       
+              )} required name="snsemail" label="이메일" type="text" size="large"/>
                
         </div>
         <div className='flex mb-[14px]'>
-        <Input register={register('password'       
-              )} required name="password" label="사업자등록번호*" type="register_password" size="small"/>
+        <Input register={register('bznum'       
+              )} required name="bznum" label="사업자등록번호*" type="text" size="small"/>
                <Button disable={false} text="인증요청" size="xsmall"/>
         </div>
         
