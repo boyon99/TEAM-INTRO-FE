@@ -2,11 +2,21 @@ import Button from '@/components/button';
 import Input from '@/components/input'
 import Image from 'next/image'
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 function Legister() {
+  const [checked, setChecked] = useState('hello')
+  const [test, setTest] = useState('hi')
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+   console.log(checked)
+   console.log(test)
+    const onClick = () => {
+      setChecked('newhello')
+    }
+    const onClicktest = () => {
+      setTest('newhi')
+    }
   return (
     <div>
        <div className='h-[65px] border-solid border-b-[1px] border-primary-500'>
@@ -17,7 +27,7 @@ function Legister() {
        </div>
 
        <div className='w-[501px] h-[542px] flex flex-col m-[0_auto] mt-[32px]'>
-       <form>
+       <form id='join'>
         <div className='flex mb-[14px]'>
         <Input register={register('email',
                {
@@ -27,28 +37,28 @@ function Legister() {
                   message: "이메일 형식이 아닙니다.",
                 },
               }
-              )} name="email" label="아이디*" type="register_id" size="small"/>
-              <Button disable={false} text="중복확인" size="xsmall"/>
+              )} name="id" label="아이디*" type="text" size="small"/>
+              <Button disable={false} text="중복확인" type="button" onClick={onClick} size="xsmall"/>
         </div>
         <div className='flex mb-[14px]'>
         <Input register={register('password'       
-              )} required name="password" label="사업자등록번호*" type="register_password" size="small"/>
-               <Button disable={false} text="인증요청" size="xsmall"/>
+              )} required name="bznum" label="사업자등록번호*" type="text" size="small"/>
+               <Button disable={false} text="인증요청" type="button" onClick={onClicktest} size="xsmall"/>
         </div>
         <div className='flex mb-[14px]'>
         <Input register={register('password'       
-              )} required name="password" label="비밀번호*" type="register_password" size="large"/>
+              )} required name="register_password" label="비밀번호*" type="password" size="large"/>
                
         </div>
         <div className='flex mb-[14px]'>
         <Input register={register('password'       
-              )} required name="password" label="비밀번호 확인*" type="register_password_check" size="large"/>
+              )} required name="register_password_check" label="비밀번호 확인*" type="password" size="large"/>
                
         </div>
         <div className='flex mb-[14px]'>
         <Input register={register('password'       
-              )} required name="password" label="이메일*" type="register_email" size="small"/>
-               <Button disable={false} text="인증요청" size="xsmall"/>
+              )} required name="email" label="이메일*" type="text" size="small"/>
+               <Button disable={false} text="인증요청" type="button" size="xsmall"/>
         </div>
 
         </form> 
@@ -62,7 +72,7 @@ function Legister() {
        </div>
        <div className='m-[0_auto] mt-[32px]'>
 
-         <Button disable={false} text="회원가입" size="xlarge"/>
+         <Button disable={false} text="회원가입" form="join" size="xlarge"/>
        </div>
        </div>
        

@@ -2,7 +2,7 @@ import { login } from "@/apis/auth";
 import Button from "@/components/button";
 import Input from "@/components/input";
 import { getBearerToken } from "@/utiles/bearerToken";
-import { setCookie } from "@/utiles/cookies";
+import { getCookie, setCookie } from "@/utiles/cookies";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Image from "next/image";
@@ -11,39 +11,31 @@ import { useForm } from "react-hook-form";
 import {useState} from "react";
 import Link from "next/link";
 interface EnterForm {
-  email: string;
+  login_id: string;
   password: string;
+  remember_me?: boolean;
 }
 
 export default function Login() {
   const [checked, setChecked] = useState(false)
   const navigate = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm<EnterForm>();
-
+ 
   const { mutate, error } = useMutation(login, {
     onSuccess: (data) => {
-     if(checked) {
-      setCookie('accessToken', getBearerToken(data?.accessToken), data && { path: '/', maxAge: 60*60*24 })
-      setCookie('refreshToken', getBearerToken(data?.refreshToken), data && { path: '/', maxAge: 60*60*24 })
-     }
-     else {
-     setCookie('accessToken', getBearerToken(data?.accessToken), data && { path: '/'})
-     setCookie('refreshToken', getBearerToken(data?.refreshToken), data && { path: '/'})
-     }
-      
+      setCookie('access_token', data?.access_token, data && { path: '/', maxAge: 60*60*24 })
       navigate.push("/")
     },
     onError: (err: AxiosError) => { 
       console.log(err)
     },
   })
- console.log(error)
+ console.log(checked)
   const onValid = (data: EnterForm) => {
-    mutate(data)
+    mutate({...data, remember_me: checked})
   };
-
   const onClick = () => {
-    setChecked(true)
+    setChecked(!checked)
   }
 
     return (
@@ -65,23 +57,23 @@ export default function Login() {
        <div className="w-[640px] bg-primary-100">
         <div className="ml-[calc(50%-360px/2)] pt-[203px]">
             <span className="align-top not-italic text-GrayScalePrimary-800 font-black text-[27px]/[100%] w-[85px] h-[32px] ml-[137.5px] top-[2px] tracking-[0.03em] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">로그인</span>
-           <form onSubmit={handleSubmit(onValid)} className="flex flex-col pt-[36px] w-[360px] h-[359px] left-0">
-              <Input register={register('email',
+           <form id="join" onSubmit={handleSubmit(onValid)} className="flex flex-col pt-[36px] w-[360px] h-[359px] left-0">
+              <Input register={register('login_id',
                {
                 required: "Email is required",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                  message: "이메일 형식이 아닙니다.",
-                },
+                // pattern: {
+                //   value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+                //   message: "이메일 형식이 아닙니다.",
+                // },
               }
-              )} name="email" label="아이디" type="email" size="large"/>
+              )} name="login_id" label="아이디" type="text" size="large"/>
               <Input register={register('password'       
               )} required name="password" label="비밀번호" type="password" size="large"/>
               {error && <span className="text-[red] text-sm">이메일 또는 비밀번호가 일치하지 않습니다</span>}
               <div className="flex justify-between mt-4">
               
                <Input name="keep" label="로그인 상태 유지" type="login_checkbox" onClick={onClick}/>
-                {watch('email') && watch('password') ? <Button disable={false} text="로그인" size="small"/> : <Button disable={true} text="로그인" size="small"/>}
+               {watch('login_id') && watch('password') ? <Button disable={false} text="로그인" size="small"/> : <Button disable={true} text="로그인" size="small"/>}
               </div>
              
               <div className="flex flex-row justify-center items-center p-[8px_0px] mt-4 gap-[8px] w-[360px] h-[46px] border border-solid border-GrayScalePrimary-300 rounded-lg">
@@ -90,11 +82,11 @@ export default function Login() {
        
               </div>
               <div className="relative flex flex-row items-center p-0 gap-1 mt-5">
-                <Link href={'/'}>
+                <Link href={'/findid'}>
                   <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">아이디</span>
                 </Link>
                 <span>/</span>
-                <Link href={'/'}>
+                <Link href={'/findpass'}>
                   <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">비밀번호 찾기</span>
                 </Link>
                   <span className="h-[16px] font-normal border-r text-GrayScalePrimary-900"/>
@@ -103,6 +95,7 @@ export default function Login() {
                   </Link>
                 </div>
             </form> 
+            {/* {watch('login_id') && watch('password') ? <Button disable={false} form="join" text="로그인" size="xsmall"/> : <Button disable={true} form="join" text="로그인" size="xsmall"/>} */}
         </div>
        </div>
        </div>

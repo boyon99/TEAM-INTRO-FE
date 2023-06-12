@@ -18,8 +18,8 @@ const getAxiosInstance = () => {
 //인터셉터는 then이나catch로 처리되기 전에 요청이나 응답을 가로챌 수 있습니다.
   instance.interceptors.request.use(
     (request) => {
-      const token = getCookie('accessToken')
-      if (token) request.headers['Authorization'] = `Bearer ${token}`
+      const token = getCookie('access_token')
+      if (token) request.headers['Authorization'] = `${token}`
       return request
     },
     (error: AxiosError) => { // 에러타입 지정
