@@ -30,12 +30,12 @@ export default function Login() {
       console.log(err)
     },
   })
- console.log(watch('login_id'))
+ console.log(checked)
   const onValid = (data: EnterForm) => {
     mutate({...data, remember_me: checked})
   };
   const onClick = () => {
-    setChecked(true)
+    setChecked(!checked)
   }
 
     return (

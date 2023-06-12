@@ -28,7 +28,7 @@ function RePass() {
                 )} name="repass" label="비밀번호*" type="password" size="large"/>
                 
     </div> 
-    <div className='flex mb-[14px] ml-[calc(50%-490px/2)]'>
+    <div className='flex ml-[calc(50%-490px/2)]'>
             <Input register={register('email',
                 {
                     required: "Email is required",
