@@ -69,9 +69,10 @@ function RePass() {
         
       <div className='w-[984px] bg-[#F8F8FA]'>
        <div className='w-[900px] h-[70px] border border-solid border-[#eaeaee] bg-[#fff] rounded-xl ml-[38px] mt-[24px]'>
-     <p className="text-[22px]/[100%] font-bold ml-[calc(50%-139px/2-0.5px)] mt-[24px]">비밀번호 재설정</p>
+        {method === "pass" ? <p className="text-[22px]/[100%] font-bold ml-[calc(50%-139px/2-0.5px)] mt-[24px]">비밀번호 재설정</p> : <p className="text-[22px]/[100%] font-bold ml-[calc(50%-139px/2-0.5px)] mt-[24px] font-sans">기본 정보</p>}
+     
    </div>
-
+{method === 'pass' ?
  <form onSubmit={handleSubmit(onValid)} className='w-[900px] h-[620px] border border-solid border-[#eaeaee] bg-[#fff] rounded-xl mt-[18px] ml-[38px]'>
     <div className='h-[70px] flex mb-[20px] ml-[calc(50%-500px/2-11px)] mt-[104px]'>
             <Input register={register('password',
@@ -116,7 +117,73 @@ function RePass() {
          <Button disable={false} text="비밀번호 변경" size="xlarge"/>
     </div>
     {errors.new_passwordConfirm?.message as string}
- </form> 
+ </form>:
+  <form onSubmit={handleSubmit(onValid)} className='w-[900px] h-[620px] border border-solid border-[#eaeaee] bg-[#fff] rounded-xl mt-[18px] ml-[38px]'>
+    <div className='h-[70px] flex ml-[200px] mt-[42px]'>
+            <Input register={register('id',
+                // {
+                //     required: "Email is required",
+                //     pattern: {
+                //     value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+                //     message: "이메일 형식이 아닙니다.",
+                //     },
+                // }
+                )} name="snsemail" label="아이디" type="text" size="large"/>
+                
+    </div> 
+    <div className='h-[70px] flex mb-[10px] ml-[200px]'>
+    <Input register={register('email',
+               {
+                required: "Email is required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+                  message: "이메일 형식이 아닙니다.",
+                },
+              }
+              )} name="email" label="이메일*" type="text" size="small"/>
+              <Button disable={false} text="인증요청" type="button" size="xsmall"/>
+    </div> 
+    <div className='h-[70px] flex ml-[200px]'>
+    <Input register={register('bizNum',
+                   {
+                    required: "Email is required",
+                    // pattern: {
+                    //   value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+                    //   message: "이메일 형식이 아닙니다.",
+                    // },
+                  }
+                  )} name="my_biznum" label="사업자등록번호*" type="text" size="large"/>
+    </div>
+    <div className='w-[500px] h-[153px] flex ml-[200px] mt-[12px]'>
+       <span className='w-[138px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800'>프로필 이미지</span>
+          <label className="w-[356px] ml-[4px] cursor-pointer border-[#CFCED7] flex items-center justify-center border-2 border-solid rounded-[4px]">
+            <svg
+              className="h-12 w-12"
+              stroke="currentColor"
+              fill="none"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+            >
+              <path
+                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <input className="hidden" type="file" />
+          </label>
+    </div>
+    <div className='w-[500px] h-[40px] flex ml-[200px] mt-[20px]'>
+    <span className='w-[138px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800'>알림 동의</span>
+    <Input name="keep" label='' type="alarm"/>
+    </div>
+    <div className='ml-[360px] mt-[32px]'>
+
+<Button disable={false} text="저장하기" form="join" size="xlarge"/>
+</div>
+  </form>
+   }
  </div>
  </div>
     </div>
