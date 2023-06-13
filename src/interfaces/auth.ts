@@ -1,13 +1,18 @@
 
 export interface LoginRequest {
-    email: string
+    login_id: string
     password: string
+    remember_me?: boolean
   }
 export interface Response {
-    accessToken: string
-    refreshToken: string
+    access_token: string
+    refresh_token: string
 }
 export interface AuthResponse {
     data: Response
   }
 
+export interface FindId {
+  email: string;
+  bznum?: string;
+}
