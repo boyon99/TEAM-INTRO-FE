@@ -46,7 +46,7 @@ function FindId() {
         reset();
         setMethod("email");
       }
-      const onPhoneClick = () => {
+      const onbizNumClick = () => {
         reset();
         setMethod("bizNum");
       }
@@ -87,7 +87,7 @@ function FindId() {
        <>
        <div className="w-[400px] h-[46px] m-[0_auto] mt-[52px]">
          <button onClick={onEmailClick} className={cls("w-[200px] h-[46px] border border-solid rounded-[16px_16px_0px_0px] text-sm font-bold", method === "email" ? "border-[#2824f0]" : "border-[#cfced7] text-[#89889e]")}>이메일로 찾기</button>
-         <button onClick={onPhoneClick} className={cls("w-[200px] h-[46px] border border-solid rounded-[16px_16px_0px_0px] text-sm font-bold", method === "bizNum" ? "border-[#2824f0]" : "border-[#cfced7] text-[#89889e]")}>사업자등록번호로 찾기</button>
+         <button onClick={onbizNumClick} className={cls("w-[200px] h-[46px] border border-solid rounded-[16px_16px_0px_0px] text-sm font-bold", method === "bizNum" ? "border-[#2824f0]" : "border-[#cfced7] text-[#89889e]")}>사업자등록번호로 찾기</button>
        </div>
       
            <div className='w-[400px] h-[46px] flex flex-col m-[0_auto] mt-[52px]'>
