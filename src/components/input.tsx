@@ -26,7 +26,7 @@ interface InputProps {
         <div className={cls(name === "register_password" || name === "register_password_check" || name === "snsemail" || name === "findid_email" || name === "findbznum_email" || name === "findid_pass" || name === "findemail_pass" || name === "repass" || name === "repass_check"? "" : "flex flex-col items-start gap-[8px] p-0 justify-center mb-5" )}>
             <span className={cls("w-[64px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800", name === "register_password" ? "mr-[71.93px]": "", name === "register_password_check"? "mr-[36px]": "", name === "snsemail" ?  "mr-[95px]":"", name === "findid_email" ? "mr-[20px]":"", name === "findbznum_email" ? "mr-[10px]" : "",
              name === "findid_pass" ? "mr-[36px]": "", name === "findemail_pass" ? "mr-[36px]": "",name === "repass" ? "mr-[62px]" : "", name === "repass_check" ? "mr-[26px]" : "")}>{label}</span>
-            <input type={type} {...register} required={required} className={cls("h-[43px] px-3 py-2 box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]",
+            <input type={type} {...register} required className={cls("h-[43px] px-3 py-2 box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]",
              name === "findid_email" ? "w-[324px]" :name === "findbznum_email" ? "w-[270px]" :"w-[356px]")}/>
         </div>
         

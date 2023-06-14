@@ -1,31 +1,46 @@
-import { findid } from "@/apis/auth";
+import { findidbybznum, findidbyemail } from "@/apis/auth";
 import Button from "@/components/button"
 import Input from "@/components/input"
 import { cls } from "@/utiles/utile";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Image from "next/image"
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface EnterForm {
     email: string;
-    bznum: string;
+    bizNum: string;
   }
 
 
 function FindId() {
-    const { mutate, error } = useMutation(findid, {
+  const [data, setData] = useState<any>()
+  const [bzdata, setBzdata] = useState<any>()
+  const [method, setMethod] = useState<"email" | "bizNum">("email");
+  const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<EnterForm>();
+    const { mutate, error } = useMutation(findidbyemail, {
         onSuccess: (data) => {
          
-          console.log(data)
+          setData(data)
         },
         onError: (err: AxiosError) => { 
           console.log(err)
         },
       })
-    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<EnterForm>();
-    const [method, setMethod] = useState<"email" | "bznum">("email");
+    const { mutate:bzmutate } = useMutation(findidbybznum, {
+        onSuccess: (data) => {
+         
+          setBzdata(data)
+        },
+        onError: (err: AxiosError) => { 
+          console.log(err)
+        },
+      })
+     
+      console.log(watch('bizNum'))
+   
 
     const onEmailClick = () => {
         reset();
@@ -33,11 +48,15 @@ function FindId() {
       }
       const onPhoneClick = () => {
         reset();
-        setMethod("bznum");
+        setMethod("bizNum");
       }
     
       const onValid = (data:EnterForm) => {
-        mutate(data)
+        if(method === "email") {
+          mutate(data)
+        }
+          bzmutate(data)
+        
       };
     
     return (
@@ -49,25 +68,30 @@ function FindId() {
          <p className="text-[22px]/[100%] font-bold ">아이디 찾기</p>
        </div>
 
-     {/* <div>
+     {data || bzdata? 
+       <div>
         <span className="w-[252px] h-[16px] text-sm/[100%] ml-[441px]">고객님의 정보와 일치하는 아이디입니다.</span>
         <div className="relative w-[400px] h-[100px] ml-[calc(50%-400px/2)] mt-[24px] border border-solid border-[#cfced7] rounded-lg mb-[48px]">
-         <span className="absolute text-2xl/[100%] font-bold text-[#403f4e] mt-[32px] ml-[132px]">example123</span>
+         <span className="absolute text-2xl/[100%] font-bold text-[#403f4e] mt-[32px] ml-[145px]">{data?.login_id}{bzdata?.login_id}</span>
         </div>
         <div className="w-[376px] h-[46px] ml-[calc(50%-376px/2)] space-x-[16px]">
+           <Link href={'/login'}>
             <Button disable={false} text="로그인 하기" size="xlarge"/>
+            </Link>
+            <Link href={'/findpass'}>
             <Button disable={false} text="비밀번호 찾기" size="xlarge"/>
+            </Link>
         </div>
-     </div>  */}
+     </div> : 
      
        <>
        <div className="w-[400px] h-[46px] m-[0_auto] mt-[52px]">
          <button onClick={onEmailClick} className={cls("w-[200px] h-[46px] border border-solid rounded-[16px_16px_0px_0px] text-sm font-bold", method === "email" ? "border-[#2824f0]" : "border-[#cfced7] text-[#89889e]")}>이메일로 찾기</button>
-         <button onClick={onPhoneClick} className={cls("w-[200px] h-[46px] border border-solid rounded-[16px_16px_0px_0px] text-sm font-bold", method === "bznum" ? "border-[#2824f0]" : "border-[#cfced7] text-[#89889e]")}>사업자등록번호로 찾기</button>
+         <button onClick={onPhoneClick} className={cls("w-[200px] h-[46px] border border-solid rounded-[16px_16px_0px_0px] text-sm font-bold", method === "bizNum" ? "border-[#2824f0]" : "border-[#cfced7] text-[#89889e]")}>사업자등록번호로 찾기</button>
        </div>
       
            <div className='w-[400px] h-[46px] flex flex-col m-[0_auto] mt-[52px]'>
-           <form onSubmit={handleSubmit(onValid)} >
+           <form onSubmit={handleSubmit(onValid)} id="findid_email">
            {method === 'email' ? 
            <>
            <span className="w-[400px] h-[46px] text-[#403F4E]">가입시 등록한 이메일을 입력해주세요.</span>
@@ -80,34 +104,34 @@ function FindId() {
                       message: "이메일 형식이 아닙니다.",
                     },
                   }
-                  )} name="findid_email" label="아이디*" type="text" size="large"/>
+                  )} name="findid_email" label="이메일*" type="text" size="large"/>
                 
             </div> 
             </>  :  null }       
-            {method === 'bznum' ? 
+            {method === 'bizNum' ? 
            <>
             <div className='flex mb-[14px]'>
-            <Input register={register('email',
+            <Input register={register('bizNum',
                    {
                     required: "Email is required",
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                      message: "이메일 형식이 아닙니다.",
-                    },
+                    // pattern: {
+                    //   value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+                    //   message: "이메일 형식이 아닙니다.",
+                    // },
                   }
                   )} name="findbznum_email" label="사업자등록번호*" type="text" size="large"/>
                 
             </div> 
             </>  :  null }       
-                
             </form> 
+            <div className='m-[0_auto] mt-[44px]'>
+             <Button disable={false} text="아이디 찾기" size="xlarge" form="findid_email"/>
+           </div>
            
        
-           <div className='m-[0_auto] mt-[44px]'>
-             <Button disable={false} text="아이디 찾기" size="xlarge"/>
+           
            </div>
-           </div>
-           </>
+           </> }
         </div>
       )
 }
