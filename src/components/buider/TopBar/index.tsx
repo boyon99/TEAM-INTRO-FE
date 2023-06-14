@@ -41,12 +41,14 @@ export default function TopBar() {
             저장하기
           </button>
         </div>
-        {isTopbarBtn.mainColorBtn ? <MainColor /> : <></>}
-        {isTopbarBtn.editSiteInfoBtn ? (
-          <EditSiteInfo setIsTopbarBtn={setIsTopbarBtn} />
-        ) : (
-          <></>
-        )}
+        <div className="absolute left-[calc(40%)] z-10">
+          {isTopbarBtn.mainColorBtn ? <MainColor /> : <></>}
+          {isTopbarBtn.editSiteInfoBtn ? (
+            <EditSiteInfo setIsTopbarBtn={setIsTopbarBtn} />
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </>
   );
