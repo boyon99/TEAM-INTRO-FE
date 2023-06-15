@@ -1,22 +1,19 @@
+import useStore from "@/store";
 import React, { useState } from "react";
 import { List, arrayMove } from "react-movable";
 
-export default function EditBuilder({
-  widgetList,
-  setWidgetList,
-}: {
-  widgetList: string[];
-  setWidgetList: Function;
-}) {
+export default function EditBuilder() {
+  const { widgets, addWidget, removeWidget, setWidget } = useStore();
+
   return (
     <div className="border w-[336px] h-[calc(100vh-72px)]">
       <div className="border w-[100%] h-[185px]"></div>
       {/* 위젯 제거 및 순서 변경 */}
       <div className="w-[100%] border h-[calc(100%-185px)] overflow-y-scroll">
         <List
-          values={widgetList}
+          values={widgets}
           onChange={({ oldIndex, newIndex }) =>
-            setWidgetList(arrayMove(widgetList, oldIndex, newIndex))
+            setWidget(arrayMove(widgets, oldIndex, newIndex))
           }
           renderList={({ children, props, isDragged }) => (
             <ul
