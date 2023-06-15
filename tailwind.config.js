@@ -58,26 +58,25 @@ module.exports = {
       },
       scuuess: {
         500: '#4264DA',
-      }
-    },
-    fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
-    },
-    screens: {
-      desktop: '1280px',
-    },
-    width: {
-      '1280': '1280px',
-      '1200 ': '1200px',
-    },
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      review: '#FFD602',
+      while: '#FFFFFF',
+      black: '#000000',
+      fontFamily: {
+        sans: ['Graphik', 'sans-serif'],
+        serif: ['Merriweather', 'serif'],
+      },
+      screens: {
+        desktop: '1280px',
+      },
+      extend: {
+        backgroundImage: {
+          'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          'gradient-conic':
+            'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        },
       },
     },
-  },
-  plugins: [],
-};
+    plugins: [],
+  }
+}
