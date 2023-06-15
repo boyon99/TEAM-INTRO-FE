@@ -15,7 +15,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
         const newURL = new URL(`/subdomain/${subdomain}`, req.url);
         return NextResponse.rewrite(newURL);
     }
-    
+  
     
 }
 
