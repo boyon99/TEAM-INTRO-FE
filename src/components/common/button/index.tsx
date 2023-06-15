@@ -2,7 +2,10 @@ import { BeforeButtonProps } from "@/interfaces/button";
 import { useRouter } from "next/router";
 
 // 이전으로 되돌아가는 버튼
-export function BeforeButton({ beforePage, nowPage }: BeforeButtonProps) {
+export function BeforeButtonSmall({
+  beforePageName,
+  nowPageName,
+}: BeforeButtonProps) {
   const router = useRouter();
   const backPage = () => {
     router.back();
@@ -22,10 +25,35 @@ export function BeforeButton({ beforePage, nowPage }: BeforeButtonProps) {
         />
       </button>
       <p className="text-GrayScalePrimary-500 font-bold text-[14px] ml-[16px] translate-y-[3px]">
-        {beforePage}
+        {beforePageName}
         &#160;&#8739;&#160;
-        {nowPage}
+        {nowPageName}
       </p>
     </div>
+  );
+}
+
+// 이전으로 되돌아가는 버튼
+export function BeforeButtonLarge({ nowPageName }: BeforeButtonProps) {
+  const router = useRouter();
+  const backPage = () => {
+    router.back();
+  };
+  return (
+    <button
+      className="flex h-[24px] my-[auto] ml-[22px] w-[232px]"
+      onClick={() => {
+        backPage();
+      }}
+    >
+      <img
+        src="/arrow_back.png"
+        alt="arrow_back"
+        className="w-[12px] h-[auto]"
+      />
+      <p className="font-[500] text-[18px] ml-[8px] translate-y-[-2px]">
+        {nowPageName}
+      </p>
+    </button>
   );
 }
