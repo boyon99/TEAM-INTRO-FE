@@ -1,11 +1,12 @@
 export interface BeforeButtonProps {
-  beforePageName?: string; // title of the page
-  nowPageName: string; // title of the page
+  beforePageName?: string;
+  nowPageName: string;
+  classname: string; // className 속성 값
 }
 
 export interface PrimaryButtonProps {
-  onClick: () => void;
-  text: string;
+  onClick: () => void; // 버튼 클릭 시 실행 함수
+  text: string; // 버튼 텍스트
   color: number;
-  classname: string;
+  classname: string; // className 속성 값
 }

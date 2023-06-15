@@ -1,12 +1,17 @@
 import { useState } from "react";
 
 // toggle button
-export function Toggle() {
+export function Toggle({ classname }: { classname: string }) {
   const [toggle, setToggle] = useState(true);
   const toggleAnimation = "transform translate-x-[40px]";
 
   return (
-    <div className="flex w-[90px] h-[32px] bg-primary-500 rounded-full text-[14px]">
+    <div
+      className={
+        "flex w-[90px] h-[32px] bg-primary-500 rounded-full text-[14px] " +
+        classname
+      }
+    >
       {/* Toggle Container */}
       <div
         className="w-[90px] h-[32px] bg-primary-500 rounded-full p-[3px] cursor-pointer flex relative"

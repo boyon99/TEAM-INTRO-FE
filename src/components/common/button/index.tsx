@@ -34,14 +34,17 @@ export function BeforeButtonSmall({
 }
 
 // 이전으로 되돌아가는 버튼
-export function BeforeButtonLarge({ nowPageName }: BeforeButtonProps) {
+export function BeforeButtonLarge({
+  nowPageName,
+  classname,
+}: BeforeButtonProps) {
   const router = useRouter();
   const backPage = () => {
     router.back();
   };
   return (
     <button
-      className="flex h-[24px] my-[auto] ml-[22px] w-[232px]"
+      className={"flex h-[24px] " + classname}
       onClick={() => {
         backPage();
       }}
