@@ -60,7 +60,7 @@ module.exports = {
         500: '#4264DA',
       },
       review: '#FFD602',
-      while: '#FFFFFF',
+      white: '#FFFFFF',
       black: '#000000',
       fontFamily: {
         sans: ['Graphik', 'sans-serif'],
