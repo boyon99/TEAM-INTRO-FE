@@ -1,4 +1,4 @@
 export interface BeforeButtonProps {
-  beforePage: string;
-  nowPage: string;
+  beforePageName?: string; // title of the page
+  nowPageName: string; // title of the page
 }
