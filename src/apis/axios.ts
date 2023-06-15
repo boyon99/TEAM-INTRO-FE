@@ -13,7 +13,7 @@ const getAxiosInstance = () => {
   //.create() 메서드를 사용해 사용자 정의 구성을 사용하는 axios 인스턴스를 생성할 수 있습니다.
   const instance = axios.create(config) // instance: AxiosInstance 로 타입 추론
   
-  instance.defaults.timeout = 3000 //요청에 대한 응답 시간이 3초이상이면 요청 중단,instance생성 후 기본(defaults)값 설정
+  // instance.defaults.timeout = 5000 //요청에 대한 응답 시간이 3초이상이면 요청 중단,instance생성 후 기본(defaults)값 설정
 
 //인터셉터는 then이나catch로 처리되기 전에 요청이나 응답을 가로챌 수 있습니다.
   instance.interceptors.request.use(
