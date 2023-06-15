@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Image from 'next/image'
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FieldErrors, useForm } from 'react-hook-form';
 
 interface EnterForm {
@@ -18,7 +18,7 @@ interface EnterForm {
 }
 
 function Legister() {
-  const [checked, setChecked] = useState('hello')
+  
   const [idmessage, setIdmessage] = useState('')
   const [iderrmessage, setIderrmessage] = useState('')
   const [nummesaage, setNummessage] = useState('')
@@ -26,11 +26,44 @@ function Legister() {
   const [emailmesaage, setemailmessage] = useState('')
   const [confirmmessage, setconfirmmessage] = useState('')
   const [confirmerrmessage, setconfirmerrmessage] = useState('')
-  
+  const [enabled, setEnabled] = useState(false)
+
+  const [allChecked, setAllChecked] = useState(false);
+  const [checkboxes, setCheckboxes] = useState({
+    term: false,
+    privacy: false,
+    age: false
+  });
+ 
+  // 버튼 활성화 여부 업데이트 함수
+  useEffect(() => {
+    const areAllChecked = Object.values(checkboxes).every((value) => value === true);
+    console.log(areAllChecked)
+    setEnabled(areAllChecked)
+  }, [checkboxes]);
+
+ // 전체 동의 체크박스 상태 업데이트 함수
+ const handleAllCheckedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const isChecked = event.target.checked;
+  setAllChecked(isChecked);
+
+  setCheckboxes((prevState) => ({
+    term: isChecked,
+    privacy: isChecked,
+    age: isChecked
+  }));
+};
+  // 체크박스 상태 업데이트 함수
+  const handleCheckboxChange = (name: any) => {
+    setCheckboxes((prevState: any) => ({
+      ...prevState,
+      [name]: !prevState[name]
+    }));
+  };
   const [test, setTest] = useState('hi')
     const { register, handleSubmit, watch, getValues, formState: { errors } } = useForm<EnterForm>({mode: 'onChange'});
-
-    const { mutate, error } = useMutation(signup, {
+    
+    const { mutate: signupmutate, error: singuperr } = useMutation(signup, {
       onSuccess: (data) => {
       
        console.log(data)
@@ -86,6 +119,7 @@ function Legister() {
         console.log(data.value)
       },
     })
+   
     // console.log(watch('login_id'))
     const login_id = watch('login_id')
     const biz_num = watch('biz_num')
@@ -109,20 +143,21 @@ function Legister() {
       checkconfirmmutate({code})
     }
     const onValid = (data: EnterForm) => {
-      mutate(data)
+      const user = {
+        login_id: data.login_id,
+        email: data.email,
+        password: data.password,
+        biz_num: data.biz_num
+      }
+      if(idmessage && nummesaage && confirmmessage && enabled) {
+        signupmutate(user)
+      } else if (idmessage && nummesaage && confirmmessage) {
+        alert('이용 약관 동의는 필수 항목입니다.')
+      } else {
+        alert('인증을 모두 완료 하여야합니다.')
+      }
     };
    
-   console.log(checked)
-   console.log(errors.email?.message)
-    const onClick = () => {
-      setChecked('newhello')
-    }
-    const onClicktest = () => {
-      setTest('newhi')
-    }
-    const allCheckClick = () => {
-
-    }
   return (
     <div>
        <div className='h-[65px] border-solid border-b-[1px] border-primary-500'>
@@ -137,7 +172,7 @@ function Legister() {
         <div className='flex mb-[12px]'>
         <Input register={register('login_id'
               
-              )} name="id" label="아이디*" type="text" size="small"/>
+              )} required name="id" label="아이디*" type="text" size="small"/>
               {idmessage? <Button text="중복확인" active={true} type="button" size="xsmall"/> : login_id ? <Button disable={true} text="중복확인" type="button" onClick={checkidonClick} size="xsmall"/> :  <Button disable={false} text="중복확인" type="button" onClick={checkidonClick} size="xsmall"/>}
              
               {/* idmessage? <Button text="중복확인" active={true} type="button" onClick={checkidonClick} size="xsmall"/>  */}
@@ -229,16 +264,19 @@ function Legister() {
 
         </form> 
         <div className='mt-[32px] pb-[14px] border-solid border-b-[1px] border-GrayScalePrimary-150'>
-         <Input name="keep" type="register_checkbox"/>
+         <Input name="keep" label="전체동의" type="register_checkbox" checked={allChecked} onChange={handleAllCheckedChange}/>
        </div>
        <div className='space-y-[12px] mt-[12px]'>
-         <Input name="keep" label='(필수) 이용 약관 동의' type="login_checkbox"/>
-         <Input name="keep" label='(필수) 개인정보 수집 및 이용 동의' type="login_checkbox"/>
-         <Input name="keep" label='(필수) 14세 이상입니다' type="login_checkbox"/>
+         <Input name="keep" label='(필수) 이용 약관 동의' type="login_checkbox" checked={checkboxes.term}
+            onChange={() => handleCheckboxChange('term')}/>
+         <Input name="keep" label='(필수) 개인정보 수집 및 이용 동의' type="login_checkbox" checked={checkboxes.privacy}
+            onChange={() => handleCheckboxChange('privacy')} />
+         <Input name="keep" label='(필수) 14세 이상입니다' type="login_checkbox"checked={checkboxes.age}
+            onChange={() => handleCheckboxChange('age')} />
        </div>
        <div className='m-[0_auto] mt-[32px]'>
-
-         <Button disable={false} text="회원가입" form="join" size="xlarge"/>
+{idmessage && nummesaage && confirmmessage && enabled ? <Button disable={true} text="회원가입" form="join" size="xlarge"/>:<Button disable={false} text="회원가입" form="join" size="xlarge"/> }
+        
        </div>
        </div>
        

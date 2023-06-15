@@ -20,6 +20,8 @@ interface InputProps {
     type,
     name,
     onClick,
+    onChange,
+    checked
   }: InputProps) {
     return (
       <>
@@ -40,17 +42,17 @@ interface InputProps {
         </div>
         
         ) : null}
-        
+       
         {type === "login_checkbox" ? (
                 <div className="relative">
-                 <input type="checkbox" className="w-[16px] h-[16px] mt-1" onClick={onClick}/>
+                 <input type="checkbox" className="w-[16px] h-[16px] mt-1" onClick={onClick} onChange={onChange} checked={checked}/>
                  <span className="absolute w-[200px] left-[24px] top-[5px] font-medium text-[13px]/[100%] text-GrayScalePrimary-900">{label}</span>
                </div>
         ): null}
         {type === "register_checkbox" ? (
                 <div className="relative w-[131px] h-[24px]">
-                 <input type="checkbox" className="w-[16px] h-[16px] mt-1" onClick={onClick}/>
-                 <span className="absolute w-[110px] h-[15px] left-[24px] top-[5px] font-medium text-[14px]/[100%] text-GrayScalePrimary-700">전체동의</span>
+                 <input type="checkbox" className="w-[16px] h-[16px] mt-1" onChange={onChange} checked={checked}/>
+                 <span className="absolute w-[110px] h-[15px] left-[24px] top-[5px] font-medium text-[14px]/[100%] text-GrayScalePrimary-700">{label}</span>
                </div>
         ): null}
         {type === "alarm" ? (

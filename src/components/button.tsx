@@ -70,7 +70,7 @@ export default function Button({
                 form={form}
                 className={cls(
                 "w-[180px] h-[46px] right-0 top-0 rounded-lg text-GrayScaleNeutral-100 font-bold text-sm",
-                disable ? "bg-GrayScalePrimary-300" : "bg-primary-500"
+                disable ? "bg-primary-500" : active ? "bg-[#c1c0cc] cursor-not-allowed":"bg-primary-150 text-[#fff]"
                 )}
             >
                 {text}
