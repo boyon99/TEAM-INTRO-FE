@@ -12,6 +12,9 @@ interface EnterForm {
   password: string;
   new_password: string;
   new_passwordConfirm: string;
+  id: string;
+  email: string;
+  bizNum: string;
 }
 function RePass() {
   const [method, setMethod] = useState<"info" | "pass">("info");
