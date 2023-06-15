@@ -1,4 +1,4 @@
-import { BeforeButtonProps } from "@/interfaces/button";
+import { BeforeButtonProps, PrimaryButtonProps } from "@/interfaces/button";
 import { useRouter } from "next/router";
 
 // 이전으로 되돌아가는 버튼
@@ -54,6 +54,28 @@ export function BeforeButtonLarge({ nowPageName }: BeforeButtonProps) {
       <p className="font-[500] text-[18px] ml-[8px] translate-y-[-2px]">
         {nowPageName}
       </p>
+    </button>
+  );
+}
+
+// 기본 버튼
+export function PrimaryButton({
+  color,
+  text,
+  onClick,
+  classname,
+}: PrimaryButtonProps) {
+  return (
+    <button
+      className={
+        "bg-primary-" +
+        color +
+        "  text-white text-[14px] rounded-[6px] " +
+        classname
+      }
+      onClick={onClick}
+    >
+      {text}
     </button>
   );
 }

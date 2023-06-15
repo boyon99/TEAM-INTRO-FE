@@ -1,20 +1,28 @@
 import EditBuilder from "@/components/buider/EditBuilder";
 import Preview from "@/components/buider/Preview";
-import useStore from "@/store";
+import { BeforeButtonLarge, PrimaryButton } from "@/components/common/button";
+import { Toggle } from "@/components/common/toggle";
 import React, { useState } from "react";
 
 export default function Builder() {
-  const { widgets, addWidget, removeWidget } = useStore();
   return (
     <>
       {/* topbar */}
-      <button onClick={() => addWidget(["Fitness", "Cta", "Timeline"])}>
-        add
-      </button>
-      <div className="w-[1280px] h-[72px] border flex justify-between p-[16px]">
-        <button className="w-[100px] h-[40px] border">대시보드</button>
-        <div>질링스 회사 소개</div>
-        <button className="w-[100px] h-[40px] border">게시하기</button>
+      <div className="w-[1280px] h-[72px] border-b-2 border-GrayScalePrimary-400 mb-[10px] flex">
+        <BeforeButtonLarge nowPageName="대시보드" />
+        <div className="text-center w-[240px] h-[44px] ml-[266px] my-[auto] text-GrayScalePrimary-500">
+          <p className="font-[500] text-[14px]">질링스 회사 소개</p>
+          <p className="text-[12px] font-[400]">zillinks.com/corp/zillinks</p>
+        </div>
+        <div className="w-[90px] h-[32px] my-[auto] ml-[293px]">
+          <Toggle />
+        </div>
+        <PrimaryButton
+          color={500}
+          text={"게시하기"}
+          onClick={() => {}}
+          classname={"w-[89px] h-[36px] my-[auto] ml-[16px]"}
+        />
       </div>
       {/* builder */}
       <div className="flex">
