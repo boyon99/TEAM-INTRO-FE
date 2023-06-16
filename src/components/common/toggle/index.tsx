@@ -82,3 +82,38 @@ export function ToggleNotText() {
     </div>
   );
 }
+
+export function ToggleText({ toggleText }: { toggleText: string }) {
+  const [toggle, setToggle] = useState(true);
+  const toggleAnimation = "transform translate-x-[15px]";
+
+  return (
+    <div className="flex">
+      <div
+        className={
+          "flex w-[36px] h-[21px] bg-primary-500 rounded-full mt-[2px] relative pb-[1px]"
+        }
+      >
+        {/* Toggle Container */}
+        <div
+          className="w-[100%] h-[100%] bg-primary-500 rounded-full p-[2px] cursor-pointer flex"
+          onClick={() => {
+            setToggle(!toggle);
+          }}
+        >
+          {/* Toggle true일 때*/}
+          <div
+            className={
+              "bg-white h-[16px] w-[16px] rounded-full shadow-md transform duration-300 ease-in-out" +
+              (toggle ? null : toggleAnimation)
+            }
+          ></div>
+        </div>
+      </div>
+      <p className="ml-[8px]">
+        {toggleText}
+        {toggle ? " ON" : " OFF"}
+      </p>
+    </div>
+  );
+}
