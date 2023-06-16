@@ -1,13 +1,13 @@
 import React from "react";
 
-export function Fitness() {
-  return <div className="">Fitness</div>;
+export function KeyVisual() {
+  return <div className="">KeyVisual</div>;
 }
 
-export function Cta() {
-  return <div className="">CTA</div>;
+export function MissionVision() {
+  return <div className="">MissionVision</div>;
 }
 
-export function Timeline() {
-  return <div className="">Timeline</div>;
+export function HeaderFooter() {
+  return <div className="">HeaderFooter</div>;
 }

@@ -6,7 +6,7 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <div className="w-1280 ml-auto mr-auto font-['Pretendard']">
+    <div className="w-[1280px] mx-auto font-['Pretendard']">
       <main className="">{children}</main>
     </div>
   );
