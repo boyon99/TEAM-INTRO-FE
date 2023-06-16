@@ -63,19 +63,18 @@ export function BeforeButtonLarge({
 
 // 기본 버튼
 export function PrimaryButton({
-  color,
+  type,
   text,
   onClick,
   classname,
 }: PrimaryButtonProps) {
+  const color =
+    type === "primary"
+      ? "bg-primary-500 text-white"
+      : "bg-white text-primary-500";
   return (
     <button
-      className={
-        "bg-primary-" +
-        color +
-        "  text-white text-[14px] rounded-[6px] " +
-        classname
-      }
+      className={color + "  text-white text-[14px] rounded-[6px] " + classname}
       onClick={onClick}
     >
       {text}

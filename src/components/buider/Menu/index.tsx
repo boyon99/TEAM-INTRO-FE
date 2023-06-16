@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { MenuProps } from "@/types/builder";
+import { MenuProps } from "@/interfaces/builder";
 import { ToggleNotText } from "@/components/common/toggle";
 import useStore from "@/store";
 

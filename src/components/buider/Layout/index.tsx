@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <Toggle classname="w-[90px] h-[32px] my-[auto] ml-[293px]" />
         <PrimaryButton
-          color={500}
+          type="primary"
           text={"게시하기"}
           onClick={() => {}}
           classname={"w-[89px] h-[36px] my-[auto] ml-[16px]"}
