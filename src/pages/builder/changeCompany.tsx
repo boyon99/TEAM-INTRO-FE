@@ -2,10 +2,10 @@ import EditBuilder from "@/components/buider/LeftPanel";
 import Layout from "@/components/buider/Layout";
 import React, { useState } from "react";
 
-export default function changeCompany() {
+export default function ChangeCompany() {
   return (
     <div>
-      <Layout>{<h1>changeCompany</h1>}</Layout>
+      <Layout>{<h1>ChangeCompany</h1>}</Layout>
     </div>
   );
 }
