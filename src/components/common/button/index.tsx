@@ -12,9 +12,9 @@ export function BeforeButtonSmall({
     router.back();
   };
   return (
-    <div className="flex ml-[28px] mt-[12px]">
+    <div className="flex mt-[12px]">
       <button
-        className="w-[24px] h-[24px] bg-GrayScalePrimary-200 rounded-full"
+        className="w-[24px] h-[24px] bg-GrayScalePrimary-100 rounded-full"
         onClick={() => {
           backPage();
         }}
@@ -25,7 +25,7 @@ export function BeforeButtonSmall({
           className="w-[12px] h-[auto] translate-x-[5px]"
         />
       </button>
-      <p className="text-GrayScalePrimary-500 font-bold text-[14px] ml-[16px] translate-y-[3px]">
+      <p className="text-GrayScalePrimary-500 font-bold text-[14px] ml-[16px] translate-y-[2px]">
         {beforePageName}
         &#160;&#8739;&#160;
         {nowPageName}
@@ -73,11 +73,11 @@ export function PrimaryButton({
 }: PrimaryButtonProps) {
   const color =
     type === "primary"
-      ? "bg-primary-500 text-white"
-      : "bg-white text-primary-500";
+      ? "bg-primary-500 text-white border-primary-500"
+      : "bg-white text-primary-500 border-primary-500 text-primary-500";
   return (
     <button
-      className={color + "  text-white text-[14px] rounded-[6px] " + classname}
+      className={color + " text-[14px] rounded-[6px] border-[2px] " + classname}
       onClick={onClick}
     >
       {text}
