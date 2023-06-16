@@ -6,3 +6,9 @@ export interface EditSiteInfoProps {
     }>
   >;
 }
+
+export interface MenuProps {
+  routerName: string;
+  buttonName: string;
+  isToggle: boolean;
+}
