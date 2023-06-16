@@ -1,3 +1,4 @@
+import useStore from "@/store";
 import { useState } from "react";
 
 // toggle 공개, 숨김 button
@@ -53,48 +54,44 @@ export function Toggle({ classname }: { classname: string }) {
 }
 
 // toggle 텍스트 없는 버튼
-export function ToggleNotText() {
-  const [toggle, setToggle] = useState(true);
+export function ToggleNotText({ buttonName }: { buttonName: string }) {
+  const { widgets, setToggle } = useStore();
+  const widget = widgets.find((widget) => widget.name === buttonName);
   const toggleAnimation = "transform translate-x-[11px]";
 
   return (
-    <div
-      className={
-        "flex w-[25px] h-[14px] rounded-full " +
-        (toggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
-      }
-    >
+    <button className={"flex w-[auto] h-[auto]"}>
       {/* Toggle Container */}
       <div
         className={
-          "w-[25px] h-[14px] rounded-full p-[2px] cursor-pointer flex relative " +
-          (toggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
+          "w-[25px] h-[14px] rounded-full cursor-pointer relative " +
+          (widget?.toggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
         }
         onClick={() => {
-          setToggle(!toggle);
+          setToggle(widget!.name);
         }}
       >
-        {/* Toggle true일 때*/}
+        {/* Toggle contnet */}
         <div
           className={
-            "bg-white h-[11px] w-[11px] rounded-full shadow-md transform duration-300 ease-in-out relative" +
-            (toggle ? null : toggleAnimation)
+            "bg-white h-[11px] w-[11px] rounded-full shadow-md transform duration-300 ease-in-out absolute top-[1px] left-[3px]" +
+            (widget?.toggle ? null : toggleAnimation)
           }
         >
-          {toggle ? (
-            <span className="absolute top-[4px]"></span>
+          {widget?.toggle ? (
+            <span className=""></span>
           ) : (
-            <span className="absolute top-[4px]"></span>
+            <span className=""></span>
           )}
         </div>
       </div>
-    </div>
+    </button>
   );
 }
 
 // toggle 텍스트 있는 버튼
 export function ToggleText({ toggleText }: { toggleText: string }) {
-  const [toggle, setToggle] = useState(true);
+  const { isChangeOederToggle, setIsChangeOederToggle } = useStore();
   const toggleAnimation = "transform translate-x-[15px]";
 
   return (
@@ -102,31 +99,31 @@ export function ToggleText({ toggleText }: { toggleText: string }) {
       <div
         className={
           "flex w-[36px] h-[21px] rounded-full mt-[2px] relative pb-[1px] " +
-          (toggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
+          (isChangeOederToggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
         }
       >
         {/* Toggle Container */}
         <div
           className={
             "w-[100%] h-[100%] rounded-full p-[2px] cursor-pointer flex " +
-            (toggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
+            (isChangeOederToggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
           }
           onClick={() => {
-            setToggle(!toggle);
+            setIsChangeOederToggle(!isChangeOederToggle);
           }}
         >
           {/* Toggle true일 때*/}
           <div
             className={
               "bg-white h-[16px] w-[16px] rounded-full shadow-md transform duration-300 ease-in-out" +
-              (toggle ? null : toggleAnimation)
+              (isChangeOederToggle ? null : toggleAnimation)
             }
           ></div>
         </div>
       </div>
       <p className="ml-[8px]">
         {toggleText}
-        {toggle ? " ON" : " OFF"}
+        {isChangeOederToggle ? " ON" : " OFF"}
       </p>
     </div>
   );
