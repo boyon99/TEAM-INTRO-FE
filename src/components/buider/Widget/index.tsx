@@ -1,20 +1,34 @@
 import { HeaderProps } from "@/interfaces/widget";
 import React from "react";
 
-export function KeyVisual() {
-  return (
+export function KeyVisual({ theme }: HeaderProps) {
+  if (theme === "A") {
+    return (
+      <section id="w-02" className="h-[200px] border">
+        KeyVisual A
+      </section>
+    );
+  } else {
     <section id="w-02" className="h-[200px] border">
-      KeyVisual
-    </section>
-  );
+      KeyVisual B
+    </section>;
+  }
 }
 
-export function MissionVision() {
-  return (
-    <section id="w-03" className="h-[200px] border">
-      MissionVision
-    </section>
-  );
+export function MissionVision({ theme }: HeaderProps) {
+  if (theme === "A") {
+    return (
+      <section id="w-03" className="h-[200px] border">
+        MissionVision A
+      </section>
+    );
+  } else {
+    return (
+      <section id="w-03" className="h-[200px] border">
+        MissionVision B
+      </section>
+    );
+  }
 }
 
 export function Header({ theme }: HeaderProps) {

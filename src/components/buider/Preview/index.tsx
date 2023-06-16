@@ -18,11 +18,11 @@ export default function Preview() {
         return (
           <div key={index}>
             {widget.routerName === "builder/keyvisual#w-02" && widget.toggle ? (
-              <KeyVisual />
+              <KeyVisual theme={theme.theme} />
             ) : null}
             {widget.routerName === "builder/missionvision#w-03" &&
             widget.toggle ? (
-              <MissionVision />
+              <MissionVision theme={theme.theme} />
             ) : null}
           </div>
         );
