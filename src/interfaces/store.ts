@@ -1,6 +1,13 @@
 export interface Store {
-  widgets: string[];
-  addWidget: (widget: string[]) => void;
-  removeWidget: (id: string) => void;
-  setWidget: (widgets: string[]) => void;
+  widgets: Widget[];
+  setWidget: (widgets: Widget[]) => void;
+  setToggle: (name: string) => void;
+  isChangeOederToggle: boolean;
+  setIsChangeOederToggle: (isChangeOederToggle: boolean) => void;
+}
+
+export interface Widget {
+  id: number;
+  name: string;
+  toggle: boolean;
 }
