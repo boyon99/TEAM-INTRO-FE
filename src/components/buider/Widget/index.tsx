@@ -9,9 +9,11 @@ export function KeyVisual({ theme }: HeaderProps) {
       </section>
     );
   } else {
-    <section id="w-02" className="h-[200px] border">
-      KeyVisual B
-    </section>;
+    return (
+      <section id="w-02" className="h-[200px] border">
+        KeyVisual B
+      </section>
+    );
   }
 }
 
