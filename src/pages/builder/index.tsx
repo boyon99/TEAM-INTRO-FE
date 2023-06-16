@@ -1,14 +1,11 @@
-import EditBuilder from "@/components/buider/EditBuilder";
-import Preview from "@/components/buider/Preview";
-import TopBar from "@/components/buider/TopBar";
-import { BeforeButtonLarge, PrimaryButton } from "@/components/common/button";
-import { Toggle } from "@/components/common/toggle";
 import React, { useState } from "react";
+import Layout from "@/components/buider/Layout";
+import LeftPanal from "@/components/buider/LeftPanel";
 
 export default function Builder() {
   return (
     <>
-      <TopBar>{<EditBuilder />}</TopBar>
+      <Layout>{<LeftPanal />}</Layout>
     </>
   );
 }
