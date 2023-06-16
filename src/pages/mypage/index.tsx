@@ -1,11 +1,13 @@
-import { repass } from '@/apis/auth';
+import { emailcheck, emailconfirm, repass, user, usermodify } from '@/apis/auth';
 import Button from '@/components/button';
+import Popup from '@/components/common/popup';
 import Input from '@/components/input'
-import { cls } from '@/utiles/utile';
-import { useMutation } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
+import { getCookie } from '@/utils/cookies';
+import { cls } from '@/utils/utile';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 interface EnterForm {
@@ -15,10 +17,110 @@ interface EnterForm {
   id: string;
   email: string;
   bizNum: string;
+  code: string;
+  image: FileList;
+  // profile: string;
+  // marketing: boolean;
 }
 function RePass() {
+  const [emailmesaage, setEmailMessage] = useState('')
+  const [emaildata, setEmailData] = useState('')
+  const [confirmmessage, setConFirmMessage] = useState('')
+  const [confirmdata, setConFirmdata] = useState('')
+  const [confirmerrmessage, setConFirmErrMessage] = useState('')
+  const [SignMessage, setSignMessage] = useState('')
+
+  const { isLoading, data } = useQuery(['user'], user)
+
+  const login_id = data?.login_id
+  const biz_num = data?.biz_num
+  
   const [method, setMethod] = useState<"info" | "pass">("info");
     const { register, handleSubmit, watch, reset, getValues, formState: { errors } } = useForm<EnterForm>();
+    const email = watch('email')
+    const code = watch('code')
+    
+    const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+      setIsOpen(true);
+    };
+  
+    const closeModal = () => {
+      setEmailMessage('')
+      setConFirmMessage('')
+      setSignMessage('')
+      setIsOpen(false);
+    };
+
+    
+
+    const image = watch('image');
+    const [avatarPreview, setAvatarPreview] = useState("");
+    // const [avatar, setAvatar] = useState("");
+    const [marketing, setMarketing] = useState(false);
+    const alarmonClick = () => {
+      setMarketing(!marketing)
+    }
+  
+    useEffect(() => {
+      if (image && image.length > 0) {
+        const file = image[0];
+        setAvatarPreview(URL.createObjectURL(file));
+      }
+    }, [image]);
+
+    const { mutate: usermutate, isLoading: userLoading, error: usererror } = useMutation(usermodify, {
+      onSuccess: (data) => {
+        setSignMessage('성공적으로 저장 되었습니다.')
+        openModal()
+       console.log(data)
+      },
+      onError: (err: AxiosError) => { 
+        const Eresponse = err.response?.data
+        const { data }: any = Eresponse
+        console.log(data.value)
+      },
+    })
+    const { mutate: checkemailmutate, isLoading: emailLoading, error: checkemailerror } = useMutation(emailcheck, {
+      onSuccess: (data) => {
+        setEmailMessage('메일이 발송되었습니다.')
+        setEmailData(data)
+        openModal()
+       console.log(data)
+      },
+      onError: (err: AxiosError) => { 
+        const Eresponse = err.response?.data
+        const { data }: any = Eresponse
+   
+        console.log(data.value)
+      },
+    })
+    const { mutate: checkconfirmmutate, error: checkconfirmerror } = useMutation(emailconfirm, {
+      onSuccess: (data) => {
+        setConFirmMessage('인증되었습니다.')
+        setConFirmdata(data)
+        openModal()
+       console.log(data)
+      },
+      onError: (err: AxiosError) => { 
+        const Eresponse = err.response?.data
+        const { data }: any = Eresponse
+        setConFirmErrMessage(data.value)
+        console.log(data.value)
+      },
+    })
+    const checkemailonClick = () => {
+      if(errors.email?.message) {
+        return
+      } else {
+       if(emailLoading) return;
+        checkemailmutate({email, dup_check: false})
+      }
+    }
+    const checkconfirmonClick = () => {
+      checkconfirmmutate({code})
+    }
 
     const oninfoClick = () => {
       reset();
@@ -38,6 +140,7 @@ function RePass() {
         console.log(err)
       },
     })
+    // 비밀번호 재설정
     const onValid = (data:EnterForm) => {
      const user = {
       password: data.password,
@@ -45,6 +148,43 @@ function RePass() {
      }
         mutate(user)
     }
+    // 기본정보 수정
+    const token = getCookie('access_token')
+    const onValids = async (data:EnterForm) => {
+      const image = watch('image')
+      console.log(data.email)
+      const form = new FormData();
+      form.append("image", data.image[0])    
+      form.append("name", `${image}`);
+      form.append("type", 'string');
+     try {
+      const response = await axios.post('/api/s/user/uploadImage',  form, {
+        headers: {
+          "Authorization": `${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      // .then(response => {
+       
+      //   setAvatar(response.data.data.upload_path)
+      // })
+      console.log(response.data.data.upload_path)
+      const avatar = response.data.data.upload_path;
+      console.log(avatar)
+      const user = {
+        email: data.email,
+        profile: avatar,
+        marketing: marketing,
+      }
+      if(confirmdata) {
+
+        usermutate(user)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
   return (
     <div>
      
@@ -121,74 +261,77 @@ function RePass() {
     </div>
     {errors.new_passwordConfirm?.message as string}
  </form>:
-  <form onSubmit={handleSubmit(onValid)} className='w-[900px] h-[620px] border border-solid border-[#eaeaee] bg-[#fff] rounded-xl mt-[18px] ml-[38px]'>
-    <div className='h-[70px] flex ml-[200px] mt-[42px]'>
-            <Input register={register('id',
-                // {
-                //     required: "Email is required",
-                //     pattern: {
-                //     value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                //     message: "이메일 형식이 아닙니다.",
-                //     },
-                // }
-                )} name="snsemail" label="아이디" type="text" size="large"/>
-                
-    </div> 
-    <div className='h-[70px] flex mb-[10px] ml-[200px]'>
-    <Input register={register('email',
-               {
-                required: "Email is required",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                  message: "이메일 형식이 아닙니다.",
-                },
-              }
-              )} name="email" label="이메일*" type="text" size="small"/>
-              <Button disable={false} text="인증요청" type="button" size="xsmall"/>
-    </div> 
-    <div className='h-[70px] flex ml-[200px]'>
-    <Input register={register('bizNum',
-                   {
-                    required: "Email is required",
-                    // pattern: {
-                    //   value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                    //   message: "이메일 형식이 아닙니다.",
-                    // },
-                  }
-                  )} name="my_biznum" label="사업자등록번호*" type="text" size="large"/>
-    </div>
-    <div className='w-[500px] h-[153px] flex ml-[200px] mt-[12px]'>
-       <span className='w-[138px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800'>프로필 이미지</span>
-          <label className="w-[356px] ml-[4px] cursor-pointer border-[#CFCED7] flex items-center justify-center border-2 border-solid rounded-[4px]">
-            <svg
-              className="h-12 w-12"
-              stroke="currentColor"
-              fill="none"
-              viewBox="0 0 48 48"
-              aria-hidden="true"
-            >
-              <path
-                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <input className="hidden" type="file" />
-          </label>
-    </div>
-    <div className='w-[500px] h-[40px] flex ml-[200px] mt-[20px]'>
-    <span className='w-[138px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800'>알림 동의</span>
-    <Input name="keep" label='' type="alarm"/>
-    </div>
-    <div className='ml-[360px] mt-[32px]'>
+ <>
+ {data? 
+  <form onSubmit={handleSubmit(onValids)} className='w-[900px] h-[620px] border border-solid border-[#eaeaee] bg-[#fff] rounded-xl mt-[18px] ml-[38px]'>
+ <div className='h-[55px] flex ml-[200px] mt-[42px]'>
+         <Input register={register('id')} name="snsemail" label="아이디" type="text" size="large" value={login_id} disabled />        
+             
+             
+ </div> 
+ <div className='flex mb-[10px] ml-[200px]'>
+ <Input register={register('email',
+         {
+          required: "이메일은 필수 항목입니다.",
+          pattern: {
+            value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+            message: "이메일 형식이 아닙니다.",
+          },
+        }      
+              )} required name="email" label="이메일*" type="text" size="small"/>
+              {emaildata? <Button disable={false} text="요청완료" active={true} type="button" size="xsmall"/> :email? <Button disable={true} text={emailLoading? "Loading...": "인증요청"} onClick={checkemailonClick} type="button" size="xsmall"/> :  <Button disable={false} text={emailLoading? "Loading...": "인증요청"} type="button" onClick={checkemailonClick} size="xsmall"/> }
+               
+ </div> 
+ {emaildata ?  
+          <div className='flex ml-[256px]'>
+        <Input register={register('code'       
+              )} required name="code" type="text" size="small"/>
+              {confirmdata? <Button disable={false} text="인증완료" active={true} type="button" size="xsmall"/> : code? <Button disable={true} text="확인" onClick={checkconfirmonClick} type="button" size="xsmall"/> :  <Button disable={false} text="확인" type="button" onClick={checkconfirmonClick} size="xsmall"/>}
+               
+        </div>: null}
+        <div className="mb-[10px] text-right">
 
-<Button disable={false} text="저장하기" form="join" size="xlarge"/>
+        <span className="text-[13px]/[100%] font-normal text-[#4264da]">{confirmerrmessage}</span>
+        </div>
+ <div className='h-[70px] flex ml-[200px]'>
+ <Input register={register('bizNum')} name="my_biznum" label="사업자등록번호*" type="text" size="large" value={biz_num} disabled/>         
+               
+ </div>
+ <div className='w-[500px] h-[153px] flex ml-[200px] mt-[12px]'>
+    <span className='w-[138px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800'>프로필 이미지</span>
+       <label className="w-[356px] ml-[4px] cursor-pointer border-[#CFCED7] flex items-center justify-center border-2 border-solid rounded-[4px]">
+    {avatarPreview? <img src={avatarPreview} alt='profile'/> : <svg
+           className="h-12 w-12"
+           stroke="currentColor"
+           fill="none"
+           viewBox="0 0 48 48"
+           aria-hidden="true"
+         >
+           <path
+             d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+             strokeWidth={2}
+             strokeLinecap="round"
+             strokeLinejoin="round"
+           />
+         </svg>}
+         
+         <input {...register('image')} className="hidden" type="file"/>
+       </label>
+ </div>
+ <div className='w-[500px] h-[40px] flex ml-[200px] mt-[20px]'>
+ <span className='w-[138px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800'>알림 동의</span>
+ <Input name="keep" label='' type="alarm" onClick={alarmonClick}/>
+ </div>
+ <div className='ml-[360px] mt-[32px]'>
+{avatarPreview?<Button disable={true} text="저장하기"  size="xlarge"/>:<Button disable={false} text="저장하기"  size="xlarge"/>}
+
 </div>
-  </form>
+</form>: ""}</>
+  
    }
  </div>
  </div>
+ <Popup text={emailmesaage || confirmmessage || SignMessage || confirmerrmessage} cancle='취소' confirm='확인' isOpen={isOpen} onClick={closeModal}/>
     </div>
   )
 }

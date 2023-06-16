@@ -1,4 +1,4 @@
-import { getCookie } from '@/utiles/cookies'
+import { getCookie } from '@/utils/cookies'
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 
 const getAxiosInstance = () => {

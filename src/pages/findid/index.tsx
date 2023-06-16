@@ -1,7 +1,7 @@
 import { findidbybznum, findidbyemail } from "@/apis/auth";
 import Button from "@/components/button"
 import Input from "@/components/input"
-import { cls } from "@/utiles/utile";
+import { cls } from "@/utils/utile";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Image from "next/image"
