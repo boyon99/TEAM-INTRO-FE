@@ -84,6 +84,7 @@ function Legister() {
     const { mutate: signupmutate, error: singuperr } = useMutation(signup, {
       onSuccess: (data) => {
         setSignupmessage('회원가입이 완료되셨습니다!')
+        openModal()
        console.log(data)
       },
       onError: (err: AxiosError) => { 
@@ -139,6 +140,7 @@ function Legister() {
       onSuccess: (data) => {
         setconfirmmessage(data)
         setConFirmdata('인증되었습니다.')
+        openModal()
        console.log(data)
       },
       onError: (err: AxiosError) => { 

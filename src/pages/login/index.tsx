@@ -1,8 +1,8 @@
 import { login } from "@/apis/auth";
 import Button from "@/components/button";
 import Input from "@/components/input";
-import { getBearerToken } from "@/utiles/bearerToken";
-import { getCookie, setCookie } from "@/utiles/cookies";
+import { getBearerToken } from "@/utils/bearerToken";
+import { getCookie, setCookie } from "@/utils/cookies";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Image from "next/image";

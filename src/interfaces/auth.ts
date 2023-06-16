@@ -40,3 +40,9 @@ export interface NewPass {
   password: string;
   new_password: string;
 }
+
+export interface UserModify {
+  email: string;
+  profile: string;
+  marketing: boolean;
+}
