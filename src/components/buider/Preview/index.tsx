@@ -1,33 +1,49 @@
 import React from "react";
-import { Timeline, Cta, Fitness } from "@/components/buider/Widget";
+import {
+  HeaderFooter,
+  KeyVisual,
+  MissionVision,
+} from "@/components/buider/Widget";
 import useStore from "@/store";
+import { useRouter } from "next/router";
 
 export default function Preview() {
-  const { widgets, setWidget } = useStore();
+  // 위젯 목록 가져오기
+  const { widgets } = useStore();
+  // 현재 경로 가져오기
+  const router = useRouter();
+  const currentPath = router.asPath;
+  // 모든 미리보기 위젯을 보여주는 경로 리스트
+  const allPreview = [
+    "/builder/changeTheme",
+    "/builder",
+    "/builder/changeCompany",
+    "/builder/changeSite",
+  ];
 
   return (
     <div className="border w-[945px] h-[calc(100vh-72px)]">
-      {widgets.map((widget, index) => {
-        return (
-          <div key={index} className="border w-[100%] h-[50px] mb-[10px]">
-            {widget.name === "헤더/푸터" && <Timeline />}
-            {widget.name === "키비주얼/슬로건" && <Cta />}
-            {widget.name === "미션/비젼" && <Fitness />}
-            {/* {widget.name === "제품/서비스 소개" && <Fitness />}
-            {widget.name === "팀 멤버" && <Fitness />}
-            {widget.name === "컨택어스" && <Fitness />}
-            {widget.name === "보도자료" && <Fitness />}
-            {widget.name === "다운로드" && <Fitness />}
-            {widget.name === "연혁" && <Fitness />}
-            {widget.name === "팀 문화" && <Fitness />}
-            {widget.name === "핵심 성과" && <Fitness />}
-            {widget.name === "파트너스" && <Fitness />}
-            {widget.name === "고객리뷰" && <Fitness />}
-            {widget.name === "채널" && <Fitness />}
-            {widget.name === "특허/인증" && <Fitness />} */}
-          </div>
-        );
-      })}
+      {allPreview.includes(currentPath) ? (
+        // 모든 미리보기 위젯을 보여주는 경로 리스트에 포함되어 있으면
+        widgets.map((widget, index) => {
+          return (
+            <div key={index}>
+              {widget.routerName === "builder/headerfooter" && <HeaderFooter />}
+              {widget.routerName === "builder/keyvisual" && <KeyVisual />}
+              {widget.routerName === "builder/missionvision" && (
+                <MissionVision />
+              )}
+            </div>
+          );
+        })
+      ) : (
+        // 특정 위젯만 보여주는 경로 리스트에 포함되어 있으면
+        <>
+          {currentPath === "/builder/headerfooter" ? <HeaderFooter /> : <></>}
+          {currentPath === "/builder/keyvisual" ? <KeyVisual /> : <></>}
+          {currentPath === "/builder/missionvision" ? <MissionVision /> : <></>}
+        </>
+      )}
     </div>
   );
 }
