@@ -30,7 +30,7 @@ export default function LeftPanal() {
           <ToggleLarge toggleText="순서 변경"></ToggleLarge>
         </div>
         {/* 위젯 순서 변경 */}
-        <MenuB buttonName={"헤더/푸터"} routerName="" isActivate={false} />
+        <MenuB buttonName={"헤더/푸터"} routerName="" isEssential={true} />
         {/* react-movable 라이브러리 사용 */}
         <List
           values={widgets}
@@ -62,7 +62,7 @@ export default function LeftPanal() {
                 <MenuB
                   buttonName={value.name}
                   routerName=""
-                  isActivate={true}
+                  isEssential={false}
                 />
               )}
             </li>
