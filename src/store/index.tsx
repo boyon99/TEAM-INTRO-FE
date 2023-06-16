@@ -11,19 +11,19 @@ const useStore = create<Store>((set) => ({
       name: "헤더/푸터",
       id: 1,
       toggle: true,
-      routerName: "builder/headerfooter",
+      routerName: "builder/headerfooter#w-01",
     },
     {
       name: "키비주얼/슬로건",
       id: 2,
       toggle: true,
-      routerName: "builder/keyvisual",
+      routerName: "builder/keyvisual#w-02",
     },
     {
       name: "미션/비젼",
       id: 3,
       toggle: false,
-      routerName: "builder/missionvision",
+      routerName: "builder/missionvision#w-03",
     },
     {
       name: "제품/서비스 소개",

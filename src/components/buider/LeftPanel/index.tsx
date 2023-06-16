@@ -33,7 +33,7 @@ export default function LeftPanal() {
         {/* 필수 위젯 */}
         <MenuB
           buttonName={"헤더/푸터"}
-          routerName={"builder/headerfooter"}
+          routerName={"builder/headerfooter#w-01"}
           isEssential={true}
         />
         {/* 선택 위젯 */}

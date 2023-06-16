@@ -5,7 +5,7 @@ import { ToggleSmall } from "@/components/common/toggle";
 import useStore from "@/store";
 
 // 빌더 Leftpanel 패널 메뉴
-// 테마 뱐걍, 회사 정보 수정, 사이트 정보 수정
+// 테마 뱐경, 회사 정보 수정, 사이트 정보 수정
 export function MenuA({ routerName, buttonName }: MenuProps) {
   const router = useRouter();
 
