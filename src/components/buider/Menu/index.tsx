@@ -48,10 +48,9 @@ export function MenuB({ routerName, buttonName, isEssential }: MenuProps) {
     >
       {/* 하위 페이지로 이동 */}
       <button
-        onClick={() =>
-          // router.push(routerName)
-          console.log("click")
-        }
+        onClick={() => {
+          router.push(routerName);
+        }}
         className={"w-[200px] h-[100%] text-left"}
       >
         {isEssential ? (

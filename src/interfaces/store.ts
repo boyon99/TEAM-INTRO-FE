@@ -10,4 +10,5 @@ export interface Widget {
   id: number;
   name: string;
   toggle: boolean;
+  routerName: string;
 }
