@@ -16,9 +16,15 @@ export default function Preview() {
       {widgets.map((widget, index) => {
         return (
           <div key={index}>
-            {widget.routerName === "builder/headerfooter" && <HeaderFooter />}
-            {widget.routerName === "builder/keyvisual" && <KeyVisual />}
-            {widget.routerName === "builder/missionvision" && <MissionVision />}
+            {widget.routerName === "builder/headerfooter" && widget.toggle ? (
+              <HeaderFooter />
+            ) : null}
+            {widget.routerName === "builder/keyvisual" && widget.toggle ? (
+              <KeyVisual />
+            ) : null}
+            {widget.routerName === "builder/missionvision" && widget.toggle ? (
+              <MissionVision />
+            ) : null}
           </div>
         );
       })}
