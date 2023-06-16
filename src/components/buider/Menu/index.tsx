@@ -49,7 +49,11 @@ export function MenuB({ routerName, buttonName, isEssential }: MenuProps) {
       {/* 하위 페이지로 이동 */}
       <button
         onClick={() => {
-          router.push(routerName);
+          if (widget?.toggle) {
+            router.push(routerName);
+          } else {
+            alert("사용중인 위젯만 수정 가능합니다.");
+          }
         }}
         className={"w-[200px] h-[100%] text-left"}
       >
