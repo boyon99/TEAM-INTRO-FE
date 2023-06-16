@@ -63,7 +63,7 @@ const useStore = create<Store>((set) => ({
     }));
   },
   // builder - theme
-  theme: { theme: "A", color: "" }, // A or B
+  theme: { theme: "A", color: "#725f5f" }, // A or B
   setTheme: (theme) => set({ theme }),
 }));
 
