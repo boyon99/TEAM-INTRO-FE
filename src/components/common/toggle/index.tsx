@@ -58,10 +58,18 @@ export function ToggleNotText() {
   const toggleAnimation = "transform translate-x-[11px]";
 
   return (
-    <div className={"flex w-[25px] h-[14px] bg-primary-500 rounded-full"}>
+    <div
+      className={
+        "flex w-[25px] h-[14px] rounded-full " +
+        (toggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
+      }
+    >
       {/* Toggle Container */}
       <div
-        className="w-[25px] h-[14px] bg-primary-500 rounded-full p-[2px] cursor-pointer flex relative"
+        className={
+          "w-[25px] h-[14px] rounded-full p-[2px] cursor-pointer flex relative " +
+          (toggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
+        }
         onClick={() => {
           setToggle(!toggle);
         }}
@@ -93,12 +101,16 @@ export function ToggleText({ toggleText }: { toggleText: string }) {
     <div className="flex">
       <div
         className={
-          "flex w-[36px] h-[21px] bg-primary-500 rounded-full mt-[2px] relative pb-[1px]"
+          "flex w-[36px] h-[21px] rounded-full mt-[2px] relative pb-[1px] " +
+          (toggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
         }
       >
         {/* Toggle Container */}
         <div
-          className="w-[100%] h-[100%] bg-primary-500 rounded-full p-[2px] cursor-pointer flex"
+          className={
+            "w-[100%] h-[100%] rounded-full p-[2px] cursor-pointer flex " +
+            (toggle ? "bg-primary-500" : "bg-GrayScalePrimary-200")
+          }
           onClick={() => {
             setToggle(!toggle);
           }}
