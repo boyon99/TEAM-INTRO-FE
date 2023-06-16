@@ -3,7 +3,7 @@ import { Toggle } from "@/components/common/toggle";
 import React from "react";
 import Preview from "../Preview";
 
-export default function TopBar({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       {/* topbar */}
