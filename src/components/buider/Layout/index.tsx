@@ -1,5 +1,5 @@
 import { BeforeButtonLarge, PrimaryButton } from "@/components/common/button";
-import { Toggle } from "@/components/common/toggle";
+import { ToggleInText } from "@/components/common/toggle";
 import React from "react";
 import Preview from "../Preview";
 
@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <p className="font-[500] text-[14px]">질링스 회사 소개</p>
           <p className="text-[12px] font-[400]">zillinks.com/corp/zillinks</p>
         </div>
-        <Toggle classname="w-[90px] h-[32px] my-[auto] ml-[293px]" />
+        <ToggleInText classname="w-[90px] h-[32px] my-[auto] ml-[293px]" />
         <PrimaryButton
           type="primary"
           text={"게시하기"}

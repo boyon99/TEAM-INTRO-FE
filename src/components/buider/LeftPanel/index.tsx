@@ -2,7 +2,7 @@ import useStore from "@/store";
 import React, { useState } from "react";
 import { List, arrayMove } from "react-movable";
 import { MenuA, MenuB } from "../Menu";
-import { ToggleNotText, ToggleText } from "@/components/common/toggle";
+import { ToggleLarge } from "@/components/common/toggle";
 
 export default function LeftPanal() {
   const { widgets, setWidget } = useStore();
@@ -27,7 +27,7 @@ export default function LeftPanal() {
       <div className="w-[100%] h-[calc(100%-185px)] overflow-y-scroll pl-[24px]">
         {/* 토글 버튼 */}
         <div className="ml-[130px] mb-[10px]">
-          <ToggleText toggleText="순서 변경"></ToggleText>
+          <ToggleLarge toggleText="순서 변경"></ToggleLarge>
         </div>
         {/* 위젯 순서 변경 */}
         <MenuB buttonName={"헤더/푸터"} routerName="" isActivate={false} />

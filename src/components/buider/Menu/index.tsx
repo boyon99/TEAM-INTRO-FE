@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { MenuProps } from "@/interfaces/builder";
-import { ToggleNotText } from "@/components/common/toggle";
+import { ToggleSmall } from "@/components/common/toggle";
 import useStore from "@/store";
 
 // 빌더 Leftpanel 패널 메뉴
@@ -54,7 +54,7 @@ export function MenuB({ routerName, buttonName, isActivate }: MenuProps) {
       </button>
       <div className="absolute top-[16px] left-[15px]">
         {isActivate ? (
-          <ToggleNotText buttonName={buttonName}></ToggleNotText>
+          <ToggleSmall buttonName={buttonName}></ToggleSmall>
         ) : (
           <></>
         )}

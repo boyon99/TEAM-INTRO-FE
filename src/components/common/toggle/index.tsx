@@ -1,8 +1,9 @@
 import useStore from "@/store";
 import { useState } from "react";
 
-// toggle 공개, 숨김 button
-export function Toggle({ classname }: { classname: string }) {
+// toggle handler 안에 텍스트 있는 버튼
+// builder 공개 숨김 토글
+export function ToggleInText({ classname }: { classname: string }) {
   const [toggle, setToggle] = useState(true);
   const toggleAnimation = "transform translate-x-[40px]";
 
@@ -54,7 +55,8 @@ export function Toggle({ classname }: { classname: string }) {
 }
 
 // toggle 텍스트 없는 버튼
-export function ToggleNotText({ buttonName }: { buttonName: string }) {
+// builder 위젯 토글
+export function ToggleSmall({ buttonName }: { buttonName: string }) {
   const { widgets, setToggle } = useStore();
   const widget = widgets.find((widget) => widget.name === buttonName);
   const toggleAnimation = "transform translate-x-[11px]";
@@ -90,7 +92,8 @@ export function ToggleNotText({ buttonName }: { buttonName: string }) {
 }
 
 // toggle 텍스트 있는 버튼
-export function ToggleText({ toggleText }: { toggleText: string }) {
+// builder 순서 변경 토글
+export function ToggleLarge({ toggleText }: { toggleText: string }) {
   const { isChangeOederToggle, setIsChangeOederToggle } = useStore();
   const toggleAnimation = "transform translate-x-[15px]";
 
