@@ -2,10 +2,10 @@ import { Store } from "@/interfaces/store";
 import create, { SetState } from "zustand";
 
 const useStore = create<Store>((set: SetState<Store>) => ({
-  // builder 순서 변경 토근
+  // builder - 순서 변경 토글
   isChangeOederToggle: false,
   setIsChangeOederToggle: (isChangeOederToggle) => set({ isChangeOederToggle }),
-  // builder 위젯 목록
+  // builder - 위젯
   widgets: [
     { name: "헤더/푸터", id: 1, toggle: true },
     { name: "키비주얼/슬로건", id: 2, toggle: true },
