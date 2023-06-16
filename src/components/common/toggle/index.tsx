@@ -51,3 +51,34 @@ export function Toggle({ classname }: { classname: string }) {
     </div>
   );
 }
+
+export function ToggleNotText() {
+  const [toggle, setToggle] = useState(true);
+  const toggleAnimation = "transform translate-x-[11px]";
+
+  return (
+    <div className={"flex w-[25px] h-[14px] bg-primary-500 rounded-full"}>
+      {/* Toggle Container */}
+      <div
+        className="w-[25px] h-[14px] bg-primary-500 rounded-full p-[2px] cursor-pointer flex relative"
+        onClick={() => {
+          setToggle(!toggle);
+        }}
+      >
+        {/* Toggle true일 때*/}
+        <div
+          className={
+            "bg-white h-[11px] w-[11px] rounded-full shadow-md transform duration-300 ease-in-out relative" +
+            (toggle ? null : toggleAnimation)
+          }
+        >
+          {toggle ? (
+            <span className="absolute top-[4px]"></span>
+          ) : (
+            <span className="absolute top-[4px]"></span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
