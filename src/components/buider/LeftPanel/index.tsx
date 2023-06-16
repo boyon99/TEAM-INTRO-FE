@@ -5,6 +5,7 @@ import { MenuA, MenuB } from "../Menu";
 import { ToggleLarge } from "@/components/common/toggle";
 
 export default function LeftPanal() {
+  // 위젯 목록과 위젯 순서 변경을 위한 함수
   const { widgets, setWidget } = useStore();
 
   return (
@@ -23,14 +24,15 @@ export default function LeftPanal() {
           />
         </div>
       </div>
-      {/* 위젯 추가 삭제 및 순서 변경 */}
+      {/* 위젯 사용 여부와 순서 변경 */}
       <div className="w-[100%] h-[calc(100%-185px)] overflow-y-scroll pl-[24px]">
-        {/* 토글 버튼 */}
+        {/* 순서 변경 토글 */}
         <div className="ml-[130px] mb-[10px]">
           <ToggleLarge toggleText="순서 변경"></ToggleLarge>
         </div>
-        {/* 위젯 순서 변경 */}
+        {/* 필수 위젯 */}
         <MenuB buttonName={"헤더/푸터"} routerName="" isEssential={true} />
+        {/* 선택 위젯 */}
         {/* react-movable 라이브러리 사용 */}
         <List
           values={widgets}
@@ -55,10 +57,12 @@ export default function LeftPanal() {
                 border: isDragged ? "2px solid #4B48DF" : "none",
               }}
               className={
-                value.name === "헤더/푸터" ? "" : "w-[266px] h-[49px] mb-[6px]"
+                // 필수 위젯인 경우 리스트에서 제거
+                value.name === "헤더/푸터" ? "" : "w-[268px] h-[49px] mb-[6px]"
               }
             >
               {value.name === "헤더/푸터" ? null : (
+                // 필수 위젯이 아닌 경우
                 <MenuB
                   buttonName={value.name}
                   routerName=""

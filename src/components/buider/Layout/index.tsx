@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           classname={"w-[89px] h-[36px] my-[auto] ml-[16px]"}
         />
       </div>
-      {/* widget, builder */}
+      {/* leftpanel */}
       <div className="flex">
         <div className="w-[336px] h-[calc(100vh-72px)]">{children}</div>
         <Preview />
