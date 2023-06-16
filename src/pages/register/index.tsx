@@ -1,5 +1,6 @@
 import { checkid, checknum, emailcheck, emailconfirm, signup } from "@/apis/auth";
 import Button from '@/components/button';
+import Popup from "@/components/common/popup";
 import Input from '@/components/input'
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
@@ -18,13 +19,29 @@ interface EnterForm {
 }
 
 function Legister() {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+      setIsOpen(true);
+    };
   
+    const closeModal = () => {
+      setIderrmessage('')
+      setNumerrmessage('')
+      setemaildata('')
+      setConFirmdata('')
+      setIsOpen(false);
+    };
+  const [signupmessage, setSignupmessage] = useState('')  
   const [idmessage, setIdmessage] = useState('')
   const [iderrmessage, setIderrmessage] = useState('')
   const [nummesaage, setNummessage] = useState('')
   const [numerrmesaage, setNumerrmessage] = useState('')
   const [emailmesaage, setemailmessage] = useState('')
+  const [emaildata, setemaildata] = useState('')
   const [confirmmessage, setconfirmmessage] = useState('')
+  const [confirmdata, setConFirmdata] = useState('')
   const [confirmerrmessage, setconfirmerrmessage] = useState('')
   const [enabled, setEnabled] = useState(false)
 
@@ -37,6 +54,7 @@ function Legister() {
  
   // 버튼 활성화 여부 업데이트 함수
   useEffect(() => {
+   
     const areAllChecked = Object.values(checkboxes).every((value) => value === true);
     console.log(areAllChecked)
     setEnabled(areAllChecked)
@@ -65,7 +83,7 @@ function Legister() {
     
     const { mutate: signupmutate, error: singuperr } = useMutation(signup, {
       onSuccess: (data) => {
-      
+        setSignupmessage('회원가입이 완료되셨습니다!')
        console.log(data)
       },
       onError: (err: AxiosError) => { 
@@ -81,6 +99,10 @@ function Legister() {
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
         setIderrmessage(data.value)
+        if(data.value === "존재하는 ID 입니다.") {
+
+          openModal()
+        }
       },
     })
     const { mutate: checknummutate, error: checknumerror } = useMutation(checknum, {
@@ -92,12 +114,18 @@ function Legister() {
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
         setNumerrmessage(data.value)
+        if(data.value === "이미 존재하는 사업자등록번호입니다.") {
+
+          openModal()
+        }
         console.log(data.value)
       },
     })
-    const { mutate: checkemailmutate, error: checkemailerror } = useMutation(emailcheck, {
+    const { mutate: checkemailmutate, isLoading: emailLoading, error: checkemailerror } = useMutation(emailcheck, {
       onSuccess: (data) => {
         setemailmessage(data)
+        setemaildata('메일이 발송되었습니다.')
+        openModal()
        console.log(data)
       },
       onError: (err: AxiosError) => { 
@@ -110,6 +138,7 @@ function Legister() {
     const { mutate: checkconfirmmutate, error: checkconfirmerror } = useMutation(emailconfirm, {
       onSuccess: (data) => {
         setconfirmmessage(data)
+        setConFirmdata('인증되었습니다.')
        console.log(data)
       },
       onError: (err: AxiosError) => { 
@@ -135,7 +164,7 @@ function Legister() {
       if(errors.email?.message) {
         return
       } else {
-
+       if(emailLoading) return;
         checkemailmutate({email, dup_check: false})
       }
     }
@@ -173,7 +202,7 @@ function Legister() {
         <Input register={register('login_id'
               
               )} required name="id" label="아이디*" type="text" size="small"/>
-              {idmessage? <Button text="중복확인" active={true} type="button" size="xsmall"/> : login_id ? <Button disable={true} text="중복확인" type="button" onClick={checkidonClick} size="xsmall"/> :  <Button disable={false} text="중복확인" type="button" onClick={checkidonClick} size="xsmall"/>}
+              {idmessage? <Button text="중복확인" active={true} type="button" size="xsmall"/> : login_id ? <Button disable={true} text="중복확인" type="button" onClick={checkidonClick} size="xsmall"/> :  <Button disable={false} text="중복확인" type="button" onClick={checkidonClick}  size="xsmall"/>}
              
               {/* idmessage? <Button text="중복확인" active={true} type="button" onClick={checkidonClick} size="xsmall"/>  */}
         </div>
@@ -243,7 +272,7 @@ function Legister() {
           },
         }      
               )} required name="email" label="이메일*" type="text" size="small"/>
-              {emailmesaage? <Button disable={false} text="요청완료" active={true} type="button" size="xsmall"/> :email? <Button disable={true} text="인증요청" onClick={checkemailonClick} type="button" size="xsmall"/> :  <Button disable={false} text="인증요청" type="button" onClick={checkemailonClick} size="xsmall"/> }
+              {emailmesaage? <Button disable={false} text="요청완료" active={true} type="button" size="xsmall"/> :email? <Button disable={true} text={emailLoading? "Loading...": "인증요청"} onClick={checkemailonClick} type="button" size="xsmall"/> :  <Button disable={false} text={emailLoading? "Loading...": "인증요청"} type="button" onClick={checkemailonClick} size="xsmall"/> }
                
         </div>
         <div className="mb-[10px] text-right">
@@ -279,6 +308,9 @@ function Legister() {
         
        </div>
        </div>
+       
+
+       <Popup text={iderrmessage || numerrmesaage || emaildata || confirmdata || signupmessage} cancle='취소' confirm='확인' isOpen={isOpen} onClick={closeModal}/>
        
     </div>
   )
