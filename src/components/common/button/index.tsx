@@ -2,6 +2,7 @@ import { BeforeButtonProps, PrimaryButtonProps } from "@/interfaces/button";
 import { useRouter } from "next/router";
 
 // 이전으로 되돌아가는 버튼
+// leftpanel
 export function BeforeButtonSmall({
   beforePageName,
   nowPageName,
@@ -34,6 +35,7 @@ export function BeforeButtonSmall({
 }
 
 // 이전으로 되돌아가는 버튼
+// 상단 메뉴바
 export function BeforeButtonLarge({
   nowPageName,
   classname,
@@ -62,20 +64,20 @@ export function BeforeButtonLarge({
 }
 
 // 기본 버튼
+// type: primary, wihte
 export function PrimaryButton({
-  color,
+  type,
   text,
   onClick,
   classname,
 }: PrimaryButtonProps) {
+  const color =
+    type === "primary"
+      ? "bg-primary-500 text-white"
+      : "bg-white text-primary-500";
   return (
     <button
-      className={
-        "bg-primary-" +
-        color +
-        "  text-white text-[14px] rounded-[6px] " +
-        classname
-      }
+      className={color + "  text-white text-[14px] rounded-[6px] " + classname}
       onClick={onClick}
     >
       {text}
