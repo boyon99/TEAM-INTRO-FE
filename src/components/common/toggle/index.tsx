@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// toggle button
+// toggle 공개, 숨김 button
 export function Toggle({ classname }: { classname: string }) {
   const [toggle, setToggle] = useState(true);
   const toggleAnimation = "transform translate-x-[40px]";
@@ -52,6 +52,7 @@ export function Toggle({ classname }: { classname: string }) {
   );
 }
 
+// toggle 텍스트 없는 버튼
 export function ToggleNotText() {
   const [toggle, setToggle] = useState(true);
   const toggleAnimation = "transform translate-x-[11px]";
@@ -83,6 +84,7 @@ export function ToggleNotText() {
   );
 }
 
+// toggle 텍스트 있는 버튼
 export function ToggleText({ toggleText }: { toggleText: string }) {
   const [toggle, setToggle] = useState(true);
   const toggleAnimation = "transform translate-x-[15px]";
