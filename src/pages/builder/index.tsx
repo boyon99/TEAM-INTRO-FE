@@ -1,11 +1,11 @@
-import MainColor from "@/components/buider/MainColor";
-import TopBar from "@/components/buider/TopBar";
 import React, { useState } from "react";
+import Layout from "@/components/buider/Layout";
+import LeftPanal from "@/components/buider/LeftPanel";
 
 export default function Builder() {
   return (
     <>
-      <TopBar />
+      <Layout>{<LeftPanal />}</Layout>
     </>
   );
 }
