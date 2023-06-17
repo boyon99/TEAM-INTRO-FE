@@ -1,15 +1,14 @@
 import Header from '@/components/common/Header';
-import ContactsContents from '@/components/dashboard/ContactsContents';
-
+import DownloadContents from '@/components/dashboard/DownloadsContents';
 import Sidebar from '@/components/dashboard/Sidebar';
 
-export default function Contacts() {
+export default function Downloads() {
   return (
     <div>
       <Header />
       <section className='flex'>
         <Sidebar />
-        <ContactsContents />
+        <DownloadContents />
       </section>
     </div>
   );
