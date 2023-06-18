@@ -33,7 +33,7 @@ export interface AuthResponse {
 
 export interface FindId {
   email: string;
-  bizNum: string;
+  biz_num: string;
   login_id?: string;
 }
 export interface NewPass {

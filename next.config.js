@@ -5,7 +5,8 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://43.201.194.212:8080/api/:path*",
+        // destination: "http://43.201.194.212:8080/api/:path*",
+        destination: "https://taeheoki.shop:443/api/:path*",
       },
     ];
   },

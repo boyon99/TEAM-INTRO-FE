@@ -76,26 +76,26 @@ export default function Login() {
                {watch('login_id') && watch('password') ? <Button disable={false} text="로그인" size="small"/> : <Button disable={true} text="로그인" size="small"/>}
               </div>
              
+                 <Link href={'https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=609700950942-lmjhqofit9h1mt8g76dokj7734mtja00.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Ftaeheoki.shop%3A443%2Fapi%2Fcallback&scope=openid%20email%20profile&response_type=code&service=lso&o2v=2&flowName=GeneralOAuthFlow'}>
               <div className="flex flex-row justify-center items-center p-[8px_0px] mt-4 gap-[8px] w-[360px] h-[46px] border border-solid border-GrayScalePrimary-300 rounded-lg">
                  <Image src="/google.png" alt="google" height={28} width={28}/>
                  <span className="h-[16px] font-normal text-[15px]/[100%]">Google 로그인</span>
-       
               </div>
+                 </Link>
               <div className="relative flex flex-row items-center p-0 gap-1 mt-5">
                 <Link href={'/findid'}>
-                  <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">아이디</span>
+                  <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900 hover:underline">아이디</span>
                 </Link>
                 <span>/</span>
                 <Link href={'/findpass'}>
-                  <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">비밀번호 찾기</span>
+                  <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900 hover:underline">비밀번호 찾기</span>
                 </Link>
                   <span className="h-[16px] font-normal border-r text-GrayScalePrimary-900"/>
                   <Link href={'/register'}>
-                  <span className="w-[56px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900">회원가입</span>
+                  <span className="w-[56px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900 hover:underline">회원가입</span>
                   </Link>
                 </div>
-            </form> 
-            {/* {watch('login_id') && watch('password') ? <Button disable={false} form="join" text="로그인" size="xsmall"/> : <Button disable={true} form="join" text="로그인" size="xsmall"/>} */}
+            </form>
         </div>
        </div>
        </div>

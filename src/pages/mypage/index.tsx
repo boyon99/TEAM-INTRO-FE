@@ -34,7 +34,7 @@ function RePass() {
 
   const login_id = data?.login_id
   const biz_num = data?.biz_num
-  
+  console.log(data)
   const [method, setMethod] = useState<"info" | "pass">("info");
     const { register, handleSubmit, watch, reset, getValues, formState: { errors } } = useForm<EnterForm>();
     const email = watch('email')

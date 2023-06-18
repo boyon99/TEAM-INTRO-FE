@@ -11,14 +11,14 @@ import { useForm } from "react-hook-form";
 
 interface EnterForm {
     email: string;
-    bizNum: string;
+    biz_num: string;
   }
 
 
 function FindId() {
   const [data, setData] = useState<any>()
   const [bzdata, setBzdata] = useState<any>()
-  const [method, setMethod] = useState<"email" | "bizNum">("email");
+  const [method, setMethod] = useState<"email" | "biz_num">("email");
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<EnterForm>();
     const { mutate, error } = useMutation(findidbyemail, {
         onSuccess: (data) => {
@@ -39,7 +39,7 @@ function FindId() {
         },
       })
      
-      console.log(watch('bizNum'))
+      console.log(watch('biz_num'))
    
 
     const onEmailClick = () => {
@@ -48,14 +48,16 @@ function FindId() {
       }
       const onbizNumClick = () => {
         reset();
-        setMethod("bizNum");
+        setMethod("biz_num");
       }
     
       const onValid = (data:EnterForm) => {
         if(method === "email") {
           mutate(data)
-        }
+        } else {
+
           bzmutate(data)
+        }
         
       };
     
@@ -87,7 +89,7 @@ function FindId() {
        <>
        <div className="w-[400px] h-[46px] m-[0_auto] mt-[52px]">
          <button onClick={onEmailClick} className={cls("w-[200px] h-[46px] border border-solid rounded-[16px_16px_0px_0px] text-sm font-bold", method === "email" ? "border-[#2824f0]" : "border-[#cfced7] text-[#89889e]")}>이메일로 찾기</button>
-         <button onClick={onbizNumClick} className={cls("w-[200px] h-[46px] border border-solid rounded-[16px_16px_0px_0px] text-sm font-bold", method === "bizNum" ? "border-[#2824f0]" : "border-[#cfced7] text-[#89889e]")}>사업자등록번호로 찾기</button>
+         <button onClick={onbizNumClick} className={cls("w-[200px] h-[46px] border border-solid rounded-[16px_16px_0px_0px] text-sm font-bold", method === "biz_num" ? "border-[#2824f0]" : "border-[#cfced7] text-[#89889e]")}>사업자등록번호로 찾기</button>
        </div>
       
            <div className='w-[400px] h-[46px] flex flex-col m-[0_auto] mt-[52px]'>
@@ -108,10 +110,10 @@ function FindId() {
                 
             </div> 
             </>  :  null }       
-            {method === 'bizNum' ? 
+            {method === 'biz_num' ? 
            <>
             <div className='flex mb-[14px]'>
-            <Input register={register('bizNum',
+            <Input register={register('biz_num',
                    {
                     required: "Email is required",
                     // pattern: {
