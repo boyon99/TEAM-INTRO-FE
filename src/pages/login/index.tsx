@@ -69,7 +69,7 @@ export default function Login() {
               )} name="login_id" label="아이디" type="text" size="large"/>
               <Input register={register('password'       
               )} required name="password" label="비밀번호" type="password" size="large"/>
-              {error && <span className="text-[red] text-sm">이메일 또는 비밀번호가 일치하지 않습니다</span>}
+              {error && <span className="text-[red] text-sm ml-[4px]">이메일 또는 비밀번호가 일치하지 않습니다</span>}
               <div className="flex justify-between mt-4">
               
                <Input name="keep" label="로그인 상태 유지" type="login_checkbox" onClick={onClick}/>
@@ -77,12 +77,12 @@ export default function Login() {
               </div>
              
                  <Link href={'https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=609700950942-lmjhqofit9h1mt8g76dokj7734mtja00.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Ftaeheoki.shop%3A443%2Fapi%2Fcallback&scope=openid%20email%20profile&response_type=code&service=lso&o2v=2&flowName=GeneralOAuthFlow'}>
-              <div className="flex flex-row justify-center items-center p-[8px_0px] mt-4 gap-[8px] w-[360px] h-[46px] border border-solid border-GrayScalePrimary-300 rounded-lg">
+              <div className="flex flex-row justify-center items-center p-[8px_0px] mt-4 gap-[8px] w-[356px] ml-[4px] h-[46px] border border-solid border-GrayScalePrimary-300 rounded-lg">
                  <Image src="/google.png" alt="google" height={28} width={28}/>
                  <span className="h-[16px] font-normal text-[15px]/[100%]">Google 로그인</span>
               </div>
                  </Link>
-              <div className="relative flex flex-row items-center p-0 gap-1 mt-5">
+              <div className="relative flex flex-row items-center p-0 gap-1 mt-5 ml-[4px]">
                 <Link href={'/findid'}>
                   <span className="w-[140px] h-[16px] font-normal text-[14px]/[100%] text-GrayScalePrimary-900 hover:underline">아이디</span>
                 </Link>

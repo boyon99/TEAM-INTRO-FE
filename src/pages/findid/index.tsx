@@ -97,7 +97,7 @@ function FindId() {
            {method === 'email' ? 
            <>
            <span className="w-[400px] h-[46px] text-[#403F4E]">가입시 등록한 이메일을 입력해주세요.</span>
-            <div className='flex mb-[14px] mt-4'>
+            <div className='mb-[14px] mt-4'>
             <Input register={register('email',
                    {
                     required: "Email is required",
@@ -112,7 +112,7 @@ function FindId() {
             </>  :  null }       
             {method === 'biz_num' ? 
            <>
-            <div className='flex mb-[14px]'>
+            <div className='mb-[14px]'>
             <Input register={register('biz_num',
                    {
                     required: "Email is required",

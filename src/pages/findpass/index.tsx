@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 
 interface EnterForm {
   email: string;
-  bizNum: string;
+  biz_num: string;
   login_id: string;
 }
 
@@ -37,21 +37,14 @@ function FindPass() {
            <div className='w-[145px] h-[24px] ml-[573px] mt-[148px] mb-[52px]'>
          <p className="text-[22px]/[100%] font-bold ">비밀번호 찾기</p>
        </div>
-
+       <div className='w-[449px] h-[46px] m-[0_auto]'>
      <form onSubmit={handleSubmit(onValid)}>
-        <div className='flex mb-[20px] ml-[415px]'>
-                <Input register={register('login_id',
-                    {
-                        required: "Email is required",
-                        // pattern: {
-                        // value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                        // message: "이메일 형식이 아닙니다.",
-                        // },
-                    }
-                    )} name="findid_pass" label="아이디*" type="text" size="large"/>
+        <div className='w-[449px] h-[46px] mb-[20px]'>
+                <Input register={register('login_id')} name="findid_pass" label="아이디*" type="text" size="large"/>                   
+                    
                     
         </div> 
-        <div className='flex mb-[14px] ml-[415px]'>
+        <div className='w-[449px] h-[46px] mb-[14px]'>
                 <Input register={register('email',
                     {
                         required: "Email is required",
@@ -63,11 +56,12 @@ function FindPass() {
                     )} name="findemail_pass" label="이메일*" type="text" size="large"/>
                     
         </div> 
-        <div className='ml-[550px] mt-[62px]'>
+        <div className='mt-[62px] ml-[125px]'>
              <Button disable={false} text="비밀번호 찾기" size="xlarge"/>
         </div>
      </form> 
-        </div>
+     </div>
+         </div>
       )
 }
 
