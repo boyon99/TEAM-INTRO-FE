@@ -32,4 +32,8 @@
   .dashboard-active-menu {
     @apply text-black bg-primary-100 border-r-4 border-r-primary-500;
   }
+
+  .custom-tooltip {
+    @apply rounded-sm bg-GrayScalePrimary-100 shadow-lg text-center p-2.5;
+  }
 }
