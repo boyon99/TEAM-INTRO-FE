@@ -10,7 +10,7 @@ export default function LeftPanal() {
 
   return (
     <>
-      {/* 테마 변경, 회사 정보 수정, 사이트 정보 수정 버튼*/}
+      {/* 테마 변경, 회사 정보 수정, 사이트 정보 수정 버튼 */}
       <div className="w-[100%] h-[185px]">
         <div className="w-[264px] h-[161px] mt-[24px] ml-[28px] border-b-[1px] border-GrayScalePrimary-400">
           <MenuA routerName="/builder/changeTheme" buttonName={"테마 변경"} />
@@ -37,7 +37,7 @@ export default function LeftPanal() {
           isEssential={true}
         />
         {/* 선택 위젯 */}
-        {/* react-movable 라이브러리 사용 */}
+        {/* react-movable 라이브러리 사용하여 위젯 순서 변경 */}
         <List
           values={widgets}
           onChange={({ oldIndex, newIndex }) =>

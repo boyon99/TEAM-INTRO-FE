@@ -1,6 +1,5 @@
 export interface BeforeButtonProps {
-  beforePageName?: string; // 이전 페이지 이름
-  nowPageName: string; // 현재 페이지 이름
+  pageName: string; // 페이지 이름
   classname?: string; // className 속성 값 - 버튼의 크기를 조절하기 위해 사용
 }
 

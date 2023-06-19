@@ -12,7 +12,7 @@ function Preview() {
   const [isColorPopup, setIsColorPopup] = useState(false);
   return (
     <div className="ml-[28px]">
-      <BeforeButtonSmall nowPageName="테마 변경" beforePageName="빌더" />
+      <BeforeButtonSmall pageName="테마 변경 &#8739; 빌더" />
       <div className="font-[700] text-[24px] mt-[16px]">테마 변경</div>
       <div className="w-[260px] font-[500] text-[16px] mt-[16px] text-GrayScalePrimary-700">
         테마를 선택하고 포인트 색상을 변경해주세요.
