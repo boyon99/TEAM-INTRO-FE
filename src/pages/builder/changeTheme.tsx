@@ -1,10 +1,10 @@
-import EditBuilder from "@/components/buider/LeftPanel";
-import Layout from "@/components/buider/Layout";
+import EditBuilder from "@/components/builder/LeftPanel";
+import Layout from "@/components/builder/Layout";
 import React, { useState } from "react";
 import { BeforeButtonSmall } from "@/components/common/button";
 import useStore from "@/store";
 import { PrimaryButton } from "@/components/common/button";
-import MainColor from "@/components/buider/MainColor";
+import MainColor from "@/components/builder/MainColor";
 
 function Preview() {
   // 테마 변경을 위한 함수와 객체
@@ -12,7 +12,7 @@ function Preview() {
   const [isColorPopup, setIsColorPopup] = useState(false);
   return (
     <div className="ml-[28px]">
-      <BeforeButtonSmall nowPageName="테마 변경" beforePageName="빌더" />
+      <BeforeButtonSmall pageName="테마 변경 &#8739; 빌더" />
       <div className="font-[700] text-[24px] mt-[16px]">테마 변경</div>
       <div className="w-[260px] font-[500] text-[16px] mt-[16px] text-GrayScalePrimary-700">
         테마를 선택하고 포인트 색상을 변경해주세요.

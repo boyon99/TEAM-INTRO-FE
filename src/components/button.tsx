@@ -1,4 +1,4 @@
-import { cls } from "@/utiles/utile";
+import { cls } from "@/utils/utile";
 
 
 interface ButtonProps {

@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {/* topbar */}
       <div className="w-[1280px] h-[72px] border-b-[2px] border-GrayScalePrimary-400 flex">
         <BeforeButtonLarge
-          nowPageName="대시보드"
+          pageName="대시보드"
           classname="my-[auto] ml-[22px] w-[232px]"
         />
         <div className="text-center w-[240px] h-[44px] ml-[266px] my-[auto] text-GrayScalePrimary-500">
@@ -24,9 +24,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           classname={"w-[89px] h-[36px] my-[auto] ml-[16px]"}
         />
       </div>
-      {/* leftpanel */}
       <div className="flex">
+        {/* leftpanel */}
         <div className="w-[336px] h-[calc(100vh-72px)]">{children}</div>
+        {/* preview */}
         <Preview />
       </div>
     </>

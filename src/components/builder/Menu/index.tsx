@@ -5,7 +5,7 @@ import { ToggleSmall } from "@/components/common/toggle";
 import useStore from "@/store";
 
 // 빌더 Leftpanel 패널 메뉴
-// 테마 뱐걍, 회사 정보 수정, 사이트 정보 수정
+// 테마 뱐경, 회사 정보 수정, 사이트 정보 수정
 export function MenuA({ routerName, buttonName }: MenuProps) {
   const router = useRouter();
 
@@ -49,9 +49,13 @@ export function MenuB({ routerName, buttonName, isEssential }: MenuProps) {
       {/* 하위 페이지로 이동 */}
       <button
         onClick={() => {
-          router.push(routerName);
+          if (widget?.toggle) {
+            router.push(routerName);
+          } else {
+            alert("사용중인 위젯만 수정 가능합니다.");
+          }
         }}
-        className={"w-[200px] h-[100%] text-left"}
+        className={"w-[200px] h-full text-left"}
       >
         {isEssential ? (
           <p className="">{buttonName}</p>

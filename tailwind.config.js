@@ -56,7 +56,7 @@ module.exports = {
       error: {
         500: '#DF4848',
       },
-      scuuess: {
+      success: {
         500: '#4264DA',
       },
       review: '#FFD602',
@@ -78,5 +78,5 @@ module.exports = {
       },
     },
     plugins: [],
-  }
-}
+  },
+};

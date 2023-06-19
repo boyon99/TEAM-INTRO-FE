@@ -1,4 +1,4 @@
-import { AuthResponse, FindId, LoginRequest, NewPass, RegisterRequest, checkbiznumRequest, checkidRequest, emailcheckRequest, emailconfirmRequest } from "@/interfaces/auth"
+import { AuthResponse, FindId, LoginRequest, NewPass, RegisterRequest, UserModify, checkbiznumRequest, checkidRequest, emailcheckRequest, emailconfirmRequest } from "@/interfaces/auth"
 import { axiosInstance } from "./axios"
 import axios, { Axios } from "axios"
 
@@ -77,6 +77,27 @@ export const repass = async (newpass: NewPass) => {
   console.log(response)
   return response
 }
+// 유저 기본정보 조회
+export const user = async () => {
+  const { data } = await axiosInstance.get<any>('/api/s/user')
+  const response = data.data;
+  console.log(response)
+  return response
+}
+// 유저 기본정보 수정
+export const usermodify = async (user: UserModify) => {
+  const { data } = await axiosInstance.put<any>('/api/s/user', user)
+  const response = data.data;
+  console.log(response)
+  return response
+}
+// 이미지 업로드 경로 반환
+// export const imgpath = async (img: string) => {
+//   const { data } = await axiosInstance.post<any>('/api/s/user/uploadImage',img)
+//   const response = data.data;
+//   console.log(response)
+//   return response
+// }
 export const accesstoken = async (user: LoginRequest) => {
       const { data } = await axiosInstance.post<AuthResponse>('/api/accessToken', user)
       const response = data.data;
