@@ -2,7 +2,8 @@ import { BuilderInputProps, BuilderUploadImageProps } from '@/interfaces/input';
 import { fileCheck } from '@/utils/fileCheck';
 import { useState } from 'react';
 
-export function BuilderInput({ title, type, placeholder, id, readonly }: BuilderInputProps) {
+// 기본 입력창
+export function BuilderInput({ title, type, placeholder, id, readonly, required }: BuilderInputProps) {
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
@@ -15,11 +16,13 @@ export function BuilderInput({ title, type, placeholder, id, readonly }: Builder
         placeholder={placeholder}
         id={id}
         readOnly={readonly}
+        required={required}
       ></input>
     </>
   );
 }
 
+// 이미지 업로드 입력창
 export function BuilderUploadImage({ title, ratio }: BuilderUploadImageProps) {
   const [imgSrc, setImgSrc] = useState('');
 
