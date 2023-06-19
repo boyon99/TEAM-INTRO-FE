@@ -3,10 +3,7 @@ import { useRouter } from "next/router";
 
 // 이전으로 되돌아가는 버튼
 // leftpanel
-export function BeforeButtonSmall({
-  beforePageName,
-  nowPageName,
-}: BeforeButtonProps) {
+export function BeforeButtonSmall({ pageName }: BeforeButtonProps) {
   const router = useRouter();
   const backPage = () => {
     router.back();
@@ -26,9 +23,7 @@ export function BeforeButtonSmall({
         />
       </button>
       <p className="text-GrayScalePrimary-500 font-bold text-[14px] ml-[16px] translate-y-[2px]">
-        {beforePageName}
-        &#160;&#8739;&#160;
-        {nowPageName}
+        {pageName}
       </p>
     </div>
   );
@@ -36,10 +31,7 @@ export function BeforeButtonSmall({
 
 // 이전으로 되돌아가는 버튼
 // 상단 메뉴바
-export function BeforeButtonLarge({
-  nowPageName,
-  classname,
-}: BeforeButtonProps) {
+export function BeforeButtonLarge({ pageName, classname }: BeforeButtonProps) {
   const router = useRouter();
   const backPage = () => {
     router.back();
@@ -57,7 +49,7 @@ export function BeforeButtonLarge({
         className="w-[12px] h-[auto]"
       />
       <p className="font-[500] text-[18px] ml-[8px] translate-y-[-2px]">
-        {nowPageName}
+        {pageName}
       </p>
     </button>
   );
