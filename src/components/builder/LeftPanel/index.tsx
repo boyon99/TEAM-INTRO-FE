@@ -7,11 +7,11 @@ import { ToggleLarge } from "@/components/common/toggle";
 export default function LeftPanal() {
   // 위젯 목록과 위젯 순서 변경을 위한 함수
   const { widgets, setWidget } = useStore();
-
+  console.log(widgets);
   return (
     <>
-      {/* 테마 변경, 회사 정보 수정, 사이트 정보 수정 버튼*/}
-      <div className="w-[100%] h-[185px]">
+      {/* 테마 변경, 회사 정보 수정, 사이트 정보 수정 버튼 */}
+      <div className="w-full h-[185px]">
         <div className="w-[264px] h-[161px] mt-[24px] ml-[28px] border-b-[1px] border-GrayScalePrimary-400">
           <MenuA routerName="/builder/changeTheme" buttonName={"테마 변경"} />
           <MenuA
@@ -25,7 +25,7 @@ export default function LeftPanal() {
         </div>
       </div>
       {/* 위젯 사용 여부와 순서 변경 */}
-      <div className="w-[100%] h-[calc(100%-185px)] overflow-y-scroll pl-[24px]">
+      <div className="w-full h-[calc(100%-185px)] overflow-y-scroll pl-[24px]">
         {/* 순서 변경 토글 */}
         <div className="ml-[130px] mb-[10px]">
           <ToggleLarge toggleText="순서 변경"></ToggleLarge>
@@ -33,11 +33,11 @@ export default function LeftPanal() {
         {/* 필수 위젯 */}
         <MenuB
           buttonName={"헤더/푸터"}
-          routerName={"builder/headerfooter"}
+          routerName={"builder/headerfooter#w-01"}
           isEssential={true}
         />
         {/* 선택 위젯 */}
-        {/* react-movable 라이브러리 사용 */}
+        {/* react-movable 라이브러리 사용하여 위젯 순서 변경 */}
         <List
           values={widgets}
           onChange={({ oldIndex, newIndex }) =>

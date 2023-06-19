@@ -1,20 +1,20 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { MenuProps } from "@/interfaces/builder";
-import { ToggleSmall } from "@/components/common/toggle";
-import useStore from "@/store";
+import React from 'react';
+import { useRouter } from 'next/router';
+import { MenuProps } from '@/interfaces/builder';
+import { ToggleSmall } from '@/components/common/toggle';
+import useStore from '@/store';
 
 // 빌더 Leftpanel 패널 메뉴
-// 테마 뱐걍, 회사 정보 수정, 사이트 정보 수정
+// 테마 뱐경, 회사 정보 수정, 사이트 정보 수정
 export function MenuA({ routerName, buttonName }: MenuProps) {
   const router = useRouter();
 
   return (
-    <div className={"relative"}>
+    <div className={'relative'}>
       <button
         onClick={() => router.push(routerName)}
         className={
-          "w-[264px] h-[46px] text-[16px] text-[500] text-left  px-[16px] mb-[6px] hover:bg-GrayScalePrimary-100 hover:border-r-[4px] hover:border-primary-500 "
+          'w-[264px] h-[46px] text-[16px] text-[500] text-left  px-[16px] mb-[6px] hover:bg-GrayScalePrimary-100 hover:border-r-[4px] hover:border-primary-500 '
         }
       >
         {buttonName}
@@ -35,29 +35,29 @@ export function MenuB({ routerName, buttonName, isEssential }: MenuProps) {
   return (
     <div
       className={
-        "relative hover:text-primary-500 w-[264px] h-[46px] text-[16px] text-[500] text-left  px-[16px] mb-[6px] " +
+        'relative hover:text-primary-500 w-[264px] h-[46px] text-[16px] text-[500] text-left  px-[16px] mb-[6px] ' +
         // 사용중인 위젯인 경우
         (widget?.toggle
           ? isEssential
             ? // 필수 위젯인 경우
-              "border-r-[4px] border-primary-500 bg-GrayScalePrimary-100"
+              'border-r-[4px] border-primary-500 bg-GrayScalePrimary-100'
             : // 필수 위젯이 아니지만, 현재 사용중인 경우
-              "border-primary-500 bg-GrayScalePrimary-100"
-          : "")
+              'border-primary-500 bg-GrayScalePrimary-100'
+          : '')
       }
     >
       {/* 하위 페이지로 이동 */}
       <button
         onClick={() => {
-          router.push(routerName);
+          if (widget?.toggle || isEssential) {
+            router.push(routerName);
+          } else {
+            alert('사용중인 위젯만 수정 가능합니다.');
+          }
         }}
-        className={"w-[200px] h-[100%] text-left"}
+        className={'w-[200px] h-full text-left'}
       >
-        {isEssential ? (
-          <p className="">{buttonName}</p>
-        ) : (
-          <p className="indent-[35px]">{buttonName}</p>
-        )}
+        {isEssential ? <p className="">{buttonName}</p> : <p className="indent-[35px]">{buttonName}</p>}
       </button>
       <div className="absolute top-[16px] left-[15px]">
         {isEssential ? (
@@ -70,11 +70,7 @@ export function MenuB({ routerName, buttonName, isEssential }: MenuProps) {
       {/* 필수 위젯의 경우 순서 변경이 불가능하며, 순서 변경 토글이 활성화 되는 경우 핸들러 활성화 */}
       {!isEssential && isChangeOederToggle ? (
         <div>
-          <img
-            src="/handler.png"
-            className="w-[24px] h-[24px] absolute top-[11px] right-[16px]"
-            alt="hanlder-img"
-          />
+          <img src="/handler.png" className="w-[24px] h-[24px] absolute top-[11px] right-[16px]" alt="hanlder-img" />
         </div>
       ) : (
         <></>
