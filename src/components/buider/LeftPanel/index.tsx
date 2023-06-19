@@ -11,7 +11,7 @@ export default function LeftPanal() {
   return (
     <>
       {/* 테마 변경, 회사 정보 수정, 사이트 정보 수정 버튼 */}
-      <div className="w-[100%] h-[185px]">
+      <div className="w-full h-[185px]">
         <div className="w-[264px] h-[161px] mt-[24px] ml-[28px] border-b-[1px] border-GrayScalePrimary-400">
           <MenuA routerName="/builder/changeTheme" buttonName={"테마 변경"} />
           <MenuA
@@ -25,7 +25,7 @@ export default function LeftPanal() {
         </div>
       </div>
       {/* 위젯 사용 여부와 순서 변경 */}
-      <div className="w-[100%] h-[calc(100%-185px)] overflow-y-scroll pl-[24px]">
+      <div className="w-full h-[calc(100%-185px)] overflow-y-scroll pl-[24px]">
         {/* 순서 변경 토글 */}
         <div className="ml-[130px] mb-[10px]">
           <ToggleLarge toggleText="순서 변경"></ToggleLarge>
