@@ -1,4 +1,5 @@
 import LoginButton from "@/components/button";
+import Popup from "@/components/common/popup";
 
 export default function Home() {
   return (

@@ -18,7 +18,7 @@ function SnsLegister() {
 
        <div className='w-[501px] h-[542px] flex flex-col m-[0_auto] mt-[52px]'>
        <form>
-        <div className='flex mb-[14px]'>
+        {/* <div className='flex mb-[14px]'>
         <Input register={register('id',
                {
                 required: "Email is required",
@@ -29,7 +29,7 @@ function SnsLegister() {
               }
               )} name="id" label="아이디*" type="text" size="small"/>
               <Button disable={false} text="중복확인" size="xsmall"/>
-        </div>
+        </div> */}
         <div className='flex mb-[14px]'>
         <Input register={register('email'       
               )} required name="snsemail" label="이메일" type="text" size="large"/>
@@ -44,7 +44,7 @@ function SnsLegister() {
 
         </form> 
         <div className='mt-[32px] pb-[14px] border-solid border-b-[1px] border-GrayScalePrimary-150'>
-         <Input name="keep" type="register_checkbox"/>
+         <Input name="keep" label='전체동의' type="register_checkbox"/>
        </div>
        <div className='space-y-[12px] mt-[12px]'>
          <Input name="keep" label='(필수) 이용 약관 동의' type="login_checkbox"/>
