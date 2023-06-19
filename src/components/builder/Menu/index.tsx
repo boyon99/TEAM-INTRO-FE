@@ -67,8 +67,8 @@ export function MenuB({ routerName, buttonName, isEssential }: MenuProps) {
           <ToggleSmall buttonName={buttonName}></ToggleSmall>
         )}
       </div>
-      {/* 필수 위젯의 경우 순서 변경이 불가능하며, 순서 변경 토글이 활성화 되는 경우 핸들러 활성화 */}
-      {!isEssential && isChangeOederToggle ? (
+      {/* 필수 위젯의 경우 순서 변경이 불가능하며, 순서 변경 토글이 true이며 사용하는 위젯인 경우 순서 변경 핸들러 활성화 */}
+      {!isEssential && isChangeOederToggle && widget?.toggle ? (
         <div>
           <img src="/handler.png" className="w-[24px] h-[24px] absolute top-[11px] right-[16px]" alt="hanlder-img" />
         </div>
