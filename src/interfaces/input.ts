@@ -3,7 +3,9 @@ export interface BuilderInputProps {
   type: string; // input type
   placeholder: string; // placeholder
   id: string; // id
-  readonly?: boolean; // readonly is a reserved word
+  readonly?: boolean; // readonly
+  required?: boolean; // required
+  pattern?: RegExp; // pattern
 }
 
 export interface BuilderUploadImageProps {
