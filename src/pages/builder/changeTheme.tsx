@@ -1,10 +1,10 @@
-import EditBuilder from "@/components/buider/LeftPanel";
-import Layout from "@/components/buider/Layout";
+import EditBuilder from "@/components/builder/LeftPanel";
+import Layout from "@/components/builder/Layout";
 import React, { useState } from "react";
 import { BeforeButtonSmall } from "@/components/common/button";
 import useStore from "@/store";
 import { PrimaryButton } from "@/components/common/button";
-import MainColor from "@/components/buider/MainColor";
+import MainColor from "@/components/builder/MainColor";
 
 function Preview() {
   // 테마 변경을 위한 함수와 객체

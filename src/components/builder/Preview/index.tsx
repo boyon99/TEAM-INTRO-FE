@@ -4,7 +4,7 @@ import {
   Footer,
   KeyVisual,
   MissionVision,
-} from "@/components/buider/Widget";
+} from "@/components/builder/Widget";
 import useStore from "@/store";
 
 export default function Preview() {

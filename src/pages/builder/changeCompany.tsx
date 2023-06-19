@@ -1,5 +1,5 @@
-import EditBuilder from "@/components/buider/LeftPanel";
-import Layout from "@/components/buider/Layout";
+import EditBuilder from "@/components/builder/LeftPanel";
+import Layout from "@/components/builder/Layout";
 import React, { useState } from "react";
 
 export default function ChangeCompany() {

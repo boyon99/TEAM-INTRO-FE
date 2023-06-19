@@ -7,7 +7,7 @@ import { ToggleLarge } from "@/components/common/toggle";
 export default function LeftPanal() {
   // 위젯 목록과 위젯 순서 변경을 위한 함수
   const { widgets, setWidget } = useStore();
-
+  console.log(widgets);
   return (
     <>
       {/* 테마 변경, 회사 정보 수정, 사이트 정보 수정 버튼 */}
