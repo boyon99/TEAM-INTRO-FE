@@ -20,6 +20,10 @@ function FindId() {
   const [bzdata, setBzdata] = useState<any>()
   const [method, setMethod] = useState<"email" | "biz_num">("email");
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<EnterForm>();
+
+  const biz_num = watch('biz_num')
+  const email = watch('email')
+
     const { mutate, error } = useMutation(findidbyemail, {
         onSuccess: (data) => {
          
@@ -39,7 +43,7 @@ function FindId() {
         },
       })
      
-      console.log(watch('biz_num'))
+      
    
 
     const onEmailClick = () => {
@@ -74,14 +78,14 @@ function FindId() {
        <div>
         <span className="w-[252px] h-[16px] text-sm/[100%] ml-[441px]">고객님의 정보와 일치하는 아이디입니다.</span>
         <div className="relative w-[400px] h-[100px] ml-[calc(50%-400px/2)] mt-[24px] border border-solid border-[#cfced7] rounded-lg mb-[48px]">
-         <span className="absolute text-2xl/[100%] font-bold text-[#403f4e] mt-[32px] ml-[145px]">{data?.login_id}{bzdata?.login_id}</span>
+         <span className="absolute w-[400px] text-2xl/[100%] font-bold text-[#403f4e] mt-[38px] text-center">{data?.login_id}{bzdata?.login_id}</span>
         </div>
         <div className="w-[376px] h-[46px] ml-[calc(50%-376px/2)] space-x-[16px]">
            <Link href={'/login'}>
-            <Button disable={false} text="로그인 하기" size="xlarge"/>
+            <Button disable={true} text="로그인 하기" size="xlarge"/>
             </Link>
             <Link href={'/findpass'}>
-            <Button disable={false} text="비밀번호 찾기" size="xlarge"/>
+            <Button disable={true} text="비밀번호 찾기" size="xlarge"/>
             </Link>
         </div>
      </div> : 
@@ -113,25 +117,14 @@ function FindId() {
             {method === 'biz_num' ? 
            <>
             <div className='mb-[14px]'>
-            <Input register={register('biz_num',
-                   {
-                    required: "Email is required",
-                    // pattern: {
-                    //   value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                    //   message: "이메일 형식이 아닙니다.",
-                    // },
-                  }
-                  )} name="findbznum_email" label="사업자등록번호*" type="text" size="large"/>
-                
+            <Input register={register('biz_num')} name="findbznum_email" label="사업자등록번호*" type="text" size="large"/>
             </div> 
             </>  :  null }       
             </form> 
             <div className='m-[0_auto] mt-[44px]'>
-             <Button disable={false} text="아이디 찾기" size="xlarge" form="findid_email"/>
+            {biz_num || email ? <Button disable={true} text="아이디 찾기" size="xlarge" form="findid_email"/> : <Button disable={false} text="아이디 찾기" size="xlarge" form="findid_email"/>}
+             
            </div>
-           
-       
-           
            </div>
            </> }
         </div>

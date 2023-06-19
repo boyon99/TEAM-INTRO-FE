@@ -1,10 +1,11 @@
 import { findpass } from '@/apis/auth';
 import Button from '@/components/button';
+import Popup from '@/components/common/popup';
 import Input from '@/components/input'
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 interface EnterForm {
@@ -14,19 +15,40 @@ interface EnterForm {
 }
 
 function FindPass() {
-    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<EnterForm>();
+  const [emailmesaage, setemailmessage] = useState('')
 
-    const { mutate, error } = useMutation(findpass, {
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<EnterForm>();
+    
+    const email = watch('email')
+    const login_id = watch('login_id')
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openModal = () => {
+        setIsOpen(true);
+      };
+    
+      const closeModal = () => {
+        setemailmessage('')
+        setIsOpen(false);
+      };
+
+    const { mutate, isLoading,error } = useMutation(findpass, {
       onSuccess: (data) => {
        console.log(data)
-       alert('메일이 발송되었습니다.')
+       setemailmessage('메일이 발송되었습니다.')
+       openModal()
       },
       onError: (err: AxiosError) => { 
         console.log(err)
+        const Eresponse = err.response?.data
+        const { data }: any = Eresponse
+        setemailmessage(data.value)
+        openModal()
       },
     })
     const onValid = (data:EnterForm) => {
-     
+     if(isLoading) return
         mutate(data)
     }
     return (
@@ -57,10 +79,11 @@ function FindPass() {
                     
         </div> 
         <div className='mt-[62px] ml-[125px]'>
-             <Button disable={false} text="비밀번호 찾기" size="xlarge"/>
+           {login_id && email ? <Button disable={true} text="비밀번호 찾기" size="xlarge"/> : <Button disable={false} text="비밀번호 찾기" size="xlarge"/>}  
         </div>
      </form> 
      </div>
+     <Popup text={emailmesaage} cancle='취소' confirm='확인' isOpen={isOpen} onClick={closeModal}/>
          </div>
       )
 }
