@@ -2,9 +2,10 @@ import { BuilderInputProps, BuilderUploadImageProps } from '@/interfaces/input';
 import { fileCheck } from '@/utils/fileCheck';
 import { useState } from 'react';
 import { PrimaryButton } from '../button';
+import { set } from 'react-hook-form';
 
 // 기본 입력창
-export function BuilderInput({ title, type, placeholder, id, readonly, required }: BuilderInputProps) {
+export function BuilderInput({ title, type, placeholder, id, readonly, required, value, onChange }: BuilderInputProps) {
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
@@ -18,6 +19,8 @@ export function BuilderInput({ title, type, placeholder, id, readonly, required 
         id={id}
         readOnly={readonly}
         required={required}
+        value={value}
+        onChange={onChange}
       ></input>
     </>
   );
@@ -80,7 +83,7 @@ export function BuilderUploadImage({ title, ratio }: BuilderUploadImageProps) {
 }
 
 // 증복확인 입력창
-export function DuplicateCheck({ title, type, placeholder, id, required }: BuilderInputProps) {
+export function DuplicateCheck({ title, type, placeholder, id, required, value, onChange }: BuilderInputProps) {
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
@@ -93,6 +96,8 @@ export function DuplicateCheck({ title, type, placeholder, id, required }: Build
           placeholder={placeholder}
           id={id}
           required={required}
+          value={value}
+          onChange={onChange}
         ></input>
         <PrimaryButton type="primary" text="중복확인" onClick={() => {}} classname="w-[72px] h-[42px] ml-[8px]" />
       </div>
@@ -101,7 +106,7 @@ export function DuplicateCheck({ title, type, placeholder, id, required }: Build
 }
 
 // textarea 입력창
-export function BuilderTextarea({ title, placeholder, id, required }: BuilderInputProps) {
+export function BuilderTextarea({ title, placeholder, id, required, value, setValue }: BuilderInputProps) {
   const [textLength, setTextLength] = useState(0);
   return (
     <div className="relative">
@@ -114,8 +119,11 @@ export function BuilderTextarea({ title, placeholder, id, required }: BuilderInp
         placeholder={placeholder}
         id={id}
         required={required}
+        value={value}
         onChange={(e) => {
+          // 글자수 표시
           setTextLength(() => e.target.value.length);
+          setValue && setValue(e.target.value);
         }}
       ></textarea>
       <span className="absolute right-[60px] bottom-[10px] text-[12px] text-GrayScalePrimary-550">
