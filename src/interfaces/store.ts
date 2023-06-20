@@ -1,3 +1,5 @@
+import { Header } from 'next/dist/lib/load-custom-routes';
+
 export interface Store {
   widgets: Widget[];
   setWidget: (widgets: Widget[]) => void;
@@ -6,6 +8,19 @@ export interface Store {
   setIsChangeOederToggle: (isChangeOederToggle: boolean) => void;
   theme: Theme; // A or B
   setTheme: (theme: Theme) => void;
+  headerfooter: HeaderFooter;
+}
+
+export interface HeaderFooter {
+  quickmenu: QuickMenu[];
+  lowerMenuToggle: boolean;
+  setQuickMenuToggle: (name: string) => void;
+  setLowerMenuToggle: (lowerMenuToggle: boolean) => void;
+}
+
+export interface QuickMenu {
+  name: string;
+  toggle: boolean;
 }
 
 export interface Widget {
@@ -16,6 +31,6 @@ export interface Widget {
 }
 
 export interface Theme {
-  theme: "A" | "B"; // A or B
+  theme: 'A' | 'B'; // A or B
   color: string;
 }

@@ -1,3 +1,4 @@
+import { ToggleWidgetProps } from '@/interfaces/toggle';
 import useStore from '@/store';
 import { useState } from 'react';
 
@@ -124,6 +125,42 @@ export function ToggleLarge({ toggleText }: { toggleText: string }) {
         {toggleText}
         {isChangeOederToggle ? ' ON' : ' OFF'}
       </p>
+    </div>
+  );
+}
+
+// widget 페이지에서 사용하는 토클
+export function ToggleWidget({ toggle, setToggle, toggleText }: ToggleWidgetProps) {
+  // 토글 애니메이션
+  const toggleAnimation = 'transform translate-x-[16px]';
+
+  return (
+    <div className="flex">
+      <button
+        className={
+          'flex w-[37px] h-[20px] rounded-full relative ' + (toggle ? 'bg-primary-500' : 'bg-GrayScalePrimary-200')
+        }
+      >
+        {/* Toggle Container */}
+        <div
+          className={
+            'w-[100%] h-[100%] rounded-full p-[1px] cursor-pointer flex ' +
+            (toggle ? 'bg-primary-500' : 'bg-GrayScalePrimary-200')
+          }
+          onClick={() => {
+            setToggle(!toggle);
+          }}
+        >
+          {/* Toggle controller */}
+          <div
+            className={
+              'bg-white h-[16px] w-[16px] rounded-full shadow-md transform duration-300 ease-in-out ml-[1px] ' +
+              (toggle ? null : toggleAnimation)
+            }
+          ></div>
+        </div>
+      </button>
+      <p className="ml-[8px] translate-y-[-1px]">{toggleText}</p>
     </div>
   );
 }
