@@ -24,7 +24,7 @@ export default function LeftPanal() {
           <ToggleLarge toggleText="순서 변경"></ToggleLarge>
         </div>
         {/* 필수 위젯 */}
-        <MenuB buttonName={'헤더/푸터'} routerName={'builder/headerfooter#w-01'} isEssential={true} />
+        <MenuB buttonName={'헤더/푸터'} routerName={'builder/headerfooter#w-15'} isEssential={true} />
         {/* 선택 위젯 */}
         {/* react-movable 라이브러리 사용하여 위젯 순서 변경 */}
         <List
