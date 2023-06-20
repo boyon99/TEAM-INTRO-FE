@@ -1,4 +1,5 @@
 import { HeaderProps } from '@/interfaces/widget';
+import useStore from '@/store';
 import exp from 'constants';
 import React from 'react';
 
@@ -35,16 +36,45 @@ export function MissionVision({ theme }: HeaderProps) {
 }
 
 export function Header({ theme }: HeaderProps) {
+  const { headerfooter } = useStore();
   if (theme === 'A') {
     return (
-      <section id="w-15" className="h-[200px]">
-        Header A
+      <section id="w-15" className="h-[41px] w-full bg-primary-10 flex flex-row-reverse relative">
+        <img src="" className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
+        <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px]">ZILLINKS</span>
+        <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
+          {headerfooter.quickmenu.map((item, index) => {
+            if (item.toggle) {
+              return (
+                <span key={index} className="font-['Roboto'] text-[10px] ml-[26px]">
+                  {item.name}
+                </span>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
       </section>
     );
   } else {
     return (
-      <section id="w-15" className="h-[200px]">
-        Header B
+      <section id="w-15" className="h-[41px] w-full bg-primary-10 flex flex-row-reverse relative">
+        <img src="" className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
+        <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">Upperb</span>
+        <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
+          {headerfooter.quickmenu.map((item, index) => {
+            if (item.toggle) {
+              return (
+                <span key={index} className="font-['Roboto'] text-[10px] ml-[26px]">
+                  {item.name}
+                </span>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
       </section>
     );
   }

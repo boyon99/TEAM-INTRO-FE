@@ -43,7 +43,7 @@
   font-weight: 900;
 }
 @font-face {
-  // KorailRoundGothicBold
+  /* KorailRoundGothicBold */
   font-family: 'Korail';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicBold.woff2') format('woff2');
   font-weight: 700;
@@ -51,7 +51,7 @@
 }
 
 @font-face {
-  // LINESeedKR
+  /* LINESeedKR */
   font-family: 'LINE';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
   font-weight: 700;
