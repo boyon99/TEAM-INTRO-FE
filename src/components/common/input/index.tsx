@@ -1,8 +1,11 @@
 import { BuilderInputProps, BuilderUploadImageProps } from '@/interfaces/input';
 import { fileCheck } from '@/utils/fileCheck';
 import { useState } from 'react';
+import { PrimaryButton } from '../button';
+import { set } from 'react-hook-form';
 
-export function BuilderInput({ title, type, placeholder, id, readonly }: BuilderInputProps) {
+// 기본 입력창
+export function BuilderInput({ title, type, placeholder, id, readonly, required, value, onChange }: BuilderInputProps) {
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
@@ -15,11 +18,15 @@ export function BuilderInput({ title, type, placeholder, id, readonly }: Builder
         placeholder={placeholder}
         id={id}
         readOnly={readonly}
+        required={required}
+        value={value}
+        onChange={onChange}
       ></input>
     </>
   );
 }
 
+// 이미지 업로드 입력창
 export function BuilderUploadImage({ title, ratio }: BuilderUploadImageProps) {
   const [imgSrc, setImgSrc] = useState('');
 
@@ -72,5 +79,56 @@ export function BuilderUploadImage({ title, ratio }: BuilderUploadImageProps) {
         ) : null}
       </div>
     </>
+  );
+}
+
+// 증복확인 입력창
+export function DuplicateCheck({ title, type, placeholder, id, required, value, onChange }: BuilderInputProps) {
+  return (
+    <>
+      <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
+      <div className="flex mt-[8px]">
+        <input
+          type={type}
+          className={
+            'w-[185px] h-[42px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 flex py-[7px] indent-[10px] font-[400] '
+          }
+          placeholder={placeholder}
+          id={id}
+          required={required}
+          value={value}
+          onChange={onChange}
+        ></input>
+        <PrimaryButton type="primary" text="중복확인" onClick={() => {}} classname="w-[72px] h-[42px] ml-[8px]" />
+      </div>
+    </>
+  );
+}
+
+// textarea 입력창
+export function BuilderTextarea({ title, placeholder, id, required, value, setValue }: BuilderInputProps) {
+  const [textLength, setTextLength] = useState(0);
+  return (
+    <div className="relative">
+      <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
+      <textarea
+        className={
+          'w-[264px] h-[160px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex py-[7px] placeholder:w-[232px] placeholder:h-[100px] pt-[12px] pl-[16px] pr-[16px]'
+        }
+        maxLength={80} // 최대 글자수 80자
+        placeholder={placeholder}
+        id={id}
+        required={required}
+        value={value}
+        onChange={(e) => {
+          // 글자수 표시
+          setTextLength(() => e.target.value.length);
+          setValue && setValue(e.target.value);
+        }}
+      ></textarea>
+      <span className="absolute right-[60px] bottom-[10px] text-[12px] text-GrayScalePrimary-550">
+        {textLength}자/최대 80자
+      </span>
+    </div>
   );
 }
