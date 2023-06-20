@@ -30,6 +30,7 @@ function Preview() {
         {headerfooter.quickmenu.map((widget, index) => {
           return (
             <button
+              key={index}
               className={
                 'text-[14px] rounded-[8px] border-[2px] text-center cursor-pointer h-[32px] mr-[7px] text-[14px] pl-[10px] pr-[8px] mb-[10px] flex ' +
                 (widget.toggle
