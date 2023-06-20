@@ -16,9 +16,26 @@ import { useForm } from 'react-hook-form';
 function ProductView() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   // const [ add, setAdd ] = useState(false)
-  const { buttondes, setButtondes, add, setAdd } = useStore();
-  console.log(add)
+  const { buttondes, setButtondes, add, setAdd, products, setProducts } = useStore();
+  console.log([...products])
   
+  const onClick = () => {
+    setAdd(!add)
+    // const item = {
+    
+
+    // }
+    setProducts([...products,
+    {
+      id: products.length + 1,
+      name: '',
+      title: '',
+      description: '',
+      image: ''
+    }
+    ])
+  }
+
   return (
   
     <div className="ml-[28px]">
@@ -40,7 +57,7 @@ function ProductView() {
    <div className='mt-[48px]'>
    <span className='font-bold text-lg/[110%] text-[#57566a]'>제품 편집</span>
    </div>
-   <ProductTitle onClick={() => setAdd(!add)}/>
+   <ProductTitle onClick={onClick}/>
    <div className='w-[264px] mt-[40px]'>
        <p className='font-bold text-lg/[110%] text-[#57566a]'>Call To Action</p>
        <p className='mt-[16px] font-medium text-sm/[100%] text-[#57566a]'>클릭을 유도할 수 있는 메세지를 입력해주세요.</p>
@@ -78,7 +95,7 @@ function ProductView() {
 }
 
 function ProductUpload() {
- 
+  const { products, setProducts } = useStore();
   return (
   
     <div className="ml-[28px]">
@@ -98,11 +115,36 @@ function ProductUpload() {
         340x250, png 권장, 최대 100mb
       </div>
       <div className='mt-[34px]'>
-      <BuilderInput title="제품 서비스 이름" type="text" placeholder="예: 빗코" id="pageTitle" />
+      <BuilderInput title="제품 서비스 이름" type="text" placeholder="예: 빗코" id="pageTitle" onChange={(e) => {
+  const updatedProducts = products.map((product, index) => {
+    if (index === products.length - 1) {
+      return {
+        ...product,
+        name: e.target.value
+      };
+    }
+    return product;
+  });
+
+  setProducts(updatedProducts);
+}}/>
       <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         최대12자
       </div>
-      <BuilderInput title="제품 서비스 타이틀" type="text" placeholder="예: 회사 소개 페이지 플러그인" id="pageTitle" />
+      <BuilderInput title="제품 서비스 타이틀" type="text" placeholder="예: 회사 소개 페이지 플러그인" id="pageTitle" onChange={(e) => {
+  const updatedProducts = products.map((product, index) => {
+    if (index === products.length - 1) {
+      return {
+        ...product,
+        title: e.target.value
+      };
+    }
+    return product;
+  });
+
+  setProducts(updatedProducts);
+}}
+      />
       <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         최대 20자
       </div>
@@ -111,6 +153,19 @@ function ProductUpload() {
         type="text"
         placeholder="예: 예: 빗코는 디지털 가상 자산에 투자하는 누구나, 쉽고 편리하게 자산관리를 안정적으로 할 수 있도록 가이드를 제시하는 모바일 어플리케이션입니다."
         id="businessNumber"
+        onChange={(e) => {
+          const updatedProducts = products.map((product, index) => {
+            if (index === products.length - 1) {
+              return {
+                ...product,
+                description: e.target.value
+              };
+            }
+            return product;
+          });
+        
+          setProducts(updatedProducts);
+        }}
       />
       <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         &#8226; 제품/서비스에 대한 상세 설명을 작성해주세요. <br />

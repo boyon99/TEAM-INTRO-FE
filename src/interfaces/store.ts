@@ -10,6 +10,8 @@ export interface Store {
   setButtondes: (buttonname: Buttonde) => void;
   add: boolean;
   setAdd: (add: boolean) => void;
+  products: Products[];
+  setProducts: (products: Products[]) => void;
 }
 
 export interface Widget {
@@ -26,6 +28,13 @@ export interface Theme {
 
 export interface Buttonde {
   buttonname: string;
- 
+}
+
+export interface Products {
+  id?: number;
+  name: string;
+  title: string;
+  description: string;
+  image: string;
 }
 

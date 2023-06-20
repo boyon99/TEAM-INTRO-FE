@@ -111,6 +111,20 @@ const useStore = create<Store>((set) => ({
 
   add: false,
   setAdd: (add) => set({ add }),
+
+  products: [
+    // {
+    //   id: 1,
+    //   name: '키비주얼/슬로건',
+    //   title: '키비주얼/슬로건',
+    //   description: '',
+    //   image: '',
+    // },
+  ],
+
+  setProducts: (arr) => {
+    set(() => ({ products: arr }));
+  },
 }));
 
 export default useStore;

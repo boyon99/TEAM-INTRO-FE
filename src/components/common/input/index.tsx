@@ -3,6 +3,7 @@ import { fileCheck } from '@/utils/fileCheck';
 import { useState } from 'react';
 import { PrimaryButton } from '../button';
 import { set } from 'react-hook-form';
+import { on } from 'events';
 
 
 // 기본 입력창
@@ -108,7 +109,7 @@ export function DuplicateCheck({ title, type, placeholder, id, required, value, 
 }
 
 // textarea 입력창
-export function BuilderTextarea({ title, placeholder, id, required, value, setValue }: BuilderInputProps) {
+export function BuilderTextarea({ title, placeholder, id, required, value, setValue, onChange:ProductChange }: BuilderInputProps) {
   const [textLength, setTextLength] = useState(0);
   return (
     <div className="relative">
@@ -122,11 +123,11 @@ export function BuilderTextarea({ title, placeholder, id, required, value, setVa
         id={id}
         required={required}
         value={value}
-        onChange={(e) => {
+        onChange={ProductChange? ProductChange : ((e) => {
           // 글자수 표시
           setTextLength(() => e.target.value.length);
           setValue && setValue(e.target.value);
-        }}
+        })}
       ></textarea>
       <span className="absolute right-[60px] bottom-[10px] text-[12px] text-GrayScalePrimary-550">
         {textLength}자/최대 80자

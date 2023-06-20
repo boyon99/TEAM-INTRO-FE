@@ -8,7 +8,7 @@ export interface BuilderInputProps {
   required?: boolean; // required
   pattern?: RegExp; // pattern
   value?: string; // value
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // onChange
+  onChange?: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void; // onChange
   setValue?: (value: string) => void; // setValue
   register?: UseFormRegisterReturn;
 }
