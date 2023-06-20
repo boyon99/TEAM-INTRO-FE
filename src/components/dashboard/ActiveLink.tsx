@@ -5,48 +5,34 @@ import { PropsWithChildren, useState, useEffect } from 'react';
 type ActiveLinkProps = LinkProps & {
   className?: string;
   activeClassName: string;
+  order: number;
 };
 
 export default function ActiveLink({
   children,
   activeClassName,
   className,
+  order,
   ...props
 }: PropsWithChildren<ActiveLinkProps>) {
-  const { asPath, isReady } = useRouter();
+  const { isReady, pathname } = useRouter();
   const [computedClassName, setComputedClassName] = useState(className);
 
   useEffect(() => {
     // Check if the router fields are updated client-side
     if (isReady) {
-      // Dynamic route will be matched via props.as
-      // Static route will be matched via props.href
-      const linkPathname = new URL(
-        (props.as || props.href) as string,
-        location.href
-      ).pathname;
+      const href = props.href as string;
+      const linkPathname = href.split('/')[order];
 
-      // Using URL().pathname to get rid of query and hash
-      const activePathname = new URL(asPath, location.href).pathname;
+      const activePathname = pathname.split('/')[order];
 
-      const newClassName =
-        linkPathname === activePathname
-          ? `${className} ${activeClassName}`.trim()
-          : className;
+      const newClassName = linkPathname === activePathname ? `${className} ${activeClassName}`.trim() : className;
 
       if (newClassName !== computedClassName) {
         setComputedClassName(newClassName);
       }
     }
-  }, [
-    asPath,
-    isReady,
-    props.as,
-    props.href,
-    activeClassName,
-    className,
-    computedClassName,
-  ]);
+  }, [isReady, props.href, activeClassName, className, computedClassName]);
 
   return (
     <Link className={computedClassName} {...props}>

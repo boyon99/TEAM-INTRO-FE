@@ -4,22 +4,19 @@
 
 @font-face {
   font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
-    format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
 }
 
 @font-face {
   font-family: 'KorailRoundGothicBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicBold.woff2')
-    format('woff2');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicBold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'LINESeedKR-Bd';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2')
-    format('woff2');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
@@ -35,5 +32,21 @@
 
   .custom-tooltip {
     @apply rounded-sm bg-GrayScalePrimary-100 shadow-lg text-center p-2.5;
+  }
+
+  .confirm-active-link {
+    @apply border-b-2 border-b-primary-500 font-bold;
+  }
+
+  .confirm-link {
+    @apply inline-block text-center leading-[58px] w-[140px] h-[58px] text-GrayScaleNeutral-1000;
+  }
+
+  .modal-contents {
+    @apply fixed left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-lg border border-GrayScalePrimary-200;
+  }
+
+  .modal-overlay {
+    @apply bg-white/50 fixed inset-0;
   }
 }

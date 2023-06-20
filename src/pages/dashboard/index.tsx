@@ -4,7 +4,7 @@ import LandingPage from '@/components/dashboard/LandingPage';
 import Sidebar from '@/components/dashboard/Sidebar';
 
 export default function Dashboard() {
-  const introPage = false;
+  const introPage = true;
 
   return (
     <div>
