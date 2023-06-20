@@ -200,7 +200,7 @@ function Legister() {
 
        <div className='w-[501px] h-[542px] flex flex-col m-[0_auto] mt-[28px]'>
        <form id='join' onSubmit={handleSubmit(onValid)}>
-        <div className='flex mb-[12px]'>
+        <div className='flex items-center mb-[12px]'>
         <Input register={register('login_id'
               
               )} required name="id" label="아이디*" type="text" size="small"/>
@@ -216,7 +216,7 @@ function Legister() {
 <span className="text-[13px]/[100%] font-normal text-[#4264da]">{iderrmessage}</span>
 </div>: null}
        
-        <div className='flex mb-[14px]'>
+        <div className='flex items-center mb-[14px]'>
         <Input register={register('biz_num'       
               )} required name="bznum" label="사업자등록번호*" type="text" size="small"/>
               {nummesaage? <Button  text="인증확인" active={true} type="button" size="xsmall"/> : biz_num ? <Button disable={true} text="인증요청" type="button"  onClick={checknumonClick} size="xsmall"/> :  <Button disable={false} text="인증요청" type="button" onClick={checknumonClick} size="xsmall"/>}
@@ -229,7 +229,7 @@ function Legister() {
 
 <span className="text-[13px]/[100%] font-normal text-[#4264da]">{numerrmesaage}</span>
 </div>:null}
-        <div className='flex mb-[14px]'>
+        <div className='mb-[14px]'>
         <Input register={register('password', {
         required: '비밀번호는 필수 입력 항목입니다.',
         pattern: {
@@ -244,7 +244,7 @@ function Legister() {
 
 <span className="text-[13px]/[100%] font-normal text-[#4264da]">{errors.password?.message as string}</span>
 </div>
-        <div className='flex mb-[14px]'>
+        <div className='mb-[14px]'>
         <Input register={register('password_confirm',
         {
           required: '비밀번호 확인은 필수 입력 항목입니다.',
@@ -264,7 +264,7 @@ function Legister() {
 <span className="text-[13px]/[100%] font-normal text-[#4264da]">{errors.password_confirm?.message as string}</span>
 </div>
         
-        <div className='flex mb-[14px]'>
+        <div className='flex items-center mb-[14px]'>
         <Input register={register('email',
          {
           required: "이메일은 필수 항목입니다.",

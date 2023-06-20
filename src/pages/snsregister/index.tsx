@@ -30,12 +30,12 @@ function SnsLegister() {
               )} name="id" label="아이디*" type="text" size="small"/>
               <Button disable={false} text="중복확인" size="xsmall"/>
         </div> */}
-        <div className='flex mb-[14px]'>
+        <div className='mb-[14px]'>
         <Input register={register('email'       
               )} required name="snsemail" label="이메일" type="text" size="large"/>
                
         </div>
-        <div className='flex mb-[14px]'>
+        <div className='flex items-center mb-[14px]'>
         <Input register={register('bznum'       
               )} required name="bznum" label="사업자등록번호*" type="text" size="small"/>
                <Button disable={false} text="인증요청" size="xsmall"/>

@@ -105,6 +105,27 @@ const useStore = create<Store>((set) => ({
   // builder - theme
   theme: { theme: 'A', color: '#725f5f' }, // A or B
   setTheme: (theme) => set({ theme }),
+<<<<<<< HEAD
+
+  buttondes: {buttonname: ''},
+  setButtondes: (buttondes) => set({buttondes}),
+
+  add: false,
+  setAdd: (add) => set({ add }),
+
+  products: [
+    // {
+    //   id: 1,
+    //   name: '키비주얼/슬로건',
+    //   title: '키비주얼/슬로건',
+    //   description: '',
+    //   image: '',
+    // },
+  ],
+
+  setProducts: (arr) => {
+    set(() => ({ products: arr }));
+=======
   // builder - header, footer
   headerfooter: {
     quickmenu: [
@@ -141,6 +162,7 @@ const useStore = create<Store>((set) => ({
         headerfooter: { ...state.headerfooter, lowerMenuToggle: toggle },
       }));
     },
+>>>>>>> develop
   },
 }));
 

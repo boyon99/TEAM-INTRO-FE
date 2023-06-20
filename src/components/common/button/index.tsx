@@ -1,12 +1,18 @@
-import { BeforeButtonProps, PrimaryButtonProps } from '@/interfaces/button';
-import { useRouter } from 'next/router';
+import { BeforeButtonProps, PrimaryButtonProps } from "@/interfaces/button";
+import useStore from "@/store";
+import { useRouter } from "next/router";
 
 // 이전으로 되돌아가는 버튼
 // leftpanel
 export function BeforeButtonSmall({ pageName }: BeforeButtonProps) {
+  const { add, setAdd } = useStore();
   const router = useRouter();
   const backPage = () => {
-    router.back();
+    if(add) {
+      setAdd(false)
+    } else {
+      router.back();
+    }
   };
   return (
     <button

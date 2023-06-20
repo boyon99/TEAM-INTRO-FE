@@ -50,7 +50,7 @@ export const emailconfirm = async (code: emailconfirmRequest) => {
 }
 // 아이디 찾기
 export const findidbyemail = async (email: FindId) => {
-      const { data } = await axiosInstance.post<any>('/api/findIdByEmail  ', email)
+      const { data } = await axiosInstance.post<any>('/api/findIdByEmail', email)
       const response = data.data;
       console.log(response)
       return response
