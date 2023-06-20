@@ -1,7 +1,9 @@
+import useStore from "@/store";
 import Link from "next/link";
+import { List, arrayMove } from 'react-movable';
 
 export function ProductTitle({onClick}: any) {
-   
+  const { products, setProducts } = useStore();
       return (
         <>
         <div className="w-[264px] mt-[32px] flex">
@@ -18,21 +20,40 @@ export function ProductTitle({onClick}: any) {
 
         </div>
           <div className="mt-[20px]">
-          {[1, 2, 3].map((_, i) => (
-            <Link href={`/builder/productservice`} key={i}>
-             <div className="w-[264px] h-[42px] bg-[#fff] border border-solid border-[#cfced7] rounded-md relative mb-[12px]">
+          <List
+          values={products}
+          onChange={({ oldIndex, newIndex }) => setProducts(arrayMove(products, oldIndex, newIndex))}
+          renderList={({ children, props, isDragged }) => (
+            <ul {...props} style={{ padding: 0, cursor: isDragged ? 'grabbing' : undefined }}>
+              {children}
+            </ul>
+          )}
+          renderItem={({ value, props, isDragged, isSelected }) => (
+            <li
+              {...props}
+              style={{
+                ...props.style,
+                listStyleType: 'none',
+                cursor: isDragged ? 'grabbing' : 'grab',
+                border: isDragged ? '2px solid #4B48DF' : 'none',
+              }}
+              className={'w-[268px] h-[49px] mb-[6px]'}
+            >
+               <div className="w-[264px] h-[42px] bg-[#fff] border border-solid border-[#cfced7] rounded-md relative mb-[12px]">
              <div className="absolute top-[11px] left-[12px]">
                 <input type="checkbox" className="w-[16px] h-[16px] bg-[#6e6d86]"/>
                 </div>
                 <div className="absolute w-[144px] h-[24px] top-[9px] left-[60px]">
-                   <span className="w-[144px] h-[24px] flex justify-center font-medium text-base/[150%] text-[#57566a]">빗코</span>
+                   <span className="w-[144px] h-[24px] flex justify-center font-medium text-base/[150%] text-[#57566a]">{value.name}</span>
                 </div>
                 <div>
                 <img src="/handler.png" className="w-[24px] h-[24px] absolute top-[9px] right-[10px]" alt="hanlder-img" />
               </div>
              </div>
-            </Link>
-          ))}
+            </li>
+
+          )}
+        />
           </div>
           </>
       );

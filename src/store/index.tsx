@@ -1,5 +1,5 @@
 import { Store } from '@/interfaces/store';
-import create, { SetState } from 'zustand';
+import { create } from 'zustand';
 
 const useStore = create<Store>((set) => ({
   // builder - 순서 변경 토글
