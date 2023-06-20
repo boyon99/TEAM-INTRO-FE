@@ -1,9 +1,12 @@
+import { UseFormRegisterReturn } from "react-hook-form";
 export interface BuilderInputProps {
   title: string; // label
   type: string; // input type
   placeholder: string; // placeholder
   id: string; // id
   readonly?: boolean; // readonly is a reserved word
+  register?: UseFormRegisterReturn;
+  onChange?: any;
 }
 
 export interface BuilderUploadImageProps {

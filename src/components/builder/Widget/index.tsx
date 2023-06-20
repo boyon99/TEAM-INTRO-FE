@@ -1,4 +1,5 @@
 import { HeaderProps } from '@/interfaces/widget';
+import useStore from '@/store';
 import exp from 'constants';
 import React from 'react';
 
@@ -67,10 +68,11 @@ export function Footer({ theme }: HeaderProps) {
 }
 
 export function ProductService({ theme }: HeaderProps) {
+  const { buttondes, setButtondes } = useStore();
   if (theme === 'A') {
     return (
       <section id="w-04" className="h-[200px]">
-        ProductService A
+        ProductService A <span>{buttondes.buttonname}</span>
       </section>
     );
   } else {

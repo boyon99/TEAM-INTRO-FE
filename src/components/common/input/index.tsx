@@ -2,12 +2,14 @@ import { BuilderInputProps, BuilderUploadImageProps } from '@/interfaces/input';
 import { fileCheck } from '@/utils/fileCheck';
 import { useState } from 'react';
 
-export function BuilderInput({ title, type, placeholder, id, readonly }: BuilderInputProps) {
+export function BuilderInput({ title, type, placeholder, id, readonly, register, onChange }: BuilderInputProps) {
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
       <input
         type={type}
+        {...register} 
+        onChange={onChange}
         className={
           'w-[264px] h-[42px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex py-[7px] indent-[10px] ' +
           (readonly ? 'bg-GrayScalePrimary-250 placeholder:text-GrayScalePrimary-600' : '')
@@ -28,7 +30,7 @@ export function BuilderUploadImage({ title, ratio }: BuilderUploadImageProps) {
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
       <div
         className={
-          'w-[264px] h-[138px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex indent-[10px] flex flex-col'
+          'w-[264px] h-[138px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] indent-[10px] flex flex-col'
         }
       >
         {/* 이미지 업로드 시 업로드한 이미지 미리보기 */}

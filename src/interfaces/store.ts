@@ -6,6 +6,10 @@ export interface Store {
   setIsChangeOederToggle: (isChangeOederToggle: boolean) => void;
   theme: Theme; // A or B
   setTheme: (theme: Theme) => void;
+  buttondes: Buttonde;
+  setButtondes: (buttonname: Buttonde) => void;
+  add: boolean;
+  setAdd: (add: boolean) => void;
 }
 
 export interface Widget {
@@ -19,3 +23,9 @@ export interface Theme {
   theme: "A" | "B"; // A or B
   color: string;
 }
+
+export interface Buttonde {
+  buttonname: string;
+ 
+}
+

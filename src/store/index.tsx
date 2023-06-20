@@ -105,6 +105,12 @@ const useStore = create<Store>((set) => ({
   // builder - theme
   theme: { theme: 'A', color: '#725f5f' }, // A or B
   setTheme: (theme) => set({ theme }),
+
+  buttondes: {buttonname: ''},
+  setButtondes: (buttondes) => set({buttondes}),
+
+  add: false,
+  setAdd: (add) => set({ add }),
 }));
 
 export default useStore;

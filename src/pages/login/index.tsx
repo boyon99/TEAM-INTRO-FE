@@ -59,13 +59,13 @@ export default function Login() {
             <span className="align-top not-italic text-GrayScalePrimary-800 font-black text-[27px]/[100%] w-[85px] h-[32px] ml-[137.5px] top-[2px] tracking-[0.03em] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">로그인</span>
            <form id="join" onSubmit={handleSubmit(onValid)} className="flex flex-col pt-[36px] w-[360px] h-[359px] left-0">
               <Input register={register('login_id',
-               {
-                required: "Email is required",
-                // pattern: {
-                //   value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                //   message: "이메일 형식이 아닙니다.",
-                // },
-              }
+              //  {
+              //   required: "Email is required",
+              //   pattern: {
+              //     value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+              //     message: "이메일 형식이 아닙니다.",
+              //   },
+              // }
               )} name="login_id" label="아이디" type="text" size="large"/>
               <Input register={register('password'       
               )} required name="password" label="비밀번호" type="password" size="large"/>
