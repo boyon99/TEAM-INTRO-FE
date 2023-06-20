@@ -68,4 +68,20 @@
   .custom-tooltip {
     @apply rounded-sm bg-GrayScalePrimary-100 shadow-lg text-center p-2.5;
   }
+
+  .confirm-active-link {
+    @apply border-b-2 border-b-primary-500 font-bold;
+  }
+
+  .confirm-link {
+    @apply inline-block text-center leading-[58px] w-[140px] h-[58px] text-GrayScaleNeutral-1000;
+  }
+
+  .modal-contents {
+    @apply fixed left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-lg border border-GrayScalePrimary-200;
+  }
+
+  .modal-overlay {
+    @apply bg-white/50 fixed inset-0;
+  }
 }
