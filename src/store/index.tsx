@@ -105,6 +105,7 @@ const useStore = create<Store>((set) => ({
   // builder - theme
   theme: { theme: 'A', color: '#725f5f' }, // A or B
   setTheme: (theme) => set({ theme }),
+<<<<<<< HEAD
 
   buttondes: {buttonname: ''},
   setButtondes: (buttondes) => set({buttondes}),
@@ -124,6 +125,44 @@ const useStore = create<Store>((set) => ({
 
   setProducts: (arr) => {
     set(() => ({ products: arr }));
+=======
+  // builder - header, footer
+  headerfooter: {
+    quickmenu: [
+      { name: '미션/비젼', toggle: false },
+      { name: '제품/서비스 소개', toggle: false },
+      { name: '팀 소개', toggle: false },
+      { name: '컨택어스', toggle: false },
+      { name: '보도자료', toggle: false },
+      { name: '다운로드', toggle: false },
+      { name: '연혁', toggle: false },
+      { name: '팀 문화', toggle: false },
+      { name: '핵심성과', toggle: false },
+      { name: '파트너스', toggle: false },
+      { name: '고객리뷰', toggle: false },
+      { name: '특허/인증', toggle: false },
+    ],
+    lowerMenuToggle: false,
+    setQuickMenuToggle: (name) => {
+      set((state) => ({
+        headerfooter: {
+          ...state.headerfooter,
+          quickmenu: state.headerfooter.quickmenu.map((menu) => {
+            if (menu.name === name) {
+              return { ...menu, toggle: !menu.toggle };
+            } else {
+              return menu;
+            }
+          }),
+        },
+      }));
+    },
+    setLowerMenuToggle: (toggle) => {
+      set((state) => ({
+        headerfooter: { ...state.headerfooter, lowerMenuToggle: toggle },
+      }));
+    },
+>>>>>>> develop
   },
 }));
 
