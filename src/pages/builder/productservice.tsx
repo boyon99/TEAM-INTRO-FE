@@ -8,7 +8,7 @@ import MainColor from '@/components/builder/MainColor';
 import Image from 'next/image';
 import { ToggleLarge } from '@/components/common/toggle';
 import { ProductTitle } from '@/components/common/product';
-import { BuilderInput, BuilderUploadImage } from '@/components/common/input';
+import { BuilderInput, BuilderTextarea, BuilderUploadImage } from '@/components/common/input';
 import { useForm } from 'react-hook-form';
 
 
@@ -18,9 +18,7 @@ function ProductView() {
   // const [ add, setAdd ] = useState(false)
   const { buttondes, setButtondes, add, setAdd } = useStore();
   console.log(add)
-  const onClick = () => {
-    setAdd(!add)
-  }
+  
   return (
   
     <div className="ml-[28px]">
@@ -97,8 +95,29 @@ function ProductUpload() {
    <div className='mt-[48px]'>
    <BuilderUploadImage title="제품 서비스 이미지" ratio={1} />
       <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
-        &#8226; 340x250, png 권장, 최대 100mb
+        340x250, png 권장, 최대 100mb
       </div>
+      <div className='mt-[34px]'>
+      <BuilderInput title="제품 서비스 이름" type="text" placeholder="예: 빗코" id="pageTitle" />
+      <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+        최대12자
+      </div>
+      <BuilderInput title="제품 서비스 타이틀" type="text" placeholder="예: 회사 소개 페이지 플러그인" id="pageTitle" />
+      <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+        최대 20자
+      </div>
+      <BuilderTextarea
+        title="제품 서비스 설명"
+        type="text"
+        placeholder="예: 예: 빗코는 디지털 가상 자산에 투자하는 누구나, 쉽고 편리하게 자산관리를 안정적으로 할 수 있도록 가이드를 제시하는 모바일 어플리케이션입니다."
+        id="businessNumber"
+      />
+      <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+        &#8226; 제품/서비스에 대한 상세 설명을 작성해주세요. <br />
+        &#8226; 최대 80자.
+      </div>
+      </div>
+      
    </div>
     
 
