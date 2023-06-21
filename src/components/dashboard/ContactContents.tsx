@@ -1,5 +1,5 @@
 import { PrimaryButton } from '../common/button';
-import InquiryList from './InquiryList';
+import InquiryTable from './InquiryTable';
 import Title from './Title';
 
 export default function ContactContents() {
@@ -13,7 +13,7 @@ export default function ContactContents() {
           onClick={() => {}}
         />
       </Title>
-      <InquiryList />
+      <InquiryTable />
     </div>
   );
 }
