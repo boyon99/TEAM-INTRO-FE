@@ -1,5 +1,5 @@
 import Title from '../Title';
-import VisitorsTable from './VisitorsTable';
+import VisitorsTableContainer from './VisitorsTableContainer';
 
 export default function VisitorsContents() {
   return (
@@ -9,7 +9,7 @@ export default function VisitorsContents() {
           ※ 최근 5일간의 기록만 제공됩니다.
         </p>
       </Title>
-      <VisitorsTable />
+      <VisitorsTableContainer />
     </div>
   );
 }

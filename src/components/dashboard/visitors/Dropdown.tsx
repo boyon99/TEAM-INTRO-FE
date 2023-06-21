@@ -37,7 +37,7 @@ export default function Dropdown() {
         </div>
 
         {open && (
-          <ul className="absolute bg-white mt-8 w-40 h-20 border border-GrayScalePrimary-250 rounded">
+          <ul className="absolute bg-white mt-9 w-40 h-20 border border-GrayScalePrimary-250 rounded">
             {items.map((item) => (
               <li
                 key={item.id}
