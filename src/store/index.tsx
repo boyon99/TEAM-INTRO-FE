@@ -142,6 +142,29 @@ const useStore = create<Store>((set) => ({
       }));
     },
   },
+  // builder - keyvisual
+  keyVisual: {
+    bgImg: '',
+    filter: 'Black',
+    slogan: '',
+    sloganDetail: '',
+    // keyVisual 객체 수정 함수
+    // setKeyVisual: (keyVisual) => {
+    //   set((state) => ({ keyVisual: { ...state.keyVisual, ...keyVisual } }));
+    // },
+    setBgImg: (bgImg) => {
+      set((state) => ({ keyVisual: { ...state.keyVisual, bgImg } }));
+    },
+    setFilter: (filter) => {
+      set((state) => ({ keyVisual: { ...state.keyVisual, filter } }));
+    },
+    setSlogan: (slogan) => {
+      set((state) => ({ keyVisual: { ...state.keyVisual, slogan } }));
+    },
+    setSloganDetail: (sloganDetail) => {
+      set((state) => ({ keyVisual: { ...state.keyVisual, sloganDetail } }));
+    },
+  },
 }));
 
 export default useStore;

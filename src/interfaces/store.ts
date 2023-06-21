@@ -9,6 +9,19 @@ export interface Store {
   theme: Theme; // A or B
   setTheme: (theme: Theme) => void;
   headerfooter: HeaderFooter;
+  keyVisual: KeyVisual;
+}
+
+export interface KeyVisual {
+  bgImg: string;
+  filter: 'Black' | 'White';
+  slogan: string;
+  sloganDetail: string;
+  // setKeyVisual: (keyVisual: KeyVisual) => void;
+  setBgImg: (bgImg: string) => void;
+  setFilter: (filter: 'Black' | 'White') => void;
+  setSlogan: (slogan: string) => void;
+  setSloganDetail: (sloganDetail: string) => void;
 }
 
 export interface HeaderFooter {
