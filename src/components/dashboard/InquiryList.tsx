@@ -28,7 +28,6 @@ export default function InquiryList() {
   const { openModal: openDetailModal, closeModal: closeDetailModal } = useModal(showDetailModal, setShowDetailModal);
   const [rows, setRows] = useState<Inquiry[] | []>([]);
   const [selectedRows, setSelectedRows] = useState<Inquiry[]>([]);
-  const [selected, setSelected] = useState<boolean>(false);
   const [allSelected, setAllSelected] = useState<boolean>(false);
 
   const data = [
