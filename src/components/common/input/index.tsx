@@ -3,14 +3,18 @@ import { fileCheck } from '@/utils/fileCheck';
 import { useState } from 'react';
 import { PrimaryButton } from '../button';
 import { set } from 'react-hook-form';
+import { on } from 'events';
+
 
 // 기본 입력창
-export function BuilderInput({ title, type, placeholder, id, readonly, required, value, onChange }: BuilderInputProps) {
+export function BuilderInput({ title, type, placeholder, id, readonly, required, value, onChange, register }: BuilderInputProps) {
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
       <input
         type={type}
+        {...register} 
+        onChange={onChange}
         className={
           'w-[264px] h-[42px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex py-[7px] indent-[10px] ' +
           (readonly ? 'bg-GrayScalePrimary-250 placeholder:text-GrayScalePrimary-600' : '')
@@ -20,7 +24,6 @@ export function BuilderInput({ title, type, placeholder, id, readonly, required,
         readOnly={readonly}
         required={required}
         value={value}
-        onChange={onChange}
       ></input>
     </>
   );
@@ -35,7 +38,7 @@ export function BuilderUploadImage({ title, ratio }: BuilderUploadImageProps) {
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
       <div
         className={
-          'w-[264px] h-[138px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex indent-[10px] flex flex-col'
+          'w-[264px] h-[138px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] indent-[10px] flex flex-col'
         }
       >
         {/* 이미지 업로드 시 업로드한 이미지 미리보기 */}
@@ -106,7 +109,7 @@ export function DuplicateCheck({ title, type, placeholder, id, required, value, 
 }
 
 // textarea 입력창
-export function BuilderTextarea({ title, placeholder, id, required, value, setValue }: BuilderInputProps) {
+export function BuilderTextarea({ title, placeholder, id, required, value, setValue, onChange:ProductChange }: BuilderInputProps) {
   const [textLength, setTextLength] = useState(0);
   return (
     <div className="relative">
@@ -120,11 +123,11 @@ export function BuilderTextarea({ title, placeholder, id, required, value, setVa
         id={id}
         required={required}
         value={value}
-        onChange={(e) => {
+        onChange={ProductChange? ProductChange : ((e) => {
           // 글자수 표시
           setTextLength(() => e.target.value.length);
           setValue && setValue(e.target.value);
-        }}
+        })}
       ></textarea>
       <span className="absolute right-[60px] bottom-[10px] text-[12px] text-GrayScalePrimary-550">
         {textLength}자/최대 80자

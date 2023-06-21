@@ -1,3 +1,4 @@
+import { UseFormRegisterReturn } from "react-hook-form";
 export interface BuilderInputProps {
   title: string; // label
   type: string; // input type
@@ -7,8 +8,9 @@ export interface BuilderInputProps {
   required?: boolean; // required
   pattern?: RegExp; // pattern
   value?: string; // value
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // onChange
+  onChange?: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void; // onChange
   setValue?: (value: string) => void; // setValue
+  register?: UseFormRegisterReturn;
 }
 export interface BuilderUploadImageProps {
   title: string; // label

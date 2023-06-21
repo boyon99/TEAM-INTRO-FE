@@ -1,4 +1,5 @@
 import { HeaderProps } from '@/interfaces/widget';
+import useStore from '@/store';
 import exp from 'constants';
 import React from 'react';
 
@@ -67,10 +68,34 @@ export function Footer({ theme }: HeaderProps) {
 }
 
 export function ProductService({ theme }: HeaderProps) {
+  const { buttondes, setButtondes, products } = useStore();
+  console.log(products)
   if (theme === 'A') {
     return (
-      <section id="w-03" className="h-[200px]">
-        ProductService A
+      <section id="w-04" className="h-[402px]">
+        <div className='ml-[110px]'>
+          <span className='font-bold text-[20px]/[100%] mr-[7px]'>Products & Services</span>
+          <span className='text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]'>제품 소개</span>
+        </div>
+     
+        <div className='w-[703.12px] h-[299.19px] m-[0_auto] mt-[42.19px] mr-[] flex'>
+        {products?.map((items) => {
+          return (
+            <div key={items.id} className='w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[1.4px] m-[0_auto]'>
+            <div className='w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]'>
+            <span className='font-bold text-[15px]/[100%]'>{items.name}</span>
+             <img src="/productno.png" alt="" className='w-[191px] h-[140px] mt-[16px]'/>
+             <p className='font-bold text-[10.54px]/[100%] mt-[16.88px]'>{items.title}</p>
+             <p className='font-normal text-[9.84px]/[170%] mt-[8.44px]'>{items.description}</p>
+            </div>
+          
+           </div>
+          )
+        })}
+        </div>
+       
+
+        {/* ProductService A <span>{buttondes.buttonname}</span> */}
       </section>
     );
   } else {
