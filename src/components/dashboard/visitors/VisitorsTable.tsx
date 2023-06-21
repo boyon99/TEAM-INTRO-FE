@@ -22,7 +22,7 @@ export default function VisitorsTable() {
   return (
     <div className="h-[calc(100vh-224px)] border border-GrayScalePrimary-150 bg-white rounded-xl mt-5">
       {data ? (
-        <section>
+        <section className="relative h-[58px] border-b border-b-GrayScalePrimary-150">
           <Dropdown />
         </section>
       ) : (

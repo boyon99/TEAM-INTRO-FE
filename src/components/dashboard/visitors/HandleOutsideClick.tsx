@@ -1,7 +1,7 @@
 import { Dispatch, MutableRefObject, SetStateAction, useEffect } from 'react';
 
 type Dropdown = {
-  dropdownRef: MutableRefObject<HTMLUListElement | null>;
+  dropdownRef: MutableRefObject<HTMLDivElement | null>;
   setOpen: Dispatch<SetStateAction<boolean>>;
 };
 
