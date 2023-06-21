@@ -7,8 +7,10 @@ export interface BuilderInputProps {
   required?: boolean; // required
   pattern?: RegExp; // pattern
   value?: string; // value
+  setValue?: (value: string) => void; // value 변경 함수
+  minLength?: number; // minLength
+  maxLength?: number; // maxLength
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // onChange
-  setValue?: (value: string) => void; // setValue
 }
 export interface BuilderUploadImageProps {
   title: string; // label

@@ -5,7 +5,19 @@ import { PrimaryButton } from '../button';
 import { set } from 'react-hook-form';
 
 // 기본 입력창
-export function BuilderInput({ title, type, placeholder, id, readonly, required, value, onChange }: BuilderInputProps) {
+export function BuilderInput({
+  title,
+  type,
+  placeholder,
+  id,
+  readonly,
+  required,
+  value,
+  onChange,
+  minLength,
+  maxLength,
+  setValue,
+}: BuilderInputProps) {
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
@@ -17,10 +29,14 @@ export function BuilderInput({ title, type, placeholder, id, readonly, required,
         }
         placeholder={placeholder}
         id={id}
+        maxLength={maxLength}
+        minLength={minLength}
         readOnly={readonly}
         required={required}
         value={value}
-        onChange={onChange}
+        onChange={(e) => {
+          setValue && setValue(e.target.value);
+        }}
       ></input>
     </>
   );
