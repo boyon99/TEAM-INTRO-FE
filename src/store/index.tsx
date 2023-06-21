@@ -105,6 +105,27 @@ const useStore = create<Store>((set) => ({
   // builder - theme
   theme: { theme: 'A', color: '#725f5f' }, // A or B
   setTheme: (theme) => set({ theme }),
+  
+  // 제품/서비스 소개 부분
+  buttondes: {buttonname: ''},
+  setButtondes: (buttondes) => set({buttondes}),
+
+  add: false,
+  setAdd: (add) => set({ add }),
+
+  products: [
+    // {
+    //   id: 1,
+    //   name: '키비주얼/슬로건',
+    //   title: '키비주얼/슬로건',
+    //   description: '',
+    //   image: '',
+    // },
+  ],
+
+  setProducts: (arr) => 
+    set(() => ({ products: arr })),
+  
   // builder - header, footer
   headerfooter: {
     quickmenu: [

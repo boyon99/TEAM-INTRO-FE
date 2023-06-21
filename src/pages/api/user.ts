@@ -9,7 +9,7 @@ const mockTags = [
     {
         "id": 3,
         "email": "jju@nate.com",
-        "username": "유현주",
+        "username": "",
         "role": "USER",
         "createdAt": "2023-05-09T14:04:05.735608",
         "updatedAt": "2023-05-09T14:04:09.3504749",

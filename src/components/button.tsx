@@ -49,7 +49,7 @@ export default function Button({
                
                 className={cls(
                 "w-[100px] h-[46px] rounded-lg text-GrayScaleNeutral-100 font-bold text-sm",
-                disable ? "bg-GrayScalePrimary-300" : "bg-primary-500"
+                disable ? "bg-primary-150 text-[#fff]" : "bg-primary-500"
                 )}
             >
                 {text}

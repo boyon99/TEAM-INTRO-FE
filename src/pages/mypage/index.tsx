@@ -34,7 +34,7 @@ function RePass() {
 
   const login_id = data?.login_id
   const biz_num = data?.biz_num
-  
+  console.log(data)
   const [method, setMethod] = useState<"info" | "pass">("info");
     const { register, handleSubmit, watch, reset, getValues, formState: { errors } } = useForm<EnterForm>();
     const email = watch('email')
@@ -200,7 +200,7 @@ function RePass() {
              <div className='w-[240px] h-[102px] mt-[32px] ml-[28px] flex flex-col'>
               <div className={cls('h-[48px] flex items-center', method === 'info' ? 'bg-[#f6f6fd] border-r-[4px] border-solid border-[#4b48df]' : '')}>
 
-               <button onClick={oninfoClick} className={cls('font-medium text-base/[100%] ml-[148px]', method === 'info' ? 'text-[#000]' : 'text-[#a5a4b5]')}>기본 정보</button>
+               <button onClick={oninfoClick} className={cls('font-medium text-base/[100%] ml-[142px]', method === 'info' ? 'text-[#000]' : 'text-[#a5a4b5]')}>기본 정보</button>
               </div>
               <div className={cls('h-[48px] flex items-center', method === 'pass' ? 'bg-[#f6f6fd] border-r-[4px] border-solid border-[#4b48df]' : '')}>
 
@@ -216,8 +216,12 @@ function RePass() {
      
    </div>
 {method === 'pass' ?
- <form onSubmit={handleSubmit(onValid)} className='w-[900px] h-[620px] border border-solid border-[#eaeaee] bg-[#fff] rounded-xl mt-[18px] ml-[38px]'>
-    <div className='h-[70px] flex mb-[20px] ml-[calc(50%-500px/2-11px)] mt-[104px]'>
+<div  className='w-[900px] h-[620px] border border-solid border-[#eaeaee] bg-[#fff] rounded-xl mt-[18px] ml-[38px]'>
+
+
+ <form onSubmit={handleSubmit(onValid)} className='w-[500px] h-[70px] m-[0_auto]'>
+  
+    <div className='w-[500px] h-[70px] mb-[20px] mt-[104px]'>
             <Input register={register('password',
                 // {
                 //     required: "Email is required",
@@ -229,7 +233,7 @@ function RePass() {
                 )} name="old_repass" label="기존 비밀번호*" type="password" size="large"/>
                 
     </div> 
-    <div className='flex mb-[20px] ml-[calc(50%-500px/2-11px)] mt-[38px]'>
+    <div className='w-[500px] mb-[20px] mt-[38px]'>
             <Input register={register('new_password',
                 {
                     required: "Email is required",
@@ -241,7 +245,7 @@ function RePass() {
                 )} name="repass" label="새 비밀번호*" type="password" size="large"/>
                 
     </div> 
-    <div className='h-[66px] flex ml-[calc(50%-500px/2-11px)]'>
+    <div className='w-[500px] h-[66px]'>
             <Input register={register('new_passwordConfirm', {
                         required: '비밀번호 확인은 필수 입력 항목입니다.',
                         validate: {
@@ -256,20 +260,24 @@ function RePass() {
                 )} name="repass_check" label="새 비밀번호 확인*" type="password" size="large"/>
                 
     </div> 
-    <div className='ml-[359px] mt-[62px]'>
+    <div className='ml-[160px] mt-[62px]'>
          <Button disable={false} text="비밀번호 변경" size="xlarge"/>
     </div>
     {errors.new_passwordConfirm?.message as string}
- </form>:
+ </form>
+ </div>:
  <>
  {data? 
-  <form onSubmit={handleSubmit(onValids)} className='w-[900px] h-[620px] border border-solid border-[#eaeaee] bg-[#fff] rounded-xl mt-[18px] ml-[38px]'>
- <div className='h-[55px] flex ml-[200px] mt-[42px]'>
+ <div className='w-[900px] h-[620px] border border-solid border-[#eaeaee] bg-[#fff] rounded-xl mt-[18px] ml-[38px]'>
+
+ 
+  <form onSubmit={handleSubmit(onValids)} className='w-[500px] m-[0_auto]'>
+ <div className='h-[55px] mt-[42px]'>
          <Input register={register('id')} name="snsemail" label="아이디" type="text" size="large" value={login_id} disabled />        
              
              
  </div> 
- <div className='flex mb-[10px] ml-[200px]'>
+ <div className='flex items-center mb-[10px]'>
  <Input register={register('email',
          {
           required: "이메일은 필수 항목입니다.",
@@ -283,7 +291,7 @@ function RePass() {
                
  </div> 
  {emaildata ?  
-          <div className='flex ml-[256px]'>
+          <div className='flex'>
         <Input register={register('code'       
               )} required name="code" type="text" size="small"/>
               {confirmdata? <Button disable={false} text="인증완료" active={true} type="button" size="xsmall"/> : code? <Button disable={true} text="확인" onClick={checkconfirmonClick} type="button" size="xsmall"/> :  <Button disable={false} text="확인" type="button" onClick={checkconfirmonClick} size="xsmall"/>}
@@ -293,11 +301,11 @@ function RePass() {
 
         <span className="text-[13px]/[100%] font-normal text-[#4264da]">{confirmerrmessage}</span>
         </div>
- <div className='h-[70px] flex ml-[200px]'>
+ <div className='mb-[10px]'>
  <Input register={register('bizNum')} name="my_biznum" label="사업자등록번호*" type="text" size="large" value={biz_num} disabled/>         
                
  </div>
- <div className='w-[500px] h-[153px] flex ml-[200px] mt-[12px]'>
+ <div className='w-[500px] h-[153px] flex mt-[25px]'>
     <span className='w-[138px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800'>프로필 이미지</span>
        <label className="w-[356px] ml-[4px] cursor-pointer border-[#CFCED7] flex items-center justify-center border-2 border-solid rounded-[4px]">
     {avatarPreview? <img src={avatarPreview} alt='profile'/> : <svg
@@ -318,15 +326,15 @@ function RePass() {
          <input {...register('image')} className="hidden" type="file"/>
        </label>
  </div>
- <div className='w-[500px] h-[40px] flex ml-[200px] mt-[20px]'>
+ <div className='w-[500px] h-[40px] flex items-center mt-[20px]'>
  <span className='w-[138px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800'>알림 동의</span>
  <Input name="keep" label='' type="alarm" onClick={alarmonClick}/>
  </div>
- <div className='ml-[360px] mt-[32px]'>
+ <div className='ml-[160px] mt-[32px]'>
 {avatarPreview?<Button disable={true} text="저장하기"  size="xlarge"/>:<Button disable={false} text="저장하기"  size="xlarge"/>}
 
 </div>
-</form>: ""}</>
+</form></div>: ""}</>
   
    }
  </div>

@@ -8,6 +8,12 @@ export interface Store {
   setIsChangeOederToggle: (isChangeOederToggle: boolean) => void;
   theme: Theme; // A or B
   setTheme: (theme: Theme) => void;
+  buttondes: Buttonde;
+  setButtondes: (buttonname: Buttonde) => void;
+  add: boolean;
+  setAdd: (add: boolean) => void;
+  products: Products[];
+  setProducts: (products: Products[]) => void;
   headerfooter: HeaderFooter;
   keyVisual: KeyVisual;
 }
@@ -47,3 +53,16 @@ export interface Theme {
   theme: 'A' | 'B'; // A or B
   color: string;
 }
+
+export interface Buttonde {
+  buttonname: string;
+}
+
+export interface Products {
+  id?: number;
+  name: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
