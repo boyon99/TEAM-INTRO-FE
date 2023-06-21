@@ -27,9 +27,7 @@ export function BuilderInput({ title, type, placeholder, id, readonly, required,
 }
 
 // 이미지 업로드 입력창
-export function BuilderUploadImage({ title, ratio }: BuilderUploadImageProps) {
-  const [imgSrc, setImgSrc] = useState('');
-
+export function BuilderUploadImage({ title, ratio, imgSrc, setImgSrc }: BuilderUploadImageProps) {
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
@@ -47,7 +45,7 @@ export function BuilderUploadImage({ title, ratio }: BuilderUploadImageProps) {
             <button
               className="w-[32px] h-[32px] absolute right-[8px] top-[7px]"
               onClick={() => {
-                setImgSrc(() => '');
+                setImgSrc(''); // 이미지 삭제
               }}
             >
               <img src="/delete.png" />

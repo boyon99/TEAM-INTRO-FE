@@ -13,4 +13,6 @@ export interface BuilderInputProps {
 export interface BuilderUploadImageProps {
   title: string; // label
   ratio: number; // 가로 / 세로 비율 (1:1인 경우 1, 16: 9인 경우 1.44)
+  imgSrc: string; // 이미지 src
+  setImgSrc: (imgSrc: string) => void; // 이미지 src 변경 함수
 }
