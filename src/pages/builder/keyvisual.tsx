@@ -75,7 +75,9 @@ function Preview() {
             minLength={8}
             maxLength={40}
             value={keyVisual.slogan}
-            setValue={keyVisual.setSlogan}
+            onChange={(e) => {
+              keyVisual.setSlogan(e.target.value);
+            }}
           />
           <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             &#8226; 회사를 설명하는 간략하고 인상깊은 문구를 작성해주세요.
