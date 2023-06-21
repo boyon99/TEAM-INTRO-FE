@@ -8,15 +8,56 @@ export function KeyVisual({ theme }: HeaderProps) {
 
   if (theme === 'A') {
     return (
-      <section id="w-01" className="h-[383px] w-full bg-GrayScaleNeutral-150 flex relative">
-        <img src={keyVisual.bgImg} />
-        KeyVisual A
+      <section id="w-01" className="h-[450px] w-full flex relative">
+        <div
+          className={
+            'w-full h-full z-10 ' + (keyVisual.filter === 'Black' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
+          }
+        ></div>
+        <span
+          className={
+            "absolute w-[500px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
+            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+          }
+        >
+          {keyVisual.slogan}
+        </span>
+        <span
+          className={
+            "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[10px] z-[11] " +
+            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+          }
+        >
+          {keyVisual.sloganDetail}
+        </span>
+        <img src={keyVisual.bgImg} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
       </section>
     );
   } else {
     return (
-      <section id="w-01" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative">
-        KeyVisual B
+      <section id="w-01" className="h-[450px] w-full flex relative">
+        <div
+          className={
+            'w-full h-full z-10 ' + (keyVisual.filter === 'Black' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
+          }
+        ></div>
+        <span
+          className={
+            "absolute w-[700px] top-[100px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[500] text-center " +
+            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+          }
+        >
+          {keyVisual.slogan}
+        </span>
+        <span
+          className={
+            "absolute w-[700px] top-[220px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
+            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+          }
+        >
+          {keyVisual.sloganDetail}
+        </span>
+        <img src={keyVisual.bgImg} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
       </section>
     );
   }
