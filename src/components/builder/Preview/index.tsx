@@ -21,12 +21,14 @@ import useStore from '@/store';
 
 export default function Preview() {
   // 위젯 목록 가져오기
-  const { widgets, theme } = useStore();
+  const { widgets, theme, headerfooter } = useStore();
 
   return (
     <div className="w-[945px] h-[calc(100vh-72px)] overflow-y-scroll">
       <div className="w-[908px] h-full mx-[auto] mt-[16px] border border-[2px] border-GrayScalePrimary-150">
+        {/* 헤더 */}
         <Header theme={theme.theme} />
+        {/* 위젯 */}
         {widgets.map((widget, index) => (
           <div key={index}>
             {widget.routerName === 'builder/keyvisual#w-01' && widget.toggle ? <KeyVisual theme={theme.theme} /> : null}
@@ -54,7 +56,8 @@ export default function Preview() {
             {widget.routerName === 'builder/patent#w-14' && widget.toggle ? <Patent theme={theme.theme} /> : null}
           </div>
         ))}
-        <Footer theme={theme.theme} />
+        {/* 푸터 */}
+        {headerfooter.lowerMenuToggle ? <Footer theme={theme.theme} /> : null}
       </div>
     </div>
   );

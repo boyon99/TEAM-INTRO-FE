@@ -39,7 +39,7 @@ export function Header({ theme }: HeaderProps) {
   const { headerfooter } = useStore();
   if (theme === 'A') {
     return (
-      <section id="w-15" className="h-[41px] w-full bg-primary-10 flex flex-row-reverse relative">
+      <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
         <img src="" className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
         <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px]">ZILLINKS</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
@@ -59,7 +59,7 @@ export function Header({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-15" className="h-[41px] w-full bg-primary-10 flex flex-row-reverse relative">
+      <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
         <img src="" className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
         <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">Upperb</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
@@ -81,17 +81,18 @@ export function Header({ theme }: HeaderProps) {
 }
 
 export function Footer({ theme }: HeaderProps) {
+  const { headerfooter } = useStore();
   if (theme === 'A') {
     return (
-      <section id="w-16" className="h-[200px]">
-        Footer A
+      <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative">
+        <div className="w-[255px] ml-[99px] mt-[73px] bg-primary-500 mb-[25px]">phone</div>
+        <div className="w-[177px] ml-[10px] mt-[87px] bg-primary-500 mb-[25px]">대표</div>
+        <div className="w-[255px] ml-[10px] mt-[30px] bg-primary-500 mb-[25px]">버튼</div>
       </section>
     );
   } else {
     return (
-      <section id="w-16" className="h-[200px]">
-        Footer B
-      </section>
+      <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex flex-row-reverse relative"></section>
     );
   }
 }
