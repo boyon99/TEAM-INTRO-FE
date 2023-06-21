@@ -19,7 +19,7 @@ export const fileCheck = (e: any, setImgSrc: any, ratio: number) => {
       // 파일 사이즈가 10MB를 넘지 않으면 파일을 읽어서 imgSrc에 저장
       const reader = new FileReader();
       reader.onload = ({ target }) => {
-        setImgSrc(() => target?.result as string);
+        setImgSrc(target?.result);
       };
       if (e.target.files?.[0] !== undefined) {
         reader.readAsDataURL(e.target.files?.[0] as Blob);

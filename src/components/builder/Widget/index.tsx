@@ -4,15 +4,18 @@ import exp from 'constants';
 import React from 'react';
 
 export function KeyVisual({ theme }: HeaderProps) {
+  const { keyVisual } = useStore();
+
   if (theme === 'A') {
     return (
-      <section id="w-01" className="h-[200px] border">
+      <section id="w-01" className="h-[383px] w-full bg-GrayScaleNeutral-150 flex relative">
+        <img src={keyVisual.bgImg} />
         KeyVisual A
       </section>
     );
   } else {
     return (
-      <section id="w-01" className="h-[200px] border">
+      <section id="w-01" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative">
         KeyVisual B
       </section>
     );
