@@ -54,7 +54,7 @@ function Preview() {
       <ToggleWidget
         toggle={headerfooter.lowerMenuToggle}
         setToggle={headerfooter.setLowerMenuToggle}
-        toggleText={'채널 목록 보여주기'}
+        toggleText={{ true: '채널 목록 보여주기', false: '채널 목록 보여주기' }}
       />
       {/* 저장하기 */}
       <PrimaryButton
