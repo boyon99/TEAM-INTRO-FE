@@ -1,4 +1,4 @@
-import { Inquiry } from '@/components/dashboard/InquiryTable';
+import { Inquiry } from '@/components/dashboard/contact/InquiryTable';
 
 export interface popup {
   text: string;

@@ -1,7 +1,7 @@
 import Header from '@/components/common/Header';
-import DashboardContents from '@/components/dashboard/DashboardContents';
-import LandingPage from '@/components/dashboard/LandingPage';
-import Sidebar from '@/components/dashboard/Sidebar';
+import DashboardContents from '@/components/dashboard/main/DashboardContents';
+import LandingPage from '@/components/dashboard/main/LandingPage';
+import Sidebar from '@/components/dashboard/side/Sidebar';
 
 export default function Dashboard() {
   const introPage = true;

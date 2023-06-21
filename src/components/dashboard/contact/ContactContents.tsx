@@ -1,6 +1,6 @@
-import { PrimaryButton } from '../common/button';
+import { PrimaryButton } from '../../common/button';
 import InquiryTable from './InquiryTable';
-import Title from './Title';
+import Title from '../Title';
 
 export default function ContactContents() {
   return (

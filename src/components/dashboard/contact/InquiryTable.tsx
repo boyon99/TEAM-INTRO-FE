@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { PrimaryButton } from '../common/button';
-import { Checkbox } from '../common/toggle';
-import ActiveLink from './ActiveLink';
+import { PrimaryButton } from '../../common/button';
+import { Checkbox } from '../../common/toggle';
+import ActiveLink from '../ActiveLink';
 import { createPortal } from 'react-dom';
-import { ConfirmModal, DetailModal } from '../common/popup';
+import { ConfirmModal, DetailModal } from '../../common/popup';
 import useModal from '@/hooks/useModal';
 
 export interface Inquiry {
