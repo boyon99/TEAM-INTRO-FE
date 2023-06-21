@@ -12,7 +12,7 @@ export const fileCheck = (e: any, setImgSrc: any, ratio: number) => {
   img.onload = () => {
     const width = img.naturalWidth;
     const height = img.naturalHeight;
-    if (width / height !== ratio) {
+    if ((width / height).toFixed(1) !== ratio.toFixed(1)) {
       alert('이미지의 가로 세로 비율이 일치하지 않습니다.');
       return;
     } else {
