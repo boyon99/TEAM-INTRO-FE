@@ -130,7 +130,7 @@ export function ToggleLarge({ toggleText }: { toggleText: string }) {
 }
 
 // widget 페이지에서 사용하는 토클
-export function ToggleWidget({ toggle, setToggle, toggleText }: ToggleWidgetProps) {
+export function ToggleWidget({ toggle, setToggle, setWidgetToggle, toggleText, widgetName }: ToggleWidgetProps) {
   // 토글 애니메이션
   const toggleAnimation = 'transform translate-x-[16px]';
 
@@ -148,7 +148,8 @@ export function ToggleWidget({ toggle, setToggle, toggleText }: ToggleWidgetProp
             (toggle ? 'bg-primary-500' : 'bg-GrayScalePrimary-200')
           }
           onClick={() => {
-            setToggle(!toggle);
+            setToggle && setToggle(!toggle);
+            setWidgetToggle && setWidgetToggle(widgetName);
           }}
         >
           {/* Toggle controller */}
@@ -160,7 +161,7 @@ export function ToggleWidget({ toggle, setToggle, toggleText }: ToggleWidgetProp
           ></div>
         </div>
       </button>
-      <p className="ml-[8px] translate-y-[-1px]">{toggleText}</p>
+      <p className="ml-[8px] translate-y-[-1px]">{toggle ? toggleText.true : toggleText.false}</p>
     </div>
   );
 }
