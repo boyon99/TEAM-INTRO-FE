@@ -15,6 +15,19 @@ export interface Store {
   products: Products[];
   setProducts: (products: Products[]) => void;
   headerfooter: HeaderFooter;
+  keyVisual: KeyVisual;
+}
+
+export interface KeyVisual {
+  bgImg: string;
+  filter: 'Black' | 'White';
+  slogan: string;
+  sloganDetail: string;
+  // setKeyVisual: (keyVisual: KeyVisual) => void;
+  setBgImg: (bgImg: string) => void;
+  setFilter: (filter: 'Black' | 'White') => void;
+  setSlogan: (slogan: string) => void;
+  setSloganDetail: (sloganDetail: string) => void;
 }
 
 export interface HeaderFooter {

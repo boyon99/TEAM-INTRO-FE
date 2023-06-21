@@ -42,6 +42,23 @@
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107/Pretendard-Black.woff') format('woff');
   font-weight: 900;
 }
+
+@font-face {
+  /* KorailRoundGothicLight */
+  font-family: 'Korail';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicLight.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  /* KorailRoundGothicMedium */
+  font-family: 'Korail';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicMedium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
 @font-face {
   /* KorailRoundGothicBold */
   font-family: 'Korail';
@@ -55,6 +72,22 @@
   font-family: 'LINE';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  /* LINESeedKR */
+  font-family: 'LINE';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01/LINESeedKR-Rg.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  /* LINESeedKR */
+  font-family: 'LINE';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01/LINESeedKR-Th.woff2') format('woff2');
+  font-weight: 300;
   font-style: normal;
 }
 

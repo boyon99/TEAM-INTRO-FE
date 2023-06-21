@@ -14,7 +14,7 @@ function Preview() {
       </div>
       {/* 웹 페이지 관리 */}
       <div className="mt-[48px] font-[700] text-[18px] text-GrayScalePrimary-700">웹 페이지 관리</div>
-      <BuilderUploadImage title="파비콘 설정" ratio={1} />
+      <BuilderUploadImage title="파비콘 설정" ratio={1} imgSrc="" setImgSrc={() => {}} />
       <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         120x120, icon/png 권장, 최대 100mb
       </div>
