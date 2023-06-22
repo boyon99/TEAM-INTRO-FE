@@ -1,7 +1,7 @@
 import { HeaderProps } from '@/interfaces/widget';
 import useStore from '@/store';
 import exp from 'constants';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 
 export function KeyVisual({ theme }: HeaderProps) {
@@ -121,7 +121,7 @@ export function MissionVision({ theme }: HeaderProps) {
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Mission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[13px] w-[50%] font-['Korail'] font-[700] text-[28px]">
+              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">
                 {missionVision.mission}
               </div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
@@ -135,7 +135,7 @@ export function MissionVision({ theme }: HeaderProps) {
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Vission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[13px] w-[50%] font-['Korail'] font-[700] text-[28px]">
+              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">
                 {missionVision.vision}
               </div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
@@ -228,12 +228,12 @@ export function ProductService({ theme }: HeaderProps) {
           {products?.map((items) => {
             return (
               <div
-                key={items.id}
+                key={items.products_and_services_element_id}
                 className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[1.4px] m-[0_auto]"
               >
                 <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
                   <span className="font-bold text-[15px]/[100%]">{items.name}</span>
-                  <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                  {products? <img src={items.image} alt="image" className="w-[191px] h-[140px] mt-[16px]" />:<img src='/productno.png' alt="image" className="w-[191px] h-[140px] mt-[16px]" />}
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
                   <p className="font-normal text-[9.84px]/[170%] mt-[8.44px]">{items.description}</p>
                 </div>
@@ -403,7 +403,7 @@ export function Channel({ theme }: HeaderProps) {
   if (theme === 'A') {
     return (
       <section id="w-13" className="h-[200px] w-full relative mt-[20px]">
-        <span className="font-[700] text-[22px] font-[LINE] text-[20px] ml-[100px]">SNS Channel</span>
+        <span className="font-[700] text-[22px] font-[LINE] ml-[100px]">SNS Channel</span>
         <span className="font-[500] text-[10px] text-GrayScaleNeutral-700 ml-[5px] mt-[30px]">채널</span>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
           {channel.channelList.map((items, index) => {

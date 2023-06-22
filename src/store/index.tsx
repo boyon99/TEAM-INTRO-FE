@@ -1,7 +1,7 @@
 import { Store } from '@/interfaces/store';
-import create, { SetState } from 'zustand';
+import { create } from 'zustand';
 
-const useStore = create<Store>((set: SetState<Store>) => ({
+const useStore = create<Store>((set) => ({
   // builder - 순서 변경 토글
   isChangeOederToggle: false,
   setIsChangeOederToggle: (isChangeOederToggle) => set({ isChangeOederToggle }),
@@ -113,6 +113,8 @@ const useStore = create<Store>((set: SetState<Store>) => ({
   add: false,
   setAdd: (add) => set({ add }),
 
+   imgurl: '',
+   setImgurl: (imgurl) => set({imgurl}),
   products: [
     // {
     //   id: 1,

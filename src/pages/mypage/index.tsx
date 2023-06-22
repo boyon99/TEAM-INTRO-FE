@@ -1,6 +1,6 @@
 import { emailcheck, emailconfirm, repass, user, usermodify } from '@/apis/auth';
 import Button from '@/components/button';
-import Popup from '@/components/common/popup';
+import { Popup } from '@/components/common/popup';
 import Input from '@/components/input'
 import { getCookie } from '@/utils/cookies';
 import { cls } from '@/utils/utile';
@@ -152,7 +152,7 @@ function RePass() {
     const token = getCookie('access_token')
     const onValids = async (data:EnterForm) => {
       const image = watch('image')
-      console.log(data.email)
+      console.log(data)
       const form = new FormData();
       form.append("image", data.image[0])    
       form.append("name", `${image}`);
@@ -164,10 +164,7 @@ function RePass() {
           "Content-Type": "multipart/form-data",
         },
       })
-      // .then(response => {
-       
-      //   setAvatar(response.data.data.upload_path)
-      // })
+      
       console.log(response.data.data.upload_path)
       const avatar = response.data.data.upload_path;
       console.log(avatar)

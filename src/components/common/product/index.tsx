@@ -1,12 +1,56 @@
+import { productdelete } from "@/apis/auth";
+import { ProductDelete } from "@/interfaces/auth";
+import useStore from "@/store";
+import { useMutation } from "@tanstack/react-query";
+import { AxiosError, AxiosRequestConfig } from "axios";
 import Link from "next/link";
+import { useState } from "react";
+import { List, arrayMove } from 'react-movable';
 
-export function ProductTitle({onClick}: any) {
-   
+export function ProductTitle({ onClick }: any) {
+  const { products, setProducts } = useStore();
+
+  const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  
+console.log(selectedItems)
+
+
+const { mutate: deletemutate, isLoading: userLoading, error: usererror } = useMutation(productdelete, {
+  onSuccess: (data) => {
+   console.log(data)
+  },
+  onError: (err: AxiosError) => { 
+    const Eresponse = err.response?.data
+    const { data }: any = Eresponse
+    console.log(data.value)
+  },
+})
+const handleCheckboxChange = (productId: any) => {
+  if (selectedItems.includes(productId)) {
+    setSelectedItems(selectedItems.filter((id: any) => id !== productId));
+  } else {
+    setSelectedItems([...selectedItems, productId]);
+  }
+ 
+};
+
+const deleteSelectedItems = () => {
+  const updatedProducts = products.filter((product) => !selectedItems.includes(product.products_and_services_element_id));
+  const filteredArray: ProductDelete = {
+    delete_list:selectedItems.filter((item) => item !== undefined) as number[]
+  }
+  ;
+  console.log(filteredArray)
+  deletemutate(filteredArray)
+  setProducts(updatedProducts);
+  setSelectedItems([]);
+};
+
       return (
         <>
         <div className="w-[264px] mt-[32px] flex">
           <div className="w-[67px] h-[36px]">
-           <button className="w-[67px] h-[36px] flex items-center m-[0_auto] justify-center">
+           <button className="w-[67px] h-[36px] flex items-center m-[0_auto] justify-center" onClick={deleteSelectedItems}>
             <img src="/Vector.png" alt="delete" />
             <span className="font-medium text-sm/[110%] text-[#7b7a93] ml-[4px]">삭제</span>
             </button>
@@ -18,21 +62,43 @@ export function ProductTitle({onClick}: any) {
 
         </div>
           <div className="mt-[20px]">
-          {[1, 2, 3].map((_, i) => (
-            <Link href={`/builder/productservice`} key={i}>
-             <div className="w-[264px] h-[42px] bg-[#fff] border border-solid border-[#cfced7] rounded-md relative mb-[12px]">
+          <List
+          values={products}
+          onChange={({ oldIndex, newIndex }) => {
+          setProducts(arrayMove(products, oldIndex, newIndex));
+          setSelectedItems(arrayMove(selectedItems, oldIndex, newIndex));
+        }}
+          renderList={({ children, props, isDragged }) => (
+            <ul {...props} style={{ padding: 0, cursor: isDragged ? 'grabbing' : undefined }}>
+              {children}
+            </ul>
+          )}
+          renderItem={({ value, props, isDragged, isSelected }) => (
+            <li
+              {...props}
+              style={{
+                ...props.style,
+                listStyleType: 'none',
+                cursor: isDragged ? 'grabbing' : 'grab',
+                border: isDragged ? '2px solid #4B48DF' : 'none',
+              }}
+              className={'w-[268px] h-[49px] mb-[6px]'}
+            >
+               <div className="w-[264px] h-[42px] bg-[#fff] border border-solid border-[#cfced7] rounded-md relative mb-[12px]">
              <div className="absolute top-[11px] left-[12px]">
-                <input type="checkbox" className="w-[16px] h-[16px] bg-[#6e6d86]"/>
+                <input type="checkbox" className="w-[16px] h-[16px] bg-[#6e6d86]" checked={selectedItems.includes(value.products_and_services_element_id)} onChange={() => handleCheckboxChange(value.products_and_services_element_id)}/>
                 </div>
                 <div className="absolute w-[144px] h-[24px] top-[9px] left-[60px]">
-                   <span className="w-[144px] h-[24px] flex justify-center font-medium text-base/[150%] text-[#57566a]">빗코</span>
+                   <span className="w-[144px] h-[24px] flex justify-center font-medium text-base/[150%] text-[#57566a]">{value.name}</span>
                 </div>
                 <div>
                 <img src="/handler.png" className="w-[24px] h-[24px] absolute top-[9px] right-[10px]" alt="hanlder-img" />
               </div>
              </div>
-            </Link>
-          ))}
+            </li>
+
+          )}
+        />
           </div>
           </>
       );
