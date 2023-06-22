@@ -46,3 +46,12 @@ export interface UserModify {
   profile: string;
   marketing: boolean;
 }
+export interface ProductAdd {
+  name: string;
+  title: string;
+  description: string;
+  image: string;
+}
+export interface ProductDelete {
+  delete_list: number[]
+}

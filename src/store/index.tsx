@@ -113,6 +113,8 @@ const useStore = create<Store>((set) => ({
   add: false,
   setAdd: (add) => set({ add }),
 
+   imgurl: '',
+   setImgurl: (imgurl) => set({imgurl}),
   products: [
     // {
     //   id: 1,

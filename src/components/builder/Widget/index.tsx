@@ -1,7 +1,7 @@
 import { HeaderProps } from '@/interfaces/widget';
 import useStore from '@/store';
 import exp from 'constants';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export function KeyVisual({ theme }: HeaderProps) {
   if (theme === 'A') {
@@ -68,7 +68,22 @@ export function Footer({ theme }: HeaderProps) {
 }
 
 export function ProductService({ theme }: HeaderProps) {
-  const { buttondes, setButtondes, products } = useStore();
+ 
+  const { products,setProducts, imgurl, setImgurl } = useStore();
+  useEffect(() => {
+    const updatedProducts = products.map((product, index) => {
+      if (index === products.length - 1) {
+        return {
+          ...product,
+          image: imgurl
+        };
+      }
+      return product;
+    });
+  
+    
+    setProducts(updatedProducts);
+  },[imgurl])
   console.log(products)
   if (theme === 'A') {
     return (
@@ -81,10 +96,11 @@ export function ProductService({ theme }: HeaderProps) {
         <div className='w-[703.12px] h-[299.19px] m-[0_auto] mt-[42.19px] mr-[] flex'>
         {products?.map((items) => {
           return (
-            <div key={items.id} className='w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[1.4px] m-[0_auto]'>
+            <div key={items.products_and_services_element_id} className='w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[1.4px] m-[0_auto]'>
             <div className='w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]'>
             <span className='font-bold text-[15px]/[100%]'>{items.name}</span>
-             <img src="/productno.png" alt="" className='w-[191px] h-[140px] mt-[16px]'/>
+            {items.image? <img src={items.image} alt="" className='w-[191px] h-[140px] mt-[16px]'/>:<img src='/productno.png' alt="" className='w-[191px] h-[140px] mt-[16px]'/>}
+             
              <p className='font-bold text-[10.54px]/[100%] mt-[16.88px]'>{items.title}</p>
              <p className='font-normal text-[9.84px]/[170%] mt-[8.44px]'>{items.description}</p>
             </div>

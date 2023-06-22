@@ -27,3 +27,4 @@ export const fileCheck = (e: any, setImgSrc: any, ratio: number) => {
     }
   };
 };
+

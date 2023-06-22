@@ -1,9 +1,11 @@
 import { BuilderInputProps, BuilderUploadImageProps } from '@/interfaces/input';
 import { fileCheck } from '@/utils/fileCheck';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PrimaryButton } from '../button';
 import { set } from 'react-hook-form';
 import { on } from 'events';
+import useStore from '@/store';
+
 
 
 // 기본 입력창
@@ -30,9 +32,9 @@ export function BuilderInput({ title, type, placeholder, id, readonly, required,
 }
 
 // 이미지 업로드 입력창
-export function BuilderUploadImage({ title, ratio }: BuilderUploadImageProps) {
+export function BuilderUploadImage({ title, ratio, name}: BuilderUploadImageProps) {
   const [imgSrc, setImgSrc] = useState('');
-
+ 
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
@@ -63,12 +65,12 @@ export function BuilderUploadImage({ title, ratio }: BuilderUploadImageProps) {
           <>
             <div className="w-[60px] h-[60px] rounded-[10px] bg-primary-100 mx-[auto] mt-[14px]">
               <input
+                onChange={(e) => fileCheck(e, setImgSrc, ratio)}
                 accept="image/*"
                 type="file"
-                name="file-input"
+                name={name}
                 id="file-input"
                 className="hidden"
-                onChange={(e) => fileCheck(e, setImgSrc, ratio)}
               />
               <label className="file-input__label" htmlFor="file-input">
                 <img src="/union.png" className="w-[20px] h-[20px] m-[auto] mt-[20px]" />
@@ -109,12 +111,13 @@ export function DuplicateCheck({ title, type, placeholder, id, required, value, 
 }
 
 // textarea 입력창
-export function BuilderTextarea({ title, placeholder, id, required, value, setValue, onChange:ProductChange }: BuilderInputProps) {
+export function BuilderTextarea({ title, placeholder, id, required, value, setValue, onChange:ProductChange, register }: BuilderInputProps) {
   const [textLength, setTextLength] = useState(0);
   return (
     <div className="relative">
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
       <textarea
+         {...register}
         className={
           'w-[264px] h-[160px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex py-[7px] placeholder:w-[232px] placeholder:h-[100px] pt-[12px] pl-[16px] pr-[16px]'
         }
