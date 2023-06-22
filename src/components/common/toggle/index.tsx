@@ -155,7 +155,7 @@ export function ToggleWidget({ toggle, setToggle, setWidgetToggle, toggleText, w
           {/* Toggle controller */}
           <div
             className={
-              'bg-white h-[16px] w-[16px] rounded-full shadow-md transform duration-300 ease-in-out ml-[1px] ' +
+              'bg-white h-[16px] w-[16px] rounded-full shadow-md transform duration-300 ease-in-out ml-[1px] mt-[1px] ' +
               (toggle ? null : toggleAnimation)
             }
           ></div>

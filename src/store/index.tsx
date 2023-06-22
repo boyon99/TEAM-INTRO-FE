@@ -105,10 +105,10 @@ const useStore = create<Store>((set) => ({
   // builder - theme
   theme: { theme: 'A', color: '#725f5f' }, // A or B
   setTheme: (theme) => set({ theme }),
-  
+
   // 제품/서비스 소개 부분
-  buttondes: {buttonname: ''},
-  setButtondes: (buttondes) => set({buttondes}),
+  buttondes: { buttonname: '' },
+  setButtondes: (buttondes) => set({ buttondes }),
 
   add: false,
   setAdd: (add) => set({ add }),
@@ -123,9 +123,8 @@ const useStore = create<Store>((set) => ({
     // },
   ],
 
-  setProducts: (arr) => 
-    set(() => ({ products: arr })),
-  
+  setProducts: (arr) => set(() => ({ products: arr })),
+
   // builder - header, footer
   headerfooter: {
     quickmenu: [
@@ -169,10 +168,6 @@ const useStore = create<Store>((set) => ({
     filter: 'Black',
     slogan: '',
     sloganDetail: '',
-    // keyVisual 객체 수정 함수
-    // setKeyVisual: (keyVisual) => {
-    //   set((state) => ({ keyVisual: { ...state.keyVisual, ...keyVisual } }));
-    // },
     setBgImg: (bgImg) => {
       set((state) => ({ keyVisual: { ...state.keyVisual, bgImg } }));
     },
@@ -184,6 +179,29 @@ const useStore = create<Store>((set) => ({
     },
     setSloganDetail: (sloganDetail) => {
       set((state) => ({ keyVisual: { ...state.keyVisual, sloganDetail } }));
+    },
+  },
+  // builder - missionvision
+  missionVision: {
+    mission: '',
+    missionDetail: '',
+    vision: '',
+    visionDetail: '',
+    setMission: (mission) => {
+      set((state) => ({ missionVision: { ...state.missionVision, mission } }));
+    },
+    setMissionDetail: (missionDetail) => {
+      set((state) => ({
+        missionVision: { ...state.missionVision, missionDetail },
+      }));
+    },
+    setVision: (vision) => {
+      set((state) => ({ missionVision: { ...state.missionVision, vision } }));
+    },
+    setVisionDetail: (visionDetail) => {
+      set((state) => ({
+        missionVision: { ...state.missionVision, visionDetail },
+      }));
     },
   },
 }));
