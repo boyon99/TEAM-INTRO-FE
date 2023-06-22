@@ -127,6 +127,25 @@ const useStore = create<Store>((set) => ({
 
   setProducts: (arr) => set(() => ({ products: arr })),
 
+  productservices: {
+    order_list: '',
+    description: '',
+    text: '',
+    link: '',
+    setOrder_list: (order_list) => {
+      set((state) => ({productservices: { ...state.productservices, order_list } }));
+    },
+    setDescription: (desc) => {
+      set((state) => ({ productservices: { ...state.productservices, desc } }));
+    },
+    setText: (texts) => {
+      set((state) => ({ productservices: { ...state.productservices, texts} }));
+    },
+    setLink: (linkurl) => {
+      set((state) => ({ productservices: { ...state.productservices, linkurl } }));
+    },
+   
+  },
   // builder - header, footer
   headerfooter: {
     quickmenu: [

@@ -5,7 +5,7 @@ import { BeforeButtonSmall } from '@/components/common/button';
 import useStore from '@/store';
 import { PrimaryButton } from '@/components/common/button';
 import MainColor from '@/components/builder/MainColor';
-import { ToggleLarge } from '@/components/common/toggle';
+import { Toggle, ToggleLarge, ToggleWidget } from '@/components/common/toggle';
 import { ProductTitle } from '@/components/common/product';
 import { BuilderInput, BuilderTextarea, BuilderUploadImage } from '@/components/common/input';
 import { ValidateResult, useForm } from 'react-hook-form';
@@ -22,8 +22,8 @@ import { fileCheck } from '@/utils/fileCheck';
 function ProductView() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   // const [ add, setAdd ] = useState(false)
-  const { buttondes, setButtondes, add, setAdd, products, setProducts } = useStore();
-  
+  const { buttondes, setButtondes, add, setAdd, products, setProducts, widgets, setToggle } = useStore();
+  const [toggle, setTogglebase] = useState(true)
   
   const onClick = () => {
     setAdd(!add)
@@ -79,21 +79,30 @@ function ProductView() {
    <div className='mt-[48px]'>
       <span className='font-bold text-sm/[100%] text-[#57566a]'>사용여부</span>
       <div className="mt-[12px]">
-          <ToggleLarge toggleText="사용"></ToggleLarge>
+      <ToggleWidget
+        toggle={widgets[2].toggle}
+        setWidgetToggle={setToggle}
+        widgetName="제품/서비스 소개"
+        toggleText={{ true: '사용', false: '사용 안함' }}
+      />
       </div>
    </div>
+   {widgets[2].toggle ? 
+   <>
    <div className='mt-[48px]'>
    <span className='font-bold text-lg/[110%] text-[#57566a]'>제품 편집</span>
    </div>
-   <ProductTitle onClick={onClick} />
+   <ProductTitle onClick={onClick} /> 
+   </>: <></>}
    <div className='w-[264px] mt-[40px]'>
        <p className='font-bold text-lg/[110%] text-[#57566a]'>Call To Action</p>
        <p className='mt-[16px] font-medium text-sm/[100%] text-[#57566a]'>클릭을 유도할 수 있는 메세지를 입력해주세요.</p>
     <div className='mt-[36px] flex justify-end'>
-     <ToggleLarge toggleText="사용"></ToggleLarge>
+     <Toggle toggle={toggle} setToggle={setTogglebase} toggleText={{ true: '사용', false: '사용 안함' }}/>
     </div>
     
-
+   {toggle? 
+   <>
     <BuilderInput title="버튼 설명" register={register('buttondes')} onChange={(e: any) => setButtondes({buttonname: e.target.value})} type="text" placeholder="예: 이 상품이 궁금하세요?" id="email" />
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         &#8226; 클릭을 유도할 수 있는 메시지를 입력해주세요. <br />
@@ -108,6 +117,8 @@ function ProductView() {
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         &#8226; 버튼 클릭 시, 이동하는 링크를 입력해주세요.
       </div>
+   </>: <></>}
+    
       
    </div>
     {/* 저장하기 */}

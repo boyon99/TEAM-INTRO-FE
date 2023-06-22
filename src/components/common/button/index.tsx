@@ -6,9 +6,9 @@ import { useRouter } from "next/router";
 // 이전으로 되돌아가는 버튼
 // leftpanel
 export function BeforeButtonSmall({ pageName }: BeforeButtonProps) {
+  //제품/서비스 페이지에서 뒤로가기 클릭시 만들고 있던 아이템 삭제
   const { add, setAdd, products,setProducts } = useStore();
   
-
   const router = useRouter();
   const backPage = () => {
     if(add) {
