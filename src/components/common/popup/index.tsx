@@ -1,23 +1,11 @@
-import { Inquiry } from '@/components/dashboard/InquiryList';
 import { PrimaryButton } from '../button';
-
-export interface popup {
-  text: string;
-  cancle: string;
-  confirm: string;
-  isOpen: boolean;
-  onClick: () => void;
-}
+import { DetailModalProps, popup } from '@/interfaces/popup';
 
 type ConfirmModalProps = {
   msg1: string;
   msg2?: string;
   closeModal: () => void;
 };
-
-interface DetailModalProps extends Inquiry {
-  closeModal: () => void;
-}
 
 export function Popup({ text, cancle, confirm, isOpen, onClick }: popup) {
   return (

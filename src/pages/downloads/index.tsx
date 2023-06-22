@@ -1,12 +1,12 @@
 import Header from '@/components/common/Header';
-import DownloadContents from '@/components/dashboard/DownloadsContents';
-import Sidebar from '@/components/dashboard/Sidebar';
+import DownloadContents from '@/components/dashboard/downloads/DownloadsContents';
+import Sidebar from '@/components/dashboard/side/Sidebar';
 
 export default function Downloads() {
   return (
     <div>
       <Header />
-      <section className='flex'>
+      <section className="flex">
         <Sidebar />
         <DownloadContents />
       </section>

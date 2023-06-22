@@ -1,4 +1,4 @@
-import Title from './Title';
+import Title from '../Title';
 import TodayCounts from './TodayCounts';
 import WeeklyCounts from './WeeklyCounts';
 

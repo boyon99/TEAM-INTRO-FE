@@ -119,4 +119,12 @@
   .modal-overlay {
     @apply bg-white/50 fixed inset-0;
   }
+
+  .visitors-table-header {
+    @apply h-[54px] w-44 text-center text-[15px] text-GrayScaleNeutral-1000 leading-[54px];
+  }
+
+  .visitors-table-data {
+    @apply h-12 w-44 text-sm text-GrayScalePrimary-800 leading-[48px] text-center truncate;
+  }
 }
