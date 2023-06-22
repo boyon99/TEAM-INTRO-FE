@@ -212,11 +212,27 @@ export function Footer({ theme }: HeaderProps) {
 }
 
 export function ProductService({ theme }: HeaderProps) {
-  const { buttondes, setButtondes, products } = useStore();
+ 
+
+  const { products,setProducts, imgurl, setImgurl } = useStore();
+  useEffect(() => {
+    const updatedProducts = products.map((product, index) => {
+      if (index === products.length - 1) {
+        return {
+          ...product,
+          image: imgurl
+        };
+      }
+      return product;
+    });
+
+
+    setProducts(updatedProducts);
+  },[imgurl])
   console.log(products);
   if (theme === 'A') {
     return (
-      <section id="w-04" className="h-[402px]">
+      <section id="w-04" className="h-[402px] border">
         <div className="ml-[110px]">
           <span className="font-bold text-[20px]/[100%] mr-[7px]">Products & Services</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
@@ -233,7 +249,7 @@ export function ProductService({ theme }: HeaderProps) {
               >
                 <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
                   <span className="font-bold text-[15px]/[100%]">{items.name}</span>
-                  {products? <img src={items.image} alt="image" className="w-[191px] h-[140px] mt-[16px]" />:<img src='/productno.png' alt="image" className="w-[191px] h-[140px] mt-[16px]" />}
+                  {items.image? <img src={items.image} alt="" className='w-[191px] h-[140px] mt-[16px]'/>:<img src='/productno.png' alt="" className='w-[191px] h-[140px] mt-[16px]'/>}
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
                   <p className="font-normal text-[9.84px]/[170%] mt-[8.44px]">{items.description}</p>
                 </div>
