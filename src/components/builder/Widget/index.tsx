@@ -115,28 +115,32 @@ export function MissionVision({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-02" className="h-[360px] w-full relative">
+      <section id="w-02" className="h-[400px] w-full relative">
         {/* 미션 */}
-        <div className="w-full h-[300px] border border-white">
-          <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[60px] relative">
+        <div className="w-full h-[200px] border border-white">
+          <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Mission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
               <div className="font-[700] text-[13px] w-[50%] font-['Korail'] font-[700] text-[28px]">
                 {missionVision.mission}
               </div>
-              <div className="font-[500] text-[16px] w-[50%] overflow-hidden">{missionVision.missionDetail}</div>
+              <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
+                {missionVision.missionDetail}
+              </div>
             </div>
           </div>
         </div>
         {/* 비전 */}
-        <div className="w-full h-[300px] border border-white">
-          <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[60px] relative">
+        <div className="w-full h-[200px] border border-white">
+          <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Vission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
               <div className="font-[700] text-[13px] w-[50%] font-['Korail'] font-[700] text-[28px]">
                 {missionVision.vision}
               </div>
-              <div className="font-[500] text-[16px] w-[50%] overflow-hidden">{missionVision.visionDetail}</div>
+              <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
+                {missionVision.visionDetail}
+              </div>
             </div>
           </div>
         </div>
@@ -395,16 +399,45 @@ export function Review({ theme }: HeaderProps) {
 }
 
 export function Channel({ theme }: HeaderProps) {
+  const { channel } = useStore();
   if (theme === 'A') {
     return (
-      <section id="w-13" className="h-[200px]">
-        Channel A
+      <section id="w-13" className="h-[200px] w-full relative mt-[20px]">
+        <span className="font-[700] text-[22px] font-[LINE] text-[20px] ml-[100px]">SNS Channel</span>
+        <span className="font-[500] text-[10px] text-GrayScaleNeutral-700 ml-[5px] mt-[30px]">채널</span>
+        <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
+          {channel.channelList.map((items, index) => {
+            if (items.checked) {
+              return (
+                <div className="flex flex-row mr-[4px]">
+                  <img src={items.img} className="w-[50px] h-[50px]" />
+                  <span className="text-[10px] mt-[30px]">{items.value}</span>
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
       </section>
     );
   } else {
     return (
-      <section id="w-13" className="h-[200px]">
-        Channel B
+      <section id="w-13" className="h-[200px] w-full relative mt bg-GrayScaleNeutral-100">
+        <div className="font-[500] text-[16px] text-[#FFB800] ml-[100px] pt-[20px]">SNS Channel</div>
+        <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
+          {channel.channelList.map((items, index) => {
+            if (items.checked) {
+              return (
+                <div className="flex flex-row mr-[4px] bg-white w-[70px] h-[70px] rounded-[14px] drop-shadow-xl mx-[20px] items-center justify-center">
+                  <img src={items.img} className="w-[50px] h-[50px]" />
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
       </section>
     );
   }

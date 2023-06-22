@@ -17,6 +17,19 @@ export interface Store {
   headerfooter: HeaderFooter;
   keyVisual: KeyVisual;
   missionVision: MissionVision;
+  channel: Channel;
+}
+
+export interface Channel {
+  channelList: ChannelList[];
+  setValue: (name: string, value: string) => void;
+  setChecked: (name: string) => void;
+}
+export interface ChannelList {
+  name: string;
+  value: string;
+  checked: boolean;
+  img: string;
 }
 
 export interface MissionVision {

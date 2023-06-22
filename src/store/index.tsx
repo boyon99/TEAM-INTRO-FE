@@ -1,7 +1,7 @@
 import { Store } from '@/interfaces/store';
 import create, { SetState } from 'zustand';
 
-const useStore = create<Store>((set) => ({
+const useStore = create<Store>((set: SetState<Store>) => ({
   // builder - 순서 변경 토글
   isChangeOederToggle: false,
   setIsChangeOederToggle: (isChangeOederToggle) => set({ isChangeOederToggle }),
@@ -201,6 +201,81 @@ const useStore = create<Store>((set) => ({
     setVisionDetail: (visionDetail) => {
       set((state) => ({
         missionVision: { ...state.missionVision, visionDetail },
+      }));
+    },
+  },
+  // builder - channel
+  channel: {
+    channelList: [
+      {
+        name: '인스타그램',
+        value: '',
+        checked: false,
+        img: '/channel/인스타그램.png',
+      },
+      {
+        name: '링크드인',
+        value: '',
+        checked: false,
+        img: '/channel/링크드인.png',
+      },
+      {
+        name: '유튜브',
+        value: '',
+        checked: false,
+        img: '/channel/유튜브.png',
+      },
+      {
+        name: '노션',
+        value: '',
+        checked: false,
+        img: '/channel/노션.png',
+      },
+      {
+        name: '네이버블로그',
+        value: '',
+        checked: false,
+        img: '/channel/네이버블로그.png',
+      },
+      {
+        name: '브런치스토리',
+        value: '',
+        checked: false,
+        img: '/channel/브런치.png',
+      },
+      {
+        name: '페이스북',
+        value: '',
+        checked: false,
+        img: '/channel/페이스북.png',
+      },
+    ],
+    setValue: (name, value) => {
+      set((state) => ({
+        channel: {
+          ...state.channel,
+          channelList: state.channel.channelList.map((channel) => {
+            if (channel.name === name) {
+              return { ...channel, value };
+            } else {
+              return channel;
+            }
+          }),
+        },
+      }));
+    },
+    setChecked: (name) => {
+      set((state) => ({
+        channel: {
+          ...state.channel,
+          channelList: state.channel.channelList.map((channel) => {
+            if (channel.name === name) {
+              return { ...channel, checked: !channel.checked };
+            } else {
+              return channel;
+            }
+          }),
+        },
       }));
     },
   },
