@@ -228,12 +228,12 @@ export function ProductService({ theme }: HeaderProps) {
           {products?.map((items) => {
             return (
               <div
-                key={items.id}
+                key={items.products_and_services_element_id}
                 className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[1.4px] m-[0_auto]"
               >
                 <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
                   <span className="font-bold text-[15px]/[100%]">{items.name}</span>
-                  <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                  {products? <img src={items.image} alt="" className="w-[191px] h-[140px] mt-[16px]" />:<img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px]" />}
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
                   <p className="font-normal text-[9.84px]/[170%] mt-[8.44px]">{items.description}</p>
                 </div>
