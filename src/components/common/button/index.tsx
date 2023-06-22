@@ -1,4 +1,5 @@
 import { BeforeButtonProps, PrimaryButtonProps } from "@/interfaces/button";
+import { Products } from "@/interfaces/store";
 import useStore from "@/store";
 import { useRouter } from "next/router";
 
@@ -6,10 +7,13 @@ import { useRouter } from "next/router";
 // leftpanel
 export function BeforeButtonSmall({ pageName }: BeforeButtonProps) {
   const { add, setAdd, products,setProducts } = useStore();
+  
+
   const router = useRouter();
   const backPage = () => {
     if(add) {
       setAdd(false)
+      setProducts(products.slice(0, -1))
     } else {
       router.back();
     }
