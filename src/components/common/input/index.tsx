@@ -25,7 +25,7 @@ export function BuilderInput({
       <input
         type={type}
         {...register}
-        onChange={onChange}
+        onChange={onChange} 
         className={
           'w-[264px] h-[42px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex py-[7px] indent-[10px] ' +
           (readonly ? 'bg-GrayScalePrimary-250 placeholder:text-GrayScalePrimary-600' : '')

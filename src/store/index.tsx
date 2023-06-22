@@ -135,14 +135,14 @@ const useStore = create<Store>((set) => ({
     setOrder_list: (order_list) => {
       set((state) => ({productservices: { ...state.productservices, order_list } }));
     },
-    setDescription: (desc) => {
-      set((state) => ({ productservices: { ...state.productservices, desc } }));
+    setDescription: (description) => {
+      set((state) => ({ productservices: { ...state.productservices, description} }));
     },
-    setText: (texts) => {
-      set((state) => ({ productservices: { ...state.productservices, texts} }));
+    setText: (text) => {
+      set((state) => ({ productservices: { ...state.productservices, text} }));
     },
-    setLink: (linkurl) => {
-      set((state) => ({ productservices: { ...state.productservices, linkurl } }));
+    setLink: (link) => {
+      set((state) => ({ productservices: { ...state.productservices, link } }));
     },
    
   },

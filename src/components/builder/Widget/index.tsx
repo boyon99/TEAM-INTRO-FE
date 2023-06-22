@@ -3,6 +3,7 @@ import useStore from '@/store';
 import exp from 'constants';
 import React, { useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function KeyVisual({ theme }: HeaderProps) {
   const { keyVisual } = useStore();
@@ -214,7 +215,7 @@ export function Footer({ theme }: HeaderProps) {
 export function ProductService({ theme }: HeaderProps) {
  
 
-  const { products,setProducts, imgurl, setImgurl } = useStore();
+  const { products,setProducts, imgurl, setImgurl, productservices } = useStore();
   useEffect(() => {
     const updatedProducts = products.map((product, index) => {
       if (index === products.length - 1) {
@@ -257,8 +258,12 @@ export function ProductService({ theme }: HeaderProps) {
             );
           })}
         </div>
-
-        {/* ProductService A <span>{buttondes.buttonname}</span> */}
+      <div className='flex ml-[98.44px] mt-[30.22px] items-center'>
+         <p className='text-[22.5px]/[100%] font-[`LINE`] font-bold'>{productservices.description}</p>
+         <Link href={productservices.link}>
+         <button className='w-[126px] h-[41px] bg-[#4B48DF] text-[#fff] ml-[300px]'>{productservices.text}</button>
+         </Link>
+      </div>
       </section>
     );
   } else {

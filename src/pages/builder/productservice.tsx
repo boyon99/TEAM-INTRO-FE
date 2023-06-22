@@ -22,15 +22,11 @@ import { fileCheck } from '@/utils/fileCheck';
 function ProductView() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   // const [ add, setAdd ] = useState(false)
-  const { buttondes, setButtondes, add, setAdd, products, setProducts, widgets, setToggle } = useStore();
+  const { buttondes, setButtondes, add, setAdd, products, setProducts, widgets, setToggle, productservices } = useStore();
   const [toggle, setTogglebase] = useState(true)
-  
+  console.log(productservices)
   const onClick = () => {
     setAdd(!add)
-    // const item = {
-    
-
-    // }
     setProducts([...products,
     {
       products_and_services_element_id: products.length + 1,
@@ -41,29 +37,8 @@ function ProductView() {
       image: ''
     }
     ])
-    // setProducts([...products,
-    // {
-    //   id: products.length + 1,
-    //   name: '',
-    //   title: '',
-    //   description: '',
-    //   image: ''
-    // }
-    // ])
   }
-  const { mutate: deletemutate, isLoading: userLoading, error: usererror } = useMutation(productdelete, {
-    onSuccess: (data) => {
-      
-       console.log(data)
-    },
-    onError: (err: AxiosError) => { 
-      const Eresponse = err.response?.data
-      const { data }: any = Eresponse
-      console.log(data.value)
-    },
-  })
 
- 
   return (
   
     <div className="ml-[28px]">
@@ -103,17 +78,24 @@ function ProductView() {
     
    {toggle? 
    <>
-    <BuilderInput title="버튼 설명" register={register('buttondes')} onChange={(e: any) => setButtondes({buttonname: e.target.value})} type="text" placeholder="예: 이 상품이 궁금하세요?" id="email" />
+    <BuilderInput title="버튼 설명" register={register('description')}  onChange={(e) => {
+      productservices.setDescription(e.target.value)}
+    }  type="text" placeholder="예: 이 상품이 궁금하세요?" id="" />
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         &#8226; 클릭을 유도할 수 있는 메시지를 입력해주세요. <br />
         &#8226; 최대 30자.
       </div>
-    <BuilderInput title="버튼 텍스트" type="text" placeholder="예: 상품 보러가기" id="email" />
+    <BuilderInput title="버튼 텍스트" register={register('text')} type="text" placeholder="예: 상품 보러가기" id="email"     
+      onChange={(e) => {
+      productservices.setText(e.target.value)}
+    } />
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         &#8226; 클릭을 유도할 수 있는 메시지를 입력해주세요. <br />
         &#8226; 최대 8자.
       </div>
-    <BuilderInput title="버튼 링크" type="text" placeholder="예: https://zillinks.com" id="email" />
+    <BuilderInput title="버튼 링크" register={register('link')} onChange={(e) => {
+      productservices.setLink(e.target.value)}
+    } type="text" placeholder="예: https://zillinks.com" id="email" />
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         &#8226; 버튼 클릭 시, 이동하는 링크를 입력해주세요.
       </div>

@@ -8,7 +8,6 @@ import useStore from '@/store';
 
 function Preview() {
   const { widgets, setToggle, missionVision } = useStore();
-  console.log(missionVision)
   return (
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 위젯 &#8739; 미션/비전" />
