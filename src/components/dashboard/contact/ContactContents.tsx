@@ -1,6 +1,6 @@
-import { PrimaryButton } from '../common/button';
-import InquiryList from './InquiryList';
-import Title from './Title';
+import { PrimaryButton } from '../../common/button';
+import InquiryTable from './InquiryTable';
+import Title from '../Title';
 
 export default function ContactContents() {
   return (
@@ -13,7 +13,7 @@ export default function ContactContents() {
           onClick={() => {}}
         />
       </Title>
-      <InquiryList />
+      <InquiryTable />
     </div>
   );
 }

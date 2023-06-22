@@ -1,5 +1,5 @@
+import { PrimaryButton } from '@/components/common/button';
 import { useRouter } from 'next/router';
-import { PrimaryButton } from '../common/button';
 
 type Sentences = {
   s1: string;

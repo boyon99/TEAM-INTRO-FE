@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { BeforeButtonSmall, PrimaryButton } from '@/components/common/button';
 import useStore from '@/store';
 import { BuilderInput, BuilderUploadImage } from '@/components/common/input';
-import Popup from '@/components/common/popup';
 
 function Preview() {
   return (
@@ -19,7 +18,7 @@ function Preview() {
       <BuilderInput title="회사 이름" type="text" placeholder="예: 질링스" id="companyName" required={true} />
       <BuilderInput title="설립일" type="text" placeholder="2018-03-15" id="establishmentDate" required={true} />
       <BuilderInput title="대표 성명" type="text" placeholder="예: 성이름" id="representativeName" required={true} />
-      <BuilderUploadImage title="회사 로고" ratio={1} />
+      <BuilderUploadImage title="회사 로고" ratio={1} imgSrc="" setImgSrc={() => {}} />
       <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[16px] pl-[2px]">
         &#8226; 1:1 정방형, png 권장, 최대 100mb <br />
         &#8226; 상단 네비게이션에 노출됩니다.

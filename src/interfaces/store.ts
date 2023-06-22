@@ -17,6 +17,42 @@ export interface Store {
   headerfooter: HeaderFooter;
   imgurl: string;
   setImgurl: (imgurl: string) => void
+  keyVisual: KeyVisual;
+  missionVision: MissionVision;
+  channel: Channel;
+}
+
+export interface Channel {
+  channelList: ChannelList[];
+  setValue: (name: string, value: string) => void;
+  setChecked: (name: string) => void;
+}
+export interface ChannelList {
+  name: string;
+  value: string;
+  checked: boolean;
+  img: string;
+}
+
+export interface MissionVision {
+  mission: string;
+  vision: string;
+  missionDetail: string;
+  visionDetail: string;
+  setMission: (mission: string) => void;
+  setVision: (vision: string) => void;
+  setMissionDetail: (missionDetail: string) => void;
+  setVisionDetail: (visionDetail: string) => void;
+}
+export interface KeyVisual {
+  bgImg: string;
+  filter: 'Black' | 'White';
+  slogan: string;
+  sloganDetail: string;
+  setBgImg: (bgImg: string) => void;
+  setFilter: (filter: 'Black' | 'White') => void;
+  setSlogan: (slogan: string) => void;
+  setSloganDetail: (sloganDetail: string) => void;
 }
 
 export interface HeaderFooter {
@@ -56,4 +92,3 @@ export interface Products {
   products_and_services_element_id?: number;
   order?: number;
 }
-

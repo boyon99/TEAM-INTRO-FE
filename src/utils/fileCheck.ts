@@ -12,14 +12,14 @@ export const fileCheck = (e: any, setImgSrc: any, ratio: number) => {
   img.onload = () => {
     const width = img.naturalWidth;
     const height = img.naturalHeight;
-    if (width / height !== ratio) {
+    if ((width / height).toFixed(1) !== ratio.toFixed(1)) {
       alert('이미지의 가로 세로 비율이 일치하지 않습니다.');
       return;
     } else {
       // 파일 사이즈가 10MB를 넘지 않으면 파일을 읽어서 imgSrc에 저장
       const reader = new FileReader();
       reader.onload = ({ target }) => {
-        setImgSrc(() => target?.result as string);
+        setImgSrc(target?.result);
       };
       if (e.target.files?.[0] !== undefined) {
         reader.readAsDataURL(e.target.files?.[0] as Blob);
