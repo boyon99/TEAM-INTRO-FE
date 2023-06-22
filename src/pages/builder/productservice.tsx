@@ -400,18 +400,13 @@ const validateImageSize = (e: any) => {
    </form>
 
     {/* 저장하기 */}
-    <button
-        form='product'
-        
-        onClick={() => {}}
-        // classname="w-[264px] h-[42px] mt-[48px] text-[18px] font-[700]"
-      >저장하기</button>
-    {/* <PrimaryButton
+    <PrimaryButton
         type="primary"
         text="저장하기"
-        onClick={() => {}}
+        form='product'
+        onClicka={() => {}}
         classname="w-[264px] h-[42px] mt-[48px] text-[18px] font-[700]"
-      /> */}
+      />
       <Popup text='dd' cancle='취소' confirm='확인' isOpen={isOpen} onClick={closeModal}/>
    </div>
   

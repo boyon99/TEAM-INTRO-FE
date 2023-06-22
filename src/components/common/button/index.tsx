@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 // 이전으로 되돌아가는 버튼
 // leftpanel
 export function BeforeButtonSmall({ pageName }: BeforeButtonProps) {
-  const { add, setAdd } = useStore();
+  const { add, setAdd, products,setProducts } = useStore();
   const router = useRouter();
   const backPage = () => {
     if(add) {
@@ -51,18 +51,19 @@ export function BeforeButtonLarge({ pageName, classname }: BeforeButtonProps) {
 
 // 기본 버튼
 // type: primary, wihte
-export function PrimaryButton({ type, text, onClick, classname, inputType }: PrimaryButtonProps) {
+export function PrimaryButton({ type, text, onClick, classname, inputType, form }: PrimaryButtonProps) {
   const color =
     type === 'primary'
       ? 'bg-primary-500 text-white border-primary-500'
       : 'bg-white text-primary-500 border-primary-500 text-primary-500';
   return (
-    <input
-      type={inputType}
+    <button
+      // type={inputType}
       className={color + ' text-[14px] rounded-[6px] border-[2px] text-center cursor-pointer ' + classname}
       onClick={onClick}
-      value={text}
-      readOnly
-    />
+      // value={text}
+      form={form}
+      // readOnly
+    >{text}</button>
   );
 }
