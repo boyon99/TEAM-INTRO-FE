@@ -20,3 +20,14 @@ export interface BuilderUploadImageProps {
   imgSrc: string; // 이미지 src
   setImgSrc: (imgSrc: string) => void; // 이미지 src 변경 함수
 }
+
+export interface BuilderCheckboxProps {
+  list: {
+    name: string;
+    value: string;
+    checked: boolean;
+    img: string;
+  }; // label
+  setValue: (name: string, value: string) => void; // setValue
+  setChecked: (name: string) => void; // setChecked
+}

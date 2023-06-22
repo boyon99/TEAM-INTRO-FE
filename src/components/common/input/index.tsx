@@ -1,4 +1,4 @@
-import { BuilderInputProps, BuilderUploadImageProps } from '@/interfaces/input';
+import { BuilderCheckboxProps, BuilderInputProps, BuilderUploadImageProps } from '@/interfaces/input';
 import { fileCheck } from '@/utils/fileCheck';
 import { useState } from 'react';
 import { PrimaryButton } from '../button';
@@ -156,5 +156,36 @@ export function BuilderTextarea({
         {textLength}자/최대 80자
       </span>
     </div>
+  );
+}
+
+// 체크박스 입력창
+export function BuilderCheckbox({ list, setValue, setChecked }: BuilderCheckboxProps) {
+  return (
+    <>
+      <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{list.name}</div>
+      <div className="w-[264px] h-[42px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[5px] flex py-[7px] indent-[10px] ">
+        <input
+          type="checkbox"
+          className="w-[16px] h-[16px] rounded-[2px] border-[2px] border-GrayScalePrimary-300 flex indent-[10px] font-[400] ml-[10px] translate-y-[4px]"
+          id={list.name + 'checkbox'}
+          checked={list.checked}
+          onChange={(e) => {
+            setChecked(list.name);
+          }}
+        />
+        <span className="text-GrayScalePrimary-150">|</span>
+        <img src={list.img} alt={list.name} width={28} height={16} className="ml-[3px]" />
+        <input
+          type="text"
+          placeholder="예: sns 아이디 입력"
+          className="ml-[10px] w-[150px]"
+          value={list.value}
+          onChange={(e) => {
+            setValue(list.name, e.target.value);
+          }}
+        />
+      </div>
+    </>
   );
 }
