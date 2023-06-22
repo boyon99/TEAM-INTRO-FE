@@ -1,6 +1,6 @@
-import { AuthResponse, FindId, LoginRequest, NewPass, RegisterRequest, UserModify, checkbiznumRequest, checkidRequest, emailcheckRequest, emailconfirmRequest } from "@/interfaces/auth"
+import { AuthResponse, FindId, LoginRequest, NewPass, ProductAdd, ProductDelete, RegisterRequest, UserModify, checkbiznumRequest, checkidRequest, emailcheckRequest, emailconfirmRequest } from "@/interfaces/auth"
 import { axiosInstance } from "./axios"
-import axios, { Axios } from "axios"
+import axios, { Axios, AxiosRequestConfig } from "axios"
 
 
 
@@ -91,13 +91,20 @@ export const usermodify = async (user: UserModify) => {
   console.log(response)
   return response
 }
-// 이미지 업로드 경로 반환
-// export const imgpath = async (img: string) => {
-//   const { data } = await axiosInstance.post<any>('/api/s/user/uploadImage',img)
-//   const response = data.data;
-//   console.log(response)
-//   return response
-// }
+// 제품/서비스 소개 상품 추가
+export const productadd = async (item: ProductAdd) => {
+  const { data } = await axiosInstance.post<any>('/api/s/user/introPage/productsAndServices/detail', item)
+  const response = data.data;
+  console.log(response)
+  return response
+}
+// 제품/서비스 요소들 삭제
+export const productdelete = async (deleteitem: ProductDelete) => {
+  const { data } = await axiosInstance.delete<any>('/api/s/user/introPage/productsAndServices/detail', {data:deleteitem})
+  const response = data.data;
+  console.log(response)
+  return response
+}
 export const accesstoken = async (user: LoginRequest) => {
       const { data } = await axiosInstance.post<AuthResponse>('/api/accessToken', user)
       const response = data.data;

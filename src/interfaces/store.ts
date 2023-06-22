@@ -15,6 +15,8 @@ export interface Store {
   products: Products[];
   setProducts: (products: Products[]) => void;
   headerfooter: HeaderFooter;
+  imgurl: string;
+  setImgurl: (imgurl: string) => void
   keyVisual: KeyVisual;
   missionVision: MissionVision;
   channel: Channel;
@@ -87,4 +89,6 @@ export interface Products {
   title: string;
   description: string;
   image: string;
+  products_and_services_element_id?: number;
+  order?: number;
 }
