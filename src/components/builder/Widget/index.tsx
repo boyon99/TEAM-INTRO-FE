@@ -58,7 +58,9 @@ export function KeyVisual({ theme }: HeaderProps) {
         >
           {keyVisual.sloganDetail}
         </span>
-        <img src={keyVisual.bgImg} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
+        {keyVisual.bgImg !== '' ? (
+          <Image src={keyVisual.bgImg} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
+        ) : null}
       </section>
     );
   }
