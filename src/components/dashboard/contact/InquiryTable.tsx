@@ -122,16 +122,16 @@ export default function InquiryTable() {
             </section>
             <section>
               <ActiveLink
-                href={'/contact/unconfirmed'}
-                order={2}
+                href={'/dashboard/contact/unconfirmed'}
+                order={3}
                 activeClassName="confirm-active-link"
                 className="confirm-link"
               >
                 확인 필요
               </ActiveLink>
               <ActiveLink
-                href={'/contact/confirmed'}
-                order={2}
+                href={'/dashboard/contact/confirmed'}
+                order={3}
                 activeClassName="confirm-active-link"
                 className="confirm-link"
               >
