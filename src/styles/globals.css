@@ -70,7 +70,7 @@
 @font-face {
   /* LINESeedKR */
   font-family: 'LINE';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+  src: url('../asset/font/LINESeedKR-Bd.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
@@ -78,7 +78,7 @@
 @font-face {
   /* LINESeedKR */
   font-family: 'LINE';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01/LINESeedKR-Rg.woff2') format('woff2');
+  src: url('../asset/font/LINESeedKR-Rg.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
 }
@@ -86,7 +86,7 @@
 @font-face {
   /* LINESeedKR */
   font-family: 'LINE';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01/LINESeedKR-Th.woff2') format('woff2');
+  src: url('../asset/font/LINESeedKR-Th.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
 }
