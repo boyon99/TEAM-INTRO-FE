@@ -424,14 +424,52 @@ export function TeamCulture({ theme }: HeaderProps) {
 export function Result({ theme }: HeaderProps) {
   if (theme === 'A') {
     return (
-      <section id="w-10" className="h-[200px]">
-        Result A
+      <section id="w-10" className="font-[LINE] h-[180px]">
+        <div className="ml-[100px] flex items-center mt-[14px]">
+          <span className="mr-[9px] font-[700] text-[23px]">Key Achievements</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">
+          핵심 성과
+          </span>
+        </div>
+
+        <div className="w-[704.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap">
+          
+        {[1, 2, 3,4].map((_, i) => (
+              <div     
+                className="w-[175px] h-[113px]"
+              >
+                <p className="font-bold text-[32px]/[100%] text-primary-500 text-center mt-[15px]">100%</p>
+                  <p className="text-[11px]/[100%] text-[#000] mt-[13px] text-center">초기 투자금 유치</p>
+                  <p className="text-[8.84px]/[100%] mt-[8.44px] text-[#939393] text-center">성과 지표 부가 설명</p>
+              </div>
+         
+         ))}
+        </div>
       </section>
     );
   } else {
     return (
       <section id="w-10" className="h-[200px]">
-        Result B
+      <div className="ml-[100px] mt-[14px]">
+          <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Key Achievements</span>
+          <p className="text-[#000] text-[30px] mt-[20px] pl-[2px]">
+            우리는 성장하고 있습니다.
+          </p>
+        </div>
+
+        <div className="w-[704.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
+          
+        {[1, 2, 3,4].map((_, i) => (
+              <div     
+                className="w-[160px] h-[113px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)]"
+              >
+                <p className="font-bold text-[32px]/[100%] text-[#000] text-center mt-[15px]">7억원</p>
+                  <p className="font-bold text-[18px]/[100%] text-[#000] mt-[13px] text-center">초기 투자금 유치</p>
+                  <p className="text-[10px]/[120%] mt-[5px] text-[#000] text-center">2018년 5개 투자사로부터 초기 투자 자금 유치</p>
+              </div>
+         
+         ))}
+        </div>
       </section>
     );
   }
