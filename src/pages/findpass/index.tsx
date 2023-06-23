@@ -1,6 +1,6 @@
 import { findpass } from '@/apis/auth';
 import Button from '@/components/button';
-import Popup from '@/components/common/popup';
+import { Popup } from '@/components/common/popup';
 import Input from '@/components/input'
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';

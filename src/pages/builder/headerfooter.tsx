@@ -32,10 +32,10 @@ function Preview() {
             <button
               key={index}
               className={
-                'text-[14px] rounded-[8px] border-[2px] text-center cursor-pointer h-[32px] mr-[7px] text-[14px] pl-[10px] pr-[8px] mb-[10px] flex ' +
+                'text-[14px] rounded-[8px] border-[2px] text-center cursor-pointer h-[32px] mr-[7px] pl-[10px] pr-[8px] mb-[10px] flex ' +
                 (widget.toggle
                   ? 'bg-primary-500 text-white border-primary-500 '
-                  : 'bg-white text-primary-500 border-primary-500 text-primary-500')
+                  : 'bg-white text-primary-500 border-primary-500')
               }
               onClick={() => {
                 headerfooter.setQuickMenuToggle(widget.name);

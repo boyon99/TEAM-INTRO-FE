@@ -1,36 +1,35 @@
-import EditBuilder from '@/components/builder/LeftPanel';
 import Layout from '@/components/builder/Layout';
 import React, { useEffect, useState } from 'react';
 import { BeforeButtonSmall } from '@/components/common/button';
 import useStore from '@/store';
 import { PrimaryButton } from '@/components/common/button';
-import MainColor from '@/components/builder/MainColor';
-import { ToggleLarge } from '@/components/common/toggle';
+import { Toggle, ToggleLarge, ToggleWidget } from '@/components/common/toggle';
 import { ProductTitle } from '@/components/common/product';
 import { BuilderInput, BuilderTextarea, BuilderUploadImage } from '@/components/common/input';
-import { ValidateResult, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import axios, { AxiosError } from 'axios';
 import { getCookie } from '@/utils/cookies';
 import { useMutation } from '@tanstack/react-query';
-import { productadd, productdelete } from '@/apis/auth';
+import { productadd, productdelete, productview } from '@/apis/auth';
 import { useRouter } from 'next/router';
 import { Popup } from '@/components/common/popup';
-import { fileCheck } from '@/utils/fileCheck';
+import { validateImageSize } from '@/utils/fileCheck';
+import { ProductDelete } from '@/interfaces/auth';
 
 
+interface ProductModify {
+  description: string;
+  text: string;
+  link: string;
+}
 
 function ProductView() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  // const [ add, setAdd ] = useState(false)
-  const { buttondes, setButtondes, add, setAdd, products, setProducts } = useStore();
-  
-  
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<ProductModify>();
+  const { buttondes, setButtondes, add, setAdd, products, setProducts, widgets, setToggle, productservices } = useStore();
+  const [toggle, setTogglebase] = useState(true)
+  // 추가하기 버튼 클릭시 빈상자(빈배열)가 생김
   const onClick = () => {
     setAdd(!add)
-    // const item = {
-    
-
-    // }
     setProducts([...products,
     {
       products_and_services_element_id: products.length + 1,
@@ -41,20 +40,11 @@ function ProductView() {
       image: ''
     }
     ])
-    // setProducts([...products,
-    // {
-    //   id: products.length + 1,
-    //   name: '',
-    //   title: '',
-    //   description: '',
-    //   image: ''
-    // }
-    // ])
   }
-  const { mutate: deletemutate, isLoading: userLoading, error: usererror } = useMutation(productdelete, {
+  //제품/서비스 메인페이지 저장하기 api요청
+  const { mutate: viewmutate, isLoading: userLoading, error: usererror } = useMutation(productview, {
     onSuccess: (data) => {
-      
-       console.log(data)
+      console.log(data)
     },
     onError: (err: AxiosError) => { 
       const Eresponse = err.response?.data
@@ -62,8 +52,58 @@ function ProductView() {
       console.log(data.value)
     },
   })
+  const onValidView = async (data: any) => {
+    const viewdata = {
+      widget_status: widgets[2].toggle,
+      order_list: products.map(e =>e.order),
+      call_to_action_status: toggle,
+      description: data.description,
+      text: data.text,
+      link: data.link
+    }
+    viewmutate(viewdata)
+    }
+//  배열 리스트 삭제/위치 이동시 체크박스 그대로 유지
+const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  
+console.log(selectedItems)
 
+// 제품/서비스 삭제 요청api
+const { mutate: deletemutate} = useMutation(productdelete, {
+  onSuccess: (data) => {
+   console.log(data)
+  },
+  onError: (err: AxiosError) => { 
+    const Eresponse = err.response?.data
+    const { data }: any = Eresponse
+    console.log(data.value)
+  },
+})
+const handleCheckboxChange = (productId: any) => {
+  if (selectedItems.includes(productId)) {
+    setSelectedItems(selectedItems.filter((id: any) => id !== productId));
+  } else {
+    setSelectedItems([...selectedItems, productId]);
+  }
  
+};
+// 삭제 요청과의 별개로 저장되어있던 미리보기 ui 삭제 
+const deleteSelectedItems = () => {
+  const updatedProducts = products.filter((product) => !selectedItems.includes(product.products_and_services_element_id));
+  const filteredArray: ProductDelete = {
+    delete_list:selectedItems.filter((item) => item !== undefined) as number[]
+  }
+  ;
+  console.log(filteredArray)
+  deletemutate(filteredArray)
+  setProducts(updatedProducts);
+  setSelectedItems([]);
+};
+// const filteredArray: ProductDelete = {
+//   delete_list:selectedItems.filter((item) => item !== undefined) as number[]
+// }
+// ;
+// console.log(filteredArray.delete_list)
   return (
   
     <div className="ml-[28px]">
@@ -79,39 +119,58 @@ function ProductView() {
    <div className='mt-[48px]'>
       <span className='font-bold text-sm/[100%] text-[#57566a]'>사용여부</span>
       <div className="mt-[12px]">
-          <ToggleLarge toggleText="사용"></ToggleLarge>
+      <ToggleWidget
+        toggle={widgets[2].toggle}
+        setWidgetToggle={setToggle}
+        widgetName="제품/서비스 소개"
+        toggleText={{ true: '사용', false: '사용 안함' }}
+      />
       </div>
    </div>
+   {widgets[2].toggle ? 
+   <>
    <div className='mt-[48px]'>
    <span className='font-bold text-lg/[110%] text-[#57566a]'>제품 편집</span>
    </div>
-   <ProductTitle onClick={onClick} />
+   <ProductTitle onClick={onClick} deleteSelectedClick={deleteSelectedItems} handleCheckboxChange={handleCheckboxChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} /> 
+   </>: <></>}
    <div className='w-[264px] mt-[40px]'>
        <p className='font-bold text-lg/[110%] text-[#57566a]'>Call To Action</p>
        <p className='mt-[16px] font-medium text-sm/[100%] text-[#57566a]'>클릭을 유도할 수 있는 메세지를 입력해주세요.</p>
     <div className='mt-[36px] flex justify-end'>
-     <ToggleLarge toggleText="사용"></ToggleLarge>
+     <Toggle toggle={toggle} setToggle={setTogglebase} toggleText={{ true: '사용', false: '사용 안함' }}/>
     </div>
     
-
-    <BuilderInput title="버튼 설명" register={register('buttondes')} onChange={(e: any) => setButtondes({buttonname: e.target.value})} type="text" placeholder="예: 이 상품이 궁금하세요?" id="email" />
+   {toggle? 
+   <form id='view' onSubmit={handleSubmit(onValidView)}>
+    <BuilderInput title="버튼 설명" register={register('description')}  onChange={(e) => {
+      productservices.setDescription(e.target.value)}
+    }  type="text" placeholder="예: 이 상품이 궁금하세요?" id="" />
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         &#8226; 클릭을 유도할 수 있는 메시지를 입력해주세요. <br />
         &#8226; 최대 30자.
       </div>
-    <BuilderInput title="버튼 텍스트" type="text" placeholder="예: 상품 보러가기" id="email" />
+    <BuilderInput title="버튼 텍스트" register={register('text')} type="text" placeholder="예: 상품 보러가기" id="email"     
+      onChange={(e) => {
+      productservices.setText(e.target.value)}
+    } />
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         &#8226; 클릭을 유도할 수 있는 메시지를 입력해주세요. <br />
         &#8226; 최대 8자.
       </div>
-    <BuilderInput title="버튼 링크" type="text" placeholder="예: https://zillinks.com" id="email" />
+    <BuilderInput title="버튼 링크" register={register('link')} onChange={(e) => {
+      productservices.setLink(e.target.value)}
+    } type="text" placeholder="예: https://zillinks.com" id="email" />
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         &#8226; 버튼 클릭 시, 이동하는 링크를 입력해주세요.
       </div>
+   </form>: <></>}
+    
       
    </div>
     {/* 저장하기 */}
     <PrimaryButton
+        form='view'
         type="primary"
         text="저장하기"
         onClick={()=>{}}
@@ -133,42 +192,17 @@ function ProductUpload() {
   const { products, setProducts, imgurl, setImgurl, add, setAdd  } = useStore();
   const router = useRouter();
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [productdata,setProductData] = useState<any>();
+  // const [productdata,setProductData] = useState<any>();
   const [avatarPreview, setAvatarPreview] = useState('');
 
-   //제품/서비스 소개 미리보기 이미지 전역으로 저장
- 
-  //  useEffect(() => {
-  //    setImgurl(imgSrc)
-  //  }, [imgSrc])
-
-  // const image = watch('image');
-  // useEffect(() => {
-  //   if (image && image.length > 0) {
-  //     const file = image[0];
-  //     // setAvatarPreview(URL.createObjectURL(file));
-  //     setImgurl(URL.createObjectURL(file))
-  //   }
-  // }, [image]);
-
-  const openModal = () => {
-      setIsOpen(true);
-    };
-  
-    const closeModal = () => {
-      // setProductMessage('')
-      setIsOpen(false);
-    };
-
+ // 제품/서비스 추가하기 api 요청
   const { mutate: productmutate, isLoading: userLoading, error: usererror } = useMutation(productadd, {
     onSuccess: (data) => {
-      
+      //저장하기가 성공하면 결과값의 데이터를 원래 products에 저장, 여기서 사용자가 넣은 이미지 결과를 바로 볼 수 있음
         const updatedProducts = products.map((product, index) => {
           if (index === products.length - 1) {
             return {
               ...product,
-              
               products_and_services_element_id: data.products_and_services_element_id,
               order: data.order,
               name: data.name,
@@ -181,12 +215,7 @@ function ProductUpload() {
         });
         setProducts(updatedProducts);
       
-      // setProductData(data)
-      // openModal()
-      console.log(data.products_and_services_element_id)
-      console.log(data.products_and_services_element_id)
-        
-      setAdd(false)
+      setAdd(false) // 저장하기가 성공하면 뒤로가기
     },
     onError: (err: AxiosError) => { 
       const Eresponse = err.response?.data
@@ -195,7 +224,8 @@ function ProductUpload() {
     },
   })
   console.log(products)
-   
+
+   // 이미지를 포함하여 요청을 보낼 경우 이미지 경로를 미리 받아와서 요청 보내기
   const token = getCookie('access_token')
   const onValid = async (data:EnterForm) => {
     
@@ -213,7 +243,6 @@ function ProductUpload() {
       },
     })
     
-    console.log(response.data.data.upload_path)
     const avatar = response.data.data.upload_path;
     console.log(avatar)
     const user = {
@@ -229,47 +258,14 @@ function ProductUpload() {
     console.log(error);
   }
 }
-
+// 이미지의 삭제 버튼 클릭시 미리보기 이미지 삭제
 const deleteonClick = () => {
   setAvatarPreview('');
   setImgurl('');
 }
 
 
-const validateImageSize = (e: any) => {
-  const maxSize = 100 * 1024 * 1024; // 100MB로 제한
-  const fileSize = e.target.files?.[0].size as number; // 업로드한 파일의 사이즈
-  // 파일 사이즈가 10MB를 넘으면 경고창을 띄우고 return
-  if (fileSize > maxSize) {
-    alert('파일 사이즈는 10MB를 넘을 수 없습니다.');
-    return;
-  }
-  // 이미지의 가로 세로 사이즈가 ratio 비율과 일치하지 않으면 경고창을 띄우고 return
-  const img = new Image();
-  img.src = URL.createObjectURL(e.target.files?.[0]!);
-  img.onload = () => {
-    const width = img.naturalWidth;
-    const height = img.naturalHeight;
-    if (width / height !== 1) {
-      alert('이미지의 가로 세로 비율이 일치하지 않습니다.');
-      return;
-    } else {
-      // 파일 사이즈가 10MB를 넘지 않으면 파일을 읽어서 imgSrc에 저장
-      const reader = new FileReader();
-      reader.onload = () => {
-        setAvatarPreview(reader.result as string);
-        setImgurl(reader.result as string);
-      };
-      if (e.target.files?.[0] !== undefined) {
-        reader.readAsDataURL(e.target.files?.[0] as Blob);
-      }
-    }
-  };
 
-};
-
-
- 
   return (
   
     <div className="ml-[28px]">
@@ -284,8 +280,6 @@ const validateImageSize = (e: any) => {
     </div>
 <form id='product' onSubmit={handleSubmit(onValid)} >
    <div className='mt-[48px]'>
-
-   
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">제품 서비스 이미지</div>
       <div
         className={
@@ -313,7 +307,7 @@ const validateImageSize = (e: any) => {
             <div className="w-[60px] h-[60px] rounded-[10px] bg-primary-100 mx-[auto] mt-[14px]">
               <input className="hidden" type="file" id='file-input'{...register('image', {
                 onChange: (e) => {
-                  validateImageSize(e)
+                  validateImageSize({e, setAvatarPreview, setImgurl})
                 }
               })}      
               />
@@ -331,8 +325,6 @@ const validateImageSize = (e: any) => {
          
          
 
-
-   {/* <BuilderUploadImage register={register('image')} name='image' title="제품 서비스 이미지" ratio={1}/> */}
       <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         340x250, png 권장, 최대 100mb
       </div>
@@ -400,19 +392,14 @@ const validateImageSize = (e: any) => {
    </form>
 
     {/* 저장하기 */}
-    <button
-        form='product'
-        
-        onClick={() => {}}
-        // classname="w-[264px] h-[42px] mt-[48px] text-[18px] font-[700]"
-      >저장하기</button>
-    {/* <PrimaryButton
+    <PrimaryButton
         type="primary"
         text="저장하기"
-        onClick={() => {}}
+        form='product'
+        onClicka={() => {}}
         classname="w-[264px] h-[42px] mt-[48px] text-[18px] font-[700]"
-      /> */}
-      <Popup text='dd' cancle='취소' confirm='확인' isOpen={isOpen} onClick={closeModal}/>
+      />
+      
    </div>
   
   );

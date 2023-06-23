@@ -7,50 +7,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { List, arrayMove } from 'react-movable';
 
-export function ProductTitle({ onClick }: any) {
+export function ProductTitle({ onClick, deleteSelectedClick, handleCheckboxChange, selectedItems, setSelectedItems }: any) {
   const { products, setProducts } = useStore();
 
-  const [selectedItems, setSelectedItems] = useState<any[]>([]);
   
-console.log(selectedItems)
-
-
-const { mutate: deletemutate, isLoading: userLoading, error: usererror } = useMutation(productdelete, {
-  onSuccess: (data) => {
-   console.log(data)
-  },
-  onError: (err: AxiosError) => { 
-    const Eresponse = err.response?.data
-    const { data }: any = Eresponse
-    console.log(data.value)
-  },
-})
-const handleCheckboxChange = (productId: any) => {
-  if (selectedItems.includes(productId)) {
-    setSelectedItems(selectedItems.filter((id: any) => id !== productId));
-  } else {
-    setSelectedItems([...selectedItems, productId]);
-  }
- 
-};
-
-const deleteSelectedItems = () => {
-  const updatedProducts = products.filter((product) => !selectedItems.includes(product.products_and_services_element_id));
-  const filteredArray: ProductDelete = {
-    delete_list:selectedItems.filter((item) => item !== undefined) as number[]
-  }
-  ;
-  console.log(filteredArray)
-  deletemutate(filteredArray)
-  setProducts(updatedProducts);
-  setSelectedItems([]);
-};
 
       return (
         <>
         <div className="w-[264px] mt-[32px] flex">
           <div className="w-[67px] h-[36px]">
-           <button className="w-[67px] h-[36px] flex items-center m-[0_auto] justify-center" onClick={deleteSelectedItems}>
+           <button className="w-[67px] h-[36px] flex items-center m-[0_auto] justify-center" onClick={deleteSelectedClick}>
             <img src="/Vector.png" alt="delete" />
             <span className="font-medium text-sm/[110%] text-[#7b7a93] ml-[4px]">삭제</span>
             </button>

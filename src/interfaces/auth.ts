@@ -55,3 +55,11 @@ export interface ProductAdd {
 export interface ProductDelete {
   delete_list: number[]
 }
+export interface ProductModify {
+  widget_status: boolean;
+  order_list: (number | undefined)[];
+  call_to_action_status: boolean;
+  description: string;
+  text: string;
+  link: string;
+}
