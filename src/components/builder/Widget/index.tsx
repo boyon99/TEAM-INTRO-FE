@@ -328,9 +328,9 @@ export function TeamMember({ theme }: HeaderProps) {
                 </div>
                 <div className="w-[169px] h-[337px] mt-[11.4px]">
                   <p className="font-bold text-[11px]/[100%] text-center mb-3">신윤서</p>
-                  <p className="font-bold text-[10px]/[100%] text-[#797979]">플랫폼서비스팀 / Software Engineer</p>
-                  <p className="font-normal text-[9.84px]/[150%] mt-[8.44px]">피곤할 때 좋은 음악 추천해주세요.. 랩은 제외하고..!</p>
-                  <p className="font-normal text-[9.84px]/[100%] mt-[14px]">fejodnv@gmail.com</p>
+                  <p className="w-[130px] font-bold text-[10px]/[100%] text-[#797979] text-center m-[0_auto]">플랫폼서비스팀 / Software Engineer</p>
+                  <p className="w-[100px] font-normal text-[9.84px]/[150%] mt-[8.44px] text-center m-[0_auto]">피곤할 때 좋은 음악 추천해주세요.. 랩은 제외하고..!</p>
+                  <p className="font-normal text-[9.84px]/[100%] mt-[14px] text-center">fejodnv@gmail.com</p>
                 </div>
               </div>
          
