@@ -233,9 +233,9 @@ export function ProductService({ theme }: HeaderProps) {
   console.log(products);
   if (theme === 'A') {
     return (
-      <section id="w-04" className="h-[402px]">
+      <section id="w-04" className="h-[402px] font-[LINE]">
         <div className="ml-[110px] flex">
-         <Image src="/Products & Services.png" width={307} height={26} alt="" className='mr-[7px]'/>
+          <span className="mr-[7px] font-[700] text-[20px]">Products & Services</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             제품 소개
           </span>
@@ -270,7 +270,7 @@ export function ProductService({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-03" className="h-[200px]">
+      <section id="w-03" className="h-[200px] font-[LINE]">
         ProductService B
       </section>
     );
@@ -280,14 +280,62 @@ export function ProductService({ theme }: HeaderProps) {
 export function TeamMember({ theme }: HeaderProps) {
   if (theme === 'A') {
     return (
-      <section id="w-04" className="h-[200px]">
-        TeamMember A
+      <section id="w-04" className="h-[795px] font-[LINE] border">
+         <div className="ml-[100px] flex items-center">
+          <span className="mr-[9px] font-[700] text-[23px]">Meat the Team</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">
+            팀 소개
+          </span>
+        </div>
+
+        <div className="w-[703.12px] h-[337px] m-[0_auto] mt-[42.19px] flex flex-wrap">
+          
+        {[1, 2, 3, 4, 5].map((_, i) => (
+              <div     
+                className="w-[169px] h-[337px] ml-[5px]"
+              >
+                <img src='/man.png' alt="" className='w-[169px] h-[198px]'/>
+                <div className="w-[169px] h-[337px] mt-[11.4px]">
+                  <span className="font-bold text-[11px]/[100%]">신윤서</span>
+                  <p className="font-bold text-[10px]/[100%] text-[#797979]">플랫폼서비스팀 / Software Engineer</p>
+                  <p className="font-normal text-[9.84px]/[150%] mt-[8.44px]">피곤할 때 좋은 음악 추천해주세요.. 랩은 제외하고..!</p>
+                  <p className="font-normal text-[9.84px]/[100%] mt-[14px]">fejodnv@gmail.com</p>
+                </div>
+              </div>
+         
+         ))}
+        </div>
       </section>
     );
   } else {
     return (
-      <section id="w-04" className="h-[200px]">
-        TeamMember B
+      <section id="w-04" className="font-[LINE] border h-[795px] ">
+           <div className="ml-[100px]">
+          <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Meat the Team</span>
+          <p className="text-[#000] text-[30px] mt-[30px] pl-[2px]">
+            팀원들을 소개합니다.
+          </p>
+        </div>
+
+        <div className="w-[703.12px] h-[337px] m-[0_auto] mt-[25px] flex flex-wrap">
+          
+        {[1, 2, 3, 4, 5].map((_, i) => (
+              <div     
+                className="w-[169px] h-[300px] ml-[5px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
+              >
+                <div className='w-[130px] h-[130px] m-[0_auto] mt-[12px]'>
+                <img src='/man.png' alt="" className='w-[130px] h-[130px] rounded-[160px]'/>
+                </div>
+                <div className="w-[169px] h-[337px] mt-[11.4px]">
+                  <p className="font-bold text-[11px]/[100%] text-center mb-3">신윤서</p>
+                  <p className="font-bold text-[10px]/[100%] text-[#797979]">플랫폼서비스팀 / Software Engineer</p>
+                  <p className="font-normal text-[9.84px]/[150%] mt-[8.44px]">피곤할 때 좋은 음악 추천해주세요.. 랩은 제외하고..!</p>
+                  <p className="font-normal text-[9.84px]/[100%] mt-[14px]">fejodnv@gmail.com</p>
+                </div>
+              </div>
+         
+         ))}
+        </div>
       </section>
     );
   }
