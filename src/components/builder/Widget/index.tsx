@@ -233,9 +233,9 @@ export function ProductService({ theme }: HeaderProps) {
   console.log(products);
   if (theme === 'A') {
     return (
-      <section id="w-04" className="h-[402px] border">
-        <div className="ml-[110px]">
-          <span className="font-bold text-[20px]/[100%] mr-[7px]">Products & Services</span>
+      <section id="w-04" className="h-[402px]">
+        <div className="ml-[110px] flex">
+         <Image src="/Products & Services.png" width={307} height={26} alt="" className='mr-[7px]'/>
           <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             제품 소개
           </span>
@@ -258,12 +258,14 @@ export function ProductService({ theme }: HeaderProps) {
             );
           })}
         </div>
-      <div className='flex ml-[98.44px] mt-[30.22px] items-center'>
+        {productservices ?  (
+         <div className='flex w-[700px] ml-[98.44px] mt-[30.22px] items-center'>
          <p className='text-[22.5px]/[100%] font-[`LINE`] font-bold'>{productservices.description}</p>
-         <Link href={productservices.link}>
-         <button className='w-[126px] h-[41px] bg-[#4B48DF] text-[#fff] ml-[300px]'>{productservices.text}</button>
+         <Link href={productservices.link} className='ml-[auto]'>
+          {productservices.text?  <button className='w-[126px] h-[41px] bg-[#4B48DF] text-[#fff]'>{productservices.text}</button>:<></>}
          </Link>
-      </div>
+      </div>): <></>}
+     
       </section>
     );
   } else {
