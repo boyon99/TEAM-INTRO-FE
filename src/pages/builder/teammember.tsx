@@ -43,7 +43,7 @@ function TeamMemberView() {
    {widgets[3].toggle ? 
    <>
    <div className='mt-[48px]'>
-   <span className='font-bold text-lg/[110%] text-[#57566a]'>제품 편집</span>
+   <span className='font-bold text-lg/[110%] text-[#57566a]'>팀 멤버 편집</span>
    </div>
    <ProductTitle TeamAddonClick={TeamAddonClick}/> 
    </>: <></>}
