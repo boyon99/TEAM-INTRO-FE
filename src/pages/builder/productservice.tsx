@@ -1,30 +1,37 @@
-import EditBuilder from '@/components/builder/LeftPanel';
 import Layout from '@/components/builder/Layout';
 import React, { useEffect, useState } from 'react';
 import { BeforeButtonSmall } from '@/components/common/button';
 import useStore from '@/store';
 import { PrimaryButton } from '@/components/common/button';
-import MainColor from '@/components/builder/MainColor';
 import { Toggle, ToggleLarge, ToggleWidget } from '@/components/common/toggle';
 import { ProductTitle } from '@/components/common/product';
 import { BuilderInput, BuilderTextarea, BuilderUploadImage } from '@/components/common/input';
-import { ValidateResult, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import axios, { AxiosError } from 'axios';
 import { getCookie } from '@/utils/cookies';
 import { useMutation } from '@tanstack/react-query';
-import { productadd, productdelete } from '@/apis/auth';
+import { productadd, productdelete, productview } from '@/apis/auth';
 import { useRouter } from 'next/router';
 import { Popup } from '@/components/common/popup';
-import { fileCheck } from '@/utils/fileCheck';
 
 
+export interface ProductModify {
+  // widget_status: boolean;
+  // order_list: number[]
+  // call_to_action_status: boolean;
+  description: string;
+  text: string;
+  link: string;
+}
 
 function ProductView() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<ProductModify>();
   // const [ add, setAdd ] = useState(false)
   const { buttondes, setButtondes, add, setAdd, products, setProducts, widgets, setToggle, productservices } = useStore();
   const [toggle, setTogglebase] = useState(true)
   console.log(productservices)
+  // console.log(widgets[2].toggle)
+  // console.log(products.map(e =>e.order))
   const onClick = () => {
     setAdd(!add)
     setProducts([...products,
@@ -38,7 +45,29 @@ function ProductView() {
     }
     ])
   }
-
+  const { mutate: viewmutate, isLoading: userLoading, error: usererror } = useMutation(productview, {
+    onSuccess: (data) => {
+      console.log(data)
+      // setProductData(data)
+      // openModal()
+    },
+    onError: (err: AxiosError) => { 
+      const Eresponse = err.response?.data
+      const { data }: any = Eresponse
+      console.log(data.value)
+    },
+  })
+  const onValidView = async (data: any) => {
+    const viewdata = {
+      widget_status: widgets[2].toggle,
+      order_list: products.map(e =>e.order),
+      call_to_action_status: toggle,
+      description: data.description,
+      text: data.text,
+      link: data.link
+    }
+    viewmutate(viewdata)
+    }
   return (
   
     <div className="ml-[28px]">
@@ -77,7 +106,7 @@ function ProductView() {
     </div>
     
    {toggle? 
-   <>
+   <form id='view' onSubmit={handleSubmit(onValidView)}>
     <BuilderInput title="버튼 설명" register={register('description')}  onChange={(e) => {
       productservices.setDescription(e.target.value)}
     }  type="text" placeholder="예: 이 상품이 궁금하세요?" id="" />
@@ -99,12 +128,13 @@ function ProductView() {
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         &#8226; 버튼 클릭 시, 이동하는 링크를 입력해주세요.
       </div>
-   </>: <></>}
+   </form>: <></>}
     
       
    </div>
     {/* 저장하기 */}
     <PrimaryButton
+        form='view'
         type="primary"
         text="저장하기"
         onClick={()=>{}}
@@ -324,8 +354,6 @@ const validateImageSize = (e: any) => {
          
          
 
-
-   {/* <BuilderUploadImage register={register('image')} name='image' title="제품 서비스 이미지" ratio={1}/> */}
       <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
         340x250, png 권장, 최대 100mb
       </div>

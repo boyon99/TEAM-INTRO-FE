@@ -1,4 +1,4 @@
-import { AuthResponse, FindId, LoginRequest, NewPass, ProductAdd, ProductDelete, RegisterRequest, UserModify, checkbiznumRequest, checkidRequest, emailcheckRequest, emailconfirmRequest } from "@/interfaces/auth"
+import { AuthResponse, FindId, LoginRequest, NewPass, ProductAdd, ProductDelete, ProductModify, RegisterRequest, UserModify, checkbiznumRequest, checkidRequest, emailcheckRequest, emailconfirmRequest } from "@/interfaces/auth"
 import { axiosInstance } from "./axios"
 import axios, { Axios, AxiosRequestConfig } from "axios"
 
@@ -101,6 +101,13 @@ export const productadd = async (item: ProductAdd) => {
 // 제품/서비스 요소들 삭제
 export const productdelete = async (deleteitem: ProductDelete) => {
   const { data } = await axiosInstance.delete<any>('/api/s/user/introPage/productsAndServices/detail', {data:deleteitem})
+  const response = data.data;
+  console.log(response)
+  return response
+}
+// 제품/서비스 메인페이지 저장하기
+export const productview = async (modifyitem: ProductModify) => {
+  const { data } = await axiosInstance.put<any>('/api/s/user/introPage/productsAndServices', modifyitem)
   const response = data.data;
   console.log(response)
   return response
