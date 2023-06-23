@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { List, arrayMove } from 'react-movable';
 
-export function ProductTitle({ onClick, deleteSelectedClick, handleCheckboxChange, selectedItems, setSelectedItems }: any) {
+export function ProductTitle({ onClick, deleteSelectedClick, handleCheckboxChange, selectedItems, setSelectedItems, TeamAddonClick }: any) {
   const { products, setProducts } = useStore();
 
   
@@ -23,7 +23,7 @@ export function ProductTitle({ onClick, deleteSelectedClick, handleCheckboxChang
           </div>
 
           <div className="w-[120px] h-[36px] ml-[78px]">
-          <button onClick={onClick} className="w-[120px] h-[36px] flex bg-[#4b48df] items-center justify-center rounded-lg p-[12px_16px_12px_12px] text-[#fff]">+ 추가하기</button>
+          <button onClick={TeamAddonClick? TeamAddonClick : onClick} className="w-[120px] h-[36px] flex bg-[#4b48df] items-center justify-center rounded-lg p-[12px_16px_12px_12px] text-[#fff]">+ 추가하기</button>
           </div>
 
         </div>
