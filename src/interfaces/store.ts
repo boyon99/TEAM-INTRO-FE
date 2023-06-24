@@ -20,6 +20,7 @@ export interface Store {
   keyVisual: KeyVisual;
   missionVision: MissionVision;
   channel: Channel;
+  productservices:ProductServices;
 }
 
 export interface Channel {
@@ -91,4 +92,14 @@ export interface Products {
   image: string;
   products_and_services_element_id?: number;
   order?: number;
+}
+export interface ProductServices {
+  order_list: string,
+  description: string,
+  text: string,
+  link: string,
+  setOrder_list: (order_list: string) => void;
+  setDescription: (description: string) => void;
+  setText: (text: string) => void;
+  setLink: (link: string) => void;
 }
