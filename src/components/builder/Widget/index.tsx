@@ -392,8 +392,29 @@ export function Press({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-06" className="h-[200px] font-[Line]">
-        Press B
+      <section id="w-06" className="h-[200px] font-[LINE]">
+        <div className="ml-[40px]">
+          <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">News Room</span>
+          <p className="text-[#000] text-[35px] mt-[30px] pl-[2px]">
+          새로운 소식
+          </p>
+        </div>
+        <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px]">
+          
+        {[1, 2, 3].map((_, i) => (
+              <div className='w-[820px] flex mb-[20px]'>
+              <div>
+                 <img src="/기사사진.png" className='w-[180px] h-[70px] rounded-[24px]' alt="" />
+               </div>
+               <div className='w-[820px] ml-[40px]'>
+                  <p className='text-[20px]/[110%] font-bold'>디지털 자산 투자 앱 OOO 핀테크 기술로 투자 유치</p>
+                  <p className='text-[8px] text-[#939393]'>2023. 05.29</p>
+                  <p className='text-[13px] text-[#464646]'>지난 5월 27일 디지털 자산 투자 모바일 서비스 OOOO가 프로젝트 KCK 성과로 시리즈 A 투자 유치 및 프로젝트 B를 위한 파트너십 체결을 위한 기술 협약을 맺고, 앞으로의 행보를 논의하기로 했습니다. OOO만든 OOOO은 지난 해 ...</p>
+               </div>
+              </div>
+         
+         ))}
+        </div>
       </section>
     );
   }
