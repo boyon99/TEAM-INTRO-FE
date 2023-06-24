@@ -1,5 +1,4 @@
-import { PrimaryButton } from '@/components/common/button';
-import Dropdown from './Dropdown';
+import DropdownExcel from '../DropdownExcel';
 import VisitorsTable from './VisitorsTable';
 
 export default function VisitorsTableContainer() {
@@ -21,19 +20,22 @@ export default function VisitorsTableContainer() {
     },
   ];
 
+  const dropdownItems = [
+    {
+      id: 1,
+      name: '조회 기록',
+    },
+    {
+      id: 2,
+      name: '공유 기록',
+    },
+  ];
+
   return (
     <div className="h-[calc(100vh-224px)] border border-GrayScalePrimary-150 bg-white rounded-xl mt-5">
       {data ? (
         <div>
-          <section className="relative h-[58px] border-b border-b-GrayScalePrimary-150">
-            <Dropdown />
-            <PrimaryButton
-              type="primary"
-              text="엑셀 다운로드"
-              classname="font-bold text-base w-32 h-10 mr-6 absolute right-0 top-1/2 -translate-y-1/2"
-              onClick={() => {}}
-            />
-          </section>
+          <DropdownExcel dropdownItems={dropdownItems} data={'data'} />
           <VisitorsTable data={data} />
         </div>
       ) : (

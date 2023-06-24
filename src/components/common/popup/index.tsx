@@ -42,7 +42,7 @@ export function ConfirmModal({ msg1, msg2, closeModal }: ConfirmModalProps) {
     <>
       <div className="modal-contents w-[420px] h-64 flex items-center flex-col pt-14 space-y-10">
         <p className="text-xl break-keep">
-          {msg1} <br /> {msg2}
+          {msg1} <br /> <span className="mx-3">{msg2}</span>
         </p>
         <section className="text-center space-x-2">
           <button
@@ -139,6 +139,32 @@ export function DetailModal({ closeModal, email, name, type, date, content }: De
         </section>
       </div>
       <div className="modal-overlay"></div>
+    </>
+  );
+}
+
+export function ExcelDownloadModal({ handleClick }: { handleClick: () => void }) {
+  return (
+    <>
+      <div className="modal-contents w-[420px] h-64 pt-11">
+        <h3 className="text-xl font-bold text-center">엑셀 다운로드</h3>
+        <p className="text-xl text-center mt-3">최근 1개월 내역을 다운로드합니다.</p>
+        <section className="text-center space-x-2 mt-10">
+          <button
+            onClick={handleClick}
+            className="w-32 h-12 rounded-lg border border-black text-GrayScalePrimary-600 font-bold text-xl"
+          >
+            취소
+          </button>
+          <PrimaryButton
+            text="확인"
+            type="primary"
+            onClick={() => {}}
+            classname="w-32 h-12 rounded-lg text-xl font-bold"
+          />
+        </section>
+      </div>
+      <div className="modal-overlay" onClick={handleClick}></div>
     </>
   );
 }
