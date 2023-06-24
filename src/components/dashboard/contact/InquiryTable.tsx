@@ -122,16 +122,16 @@ export default function InquiryTable() {
             </section>
             <section>
               <ActiveLink
-                href={'/contact/unconfirmed'}
-                order={2}
+                href={'/dashboard/contact/unconfirmed'}
+                order={3}
                 activeClassName="confirm-active-link"
                 className="confirm-link"
               >
                 확인 필요
               </ActiveLink>
               <ActiveLink
-                href={'/contact/confirmed'}
-                order={2}
+                href={'/dashboard/contact/confirmed'}
+                order={3}
                 activeClassName="confirm-active-link"
                 className="confirm-link"
               >
@@ -140,9 +140,9 @@ export default function InquiryTable() {
             </section>
           </div>
 
-          <table className="px-[15px]">
+          <table className="mx-auto">
             <thead>
-              <tr className="flex items-center border-b border-b-GrayScalePrimary-200 w-full h-[54px] pl-4">
+              <tr className="flex items-center border-b border-b-GrayScalePrimary-200 w-full h-[54px] px-4">
                 <Checkbox checked={allSelected} handleClick={toggleAllSelected} />
 
                 <th className="text-[15px] text-GrayScaleNeutral-1000 mx-10 text-center w-[130px]">이메일</th>
@@ -167,9 +167,12 @@ export default function InquiryTable() {
               </tr>
             </thead>
 
-            {rows.map((el) => (
-              <tbody key={el.contact_us_log_id}>
-                <tr className="h-[68px] flex items-center w-full pl-4">
+            <tbody>
+              {rows.map((el) => (
+                <tr
+                  key={el.contact_us_log_id}
+                  className="h-[68px] flex items-center w-full border-b-[0.5px] border-b-GrayScalePrimary-150 last:border-b-0 px-4"
+                >
                   <Checkbox checked={el.selected} handleClick={() => toggleRow(el.contact_us_log_id)} />
 
                   <div onClick={openDetailModal} className="cursor-pointer flex items-center">
@@ -196,10 +199,11 @@ export default function InquiryTable() {
                   >
                     삭제
                   </button>
+                  {showDetailModal &&
+                    createPortal(<DetailModal closeModal={closeDetailModal} {...el} />, document.body)}
                 </tr>
-                {showDetailModal && createPortal(<DetailModal closeModal={closeDetailModal} {...el} />, document.body)}
-              </tbody>
-            ))}
+              ))}
+            </tbody>
             {showDeleteModal &&
               createPortal(
                 <ConfirmModal closeModal={closeDeleteModal} msg1="연락 내역을 삭제하시겠습니까?" />,

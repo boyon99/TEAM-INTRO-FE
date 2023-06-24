@@ -101,7 +101,7 @@
   }
 
   .custom-tooltip {
-    @apply rounded-sm bg-GrayScalePrimary-100 shadow-lg text-center p-2.5;
+    @apply rounded-sm bg-white text-GrayScalePrimary-600 shadow-lg text-center p-2.5 text-sm border border-GrayScalePrimary-150;
   }
 
   .confirm-active-link {

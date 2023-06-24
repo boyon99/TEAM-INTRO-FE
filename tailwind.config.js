@@ -55,6 +55,7 @@ module.exports = {
       },
       error: {
         500: '#DF4848',
+        400: '#E77373'
       },
       success: {
         500: '#4264DA',

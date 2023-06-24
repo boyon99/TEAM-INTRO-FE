@@ -19,7 +19,7 @@ export default function VisitorsTable({ data }: { data: Visitor[] }) {
         {data.map((visitor, idx) => (
           <tr
             key={idx}
-            className="border-b-[0.5px] border-b-GrayScalePrimary-150 w-full flex justify-evenly last:border-none"
+            className="border-b-[0.5px] border-b-GrayScalePrimary-150 w-full flex justify-evenly last:border-b-0"
           >
             <td className="visitors-table-data">{visitor.device}</td>
             <td className="visitors-table-data">{visitor.keyword}</td>
