@@ -6,16 +6,11 @@ type DropdownProps = {
     id: number;
     name: string;
   }[];
-
-  defaultValue?: {
-    id: number;
-    name: string;
-  };
 };
 
-export default function Dropdown({ dropdownItems, defaultValue }: DropdownProps) {
+export default function Dropdown({ dropdownItems }: DropdownProps) {
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<{ id: number; name: string }>(defaultValue || dropdownItems[0]);
+  const [selectedItem, setSelectedItem] = useState<{ id: number; name: string }>(dropdownItems[0]);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   return (

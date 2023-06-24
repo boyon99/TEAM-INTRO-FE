@@ -1,4 +1,5 @@
 import DropdownExcel from '../DropdownExcel';
+import DownloadTable from './DownloadTable';
 
 const dropdownItems = [
   {
@@ -15,15 +16,32 @@ const dropdownItems = [
   },
 ];
 
-const defaultValue = {
-  id: 0,
-  name: '다운로드 내역',
-};
+const data = [
+  {
+    category: '회사소개서',
+    date: '23.06.10',
+  },
+  {
+    category: '미디어킷',
+    date: '23.06.10',
+  },
+  {
+    category: '회사소개서',
+    date: '23.06.10',
+  },
+  {
+    category: '미디어킷',
+    date: '23.06.10',
+  },
+];
+
+const history = '다운로드 내역';
 
 export default function DownloadHistory() {
   return (
-    <div className="bg-white rounded-xl border border-GrayScalePrimary-150 h-64 mt-5">
-      <DropdownExcel dropdownItems={dropdownItems} data={'data'} defaultValue={defaultValue} />
+    <div className="bg-white rounded-xl border border-GrayScalePrimary-150 h-64 mt-5 space-y-2">
+      <DropdownExcel dropdownItems={dropdownItems} data={'data'} history={history} />
+      <DownloadTable data={data} />
     </div>
   );
 }
