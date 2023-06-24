@@ -360,13 +360,39 @@ export function ContactUs({ theme }: HeaderProps) {
 export function Press({ theme }: HeaderProps) {
   if (theme === 'A') {
     return (
-      <section id="w-06" className="h-[200px]">
-        Press A
+      <section id="w-06" className="h-[200px] font-[LINE]">
+        <div className="ml-[100px] flex items-center">
+          <span className="mr-[9px] font-[700] text-[23px]">News Room</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">
+            보도 자료
+          </span>
+        </div>
+        <div className='w-[709px] mt-[43px] m-[0_auto]'>
+        {[1, 2, 3].map((_, i) => (
+        <div className='w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex'>
+        <div className='w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center'>
+            <p className='text-[34px] font-bold text-[#4B48DF] text-center'>3</p>
+            <div className='mt-[-12px]'>
+            <span className='text-[10px] font-bold text-[#868686] pr-[5px]'>Jul</span>
+            <span className='text-[10px] font-bold text-[#868686]'>2023</span>
+            </div>
+         </div>
+         <div className='w-[384px] ml-[39px] mt-[20px]'>
+            <p className='text-[14px]/[110%] font-bold'>기사제목 기사제목 기사제목 기사제목 기사제목</p>
+            <p className='text-[11px]/[170%] text-[#868686] mt-[10px]'>기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용</p>
+         </div>
+         <div className='w-[141px] h-[74px] ml-[39px] mt-[11.5px] mb-[14px]'>
+            <img src="/기사사진.png" alt="" />
+         </div>
+        </div>
+        ))}
+        
+        </div>
       </section>
     );
   } else {
     return (
-      <section id="w-06" className="h-[200px]">
+      <section id="w-06" className="h-[200px] font-[Line]">
         Press B
       </section>
     );
