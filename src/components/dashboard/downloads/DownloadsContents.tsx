@@ -1,5 +1,6 @@
 import Title from '../Title';
 import DownloadCountChartContainer from './DownloadCountChartContainer';
+import DownloadHistory from './DownloadHistory';
 
 export default function DownloadsContents() {
   return (
@@ -7,6 +8,7 @@ export default function DownloadsContents() {
       <Title title="다운로드 관리" />
 
       <DownloadCountChartContainer />
+      <DownloadHistory />
     </div>
   );
 }

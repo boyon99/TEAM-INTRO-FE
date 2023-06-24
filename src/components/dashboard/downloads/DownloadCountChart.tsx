@@ -41,7 +41,7 @@ export default function DownloadCountChart() {
   ];
 
   return (
-    <div className="w-[608px]">
+    <div className="w-[700px]">
       <ResponsiveContainer width="100%" height={148} className="mt-3">
         <LineChart data={data}>
           <XAxis
