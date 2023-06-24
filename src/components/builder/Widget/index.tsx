@@ -309,24 +309,24 @@ export function TeamMember({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-04" className="font-[LINE] border h-[795px] ">
-           <div className="ml-[100px]">
+      <section id="w-04" className="font-[LINE] h-[795px] ">
+           <div className="ml-[40px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Meat the Team</span>
           <p className="text-[#000] text-[30px] mt-[30px] pl-[2px]">
             팀원들을 소개합니다.
           </p>
         </div>
 
-        <div className="w-[703.12px] h-[337px] m-[0_auto] mt-[25px] flex flex-wrap">
+        <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px] flex flex-wrap">
           
         {[1, 2, 3, 4, 5].map((_, i) => (
               <div     
-                className="w-[169px] h-[300px] ml-[5px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
+                className="w-[193px] h-[300px] ml-[10px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
               >
                 <div className='w-[130px] h-[130px] m-[0_auto] mt-[12px]'>
                 <img src='/man.png' alt="" className='w-[130px] h-[130px] rounded-[160px]'/>
                 </div>
-                <div className="w-[169px] h-[337px] mt-[11.4px]">
+                <div className="w-[190px] h-[337px] mt-[11.4px]">
                   <p className="font-bold text-[11px]/[100%] text-center mb-3">신윤서</p>
                   <p className="w-[130px] font-bold text-[10px]/[100%] text-[#797979] text-center m-[0_auto]">플랫폼서비스팀 / Software Engineer</p>
                   <p className="w-[100px] font-normal text-[9.84px]/[150%] mt-[8.44px] text-center m-[0_auto]">피곤할 때 좋은 음악 추천해주세요.. 랩은 제외하고..!</p>
@@ -390,16 +390,94 @@ export function Download({ theme }: HeaderProps) {
 }
 
 export function History({ theme }: HeaderProps) {
+  const newarray = [{title: '2023', text:'05-08', font: '미디어스타트업 지원사업 선정'},{title: '2022', text:'05-08', font: '미디어스타트업 지원사업 선정'},{title: '반가워',text:'05-08', font: '미디어스타트업 지원사업 선정'}]
   if (theme === 'A') {
     return (
-      <section id="w-08" className="h-[200px]">
-        History A
-      </section>
+      <section className="font-[Line] pt-20">
+        <div className="ml-[100px] flex items-center">
+          <span className="mr-[9px] font-[700] text-[23px]">History</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">
+            연혁
+          </span>
+        </div>
+
+        <div className="mt-[15px] flex flex-col md:grid grid-cols-9 mx-auto p-2 text-GrayScalePrimary-800">
+  {newarray.map((e, i) => (
+    <React.Fragment key={i}>
+      {i % 2 === 0 ? (
+        <div className="flex md:contents">
+          <div className="col-start-5 col-end-6 mr-10 md:mx-auto relative">
+            <div className="h-full w-6 flex items-center justify-center">
+              <div className="h-full w-[1px] bg-primary-400 pointer-events-none"></div>
+            </div>
+            <div className="w-5 h-5 ml-[2px] absolute top-1/2 -mt-3 rounded-full bg-white border-4 border-primary-400"></div>
+          </div>
+          <div className="col-start-6 col-end-10 p-4 my-4 mr-auto mt-[60px]">
+            <p className="font-bold text-[17px]/[100%]">{e.title}</p>
+            <p className="font-bold text-[9px]/[100%] mt-[13px]">
+             {e.text}
+            </p>
+            <p className="font-bold text-[10px]/[170%] mt-[5px] text-[#464646]">
+             {e.font}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-row-reverse md:contents">
+          <div className="col-start-1 col-end-5 ml-auto mt-[60px]">
+            <h3 className="mb-1 flex justify-end font-bold text-[17px]/[100%]">{e.title}</h3>
+            <p className="leading-tight text-justify flex justify-end font-bold text-[9px]/[100%] mt-[13px]">
+            {e.text}
+            </p>
+            <p className="leading-tight text-justify font-bold text-[9px]/[100%] mt-[5px]">
+             {e.font}
+            </p>
+          </div>
+          <div className="col-start-5 col-end-6 md:mx-auto relative mr-10">
+            <div className="h-full w-6 flex items-center justify-center">
+              <div className="h-full w-[1px] bg-primary-400 pointer-events-none"></div>
+            </div>
+            <div className="w-5 h-5 ml-[2px] absolute top-1/2 -mt-3 rounded-full bg-white border-4 border-primary-400"></div>
+          </div>
+        </div>
+      )}
+    </React.Fragment>
+  ))}
+  <button className='w-[113px] h-[33px] border border-solid border-[#4B48DF] ml-[386px]'>MORE (3/N)</button>
+</div>
+</section>
     );
   } else {
     return (
-      <section id="w-08" className="h-[200px]">
-        History B
+      <section id="w-08" className="font-[LINE]">
+        <div className="ml-[40px]">
+          <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">History</span>
+          <p className="text-[#000] text-[34px] mt-[23px] pl-[2px]">
+            질링스가 걸어온 길
+          </p>
+        
+       <div className="w-[820px] h-[481px] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[27px]">
+    <ul className='w-[720px] h-[400px] m-[0px_auto] pt-[40px]'>
+    {[1, 2, 3].map((_, i) => (
+      <li className="relative flex items-baseline gap-6 pb-8">
+        <div className="before:absolute before:left-[5.5px] before:h-full before:w-[2.5px] before:bg-review">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" className="bi bi-circle-fill fill-review" viewBox="0 0 16 16">
+            <circle cx="8" cy="8" r="8" />
+          </svg>
+        </div>
+        <div className='flex justify-center items-center'>
+          <div>
+          <p className="text-[22px] font-bold text-[#464646]">2022</p>
+          <p className="text-sm mt-[11px] text-[14px] font-bold text-[#464646]">04-03</p>
+          <p className="text-[11px] text-[#464646]">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores incidunt blanditiis dignissimos, enim earum mollitia.</p>
+          </div>
+          <img src="/history.png" className='mt-[10px]' alt="" />
+        </div>
+    </li> 
+    ))}
+    </ul>
+  </div>
+  </div>
       </section>
     );
   }
@@ -450,24 +528,21 @@ export function Result({ theme }: HeaderProps) {
   } else {
     return (
       <section id="w-10" className="h-[200px]">
-      <div className="ml-[100px] mt-[14px]">
+      <div className="ml-[40px] mt-[40px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Key Achievements</span>
           <p className="text-[#000] text-[30px] mt-[20px] pl-[2px]">
             우리는 성장하고 있습니다.
           </p>
         </div>
-
-        <div className="w-[704.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
-          
+        <div className="w-[810.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
         {[1, 2, 3,4].map((_, i) => (
               <div     
-                className="w-[160px] h-[113px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)]"
+                className="w-[185px] h-[113px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)]"
               >
                 <p className="font-bold text-[32px]/[100%] text-[#000] text-center mt-[15px]">7억원</p>
                   <p className="font-bold text-[18px]/[100%] text-[#000] mt-[13px] text-center">초기 투자금 유치</p>
                   <p className="text-[10px]/[120%] mt-[5px] text-[#000] text-center">2018년 5개 투자사로부터 초기 투자 자금 유치</p>
               </div>
-         
          ))}
         </div>
       </section>
