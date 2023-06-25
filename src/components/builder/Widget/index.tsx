@@ -270,8 +270,34 @@ export function ProductService({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-03" className="h-[200px] font-[LINE]">
-        ProductService B
+      <section id="w-03" className="h-[400px] font-[LINE]">
+          <div className="ml-[40px]">
+          <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Products & Services</span>
+        </div>
+        <div className="w-[720px] h-[337px] m-[0_auto] mt-[40px] flex flex-wrap">
+          {products?.map((items) => {
+            return (
+              <div
+                key={items.products_and_services_element_id}
+                className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[36px] m-[0_auto]"
+              >
+                <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
+                  {items.image? <img src={items.image} alt="" className='w-[191px] h-[140px] mt-[16px]'/>:<img src='/productno.png' alt="" className='w-[191px] h-[140px] mt-[16px]'/>}
+                  <span className="font-bold text-[20px]/[100%] mt-[16.88px] flex justify-center">{items.name}</span>
+                  <p className="font-bold text-[10.54px]/[100%] mt-[16.88px] flex justify-center">{items.title}</p>
+                  <p className="font-normal text-[9.84px]/[170%] mt-[8.44px] flex justify-center">{items.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        {productservices ?  (
+         <div className='flex w-[700px] ml-[98.44px] mt-[30.22px] items-center'>
+         <p className='text-[22.5px]/[100%] font-[`LINE`] font-bold'>{productservices.description}</p>
+         <Link href={productservices.link} className='ml-[auto]'>
+          {productservices.text?  <button className='w-[126px] h-[41px] bg-[#4B48DF] text-[#fff]'>{productservices.text}</button>:<></>}
+         </Link>
+      </div>): <></>}
       </section>
     );
   }
