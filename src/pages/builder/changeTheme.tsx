@@ -1,4 +1,3 @@
-import EditBuilder from '@/components/builder/LeftPanel';
 import Layout from '@/components/builder/Layout';
 import React, { useState } from 'react';
 import { BeforeButtonSmall } from '@/components/common/button';
@@ -21,18 +20,18 @@ function Preview() {
       <button
         className={
           'w-[264px] h-[112px] mt-[24px] ' +
-          (theme.theme === 'A' ? 'border-[3px] rounded-[13px] border-primary-500' : 'border-[3px] border-white')
+          (theme.theme === 'ThemeA' ? 'border-[3px] rounded-[13px] border-primary-500' : 'border-[3px] border-white')
         }
-        onClick={() => setTheme({ theme: 'A', color: theme.color })}
+        onClick={() => setTheme({ theme: 'ThemeA', color: theme.color })}
       >
         <img src="/ThemeA.png" alt="ThemeA" className="w-[252px] h-[auto] ml-[4px]" />
       </button>
       <button
         className={
           'w-[264px] h-[112px] mt-[8px] ' +
-          (theme.theme === 'B' ? 'border-[3px] rounded-[13px] border-primary-500' : 'border-[3px] border-white')
+          (theme.theme === 'ThemeB' ? 'border-[3px] rounded-[13px] border-primary-500' : 'border-[3px] border-white')
         }
-        onClick={() => setTheme({ theme: 'B', color: theme.color })}
+        onClick={() => setTheme({ theme: 'ThemeB', color: theme.color })}
       >
         <img src="/ThemeB.png" alt="ThemeB" className="w-[252px] h-[auto] ml-[4px]" />
       </button>
