@@ -360,7 +360,7 @@ export function ContactUs({ theme }: HeaderProps) {
 export function Press({ theme }: HeaderProps) {
   if (theme === 'A') {
     return (
-      <section id="w-06" className="h-[200px] font-[LINE]">
+      <section id="w-06" className="h-[350px] font-[LINE]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">News Room</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">
@@ -440,7 +440,7 @@ export function History({ theme }: HeaderProps) {
   const newarray = [{title: '2023', text:'05-08', font: '미디어스타트업 지원사업 선정'},{title: '2022', text:'05-08', font: '미디어스타트업 지원사업 선정'},{title: '반가워',text:'05-08', font: '미디어스타트업 지원사업 선정'}]
   if (theme === 'A') {
     return (
-      <section className="font-[Line] pt-20">
+      <section id="w-08" className="h-[700px] font-[LINE] pt-20">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">History</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">
