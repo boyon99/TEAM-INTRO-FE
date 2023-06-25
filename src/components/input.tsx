@@ -26,6 +26,7 @@ interface InputProps {
     checked,
     value,
     disabled,
+    placeholder,
   }: InputProps) {
     return (
       <>
@@ -34,7 +35,7 @@ interface InputProps {
         <div className={cls(name === "register_password" || name === "register_password_check" || name === "snsemail" || name === "findid_email" || name === "findbznum_email" || name === "findid_pass" || name === "findemail_pass" || name === "repass" || name === "old_repass" || name === "repass_check" || name === "my_biznum"? "flex items-center" : "flex flex-col items-start gap-[8px] p-0 justify-center mb-5 ml-[4px]" )}>
             <span className={cls("h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800"
             )}>{label}</span>
-            <input type={type} value={value} disabled={disabled? disabled: null} {...register} required={required} className={cls("h-[43px] px-3 py-2 ml-auto box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]",
+            <input type={type} placeholder={placeholder} value={value} disabled={disabled? disabled: null} {...register} required={required} className={cls("h-[43px] px-3 py-2 ml-auto box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]",
              name === "findid_email" ? "w-[324px]" :name === "findbznum_email" ? "w-[270px]" :"w-[356px]")}/>
         </div>
       
@@ -43,7 +44,7 @@ interface InputProps {
         {size === "small" ? (
         <>
             <span className={cls("h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800")}>{label}</span>
-        <input type={type} {...register} required={required} className="w-[260px] h-[43px] ml-auto px-3 py-2 box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]"/>
+        <input type={type} placeholder={placeholder} {...register} required={required} className="w-[260px] h-[43px] ml-auto px-3 py-2 box-border border-solid border border-GrayScalePrimary-250 rounded-lg focus:border-primary-500 placeholder-GrayScalePrimary-500 focus:outline-none focus:ring-primary-500 focus:border-[2px]"/>
         </>
         
         ) : null}

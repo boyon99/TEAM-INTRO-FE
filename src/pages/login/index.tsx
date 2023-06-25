@@ -47,7 +47,9 @@ export default function Login() {
              <Image src="/logo.png" alt="logo" height={16.27} width={150}/>
          </div>
          <div className="ml-[calc(50%-156px/2)] pt-[5px]">
+          <Link href={'https://www.zillinks.com/'}>
            <span className="font-sans font-normal text-xs/[100%] text-primary-100 text-center underline">질링스 홈페이지 바로가기&rarr;</span>
+           </Link>
          </div>
          <div className="w-[280px] h-[22px] ml-[calc(50%-132px)] pt-[170px]">
            <span className="font-sans font-bold text-[20px]/[100%] text-primary-100 text-center">회사소개페이지 제작 PLUG-IN</span>
@@ -65,9 +67,9 @@ export default function Login() {
               //     message: "이메일 형식이 아닙니다.",
               //   },
               // }
-              )} name="login_id" label="아이디" type="text" size="large"/>
+              )} name="login_id" label="아이디" type="text" size="large" placeholder="아이디를 입력해주세요."/>
               <Input register={register('password'       
-              )} required name="password" label="비밀번호" type="password" size="large"/>
+              )} required name="password" label="비밀번호" type="password" size="large" placeholder="비밀번호를 입력해주세요."/>
               {error && <span className="text-[red] text-sm ml-[4px]">이메일 또는 비밀번호가 일치하지 않습니다</span>}
               <div className="flex justify-between mt-4">
               
