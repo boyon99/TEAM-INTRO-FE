@@ -1,15 +1,26 @@
-import EditBuilder from '@/components/builder/LeftPanel';
 import Layout from '@/components/builder/Layout';
 import React, { useState } from 'react';
 import { BeforeButtonSmall } from '@/components/common/button';
 import useStore from '@/store';
 import { PrimaryButton } from '@/components/common/button';
 import MainColor from '@/components/builder/MainColor';
+import { useMutation } from '@tanstack/react-query';
+import { updateTheme } from '@/apis/builder';
+import Router from 'next/router';
 
 function Preview() {
   // 테마 변경을 위한 함수와 객체
   const { theme, setTheme } = useStore();
   const [isColorPopup, setIsColorPopup] = useState(false);
+  const { mutate: updateThemeMutation } = useMutation(() => updateTheme(theme), {
+    onSuccess: (data) => {
+      console.log('success', data);
+      Router.push('/builder');
+    },
+    onError: (error) => {
+      console.log('error', error);
+    },
+  });
   return (
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 테마 변경" />
@@ -21,18 +32,22 @@ function Preview() {
       <button
         className={
           'w-[264px] h-[112px] mt-[24px] ' +
-          (theme.theme === 'A' ? 'border-[3px] rounded-[13px] border-primary-500' : 'border-[3px] border-white')
+          (theme.theme_type === 'ThemeA'
+            ? 'border-[3px] rounded-[13px] border-primary-500'
+            : 'border-[3px] border-white')
         }
-        onClick={() => setTheme({ theme: 'A', color: theme.color })}
+        onClick={() => setTheme({ theme_type: 'ThemeA', color: theme.color })}
       >
         <img src="/ThemeA.png" alt="ThemeA" className="w-[252px] h-[auto] ml-[4px]" />
       </button>
       <button
         className={
           'w-[264px] h-[112px] mt-[8px] ' +
-          (theme.theme === 'B' ? 'border-[3px] rounded-[13px] border-primary-500' : 'border-[3px] border-white')
+          (theme.theme_type === 'ThemeB'
+            ? 'border-[3px] rounded-[13px] border-primary-500'
+            : 'border-[3px] border-white')
         }
-        onClick={() => setTheme({ theme: 'B', color: theme.color })}
+        onClick={() => setTheme({ theme_type: 'ThemeB', color: theme.color })}
       >
         <img src="/ThemeB.png" alt="ThemeB" className="w-[252px] h-[auto] ml-[4px]" />
       </button>
@@ -57,7 +72,9 @@ function Preview() {
       <PrimaryButton
         type="primary"
         text="저장하기"
-        onClick={() => {}}
+        onClick={() => {
+          updateThemeMutation();
+        }}
         classname="w-[264px] h-[42px] mt-[48px] text-[18px] font-[700]"
       />
       {isColorPopup ? <MainColor setIsColorPopup={setIsColorPopup} /> : <></>}

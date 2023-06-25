@@ -2,6 +2,9 @@ import { Store } from '@/interfaces/store';
 import { create } from 'zustand';
 
 const useStore = create<Store>((set) => ({
+  // upload image
+  uploadImage: {},
+  setUploadImage: (uploadImage) => set({ uploadImage }),
   // builder - 순서 변경 토글
   isChangeOederToggle: false,
   setIsChangeOederToggle: (isChangeOederToggle) => set({ isChangeOederToggle }),
@@ -103,8 +106,39 @@ const useStore = create<Store>((set) => ({
     }));
   },
   // builder - theme
-  theme: { theme: 'A', color: '#725f5f' }, // A or B
+  theme: { theme_type: 'ThemeA', color: '#725f5f' }, // A or B
   setTheme: (theme) => set({ theme }),
+  // builder - site info edit
+  siteInfo: {
+    pavicon: '',
+    title: '',
+    description: '',
+    sub_domain: '',
+  },
+  setPaivcon: (pavicon) => {
+    set((state) => ({ siteInfo: { ...state.siteInfo, pavicon } }));
+  },
+  setSiteInfo: (siteInfo) => {
+    set((state) => ({ siteInfo: { ...state.siteInfo, ...siteInfo } }));
+  },
+
+  // builder - company info edit
+  companyInfo: {
+    representative: '',
+    logo: '',
+    contact_email: '',
+    phone_number: '',
+    fax_number: '',
+    biz_number: '',
+    company_name: '',
+    start_date: '',
+  },
+  setLogo: (logo) => {
+    set((state) => ({ companyInfo: { ...state.companyInfo, logo } }));
+  },
+  setCompanyInfo: (companyInfo) => {
+    set((state) => ({ companyInfo: { ...state.companyInfo, ...companyInfo } }));
+  },
 
   // 제품/서비스 소개 부분
   buttondes: { buttonname: '' },
@@ -113,8 +147,8 @@ const useStore = create<Store>((set) => ({
   add: false,
   setAdd: (add) => set({ add }),
 
-   imgurl: '',
-   setImgurl: (imgurl) => set({imgurl}),
+  imgurl: '',
+  setImgurl: (imgurl) => set({ imgurl }),
   products: [
     // {
     //   id: 1,
@@ -133,18 +167,17 @@ const useStore = create<Store>((set) => ({
     text: '',
     link: '',
     setOrder_list: (order_list) => {
-      set((state) => ({productservices: { ...state.productservices, order_list } }));
+      set((state) => ({ productservices: { ...state.productservices, order_list } }));
     },
     setDescription: (description) => {
-      set((state) => ({ productservices: { ...state.productservices, description} }));
+      set((state) => ({ productservices: { ...state.productservices, description } }));
     },
     setText: (text) => {
-      set((state) => ({ productservices: { ...state.productservices, text} }));
+      set((state) => ({ productservices: { ...state.productservices, text } }));
     },
     setLink: (link) => {
       set((state) => ({ productservices: { ...state.productservices, link } }));
     },
-   
   },
   // builder - header, footer
   headerfooter: {

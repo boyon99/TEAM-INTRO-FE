@@ -1,12 +1,14 @@
 import { Header } from 'next/dist/lib/load-custom-routes';
 
 export interface Store {
+  uploadImage: {};
+  setUploadImage: (uploadImage: (imgSrc: any) => void) => void;
   widgets: Widget[];
   setWidget: (widgets: Widget[]) => void;
   setToggle: (name: string) => void;
   isChangeOederToggle: boolean;
   setIsChangeOederToggle: (isChangeOederToggle: boolean) => void;
-  theme: Theme; // A or B
+  theme: Theme; // ThemeA or ThemeB
   setTheme: (theme: Theme) => void;
   buttondes: Buttonde;
   setButtondes: (buttonname: Buttonde) => void;
@@ -16,11 +18,35 @@ export interface Store {
   setProducts: (products: Products[]) => void;
   headerfooter: HeaderFooter;
   imgurl: string;
-  setImgurl: (imgurl: string) => void
+  setImgurl: (imgurl: string) => void;
   keyVisual: KeyVisual;
   missionVision: MissionVision;
   channel: Channel;
-  productservices:ProductServices;
+  productservices: ProductServices;
+  siteInfo: SiteInfo;
+  setSiteInfo: (siteInfo: SiteInfo) => void;
+  setPaivcon: (paivcon: string) => void;
+  companyInfo: CompanyInfo;
+  setLogo: (logo: string) => void;
+  setCompanyInfo: (companyInfo: CompanyInfo) => void;
+}
+
+export interface CompanyInfo {
+  representative: string;
+  logo: string;
+  contact_email: string;
+  phone_number: string;
+  fax_number: string;
+  biz_number: string;
+  company_name: string;
+  start_date: string;
+}
+
+export interface SiteInfo {
+  pavicon: string;
+  title: string;
+  description: string;
+  sub_domain: string;
 }
 
 export interface Channel {
@@ -76,7 +102,7 @@ export interface Widget {
 }
 
 export interface Theme {
-  theme: 'A' | 'B'; // A or B
+  theme_type: 'ThemeA' | 'ThemeB'; // A or B
   color: string;
 }
 
@@ -94,10 +120,10 @@ export interface Products {
   order?: number;
 }
 export interface ProductServices {
-  order_list: string,
-  description: string,
-  text: string,
-  link: string,
+  order_list: string;
+  description: string;
+  text: string;
+  link: string;
   setOrder_list: (order_list: string) => void;
   setDescription: (description: string) => void;
   setText: (text: string) => void;
