@@ -114,9 +114,12 @@ const useStore = create<Store>((set) => ({
     title: '',
     description: '',
     sub_domain: '',
-    setSiteInfo: (siteInfo) => {
-      set((state) => ({ siteInfo: { ...state.siteInfo, ...siteInfo } }));
-    },
+  },
+  setPaivcon: (pavicon) => {
+    set((state) => ({ siteInfo: { ...state.siteInfo, pavicon } }));
+  },
+  setSiteInfo: (siteInfo) => {
+    set((state) => ({ siteInfo: { ...state.siteInfo, ...siteInfo } }));
   },
 
   // builder - company info edit

@@ -9,12 +9,13 @@ import { useBuilder } from '@/hooks/useBuilder';
 
 export default function Builder() {
   const { data: builderData, isLoading } = useBuilder();
-  const { setTheme, siteInfo, companyInfo, setCompanyInfo } = useStore();
+  const { setTheme, setSiteInfo, setCompanyInfo } = useStore();
 
   useEffect(() => {
     if (!isLoading) {
       console.log(builderData);
       setCompanyInfo(builderData.company_info);
+      setSiteInfo(builderData.site_info);
       setTheme({ theme_type: builderData.theme.type, color: builderData.theme.color });
     }
   }, [builderData]);

@@ -22,6 +22,11 @@ export const updateTheme = async (theme: any) => {
   return data;
 };
 
+export const updateSiteInfo = async (siteInfo: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/siteInfo', siteInfo);
+  return data;
+};
+
 export const uploadImage = async (formData: any) => {
   console.log(formData);
   const { data } = await axiosInstance({ multi: true }).post<any>('/api/s/user/uploadImage', formData);

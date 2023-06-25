@@ -24,6 +24,8 @@ export interface Store {
   channel: Channel;
   productservices: ProductServices;
   siteInfo: SiteInfo;
+  setSiteInfo: (siteInfo: SiteInfo) => void;
+  setPaivcon: (paivcon: string) => void;
   companyInfo: CompanyInfo;
   setLogo: (logo: string) => void;
   setCompanyInfo: (companyInfo: CompanyInfo) => void;
@@ -45,7 +47,6 @@ export interface SiteInfo {
   title: string;
   description: string;
   sub_domain: string;
-  setSiteInfo: (siteInfo: SiteInfo) => void;
 }
 
 export interface Channel {

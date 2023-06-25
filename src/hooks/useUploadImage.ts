@@ -7,13 +7,17 @@ import useStore from '@/store';
 import { useUpdateCompany } from './useUpdateCompany';
 
 export const useUploadImage = (imgSrc: any, type: string) => {
-  const { companyInfo, setCompanyInfo } = useStore();
+  const { companyInfo, setCompanyInfo, siteInfo, setSiteInfo } = useStore();
   const { mutate } = useMutation(() => uploadImage({ image: imgSrc }), {
     onSuccess: (data) => {
       console.log(data);
       if (type === 'company') {
         setCompanyInfo({ ...companyInfo, logo: data.data.upload_path });
         useUpdateCompany(companyInfo);
+      }
+      if (type === 'site') {
+        setSiteInfo({ ...siteInfo, pavicon: data.data.upload_path });
+        useUpdateCompany(siteInfo);
       }
     },
     onError: (error: AxiosError) => {
