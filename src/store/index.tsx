@@ -106,7 +106,7 @@ const useStore = create<Store>((set) => ({
     }));
   },
   // builder - theme
-  theme: { theme: 'ThemeA', color: '#725f5f' }, // A or B
+  theme: { theme_type: 'ThemeA', color: '#725f5f' }, // A or B
   setTheme: (theme) => set({ theme }),
   // builder - site info edit
   siteInfo: {

@@ -101,7 +101,7 @@ export interface Widget {
 }
 
 export interface Theme {
-  theme: 'ThemeA' | 'ThemeB'; // A or B
+  theme_type: 'ThemeA' | 'ThemeB'; // A or B
   color: string;
 }
 

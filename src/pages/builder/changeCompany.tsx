@@ -12,7 +12,6 @@ import { useUpdateCompany } from '@/hooks/useUpdateCompany';
 
 function Preview() {
   const { companyInfo, uploadImage, setUploadImage, setCompanyInfo, setLogo } = useStore();
-  console.log(companyInfo);
   const uploadImageMutation = useUploadImage(uploadImage, 'company');
   const updateCompany = useUpdateCompany(companyInfo);
 

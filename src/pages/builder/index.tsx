@@ -13,9 +13,9 @@ export default function Builder() {
 
   useEffect(() => {
     if (!isLoading) {
-      console.log(builderData.company_info);
+      console.log(builderData);
       setCompanyInfo(builderData.company_info);
-      setTheme({ theme: builderData.theme.type, color: builderData.theme.color });
+      setTheme({ theme_type: builderData.theme.type, color: builderData.theme.color });
     }
   }, [builderData]);
 
