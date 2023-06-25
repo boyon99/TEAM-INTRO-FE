@@ -25,7 +25,7 @@ export function BuilderInput({
       <input
         type={type}
         {...register}
-        onChange={onChange} 
+        onChange={onChange}
         className={
           'w-[264px] h-[42px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex py-[7px] indent-[10px] ' +
           (readonly ? 'bg-GrayScalePrimary-250 placeholder:text-GrayScalePrimary-600' : '')
@@ -43,7 +43,7 @@ export function BuilderInput({
 }
 
 // 이미지 업로드 입력창
-export function BuilderUploadImage({ title, ratio, imgSrc, setImgSrc, name }: BuilderUploadImageProps) {
+export function BuilderUploadImage({ title, ratio, imgSrc, setImgSrc, name, setUploadImg }: BuilderUploadImageProps) {
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
@@ -74,7 +74,9 @@ export function BuilderUploadImage({ title, ratio, imgSrc, setImgSrc, name }: Bu
           <>
             <div className="w-[60px] h-[60px] rounded-[10px] bg-primary-100 mx-[auto] mt-[14px]">
               <input
-                onChange={(e) => fileCheck(e, setImgSrc, ratio)}
+                onChange={(e) => {
+                  fileCheck(e, setImgSrc, ratio, setUploadImg);
+                }}
                 accept="image/*"
                 type="file"
                 name={name}
@@ -128,14 +130,14 @@ export function BuilderTextarea({
   value,
   setValue,
   onChange: ProductChange,
-  register
+  register,
 }: BuilderInputProps) {
   const [textLength, setTextLength] = useState(0);
   return (
     <div className="relative">
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
       <textarea
-         {...register}
+        {...register}
         className={
           'w-[264px] h-[160px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex py-[7px] placeholder:w-[232px] placeholder:h-[100px] pt-[12px] pl-[16px] pr-[16px]'
         }

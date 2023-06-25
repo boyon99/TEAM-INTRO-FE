@@ -11,7 +11,7 @@ export default function MainColor({ setIsColorPopup }: { setIsColorPopup: any })
   const [color, setColor] = useState(theme.color);
 
   return (
-    <div className="w-[532px] h-[438px] rounded-[8px] bg-white z-10 fixed top-[220px] left-[200px] mt-[20px] shadow-GrayScalePrimary-200 shadow-xl">
+    <div className="w-[532px] h-[438px] rounded-[8px] bg-white z-20 fixed top-[220px] left-[200px] mt-[20px] shadow-GrayScalePrimary-200 shadow-xl">
       {/* 선택한 색상 보여주기 */}
       <div
         style={{
@@ -81,7 +81,7 @@ export default function MainColor({ setIsColorPopup }: { setIsColorPopup: any })
         type="primary"
         text="저장하기"
         onClick={() => {
-          setTheme({ theme: theme.theme, color: color as string });
+          setTheme({ theme_type: theme.theme_type, color: color as string });
           setIsColorPopup(false);
         }}
         classname="w-[264px] h-[40px] absolute bottom-[20px] left-[calc(50%-132px)] text-[16px] font-[700]"

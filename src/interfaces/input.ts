@@ -22,6 +22,7 @@ export interface BuilderUploadImageProps {
   [key: string]: any;
   imgSrc: string; // 이미지 src
   setImgSrc: (imgSrc: string) => void; // 이미지 src 변경 함수
+  setUploadImg: (uploadImage: (imgSrc: any) => void) => void; // 이미지 업로드 함수
 }
 
 export interface BuilderCheckboxProps {
