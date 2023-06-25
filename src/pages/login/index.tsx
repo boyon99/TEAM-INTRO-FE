@@ -24,7 +24,7 @@ export default function Login() {
   const { mutate, error } = useMutation(login, {
     onSuccess: (data) => {
       setCookie('access_token', data?.access_token, data && { path: '/', maxAge: 60*60*24 })
-      navigate.push("/")
+      navigate.push("/dashboard/main")
     },
     onError: (err: AxiosError) => { 
       console.log(err)
