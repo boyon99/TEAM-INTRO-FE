@@ -6,6 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Image from 'next/image'
 import Link from 'next/link';
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from 'react'
 import { FieldErrors, useForm } from 'react-hook-form';
 
@@ -80,11 +81,12 @@ function Legister() {
   };
   const [test, setTest] = useState('hi')
     const { register, handleSubmit, watch, getValues, formState: { errors } } = useForm<EnterForm>({mode: 'onChange'});
-    
+    const router = useRouter();
     const { mutate: signupmutate, error: singuperr } = useMutation(signup, {
       onSuccess: (data) => {
         setSignupmessage('회원가입이 완료되셨습니다!')
         openModal()
+        router.replace('login')
        console.log(data)
       },
       onError: (err: AxiosError) => { 
@@ -203,7 +205,7 @@ function Legister() {
         <div className='flex items-center mb-[12px]'>
         <Input register={register('login_id'
               
-              )} required name="id" label="아이디*" type="text" size="small"/>
+              )} required name="id" label="아이디*" type="text" size="small" placeholder="아이디를 입력해주세요."/>
               {idmessage? <Button text="중복확인" active={true} type="button" size="xsmall"/> : login_id ? <Button disable={true} text="중복확인" type="button" onClick={checkidonClick} size="xsmall"/> :  <Button disable={false} text="중복확인" type="button" onClick={checkidonClick}  size="xsmall"/>}
              
               {/* idmessage? <Button text="중복확인" active={true} type="button" onClick={checkidonClick} size="xsmall"/>  */}
@@ -218,7 +220,7 @@ function Legister() {
        
         <div className='flex items-center mb-[14px]'>
         <Input register={register('biz_num'       
-              )} required name="bznum" label="사업자등록번호*" type="text" size="small"/>
+              )} required name="bznum" label="사업자등록번호*" type="text" size="small" placeholder="사업자등록번호 10자리."/>
               {nummesaage? <Button  text="인증확인" active={true} type="button" size="xsmall"/> : biz_num ? <Button disable={true} text="인증요청" type="button"  onClick={checknumonClick} size="xsmall"/> :  <Button disable={false} text="인증요청" type="button" onClick={checknumonClick} size="xsmall"/>}
                
         </div>
@@ -237,7 +239,7 @@ function Legister() {
           message: '10자 이상의 영문, 숫자, 특수문자 조합을 입력해주세요.',
         },
       }       
-          )} required name="register_password" label="비밀번호*" type="password" size="large"/>
+          )} required name="register_password" label="비밀번호*" type="password" size="large" placeholder="비밀번호를 입력해주세요."/>
                
         </div>
         <div className="mb-[10px] text-right">
@@ -256,7 +258,7 @@ function Legister() {
             },
           },
         }       
-              )} required name="register_password_check" label="비밀번호 확인*" type="password" size="large"/>
+              )} required name="register_password_check" label="비밀번호 확인*" type="password" size="large" placeholder="비밀번호를 재입력해주세요."/>
                
         </div>
         <div className="mb-[10px] text-right">
@@ -273,7 +275,7 @@ function Legister() {
             message: "이메일 형식이 아닙니다.",
           },
         }      
-              )} required name="email" label="이메일*" type="text" size="small"/>
+              )} required name="email" label="이메일*" type="text" size="small" placeholder="example@zillings.com"/>
               {emailmesaage? <Button disable={false} text="요청완료" active={true} type="button" size="xsmall"/> :email? <Button disable={true} text={emailLoading? "Loading...": "인증요청"} onClick={checkemailonClick} type="button" size="xsmall"/> :  <Button disable={false} text={emailLoading? "Loading...": "인증요청"} type="button" onClick={checkemailonClick} size="xsmall"/> }
                
         </div>

@@ -38,6 +38,9 @@ function RePass() {
   const [method, setMethod] = useState<"info" | "pass">("info");
     const { register, handleSubmit, watch, reset, getValues, formState: { errors } } = useForm<EnterForm>();
     const email = watch('email')
+    const oldpass = watch('password')
+    const newpass = watch('new_password')
+    const newpasscon = watch('new_passwordConfirm')
     const code = watch('code')
     
     const [isOpen, setIsOpen] = useState(false);
@@ -227,7 +230,7 @@ function RePass() {
                 //     message: "이메일 형식이 아닙니다.",
                 //     },
                 // }
-                )} name="old_repass" label="기존 비밀번호*" type="password" size="large"/>
+                )} name="old_repass" label="기존 비밀번호*" type="password" size="large" placeholder='기존 비밀번호를 입력하세요.'/>
                 
     </div> 
     <div className='w-[500px] mb-[20px] mt-[38px]'>
@@ -239,7 +242,7 @@ function RePass() {
                     // message: "이메일 형식이 아닙니다.",
                     // },
                 }
-                )} name="repass" label="새 비밀번호*" type="password" size="large"/>
+                )} name="repass" label="새 비밀번호*" type="password" size="large" placeholder='새 비밀번호를 입력하세요.'/>
                 
     </div> 
     <div className='w-[500px] h-[66px]'>
@@ -254,11 +257,13 @@ function RePass() {
                         },
                       }
               
-                )} name="repass_check" label="새 비밀번호 확인*" type="password" size="large"/>
+                )} name="repass_check" label="새 비밀번호 확인*" type="password" size="large" placeholder='새 비밀번호를 다시 입력해주세요.'/>
                 
     </div> 
     <div className='ml-[160px] mt-[62px]'>
-         <Button disable={false} text="비밀번호 변경" size="xlarge"/>
+      {oldpass && newpass && newpasscon ?
+         <Button disable={true} text="비밀번호 변경" size="xlarge"/> : <Button disable={false} text="비밀번호 변경" size="xlarge"/>
+       }
     </div>
     {errors.new_passwordConfirm?.message as string}
  </form>
@@ -283,7 +288,7 @@ function RePass() {
             message: "이메일 형식이 아닙니다.",
           },
         }      
-              )} required name="email" label="이메일*" type="text" size="small"/>
+              )} required name="email" label="이메일*" type="text" size="small" placeholder='example@zillings.com'/>
               {emaildata? <Button disable={false} text="요청완료" active={true} type="button" size="xsmall"/> :email? <Button disable={true} text={emailLoading? "Loading...": "인증요청"} onClick={checkemailonClick} type="button" size="xsmall"/> :  <Button disable={false} text={emailLoading? "Loading...": "인증요청"} type="button" onClick={checkemailonClick} size="xsmall"/> }
                
  </div> 
