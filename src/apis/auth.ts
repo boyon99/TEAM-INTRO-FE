@@ -81,7 +81,6 @@ export const repass = async (newpass: NewPass) => {
 export const user = async () => {
   const { data } = await axiosInstance.get<any>('/api/s/user')
   const response = data.data;
-  console.log(response)
   return response
 }
 // 유저 기본정보 수정

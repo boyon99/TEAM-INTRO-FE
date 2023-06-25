@@ -30,7 +30,6 @@ export default function Login() {
       console.log(err)
     },
   })
- console.log(checked)
   const onValid = (data: EnterForm) => {
     mutate({...data, remember_me: checked})
   };
