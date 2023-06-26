@@ -8,7 +8,7 @@ import Link from 'next/link';
 export function KeyVisual({ theme }: HeaderProps) {
   const { keyVisual } = useStore();
 
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-01" className="h-[450px] w-full flex relative">
         <div
@@ -69,7 +69,7 @@ export function KeyVisual({ theme }: HeaderProps) {
 
 export function MissionVision({ theme }: HeaderProps) {
   const { missionVision } = useStore();
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-02" className="h-[300px] w-full flex relative font-[LINE]">
         {/* 미션 */}
@@ -122,9 +122,7 @@ export function MissionVision({ theme }: HeaderProps) {
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Mission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">
-                {missionVision.mission}
-              </div>
+              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.mission}</div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
                 {missionVision.missionDetail}
               </div>
@@ -136,9 +134,7 @@ export function MissionVision({ theme }: HeaderProps) {
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Vission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">
-                {missionVision.vision}
-              </div>
+              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.vision}</div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
                 {missionVision.visionDetail}
               </div>
@@ -152,7 +148,7 @@ export function MissionVision({ theme }: HeaderProps) {
 
 export function Header({ theme }: HeaderProps) {
   const { headerfooter } = useStore();
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
         <img src="" className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
@@ -197,7 +193,7 @@ export function Header({ theme }: HeaderProps) {
 
 export function Footer({ theme }: HeaderProps) {
   const { headerfooter } = useStore();
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative">
         <div className="w-[255px] ml-[99px] mt-[73px] bg-primary-500 mb-[25px]">phone</div>
@@ -213,29 +209,26 @@ export function Footer({ theme }: HeaderProps) {
 }
 
 export function ProductService({ theme }: HeaderProps) {
- 
-
-  const { products,setProducts, imgurl, setImgurl, productservices } = useStore();
+  const { products, setProducts, imgurl, setImgurl, productservices } = useStore();
   useEffect(() => {
     const updatedProducts = products.map((product, index) => {
       if (index === products.length - 1) {
         return {
           ...product,
-          image: imgurl
+          image: imgurl,
         };
       }
       return product;
     });
 
-
     setProducts(updatedProducts);
-  },[imgurl])
+  }, [imgurl]);
   console.log(products);
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-04" className="h-[402px]">
         <div className="ml-[110px] flex">
-         <Image src="/Products & Services.png" width={307} height={26} alt="" className='mr-[7px]'/>
+          <Image src="/Products & Services.png" width={307} height={26} alt="" className="mr-[7px]" />
           <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             제품 소개
           </span>
@@ -250,7 +243,11 @@ export function ProductService({ theme }: HeaderProps) {
               >
                 <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
                   <span className="font-bold text-[15px]/[100%]">{items.name}</span>
-                  {items.image? <img src={items.image} alt="" className='w-[191px] h-[140px] mt-[16px]'/>:<img src='/productno.png' alt="" className='w-[191px] h-[140px] mt-[16px]'/>}
+                  {items.image ? (
+                    <img src={items.image} alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                  ) : (
+                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                  )}
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
                   <p className="font-normal text-[9.84px]/[170%] mt-[8.44px]">{items.description}</p>
                 </div>
@@ -258,14 +255,20 @@ export function ProductService({ theme }: HeaderProps) {
             );
           })}
         </div>
-        {productservices ?  (
-         <div className='flex w-[700px] ml-[98.44px] mt-[30.22px] items-center'>
-         <p className='text-[22.5px]/[100%] font-[`LINE`] font-bold'>{productservices.description}</p>
-         <Link href={productservices.link} className='ml-[auto]'>
-          {productservices.text?  <button className='w-[126px] h-[41px] bg-[#4B48DF] text-[#fff]'>{productservices.text}</button>:<></>}
-         </Link>
-      </div>): <></>}
-     
+        {productservices ? (
+          <div className="flex w-[700px] ml-[98.44px] mt-[30.22px] items-center">
+            <p className="text-[22.5px]/[100%] font-[`LINE`] font-bold">{productservices.description}</p>
+            <Link href={productservices.link} className="ml-[auto]">
+              {productservices.text ? (
+                <button className="w-[126px] h-[41px] bg-[#4B48DF] text-[#fff]">{productservices.text}</button>
+              ) : (
+                <></>
+              )}
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
       </section>
     );
   } else {
@@ -278,7 +281,7 @@ export function ProductService({ theme }: HeaderProps) {
 }
 
 export function TeamMember({ theme }: HeaderProps) {
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-04" className="h-[200px]">
         TeamMember A
@@ -294,7 +297,7 @@ export function TeamMember({ theme }: HeaderProps) {
 }
 
 export function ContactUs({ theme }: HeaderProps) {
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-05" className="h-[200px]">
         ContactUs A
@@ -310,7 +313,7 @@ export function ContactUs({ theme }: HeaderProps) {
 }
 
 export function Press({ theme }: HeaderProps) {
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-06" className="h-[200px]">
         Press A
@@ -326,7 +329,7 @@ export function Press({ theme }: HeaderProps) {
 }
 
 export function Download({ theme }: HeaderProps) {
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-07" className="h-[200px]">
         Download A
@@ -342,7 +345,7 @@ export function Download({ theme }: HeaderProps) {
 }
 
 export function History({ theme }: HeaderProps) {
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-08" className="h-[200px]">
         History A
@@ -358,7 +361,7 @@ export function History({ theme }: HeaderProps) {
 }
 
 export function TeamCulture({ theme }: HeaderProps) {
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-09" className="h-[200px]">
         TeamCulture A
@@ -374,7 +377,7 @@ export function TeamCulture({ theme }: HeaderProps) {
 }
 
 export function Result({ theme }: HeaderProps) {
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-10" className="h-[200px]">
         Result A
@@ -390,7 +393,7 @@ export function Result({ theme }: HeaderProps) {
 }
 
 export function Partners({ theme }: HeaderProps) {
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-11" className="h-[200px]">
         Partners A
@@ -406,7 +409,7 @@ export function Partners({ theme }: HeaderProps) {
 }
 
 export function Review({ theme }: HeaderProps) {
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-12" className="h-[200px]">
         Review A
@@ -423,7 +426,7 @@ export function Review({ theme }: HeaderProps) {
 
 export function Channel({ theme }: HeaderProps) {
   const { channel } = useStore();
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-13" className="h-[200px] w-full relative mt-[20px]">
         <span className="font-[700] text-[22px] font-[LINE] ml-[100px]">SNS Channel</span>
@@ -467,7 +470,7 @@ export function Channel({ theme }: HeaderProps) {
 }
 
 export function Patent({ theme }: HeaderProps) {
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-14" className="h-[200px]">
         Patent A
