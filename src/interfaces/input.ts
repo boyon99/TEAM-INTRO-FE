@@ -35,3 +35,7 @@ export interface BuilderCheckboxProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // onChange
   setChecked: any; // setChecked
 }
+
+export interface BuilderSelectProps {
+  title: string; // label
+}

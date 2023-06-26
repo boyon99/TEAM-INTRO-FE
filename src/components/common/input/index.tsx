@@ -1,4 +1,9 @@
-import { BuilderCheckboxProps, BuilderInputProps, BuilderUploadImageProps } from '@/interfaces/input';
+import {
+  BuilderCheckboxProps,
+  BuilderInputProps,
+  BuilderSelectProps,
+  BuilderUploadImageProps,
+} from '@/interfaces/input';
 import { fileCheck } from '@/utils/fileCheck';
 import { useEffect, useState } from 'react';
 import { PrimaryButton } from '../button';
@@ -192,5 +197,24 @@ export function BuilderCheckbox({ list, onChange, setChecked, checked, value }: 
         />
       </div>
     </>
+  );
+}
+
+// 셀렉트박스
+export function BuilderSelect({ title }: BuilderSelectProps) {
+  return (
+    <div>
+      <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
+      <select
+        className="w-[264px] h-[42px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex py-[7px] indent-[10px] font-[400]"
+        onChange={(e) => {
+          console.log(e.target.value);
+        }}
+      >
+        {/* TODOLIST - 디자인 작업 */}
+        <option value="PARTNERS">파트너</option>
+        <option value="INVESTMENT">투자자</option>
+      </select>
+    </div>
   );
 }
