@@ -31,6 +31,7 @@ export interface Store {
   setMissionDetail: (mission_detail: string) => void;
   setVisionDetail: (vision_detail: string) => void;
   channel: Channel;
+  setChannel: (channel: Channel) => void;
   productservices: ProductServices;
   siteInfo: SiteInfo;
   setSiteInfo: (siteInfo: SiteInfo) => void;
@@ -59,15 +60,20 @@ export interface SiteInfo {
 }
 
 export interface Channel {
-  channelList: ChannelList[];
-  setValue: (name: string, value: string) => void;
-  setChecked: (name: string) => void;
-}
-export interface ChannelList {
-  name: string;
-  value: string;
-  checked: boolean;
-  img: string;
+  instagram_status: boolean;
+  instagram: string;
+  linked_in_status: boolean;
+  linked_in: string;
+  youtube_status: boolean;
+  youtube: string;
+  notion_status: boolean;
+  notion: string;
+  naver_blog_status: boolean;
+  naver_blog: string;
+  brunch_stroy_status: boolean;
+  brunch_stroy: string;
+  facebook_status: boolean;
+  facebook: string;
 }
 
 export interface MissionVision {

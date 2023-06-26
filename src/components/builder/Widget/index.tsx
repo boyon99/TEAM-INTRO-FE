@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { headerName } from '@/data/headerName';
+import { channelList } from '@/data/channel';
 
 export function KeyVisual({ theme }: HeaderProps) {
   const { keyVisual } = useStore();
@@ -692,18 +693,20 @@ export function Review({ theme }: HeaderProps) {
 
 export function Channel({ theme }: HeaderProps) {
   const { channel } = useStore();
+  const channelValues = Object.values(channel);
+
   if (theme === 'ThemeA') {
     return (
       <section id="w-13" className="h-[200px] w-full relative mt-[20px]">
         <span className="font-[700] text-[22px] font-[LINE] ml-[100px]">SNS Channel</span>
         <span className="font-[500] text-[10px] text-GrayScaleNeutral-700 ml-[5px] mt-[30px]">채널</span>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
-          {channel.channelList.map((items, index) => {
-            if (items.checked) {
+          {channelList.map((items, index) => {
+            if (channelValues[index * 2]) {
               return (
-                <div className="flex flex-row mr-[4px]">
+                <div className="flex flex-row mr-[4px]" key={index}>
                   <img src={items.img} className="w-[50px] h-[50px]" />
-                  <span className="text-[10px] mt-[30px]">{items.value}</span>
+                  <span className="text-[10px] mt-[30px]">{channelValues[index * 2 + 1]}</span>
                 </div>
               );
             } else {
@@ -718,10 +721,13 @@ export function Channel({ theme }: HeaderProps) {
       <section id="w-13" className="h-[200px] w-full relative mt bg-GrayScaleNeutral-100">
         <div className="font-[500] text-[16px] text-[#FFB800] ml-[100px] pt-[20px]">SNS Channel</div>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
-          {channel.channelList.map((items, index) => {
-            if (items.checked) {
+          {channelList.map((items, index) => {
+            if (channelValues[index * 2]) {
               return (
-                <div className="flex flex-row mr-[4px] bg-white w-[70px] h-[70px] rounded-[14px] drop-shadow-xl mx-[20px] items-center justify-center">
+                <div
+                  className="flex flex-row mr-[4px] bg-white w-[70px] h-[70px] rounded-[14px] drop-shadow-xl mx-[20px] items-center justify-center"
+                  key={index}
+                >
                   <img src={items.img} className="w-[50px] h-[50px]" />
                 </div>
               );

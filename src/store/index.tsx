@@ -232,78 +232,23 @@ const useStore = create<Store>((set) => ({
   },
   // builder - channel
   channel: {
-    channelList: [
-      {
-        name: '인스타그램',
-        value: '',
-        checked: false,
-        img: '/channel/인스타그램.png',
-      },
-      {
-        name: '링크드인',
-        value: '',
-        checked: false,
-        img: '/channel/링크드인.png',
-      },
-      {
-        name: '유튜브',
-        value: '',
-        checked: false,
-        img: '/channel/유튜브.png',
-      },
-      {
-        name: '노션',
-        value: '',
-        checked: false,
-        img: '/channel/노션.png',
-      },
-      {
-        name: '네이버블로그',
-        value: '',
-        checked: false,
-        img: '/channel/네이버블로그.png',
-      },
-      {
-        name: '브런치스토리',
-        value: '',
-        checked: false,
-        img: '/channel/브런치.png',
-      },
-      {
-        name: '페이스북',
-        value: '',
-        checked: false,
-        img: '/channel/페이스북.png',
-      },
-    ],
-    setValue: (name, value) => {
-      set((state) => ({
-        channel: {
-          ...state.channel,
-          channelList: state.channel.channelList.map((channel) => {
-            if (channel.name === name) {
-              return { ...channel, value };
-            } else {
-              return channel;
-            }
-          }),
-        },
-      }));
-    },
-    setChecked: (name) => {
-      set((state) => ({
-        channel: {
-          ...state.channel,
-          channelList: state.channel.channelList.map((channel) => {
-            if (channel.name === name) {
-              return { ...channel, checked: !channel.checked };
-            } else {
-              return channel;
-            }
-          }),
-        },
-      }));
-    },
+    instagram_status: false,
+    instagram: '',
+    linked_in_status: false,
+    linked_in: '',
+    youtube_status: false,
+    youtube: '',
+    notion_status: false,
+    notion: '',
+    naver_blog_status: false,
+    naver_blog: '',
+    brunch_stroy_status: false,
+    brunch_stroy: '',
+    facebook_status: false,
+    facebook: '',
+  },
+  setChannel: (channel) => {
+    set((state) => ({ channel: { ...state.channel, ...channel } }));
   },
 }));
 

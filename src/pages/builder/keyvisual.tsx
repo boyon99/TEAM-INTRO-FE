@@ -14,7 +14,7 @@ function Preview() {
   const { widgets, setToggle, keyVisual, uploadImage, setUploadImage, setBackground, setKeyVisual, setSloganDetail } =
     useStore();
   const findWigetToggle = widgets.find((widget) => widget.name === '키비주얼/슬로건');
-  const updateKeyVisualMutation = useUpdateKeyVisual({ widget_status: findWigetToggle, ...keyVisual });
+  const updateKeyVisualMutation = useUpdateKeyVisual({ widget_status: findWigetToggle?.toggle, ...keyVisual });
   const { mutate: uploadImageMutation, isSuccess } = useUploadImage(uploadImage, 'keyvisual');
 
   console.log('keyVisual', keyVisual);
@@ -41,12 +41,12 @@ function Preview() {
       {/* 사용여부 */}
       <div className="mt-[48px] mb-[10px] font-[700] text-[14px] text-GrayScalePrimary-700">사용 여부</div>
       <ToggleWidget
-        toggle={widgets[0].toggle}
+        toggle={findWigetToggle?.toggle as boolean}
         setWidgetToggle={setToggle}
         widgetName="키비주얼/슬로건"
         toggleText={{ true: '사용', false: '사용 안함' }}
       />
-      {widgets[0].toggle ? (
+      {findWigetToggle?.toggle ? (
         <>
           {/* 상단 메뉴 */}
           <div className="mt-[48px] font-[700] text-[18px] text-GrayScalePrimary-700">상단 메뉴</div>

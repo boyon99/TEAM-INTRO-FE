@@ -38,12 +38,12 @@ function Preview() {
       {/* 사용여부 */}
       <div className="mt-[48px] mb-[10px] font-[700] text-[14px] text-GrayScalePrimary-700">사용 여부</div>
       <ToggleWidget
-        toggle={widgets[1].toggle}
+        toggle={findWigetToggle?.toggle as boolean}
         setWidgetToggle={setToggle}
         widgetName="미션/비젼"
         toggleText={{ true: '사용', false: '사용 안함' }}
       />
-      {widgets[1].toggle ? (
+      {findWigetToggle?.toggle ? (
         <>
           {/* 미샨/비전 */}
           <div className="mt-[48px] font-[700] text-[18px] text-GrayScalePrimary-700">미션/비전</div>
