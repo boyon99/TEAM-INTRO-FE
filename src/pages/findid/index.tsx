@@ -1,5 +1,6 @@
 import { findidbybznum, findidbyemail } from "@/apis/auth";
 import Button from "@/components/button"
+import { Popup } from "@/components/common/popup";
 import Input from "@/components/input"
 import { cls } from "@/utils/utile";
 import { useMutation } from "@tanstack/react-query";
@@ -21,6 +22,19 @@ function FindId() {
   const [method, setMethod] = useState<"email" | "biz_num">("email");
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<EnterForm>();
 
+  const [emailmesaage, setemailmessage] = useState('')
+  const [isOpen, setIsOpen] = useState(false);
+  
+      const openModal = () => {
+          setIsOpen(true);
+        };
+      
+        const closeModal = () => {
+          setemailmessage('')
+          setIsOpen(false);
+        };
+
+
   const biz_num = watch('biz_num')
   const email = watch('email')
 
@@ -31,6 +45,8 @@ function FindId() {
         },
         onError: (err: AxiosError) => { 
           console.log(err)
+          setemailmessage('가입된 아이디/이메일 정보가 없습니다')
+           openModal()
         },
       })
     const { mutate:bzmutate } = useMutation(findidbybznum, {
@@ -110,14 +126,14 @@ function FindId() {
                       message: "이메일 형식이 아닙니다.",
                     },
                   }
-                  )} name="findid_email" label="이메일*" type="text" size="large"/>
+                  )} name="findid_email" label="이메일*" type="text" size="large" placeholder='example@zillings.com'/>
                 
             </div> 
             </>  :  null }       
             {method === 'biz_num' ? 
            <>
             <div className='mb-[14px]'>
-            <Input register={register('biz_num')} name="findbznum_email" label="사업자등록번호*" type="text" size="large"/>
+            <Input register={register('biz_num')} name="findbznum_email" label="사업자등록번호*" type="text" size="large" placeholder='10자리'/>
             </div> 
             </>  :  null }       
             </form> 
@@ -127,6 +143,7 @@ function FindId() {
            </div>
            </div>
            </> }
+           <Popup text={emailmesaage} cancle='취소' confirm='확인' isOpen={isOpen} onClick={closeModal}/>
         </div>
       )
 }
