@@ -127,4 +127,8 @@
   .visitors-table-data {
     @apply h-12 w-44 text-sm text-GrayScalePrimary-800 leading-[48px] text-center truncate;
   }
+
+  .loader {
+    @apply w-[50px] h-[50px] border-[6px] border-primary-150 border-t-[6px] border-t-primary-400 rounded-full;
+  }
 }

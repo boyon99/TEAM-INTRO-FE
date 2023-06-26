@@ -6,16 +6,6 @@ import { createPortal } from 'react-dom';
 import { ConfirmModal, DetailModal } from '../../common/popup';
 import useModal from '@/hooks/useModal';
 
-export interface Inquiry {
-  contact_us_log_id: number;
-  email: string;
-  name: string;
-  content: string;
-  type: string;
-  date: string;
-  selected?: boolean;
-}
-
 export default function InquiryTable() {
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);

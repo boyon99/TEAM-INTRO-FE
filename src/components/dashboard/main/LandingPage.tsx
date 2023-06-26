@@ -33,7 +33,7 @@ export default function LandingPage() {
   const { push } = useRouter();
 
   return (
-    <div className="mx-auto flex flex-col items-center">
+    <div className="mx-auto flex flex-col items-center mt-[117px]">
       <p className="break-keep text-center font-bold text-3xl leading-[50px] mb-8">
         간단하게 회사 소개 페이지를 <br /> 만들고 공유 할 수 있습니다
       </p>

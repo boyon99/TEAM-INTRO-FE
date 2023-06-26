@@ -1,19 +1,18 @@
-import { BeforeButtonProps, PrimaryButtonProps } from "@/interfaces/button";
-import { Products } from "@/interfaces/store";
-import useStore from "@/store";
-import { useRouter } from "next/router";
+import { BeforeButtonProps, PrimaryButtonProps } from '@/interfaces/button';
+import useStore from '@/store';
+import { useRouter } from 'next/router';
 
 // 이전으로 되돌아가는 버튼
 // leftpanel
 export function BeforeButtonSmall({ pageName }: BeforeButtonProps) {
   //제품/서비스 페이지에서 뒤로가기 클릭시 만들고 있던 아이템 삭제
-  const { add, setAdd, products,setProducts } = useStore();
-  
+  const { add, setAdd, products, setProducts } = useStore();
+
   const router = useRouter();
   const backPage = () => {
-    if(add) {
-      setAdd(false)
-      setProducts(products.slice(0, -1))
+    if (add) {
+      setAdd(false);
+      setProducts(products.slice(0, -1));
     } else {
       router.back();
     }
@@ -68,6 +67,8 @@ export function PrimaryButton({ type, text, onClick, classname, inputType, form 
       // value={text}
       form={form}
       // readOnly
-    >{text}</button>
+    >
+      {text}
+    </button>
   );
 }
