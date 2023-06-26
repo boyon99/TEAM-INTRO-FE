@@ -1,5 +1,4 @@
 import { PrimaryButton } from '../button';
-import { DetailModalProps, popup } from '@/interfaces/popup';
 
 type ConfirmModalProps = {
   msg1: string;
