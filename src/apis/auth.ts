@@ -90,6 +90,13 @@ export const usermodify = async (user: UserModify) => {
   console.log(response)
   return response
 }
+// 유저 회원 탈퇴
+export const deleteuser = async () => {
+  const { data } = await axiosInstance().delete<any>('/api/s/user')
+  const response = data.data;
+  console.log(response)
+  return response
+}
 // 제품/서비스 소개 상품 추가
 export const productadd = async (item: ProductAdd) => {
   const { data } = await axiosInstance().post<any>('/api/s/user/introPage/productsAndServices/detail', item)

@@ -231,7 +231,7 @@ export function ProductService({ theme }: HeaderProps) {
     setProducts(updatedProducts);
   },[imgurl])
   console.log(products);
-  if (theme === 'A') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-04" className="h-[402px] font-[LINE]">
         <div className="ml-[110px] flex">

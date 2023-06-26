@@ -1,4 +1,4 @@
-import { emailcheck, emailconfirm, repass, user, usermodify } from '@/apis/auth';
+import { deleteuser, emailcheck, emailconfirm, repass, user, usermodify } from '@/apis/auth';
 import Button from '@/components/button';
 import { Popup } from '@/components/common/popup';
 import Input from '@/components/input'
@@ -184,7 +184,18 @@ function RePass() {
       console.log(error);
     }
   }
-  
+  // 회원 탈퇴
+  const { mutate: deletemutate } = useMutation(deleteuser, {
+    onSuccess: (data) => {
+     console.log(data)
+    },
+    onError: (err: AxiosError) => { 
+      console.log(err)
+    },
+  })
+  const userDeleteClick = () => {
+    deletemutate()
+  }
   return (
     <div>
      
@@ -334,8 +345,9 @@ function RePass() {
  </div>
  <div className='ml-[160px] mt-[32px]'>
 {avatarPreview?<Button disable={true} text="저장하기"  size="xlarge"/>:<Button disable={false} text="저장하기"  size="xlarge"/>}
-
 </div>
+   <button onClick={userDeleteClick} type='button' className='ml-[220px] mt-[32px] text-[#DF4848] text-[18px]'>회원 탈퇴</button>
+
 </form></div>: ""}</>
   
    }
