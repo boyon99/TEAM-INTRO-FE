@@ -5,6 +5,7 @@ const useStore = create<Store>((set) => ({
   // upload image
   uploadImage: {},
   setUploadImage: (uploadImage) => set({ uploadImage }),
+  resetUploadImage: () => set({ uploadImage: {} }),
   // builder - 순서 변경 토글
   isChangeOederToggle: false,
   setIsChangeOederToggle: (isChangeOederToggle) => set({ isChangeOederToggle }),
@@ -192,24 +193,26 @@ const useStore = create<Store>((set) => ({
       return { header_and_footer_status_list: arr };
     });
   },
+  // 배열로 받은 값을 header_and_footer_status_list 에 넣어준다.
+  setHeaderAndFooterList: (arr) => {
+    set(() => ({ header_and_footer_status_list: arr }));
+  },
+
   // builder - keyvisual
   keyVisual: {
-    bgImg: '',
-    filter: 'Black',
+    background: '',
+    filter: 'BLACK',
     slogan: '',
-    sloganDetail: '',
-    setBgImg: (bgImg) => {
-      set((state) => ({ keyVisual: { ...state.keyVisual, bgImg } }));
-    },
-    setFilter: (filter) => {
-      set((state) => ({ keyVisual: { ...state.keyVisual, filter } }));
-    },
-    setSlogan: (slogan) => {
-      set((state) => ({ keyVisual: { ...state.keyVisual, slogan } }));
-    },
-    setSloganDetail: (sloganDetail) => {
-      set((state) => ({ keyVisual: { ...state.keyVisual, sloganDetail } }));
-    },
+    slogan_detail: '',
+  },
+  setBackground: (background) => {
+    set((state) => ({ keyVisual: { ...state.keyVisual, background } }));
+  },
+  setKeyVisual: (keyVisual) => {
+    set((state) => ({ keyVisual: { ...state.keyVisual, ...keyVisual } }));
+  },
+  setSloganDetail: (slogan_detail) => {
+    set((state) => ({ keyVisual: { ...state.keyVisual, slogan_detail } }));
   },
   // builder - missionvision
   missionVision: {

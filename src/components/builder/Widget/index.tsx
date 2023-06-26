@@ -14,13 +14,13 @@ export function KeyVisual({ theme }: HeaderProps) {
       <section id="w-01" className="h-[450px] w-full flex relative">
         <div
           className={
-            'w-full h-full z-10 ' + (keyVisual.filter === 'Black' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
+            'w-full h-full z-10 ' + (keyVisual.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
           }
         ></div>
         <span
           className={
             "absolute w-[500px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
-            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
           {keyVisual.slogan}
@@ -28,12 +28,14 @@ export function KeyVisual({ theme }: HeaderProps) {
         <span
           className={
             "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[10px] z-[11] " +
-            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
-          {keyVisual.sloganDetail}
+          {keyVisual.slogan_detail}
         </span>
-        <img src={keyVisual.bgImg} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
+        {keyVisual.background === '' ? null : (
+          <img src={keyVisual.background} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
+        )}{' '}
       </section>
     );
   } else {
@@ -41,13 +43,13 @@ export function KeyVisual({ theme }: HeaderProps) {
       <section id="w-01" className="h-[450px] w-full flex relative">
         <div
           className={
-            'w-full h-full z-10 ' + (keyVisual.filter === 'Black' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
+            'w-full h-full z-10 ' + (keyVisual.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
           }
         ></div>
         <span
           className={
             "absolute w-[700px] top-[100px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[500] text-center " +
-            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
           {keyVisual.slogan}
@@ -55,14 +57,14 @@ export function KeyVisual({ theme }: HeaderProps) {
         <span
           className={
             "absolute w-[700px] top-[220px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
-            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
-          {keyVisual.sloganDetail}
+          {keyVisual.slogan_detail}
         </span>
-        {keyVisual.bgImg !== '' ? (
-          <Image src={keyVisual.bgImg} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
-        ) : null}
+        {keyVisual.background === '' ? null : (
+          <img src={keyVisual.background} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
+        )}
       </section>
     );
   }
@@ -212,7 +214,7 @@ export function Footer({ theme }: HeaderProps) {
           </div>
           <div className="font-[500] text-[12px] flex">
             <div className="w-[70px]">Address</div>
-            <div className="font-[300]">{/* 추가하기 - address 주소목록 가져오기 */}</div>
+            <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
           </div>
         </div>
         <div className="w-[177px] ml-[10px] mt-[87px] text-GrayScaleNeutral-400 mb-[25px]">
@@ -229,7 +231,7 @@ export function Footer({ theme }: HeaderProps) {
           <div className="border w-[110px] pl-[13px] py-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px]">
             기업 상세 정보
           </div>
-          {/* 추가하기 - 해당 링크로 이동하는 이미지 버튼 추가 */}
+          {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
           <div className="font-[300] text-[12px] flex ml-[163px]">주식회사 질링스</div>
           <div className="font-[300] text-[12px] flex">Copyright&#169;Zillinks.Co.Ltd. All Right Reserved</div>
         </div>
@@ -249,7 +251,7 @@ export function Footer({ theme }: HeaderProps) {
           </div>
           <div className="font-[500] text-[12px] flex">
             <div className="w-[70px]">Address</div>
-            <div className="font-[300]">{/* 추가하기 - address 주소목록 가져오기 */}</div>
+            <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
           </div>
         </div>
         <div className="w-[177px] ml-[10px] mt-[87px] text-white mb-[25px]">
@@ -266,7 +268,7 @@ export function Footer({ theme }: HeaderProps) {
           <div className="border w-[110px] pl-[16px] py-[5px] text-[12px] rounded-[18px] border-GrayScaleNeutral-400 ml-[133px]">
             기업 상세 정보
           </div>
-          {/* 추가하기 - 해당 링크로 이동하는 이미지 버튼 추가 */}
+          {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
           <div className="font-[300] text-[12px] flex ml-[156px]">주식회사 질링스</div>
           <div className="font-[300] text-[12px] flex">Copyright&#169;Zillinks.Co.Ltd. All Right Reserved</div>
         </div>

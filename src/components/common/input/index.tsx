@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { PrimaryButton } from '../button';
 import { set } from 'react-hook-form';
 import { on } from 'events';
+import useStore from '@/store';
 
 // 기본 입력창
 export function BuilderInput({
@@ -44,6 +45,7 @@ export function BuilderInput({
 
 // 이미지 업로드 입력창
 export function BuilderUploadImage({ title, ratio, imgSrc, setImgSrc, name, setUploadImg }: BuilderUploadImageProps) {
+  const { resetUploadImage } = useStore();
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
@@ -62,6 +64,7 @@ export function BuilderUploadImage({ title, ratio, imgSrc, setImgSrc, name, setU
               className="w-[32px] h-[32px] absolute right-[8px] top-[7px]"
               onClick={() => {
                 setImgSrc(''); // 이미지 삭제
+                resetUploadImage(); // 이미지 삭제
               }}
             >
               <img src="/delete.png" />
