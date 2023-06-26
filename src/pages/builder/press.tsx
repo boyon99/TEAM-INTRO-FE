@@ -11,11 +11,21 @@ import { useForm } from 'react-hook-form';
 
 function PressView() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const { buttondes, setButtondes, add, setAdd, products, setProducts, widgets, setToggle, productservices } = useStore();
+  const {newsadd, setNewsAdd,news,setNews, widgets, setToggle } = useStore();
   const [toggle, setTogglebase] = useState(true)
-  const TeamAddonClick = () => {
-    setAdd(!add)
-   
+  const NewsAddonClick = () => {
+    setNewsAdd(!newsadd)
+    setNews([...news,
+      {
+        news_element_id: news.length + 1,
+        order: news.length + 1,
+        date: '',
+        press: '',
+        title: '',
+        description: '',
+        image: '',
+      }
+      ])
   }
   return (
   
@@ -45,7 +55,7 @@ function PressView() {
    <div className='mt-[48px]'>
    <span className='font-bold text-lg/[110%] text-[#57566a]'>보도 자료 편집</span>
    </div>
-   <ProductTitle TeamAddonClick={TeamAddonClick}/> 
+   <ProductTitle NewsAddonClick={NewsAddonClick}/> 
    </>: <></>}
    
     {/* 저장하기 */}
@@ -65,8 +75,13 @@ function PressView() {
 function PressAdd() {
     
       const { register, handleSubmit, watch, formState: { errors } } = useForm();
-      const { products, setProducts, imgurl, setImgurl, add, setAdd  } = useStore();
-    
+      const { news, setNews, newsimgurl, setNewsImgurl  } = useStore();
+      const [newsview, setNewsView] = useState('');
+     // 이미지의 삭제 버튼 클릭시 미리보기 이미지 삭제
+     const deleteonClick = () => {
+      setNewsView('');
+      setNewsImgurl('');
+    }
       return (
       
         <div className="ml-[28px]">
@@ -83,17 +98,17 @@ function PressAdd() {
        <div className='mt-[48px]'>
        <span className='mt-[20px] text-GrayScalePrimary-700 font-bold text-[18px]/110%'>보도자료 불러오기</span>
           <BuilderInput register={register('name')} title="링크 주소" type="text" placeholder="전체 URL을 입력해주세요" id="pageTitle" onChange={(e) => {
-      const updatedProducts = products.map((product, index) => {
-        if (index === products.length - 1) {
+      const updatedProducts = news.map((item, index) => {
+        if (index === news.length - 1) {
           return {
-            ...product,
+            ...item,
             name: e.target.value
           };
         }
-        return product;
+        return item;
       });
     
-      setProducts(updatedProducts);
+      setNews(updatedProducts);
     }}/>
      {/* 저장하기 */}
      <PrimaryButton
@@ -117,26 +132,30 @@ function PressAdd() {
       >
         {/* 이미지 업로드 시 업로드한 이미지 미리보기 */}
         
+        {newsview === '' ? null : (
           <div className="relative overflow-hidden">
             <div>
-              <img src='' className="m-[auto] object-contain max-w-[264px] max-h-[138px]" alt="logo-img" />
+              <img src={newsview} className="m-[auto] object-contain max-w-[264px] max-h-[138px]" alt="logo-img" />
             </div>
             <button
               className="w-[32px] h-[32px] absolute right-[8px] top-[7px]"
-            //   onClick={deleteonClick}
+              onClick={deleteonClick}
             >
               <img src="/delete.png" />
             </button>
           </div>
+        )}
         
         {/* 이미지 업로드 버튼 */}
         {/* 이미지가 존재하지 않는 경우, 이미지 업로드 버튼이 보이고, 이미지가 존재하는 경우 사라짐 */}
         
           <>
+          {newsview === '' ? (
+          <>
             <div className="w-[60px] h-[60px] rounded-[10px] bg-primary-100 mx-[auto] mt-[14px]">
               <input className="hidden" type="file" id='file-input'{...register('image', {
                 onChange: (e) => {
-                  validateImageSize({e,  setImgurl})
+                  validateImageSize({e, setNewsView, setNewsImgurl})
                 }
               })}      
               />
@@ -149,6 +168,8 @@ function PressAdd() {
             </span>
             <span className="font-[500] text-[14px] text-GrayScalePrimary-400 ml-[80px]">최대 100mb</span>
           </>
+        ) : null}
+          </>
        
       </div>
          
@@ -159,50 +180,50 @@ function PressAdd() {
             500x330, png 권장, 최대 100mb
           </div>
           <div className='mt-[34px]'>
-          <BuilderInput register={register('name')} title="보도날짜" type="text" placeholder="예: 2023-06-07" id="pageTitle" onChange={(e) => {
-      const updatedProducts = products.map((product, index) => {
-        if (index === products.length - 1) {
+          <BuilderInput register={register('date')} title="보도날짜" type="text" placeholder="예: 2023-06-07" id="pageTitle" onChange={(e) => {
+      const updatedProducts = news.map((item, index) => {
+        if (index === news.length - 1) {
           return {
-            ...product,
-            name: e.target.value
+            ...item,
+            date: e.target.value
           };
         }
-        return product;
+        return item;
       });
     
-      setProducts(updatedProducts);
+      setNews(updatedProducts);
     }}/>
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             최대20자
           </div>
-          <BuilderInput register={register('name')} title="보도매체" type="text" placeholder="예: 중앙일보" id="pageTitle" onChange={(e) => {
-      const updatedProducts = products.map((product, index) => {
-        if (index === products.length - 1) {
+          <BuilderInput register={register('press')} title="보도매체" type="text" placeholder="예: 중앙일보" id="pageTitle" onChange={(e) => {
+      const updatedProducts = news.map((item, index) => {
+        if (index === news.length - 1) {
           return {
-            ...product,
-            name: e.target.value
+            ...item,
+            press: e.target.value
           };
         }
-        return product;
+        return item;
       });
     
-      setProducts(updatedProducts);
+      setNews(updatedProducts);
     }}/>
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             최대20자
           </div>
-          <BuilderInput register={register('name')} title="기사 제목" type="text" placeholder="예: 기사제목" id="pageTitle" onChange={(e) => {
-      const updatedProducts = products.map((product, index) => {
-        if (index === products.length - 1) {
+          <BuilderInput register={register('title')} title="기사 제목" type="text" placeholder="예: 기사제목" id="pageTitle" onChange={(e) => {
+      const updatedProducts = news.map((item, index) => {
+        if (index === news.length - 1) {
           return {
-            ...product,
-            name: e.target.value
+            ...item,
+            title: e.target.value
           };
         }
-        return product;
+        return item;
       });
     
-      setProducts(updatedProducts);
+      setNews(updatedProducts);
     }}/>
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             최대20자
@@ -215,17 +236,17 @@ function PressAdd() {
             placeholder="예: ##년도 ## 컨퍼런스"
             id="businessNumber"
             onChange={(e) => {
-              const updatedProducts = products.map((product, index) => {
-                if (index === products.length - 1) {
+              const updatedProducts = news.map((item, index) => {
+                if (index === news.length - 1) {
                   return {
-                    ...product,
+                    ...item,
                     description: e.target.value
                   };
                 }
-                return product;
+                return item;
               });
             
-              setProducts(updatedProducts);
+              setNews(updatedProducts);
             }}
           />
           </div>
@@ -252,10 +273,10 @@ function PressAdd() {
 
 
 export default function Press() {
-    const { add } = useStore();
+    const { newsadd } = useStore();
     return (
       <div>
-        {add ? <Layout>{<PressAdd />}</Layout> : <Layout>{<PressView />}</Layout>}
+        {newsadd? <Layout>{<PressAdd />}</Layout> : <Layout>{<PressView />}</Layout>}
         
       </div>
     );

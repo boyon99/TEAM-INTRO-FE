@@ -287,7 +287,7 @@ export function ProductService({ theme }: HeaderProps) {
                 <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
                   {items.image? <img src={items.image} alt="" className='w-[191px] h-[140px] mt-[16px]'/>:<img src='/productno.png' alt="" className='w-[191px] h-[140px] mt-[16px]'/>}
                   <span className="font-bold text-[20px]/[100%] mt-[16.88px] flex justify-center">{items.name}</span>
-                  <p className="font-bold text-[10.54px]/[100%] mt-[16.88px] flex justify-center">{items.title}</p>
+                  <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
                   <p className="font-normal text-[9.84px]/[170%] mt-[8.44px] flex justify-center">{items.description}</p>
                 </div>
               </div>
@@ -307,25 +307,39 @@ export function ProductService({ theme }: HeaderProps) {
 }
 
 export function TeamMember({ theme }: HeaderProps) {
+  const { teammembers, setTeamMember, teamimgurl, setTeamImgurl  } = useStore();
+  useEffect(() => {
+    const updatedProducts = teammembers.map((teammember, index) => {
+      if (index === teammembers.length - 1) {
+        return {
+          ...teammember,
+          profile: teamimgurl,
+        };
+      }
+      return teammember;
+    });
+
+    setTeamMember(updatedProducts);
+  }, [teamimgurl]);
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[795px] font-[LINE] border">
+      <section id="w-04" className="h-[600px] font-[LINE]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">Meat the Team</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
         </div>
 
         <div className="w-[703.12px] h-[337px] m-[0_auto] mt-[42.19px] flex flex-wrap">
-          {[1, 2, 3, 4, 5].map((_, i) => (
-            <div className="w-[169px] h-[337px] ml-[5px]">
-              <img src="/man.png" alt="" className="w-[169px] h-[198px]" />
+          {teammembers.map((team) => (
+            <div key={team.team_member_element_id} className="w-[169px] h-[337px] ml-[5px]">
+              {team.profile? <img src={team.profile} alt="" className="w-[169px] h-[198px]" /> : <img src="/프로필.png" alt="" className="w-[169px] h-[198px]" />}
               <div className="w-[169px] h-[337px] mt-[11.4px]">
-                <span className="font-bold text-[11px]/[100%]">신윤서</span>
-                <p className="font-bold text-[10px]/[100%] text-[#797979]">플랫폼서비스팀 / Software Engineer</p>
+                <span className="font-bold text-[11px]/[100%]">{team.name}</span>
+                <p className="font-bold text-[10px]/[100%] text-[#797979]">{team.group}/{team.position}</p>
                 <p className="font-normal text-[9.84px]/[150%] mt-[8.44px]">
-                  피곤할 때 좋은 음악 추천해주세요.. 랩은 제외하고..!
+                  {team.tagline}
                 </p>
-                <p className="font-normal text-[9.84px]/[100%] mt-[14px]">fejodnv@gmail.com</p>
+                <p className="font-normal text-[9.84px]/[100%] mt-[14px]">{team.email}</p>
               </div>
             </div>
           ))}
@@ -341,20 +355,20 @@ export function TeamMember({ theme }: HeaderProps) {
         </div>
 
         <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px] flex flex-wrap">
-          {[1, 2, 3, 4, 5].map((_, i) => (
-            <div className="w-[193px] h-[300px] ml-[10px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]">
+        {teammembers.map((team) => (
+            <div key={team.team_member_element_id} className="w-[193px] h-[300px] ml-[10px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]">
               <div className="w-[130px] h-[130px] m-[0_auto] mt-[12px]">
-                <img src="/man.png" alt="" className="w-[130px] h-[130px] rounded-[160px]" />
+              {team.profile? <img src={team.profile} alt="" className="w-[130px] h-[130px] rounded-[160px]" />: <img src="/프로필.png" alt="" className="w-[130px] h-[130px] rounded-[160px]" />}    
               </div>
               <div className="w-[190px] h-[337px] mt-[11.4px]">
-                <p className="font-bold text-[11px]/[100%] text-center mb-3">신윤서</p>
+                <p className="font-bold text-[11px]/[100%] text-center mb-3">{team.name}</p>
                 <p className="w-[130px] font-bold text-[10px]/[100%] text-[#797979] text-center m-[0_auto]">
-                  플랫폼서비스팀 / Software Engineer
+                {team.group}/{team.position}
                 </p>
                 <p className="w-[100px] font-normal text-[9.84px]/[150%] mt-[8.44px] text-center m-[0_auto]">
-                  피곤할 때 좋은 음악 추천해주세요.. 랩은 제외하고..!
+                {team.tagline}
                 </p>
-                <p className="font-normal text-[9.84px]/[100%] mt-[14px] text-center">fejodnv@gmail.com</p>
+                <p className="font-normal text-[9.84px]/[100%] mt-[14px] text-center">{team.email}</p>
               </div>
             </div>
           ))}
@@ -381,6 +395,20 @@ export function ContactUs({ theme }: HeaderProps) {
 }
 
 export function Press({ theme }: HeaderProps) {
+  const { news, setNews, newsimgurl, setNewsImgurl  } = useStore();
+  useEffect(() => {
+    const updatedProducts = news.map((item, index) => {
+      if (index === news.length - 1) {
+        return {
+          ...item,
+          image: newsimgurl,
+        };
+      }
+      return item;
+    });
+
+    setNews(updatedProducts);
+  }, [newsimgurl]);
   if (theme === 'ThemeA') {
     return (
       <section id="w-06" className="h-[350px] font-[LINE]">
@@ -389,24 +417,24 @@ export function Press({ theme }: HeaderProps) {
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">보도 자료</span>
         </div>
         <div className="w-[709px] mt-[43px] m-[0_auto]">
-          {[1, 2, 3].map((_, i) => (
-            <div className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex">
+          {news.map((item) => (
+            <div key={item.news_element_id} className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex">
               <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
                 <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
                 <div className="mt-[-12px]">
                   <span className="text-[10px] font-bold text-[#868686] pr-[5px]">Jul</span>
-                  <span className="text-[10px] font-bold text-[#868686]">2023</span>
+                  <span className="text-[10px] font-bold text-[#868686]">{item.date}</span>
                 </div>
               </div>
               <div className="w-[384px] ml-[39px] mt-[20px]">
-                <p className="text-[14px]/[110%] font-bold">기사제목 기사제목 기사제목 기사제목 기사제목</p>
+                <p className="text-[14px]/[110%] font-bold">{item.title}</p>
                 <p className="text-[11px]/[170%] text-[#868686] mt-[10px]">
-                  기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용
-                  기사내용
+                  {item.description}
                 </p>
               </div>
               <div className="w-[141px] h-[74px] ml-[39px] mt-[11.5px] mb-[14px]">
-                <img src="/기사사진.png" alt="" />
+              {item.image? <img src={item.image} alt="" />: <img src="/기사사진.png" alt="" />}    
+                
               </div>
             </div>
           ))}
@@ -415,24 +443,22 @@ export function Press({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-06" className="h-[200px] font-[LINE]">
+      <section id="w-06" className="h-[450px] font-[LINE]">
         <div className="ml-[40px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">News Room</span>
           <p className="text-[#000] text-[35px] mt-[30px] pl-[2px]">새로운 소식</p>
         </div>
         <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px]">
-          {[1, 2, 3].map((_, i) => (
-            <div className="w-[820px] flex mb-[20px]">
+        {news.map((item) => (
+            <div key={item.news_element_id} className="w-[820px] flex mb-[20px]">
               <div>
-                <img src="/기사사진.png" className="w-[180px] h-[70px] rounded-[24px]" alt="" />
+              {item.image? <img src={item.image} className="w-[180px] h-[70px] rounded-[24px]" alt="" />: <img src="/기사사진.png" className="w-[180px] h-[70px] rounded-[24px]" alt="" />}         
               </div>
               <div className="w-[820px] ml-[40px]">
-                <p className="text-[20px]/[110%] font-bold">디지털 자산 투자 앱 OOO 핀테크 기술로 투자 유치</p>
-                <p className="text-[8px] text-[#939393]">2023. 05.29</p>
+                <p className="text-[20px]/[110%] font-bold">{item.title}</p>
+                <p className="text-[8px] text-[#939393]">{item.date}</p>
                 <p className="text-[13px] text-[#464646]">
-                  지난 5월 27일 디지털 자산 투자 모바일 서비스 OOOO가 프로젝트 KCK 성과로 시리즈 A 투자 유치 및 프로젝트
-                  B를 위한 파트너십 체결을 위한 기술 협약을 맺고, 앞으로의 행보를 논의하기로 했습니다. OOO만든 OOOO은
-                  지난 해 ...
+                  {item.description}
                 </p>
               </div>
             </div>
@@ -515,7 +541,7 @@ export function History({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-08" className="font-[LINE]">
+      <section id="w-08" className="h-[700px] font-[LINE]">
         <div className="ml-[40px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">History</span>
           <p className="text-[#000] text-[34px] mt-[23px] pl-[2px]">질링스가 걸어온 길</p>
@@ -594,7 +620,7 @@ export function Result({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-10" className="h-[200px]">
+      <section id="w-10" className="h-[300px]">
         <div className="ml-[40px] mt-[40px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Key Achievements</span>
           <p className="text-[#000] text-[30px] mt-[20px] pl-[2px]">우리는 성장하고 있습니다.</p>

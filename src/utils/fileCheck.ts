@@ -37,7 +37,7 @@ interface image {
   [key: string]: any;
 }
 // 이미지를 업로드 할 수 있는 용량과 가로/세로 사이즈 제한
-export const validateImageSize = ({ e, setAvatarPreview, setImgurl }: image) => {
+export const validateImageSize = ({ e, setAvatarPreview, setImgurl, setTeamMemberView, setTeamImgurl, setNewsView, setNewsImgurl }: image) => {
   const maxSize = 100 * 1024 * 1024; // 100MB로 제한
   const fileSize = e.target.files?.[0].size as number; // 업로드한 파일의 사이즈
   // 파일 사이즈가 10MB를 넘으면 경고창을 띄우고 return
@@ -58,8 +58,8 @@ export const validateImageSize = ({ e, setAvatarPreview, setImgurl }: image) => 
       // 파일 사이즈가 10MB를 넘지 않으면 파일을 읽어서 imgSrc에 저장
       const reader = new FileReader();
       reader.onload = () => {
-        setAvatarPreview(reader.result as string);
-        setImgurl(reader.result as string);
+        setTeamMemberView? setTeamMemberView(reader.result as string) : setAvatarPreview? setAvatarPreview(reader.result as string) : setNewsView? setNewsView(reader.result as string) : null;
+        setTeamImgurl? setTeamImgurl(reader.result as string) : setImgurl? setImgurl(reader.result as string) : setNewsImgurl? setNewsImgurl(reader.result as string) : null;
       };
       if (e.target.files?.[0] !== undefined) {
         reader.readAsDataURL(e.target.files?.[0] as Blob);
