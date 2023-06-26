@@ -9,23 +9,37 @@ import { useBuilder } from '@/hooks/useBuilder';
 
 export default function Builder() {
   const { data: builderData, isLoading } = useBuilder();
-  const { setTheme, setSiteInfo, setCompanyInfo, setHeaderAndFooterList, resetUploadImage, uploadImage, setKeyVisual } =
-    useStore();
+  const {
+    setTheme,
+    setSiteInfo,
+    setCompanyInfo,
+    setHeaderAndFooterList,
+    resetUploadImage,
+    uploadImage,
+    setKeyVisual,
+    setMissionVision,
+  } = useStore();
 
   useEffect(() => {
     if (!isLoading) {
       console.log(builderData);
       const keyvisual = builderData.widgets.find((widget: any) => widget.widget_type === 'KEYVISUALANDSLOGAN');
+      const missionvision = builderData.widgets.find((widget: any) => widget.widget_type === 'MISSIONANDVISION');
       setHeaderAndFooterList(builderData.header_and_footer.header_and_footer_status_list);
       setCompanyInfo(builderData.company_info);
       setSiteInfo(builderData.site_info);
       setTheme({ theme_type: builderData.theme.type, color: builderData.theme.color });
-      // CHECKLIST: 이미지 경로 제대로 전달되는지 테스트하기
       setKeyVisual({
         background: keyvisual.background,
         slogan: keyvisual.slogan,
         filter: keyvisual.filter,
         slogan_detail: keyvisual.slogan_detail,
+      });
+      setMissionVision({
+        mission: missionvision.mission,
+        mission_detail: missionvision.mission_detail,
+        vision: missionvision.vision,
+        vision_detail: missionvision.vision_detail,
       });
     }
   }, [builderData]);

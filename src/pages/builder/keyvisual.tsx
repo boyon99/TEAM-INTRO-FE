@@ -13,7 +13,8 @@ import { useUploadImage } from '@/hooks/useUploadImage';
 function Preview() {
   const { widgets, setToggle, keyVisual, uploadImage, setUploadImage, setBackground, setKeyVisual, setSloganDetail } =
     useStore();
-  const updateKeyVisualMutation = useUpdateKeyVisual({ widget_status: widgets[0].toggle, ...keyVisual });
+  const findWigetToggle = widgets.find((widget) => widget.name === '키비주얼/슬로건');
+  const updateKeyVisualMutation = useUpdateKeyVisual({ widget_status: findWigetToggle, ...keyVisual });
   const { mutate: uploadImageMutation, isSuccess } = useUploadImage(uploadImage, 'keyvisual');
 
   console.log('keyVisual', keyVisual);

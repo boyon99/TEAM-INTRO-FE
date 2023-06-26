@@ -217,25 +217,18 @@ const useStore = create<Store>((set) => ({
   // builder - missionvision
   missionVision: {
     mission: '',
-    missionDetail: '',
+    mission_detail: '',
     vision: '',
-    visionDetail: '',
-    setMission: (mission) => {
-      set((state) => ({ missionVision: { ...state.missionVision, mission } }));
-    },
-    setMissionDetail: (missionDetail) => {
-      set((state) => ({
-        missionVision: { ...state.missionVision, missionDetail },
-      }));
-    },
-    setVision: (vision) => {
-      set((state) => ({ missionVision: { ...state.missionVision, vision } }));
-    },
-    setVisionDetail: (visionDetail) => {
-      set((state) => ({
-        missionVision: { ...state.missionVision, visionDetail },
-      }));
-    },
+    vision_detail: '',
+  },
+  setMissionDetail: (mission_detail) => {
+    set((state) => ({ missionVision: { ...state.missionVision, mission_detail } }));
+  },
+  setVisionDetail: (vision_detail) => {
+    set((state) => ({ missionVision: { ...state.missionVision, vision_detail } }));
+  },
+  setMissionVision: (missionVision) => {
+    set((state) => ({ missionVision: { ...state.missionVision, ...missionVision } }));
   },
   // builder - channel
   channel: {

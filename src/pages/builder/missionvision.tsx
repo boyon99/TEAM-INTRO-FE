@@ -5,9 +5,25 @@ import { BeforeButtonSmall, PrimaryButton } from '@/components/common/button';
 import { ToggleWidget } from '@/components/common/toggle';
 import { BuilderInput, BuilderTextarea, BuilderUploadImage } from '@/components/common/input';
 import useStore from '@/store';
+import { useMutation } from '@tanstack/react-query';
+import { updateMissionVision } from '@/apis/builder';
+import Router from 'next/router';
 
 function Preview() {
-  const { widgets, setToggle, missionVision } = useStore();
+  const { widgets, setToggle, missionVision, setMissionDetail, setVisionDetail, setMissionVision } = useStore();
+  const findWigetToggle = widgets.find((widget) => widget.name === '미션/비젼');
+  const { mutate: updateMissionVisionMutation } = useMutation(
+    () => updateMissionVision({ widget_status: findWigetToggle?.toggle, ...missionVision }),
+    {
+      onSuccess: (data) => {
+        console.log('success', data);
+        Router.push('/builder');
+      },
+      onError: (error) => {
+        console.log('error', error);
+      },
+    },
+  );
   return (
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 위젯 &#8739; 미션/비전" />
@@ -40,7 +56,7 @@ function Preview() {
             maxLength={25}
             value={missionVision.mission}
             onChange={(e) => {
-              missionVision.setMission(e.target.value);
+              setMissionVision({ ...missionVision, mission: e.target.value });
             }}
           />
           <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">최대 25자</div>
@@ -49,8 +65,8 @@ function Preview() {
             type="text"
             placeholder="예: 삼성전자는 1969년 설립된 한국의 대표적인 전자 기업입니다. 삼성전자는 반도체, 스마트폰, TV, 가전제품 등 다양한 분야에서 세계적인 경쟁력을 갖추고 있습니다. "
             id="missionDetail"
-            value={missionVision.missionDetail}
-            setValue={missionVision.setMissionDetail}
+            value={missionVision.mission_detail}
+            setValue={setMissionDetail}
           />
           <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             &#8226; 미션을 보조하는 설명글을 작성해주세요. <br /> &#8226; 최대 80자
@@ -64,7 +80,7 @@ function Preview() {
             maxLength={25}
             value={missionVision.vision}
             onChange={(e) => {
-              missionVision.setVision(e.target.value);
+              setMissionVision({ ...missionVision, vision: e.target.value });
             }}
           />
           <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">최대 25자</div>
@@ -73,8 +89,8 @@ function Preview() {
             type="text"
             placeholder="예: 삼성전자는 인류의 삶을 변화시키는 기술을 개발하고, 세상에서 가장 존경받는 기업이 되기 위해 노력하고 있습니다. "
             id="visionDetail"
-            value={missionVision.visionDetail}
-            setValue={missionVision.setVisionDetail}
+            value={missionVision.vision_detail}
+            setValue={setVisionDetail}
           />
           <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             &#8226; 비전을 보조하는 설명글을 작성해주세요. <br /> &#8226; 최대 80자
@@ -89,7 +105,9 @@ function Preview() {
         inputType="submit"
         type="primary"
         text="저장하기"
-        onClick={() => {}}
+        onClick={() => {
+          updateMissionVisionMutation();
+        }}
         classname="w-[264px] h-[42px] mt-[48px] text-[18px] font-[700]"
       />
     </div>

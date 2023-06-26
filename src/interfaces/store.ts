@@ -27,6 +27,9 @@ export interface Store {
   setBackground: (background: string) => void;
   setKeyVisual: (keyVisual: KeyVisual) => void;
   missionVision: MissionVision;
+  setMissionVision: (missionVision: MissionVision) => void;
+  setMissionDetail: (mission_detail: string) => void;
+  setVisionDetail: (vision_detail: string) => void;
   channel: Channel;
   productservices: ProductServices;
   siteInfo: SiteInfo;
@@ -70,12 +73,8 @@ export interface ChannelList {
 export interface MissionVision {
   mission: string;
   vision: string;
-  missionDetail: string;
-  visionDetail: string;
-  setMission: (mission: string) => void;
-  setVision: (vision: string) => void;
-  setMissionDetail: (missionDetail: string) => void;
-  setVisionDetail: (visionDetail: string) => void;
+  mission_detail: string;
+  vision_detail: string;
 }
 export interface KeyVisual {
   background: string;

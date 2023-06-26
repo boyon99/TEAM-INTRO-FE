@@ -90,7 +90,7 @@ export function MissionVision({ theme }: HeaderProps) {
             <div className="mt-[20px] black h-[auto] w-full">
               <p className="font-[700] text-[13px]">{missionVision.mission}</p>
               <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
-                {missionVision.missionDetail}
+                {missionVision.mission_detail}
               </p>
             </div>
           </div>
@@ -110,7 +110,7 @@ export function MissionVision({ theme }: HeaderProps) {
             <div className="mt-[20px] black h-[auto] w-full">
               <p className="font-[700] text-[13px]">{missionVision.vision}</p>
               <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
-                {missionVision.visionDetail}
+                {missionVision.vision_detail}
               </p>
             </div>
           </div>{' '}
@@ -127,7 +127,7 @@ export function MissionVision({ theme }: HeaderProps) {
             <div className="mt-[20px] flex h-[auto] w-full">
               <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.mission}</div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
-                {missionVision.missionDetail}
+                {missionVision.mission_detail}
               </div>
             </div>
           </div>
@@ -139,7 +139,7 @@ export function MissionVision({ theme }: HeaderProps) {
             <div className="mt-[20px] flex h-[auto] w-full">
               <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.vision}</div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
-                {missionVision.visionDetail}
+                {missionVision.vision_detail}
               </div>
             </div>
           </div>

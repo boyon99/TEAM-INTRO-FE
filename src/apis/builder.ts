@@ -32,6 +32,11 @@ export const updateKeyVisual = async (keyVisual: any) => {
   return data;
 };
 
+export const updateMissionVision = async (missionVision: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/missionAndVision', missionVision);
+  return data;
+};
+
 export const updateSiteInfo = async (siteInfo: any) => {
   const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/siteInfo', siteInfo);
   return data;
