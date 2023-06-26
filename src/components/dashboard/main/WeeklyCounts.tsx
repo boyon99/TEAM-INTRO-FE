@@ -1,3 +1,4 @@
+import { DashboardData } from '@/interfaces/dashboard';
 import CountBar from './CountBar';
 import { format, subDays } from 'date-fns';
 

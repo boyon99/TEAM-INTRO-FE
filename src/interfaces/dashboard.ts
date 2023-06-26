@@ -1,4 +1,4 @@
-interface DashboardData {
+export interface DashboardData {
   contact_us_log: number[];
   download_log: number[];
   sharing: number[];
@@ -8,7 +8,7 @@ interface DashboardData {
   };
 }
 
-interface Inquiry {
+export interface Inquiry {
   contact_us_log_id: number;
   email: string;
   name: string;

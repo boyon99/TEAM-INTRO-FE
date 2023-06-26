@@ -5,6 +5,7 @@ import ActiveLink from '../ActiveLink';
 import { createPortal } from 'react-dom';
 import { ConfirmModal, DetailModal } from '../../common/popup';
 import useModal from '@/hooks/useModal';
+import { Inquiry } from '@/interfaces/dashboard';
 
 export default function InquiryTable() {
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
