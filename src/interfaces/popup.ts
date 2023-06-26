@@ -1,6 +1,4 @@
-import { Inquiry } from '@/components/dashboard/contact/InquiryTable';
-
-export interface popup {
+interface popup {
   text: string;
   cancle: string;
   confirm: string;
@@ -8,6 +6,6 @@ export interface popup {
   onClick: () => void;
 }
 
-export interface DetailModalProps extends Inquiry {
+interface DetailModalProps extends Inquiry {
   closeModal: () => void;
 }

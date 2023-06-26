@@ -3,6 +3,7 @@ import { Header } from 'next/dist/lib/load-custom-routes';
 export interface Store {
   uploadImage: {};
   setUploadImage: (uploadImage: (imgSrc: any) => void) => void;
+  resetUploadImage: () => void;
   widgets: Widget[];
   setWidget: (widgets: Widget[]) => void;
   setToggle: (name: string) => void;
@@ -16,12 +17,21 @@ export interface Store {
   setAdd: (add: boolean) => void;
   products: Products[];
   setProducts: (products: Products[]) => void;
-  headerfooter: HeaderFooter;
+  header_and_footer_status_list: boolean[];
+  setHeaderAndFooter: (header_and_footer_status_list: number) => void;
+  setHeaderAndFooterList: (header_and_footer_status_list: boolean[]) => void;
   imgurl: string;
   setImgurl: (imgurl: string) => void;
   keyVisual: KeyVisual;
+  setSloganDetail: (slogan_detail: string) => void;
+  setBackground: (background: string) => void;
+  setKeyVisual: (keyVisual: KeyVisual) => void;
   missionVision: MissionVision;
+  setMissionVision: (missionVision: MissionVision) => void;
+  setMissionDetail: (mission_detail: string) => void;
+  setVisionDetail: (vision_detail: string) => void;
   channel: Channel;
+  setChannel: (channel: Channel) => void;
   productservices: ProductServices;
   siteInfo: SiteInfo;
   setSiteInfo: (siteInfo: SiteInfo) => void;
@@ -78,43 +88,33 @@ export interface SiteInfo {
 }
 
 export interface Channel {
-  channelList: ChannelList[];
-  setValue: (name: string, value: string) => void;
-  setChecked: (name: string) => void;
-}
-export interface ChannelList {
-  name: string;
-  value: string;
-  checked: boolean;
-  img: string;
+  instagram_status: boolean;
+  instagram: string;
+  linked_in_status: boolean;
+  linked_in: string;
+  youtube_status: boolean;
+  youtube: string;
+  notion_status: boolean;
+  notion: string;
+  naver_blog_status: boolean;
+  naver_blog: string;
+  brunch_stroy_status: boolean;
+  brunch_stroy: string;
+  facebook_status: boolean;
+  facebook: string;
 }
 
 export interface MissionVision {
   mission: string;
   vision: string;
-  missionDetail: string;
-  visionDetail: string;
-  setMission: (mission: string) => void;
-  setVision: (vision: string) => void;
-  setMissionDetail: (missionDetail: string) => void;
-  setVisionDetail: (visionDetail: string) => void;
+  mission_detail: string;
+  vision_detail: string;
 }
 export interface KeyVisual {
-  bgImg: string;
-  filter: 'Black' | 'White';
+  background: string;
+  filter: 'BLACK' | 'WHITE';
   slogan: string;
-  sloganDetail: string;
-  setBgImg: (bgImg: string) => void;
-  setFilter: (filter: 'Black' | 'White') => void;
-  setSlogan: (slogan: string) => void;
-  setSloganDetail: (sloganDetail: string) => void;
-}
-
-export interface HeaderFooter {
-  quickmenu: QuickMenu[];
-  lowerMenuToggle: boolean;
-  setQuickMenuToggle: (name: string) => void;
-  setLowerMenuToggle: (lowerMenuToggle: boolean) => void;
+  slogan_detail: string;
 }
 
 export interface QuickMenu {

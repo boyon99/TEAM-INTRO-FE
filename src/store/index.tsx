@@ -5,6 +5,7 @@ const useStore = create<Store>((set) => ({
   // upload image
   uploadImage: {},
   setUploadImage: (uploadImage) => set({ uploadImage }),
+  resetUploadImage: () => set({ uploadImage: {} }),
   // builder - 순서 변경 토글
   isChangeOederToggle: false,
   setIsChangeOederToggle: (isChangeOederToggle) => set({ isChangeOederToggle }),
@@ -181,158 +182,74 @@ const useStore = create<Store>((set) => ({
     },
   },
   // builder - header, footer
-  headerfooter: {
-    quickmenu: [
-      { name: '미션/비젼', toggle: false },
-      { name: '제품/서비스 소개', toggle: false },
-      { name: '팀 소개', toggle: false },
-      { name: '컨택어스', toggle: false },
-      { name: '보도자료', toggle: false },
-      { name: '다운로드', toggle: false },
-      { name: '연혁', toggle: false },
-      { name: '팀 문화', toggle: false },
-      { name: '핵심성과', toggle: false },
-      { name: '파트너스', toggle: false },
-      { name: '고객리뷰', toggle: false },
-      { name: '특허/인증', toggle: false },
-    ],
-    lowerMenuToggle: false,
-    setQuickMenuToggle: (name) => {
-      set((state) => ({
-        headerfooter: {
-          ...state.headerfooter,
-          quickmenu: state.headerfooter.quickmenu.map((menu) => {
-            if (menu.name === name) {
-              return { ...menu, toggle: !menu.toggle };
-            } else {
-              return menu;
-            }
-          }),
-        },
-      }));
-    },
-    setLowerMenuToggle: (toggle) => {
-      set((state) => ({
-        headerfooter: { ...state.headerfooter, lowerMenuToggle: toggle },
-      }));
-    },
+  header_and_footer_status_list: [true, false, true, false, true, false, true, false, true, false, true, false, true],
+  setHeaderAndFooter: (index) => {
+    set((state) => {
+      const arr = state.header_and_footer_status_list.map((item, i) => {
+        if (i === index) {
+          return !item;
+        }
+        return item;
+      });
+      return { header_and_footer_status_list: arr };
+    });
   },
+  // 배열로 받은 값을 header_and_footer_status_list 에 넣어준다.
+  setHeaderAndFooterList: (arr) => {
+    set(() => ({ header_and_footer_status_list: arr }));
+  },
+
   // builder - keyvisual
   keyVisual: {
-    bgImg: '',
-    filter: 'Black',
+    background: '',
+    filter: 'BLACK',
     slogan: '',
-    sloganDetail: '',
-    setBgImg: (bgImg) => {
-      set((state) => ({ keyVisual: { ...state.keyVisual, bgImg } }));
-    },
-    setFilter: (filter) => {
-      set((state) => ({ keyVisual: { ...state.keyVisual, filter } }));
-    },
-    setSlogan: (slogan) => {
-      set((state) => ({ keyVisual: { ...state.keyVisual, slogan } }));
-    },
-    setSloganDetail: (sloganDetail) => {
-      set((state) => ({ keyVisual: { ...state.keyVisual, sloganDetail } }));
-    },
+    slogan_detail: '',
+  },
+  setBackground: (background) => {
+    set((state) => ({ keyVisual: { ...state.keyVisual, background } }));
+  },
+  setKeyVisual: (keyVisual) => {
+    set((state) => ({ keyVisual: { ...state.keyVisual, ...keyVisual } }));
+  },
+  setSloganDetail: (slogan_detail) => {
+    set((state) => ({ keyVisual: { ...state.keyVisual, slogan_detail } }));
   },
   // builder - missionvision
   missionVision: {
     mission: '',
-    missionDetail: '',
+    mission_detail: '',
     vision: '',
-    visionDetail: '',
-    setMission: (mission) => {
-      set((state) => ({ missionVision: { ...state.missionVision, mission } }));
-    },
-    setMissionDetail: (missionDetail) => {
-      set((state) => ({
-        missionVision: { ...state.missionVision, missionDetail },
-      }));
-    },
-    setVision: (vision) => {
-      set((state) => ({ missionVision: { ...state.missionVision, vision } }));
-    },
-    setVisionDetail: (visionDetail) => {
-      set((state) => ({
-        missionVision: { ...state.missionVision, visionDetail },
-      }));
-    },
+    vision_detail: '',
+  },
+  setMissionDetail: (mission_detail) => {
+    set((state) => ({ missionVision: { ...state.missionVision, mission_detail } }));
+  },
+  setVisionDetail: (vision_detail) => {
+    set((state) => ({ missionVision: { ...state.missionVision, vision_detail } }));
+  },
+  setMissionVision: (missionVision) => {
+    set((state) => ({ missionVision: { ...state.missionVision, ...missionVision } }));
   },
   // builder - channel
   channel: {
-    channelList: [
-      {
-        name: '인스타그램',
-        value: '',
-        checked: false,
-        img: '/channel/인스타그램.png',
-      },
-      {
-        name: '링크드인',
-        value: '',
-        checked: false,
-        img: '/channel/링크드인.png',
-      },
-      {
-        name: '유튜브',
-        value: '',
-        checked: false,
-        img: '/channel/유튜브.png',
-      },
-      {
-        name: '노션',
-        value: '',
-        checked: false,
-        img: '/channel/노션.png',
-      },
-      {
-        name: '네이버블로그',
-        value: '',
-        checked: false,
-        img: '/channel/네이버블로그.png',
-      },
-      {
-        name: '브런치스토리',
-        value: '',
-        checked: false,
-        img: '/channel/브런치.png',
-      },
-      {
-        name: '페이스북',
-        value: '',
-        checked: false,
-        img: '/channel/페이스북.png',
-      },
-    ],
-    setValue: (name, value) => {
-      set((state) => ({
-        channel: {
-          ...state.channel,
-          channelList: state.channel.channelList.map((channel) => {
-            if (channel.name === name) {
-              return { ...channel, value };
-            } else {
-              return channel;
-            }
-          }),
-        },
-      }));
-    },
-    setChecked: (name) => {
-      set((state) => ({
-        channel: {
-          ...state.channel,
-          channelList: state.channel.channelList.map((channel) => {
-            if (channel.name === name) {
-              return { ...channel, checked: !channel.checked };
-            } else {
-              return channel;
-            }
-          }),
-        },
-      }));
-    },
+    instagram_status: false,
+    instagram: '',
+    linked_in_status: false,
+    linked_in: '',
+    youtube_status: false,
+    youtube: '',
+    notion_status: false,
+    notion: '',
+    naver_blog_status: false,
+    naver_blog: '',
+    brunch_stroy_status: false,
+    brunch_stroy: '',
+    facebook_status: false,
+    facebook: '',
+  },
+  setChannel: (channel) => {
+    set((state) => ({ channel: { ...state.channel, ...channel } }));
   },
   // 팀 멤버
   teamadd: false,

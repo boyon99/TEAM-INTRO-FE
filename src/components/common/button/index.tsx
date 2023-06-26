@@ -1,7 +1,6 @@
-import { BeforeButtonProps, PrimaryButtonProps } from "@/interfaces/button";
-import { Products } from "@/interfaces/store";
-import useStore from "@/store";
-import { useRouter } from "next/router";
+import { BeforeButtonProps, PrimaryButtonProps } from '@/interfaces/button';
+import useStore from '@/store';
+import { useRouter } from 'next/router';
 
 // 이전으로 되돌아가는 버튼
 // leftpanel
@@ -71,6 +70,8 @@ export function PrimaryButton({ type, text, onClick, classname, inputType, form 
       // value={text}
       form={form}
       // readOnly
-    >{text}</button>
+    >
+      {text}
+    </button>
   );
 }

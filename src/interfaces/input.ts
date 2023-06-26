@@ -28,10 +28,10 @@ export interface BuilderUploadImageProps {
 export interface BuilderCheckboxProps {
   list: {
     name: string;
-    value: string;
-    checked: boolean;
     img: string;
   }; // label
-  setValue: (name: string, value: string) => void; // setValue
-  setChecked: (name: string) => void; // setChecked
+  checked: boolean; // checked
+  value: string; // value
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // onChange
+  setChecked: any; // setChecked
 }
