@@ -9,14 +9,25 @@ import { useMutation } from '@tanstack/react-query';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
-function TeamCultureView() {
+function HistoryView() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const { buttondes, setButtondes, add, setAdd, products, setProducts, widgets, setToggle, productservices } = useStore();
+  const { historyadd, setHistoryAdd, historys, setHistorys, widgets, setToggle  } = useStore();
   const [toggle, setTogglebase] = useState(true)
-  const TeamAddonClick = () => {
-    setAdd(!add)
-   
-  }
+     // 추가하기 버튼 클릭시 빈상자(빈배열)가 생김
+     const HistoryAddonClick = () => {
+      setHistoryAdd(!historyadd)
+      setHistorys([...historys,
+        {
+          history_element_id: historys.length + 1,
+          order: historys.length + 1,
+          date: '',
+          title: '',
+          description: '',
+          image: '',
+        }
+        ])
+     
+    }
   return (
   
     <div className="ml-[28px]">
@@ -45,7 +56,7 @@ function TeamCultureView() {
    <div className='mt-[48px]'>
    <span className='font-bold text-lg/[110%] text-[#57566a]'>연혁 편집</span>
    </div>
-   <ProductTitle TeamAddonClick={TeamAddonClick}/> 
+   <ProductTitle HistoryAddonClick={HistoryAddonClick}/> 
    </>: <></>}
    
     {/* 저장하기 */}
@@ -62,11 +73,19 @@ function TeamCultureView() {
 }
 
 
-function TeamCultureAdd() {
+function HistoryAdd() {
     
       const { register, handleSubmit, watch, formState: { errors } } = useForm();
-      const { products, setProducts, imgurl, setImgurl, add, setAdd  } = useStore();
-    
+      const { historys, setHistorys, historyimgurl, setHistoryImgurl } = useStore();
+      const [historyview, setHistoryView] = useState('');
+
+
+      // 이미지의 삭제 버튼 클릭시 미리보기 이미지 삭제
+    const deleteonClick = () => {
+      setHistoryView('');
+      setHistoryImgurl('');
+    }
+
       return (
       
         <div className="ml-[28px]">
@@ -90,26 +109,30 @@ function TeamCultureAdd() {
       >
         {/* 이미지 업로드 시 업로드한 이미지 미리보기 */}
         
+        {historyview === '' ? null : (
           <div className="relative overflow-hidden">
             <div>
-              <img src='' className="m-[auto] object-contain max-w-[264px] max-h-[138px]" alt="logo-img" />
+              <img src={historyview} className="m-[auto] object-contain max-w-[264px] max-h-[138px]" alt="logo-img" />
             </div>
             <button
               className="w-[32px] h-[32px] absolute right-[8px] top-[7px]"
-            //   onClick={deleteonClick}
+              onClick={deleteonClick}
             >
               <img src="/delete.png" />
             </button>
           </div>
+        )}
+        
         
         {/* 이미지 업로드 버튼 */}
         {/* 이미지가 존재하지 않는 경우, 이미지 업로드 버튼이 보이고, 이미지가 존재하는 경우 사라짐 */}
         
+        {historyview === '' ? (
           <>
             <div className="w-[60px] h-[60px] rounded-[10px] bg-primary-100 mx-[auto] mt-[14px]">
               <input className="hidden" type="file" id='file-input'{...register('image', {
                 onChange: (e) => {
-                  validateImageSize({e,  setImgurl})
+                  validateImageSize({e, setHistoryView, setHistoryImgurl})
                 }
               })}      
               />
@@ -122,6 +145,7 @@ function TeamCultureAdd() {
             </span>
             <span className="font-[500] text-[14px] text-GrayScalePrimary-400 ml-[80px]">최대 100mb</span>
           </>
+        ) : null}
        
       </div>
          
@@ -132,34 +156,34 @@ function TeamCultureAdd() {
             500x330, png 권장, 최대 100mb
           </div>
           <div className='mt-[34px]'>
-          <BuilderInput register={register('name')} title="날짜" type="text" placeholder="예: 2023-07-07" id="pageTitle" onChange={(e) => {
-      const updatedProducts = products.map((product, index) => {
-        if (index === products.length - 1) {
+          <BuilderInput register={register('date')} title="날짜" type="text" placeholder="예: 2023-07-07" id="pageTitle" onChange={(e) => {
+      const updatedProducts = historys.map((product, index) => {
+        if (index === historys.length - 1) {
           return {
             ...product,
-            name: e.target.value
+            date: e.target.value
           };
         }
         return product;
       });
     
-      setProducts(updatedProducts);
+      setHistorys(updatedProducts);
     }}/>
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             최대20자
           </div>
-          <BuilderInput register={register('name')} title="연혁" type="text" placeholder="예: 패스트캠퍼스 기업협력 프로젝트 MOU 진행" id="pageTitle" onChange={(e) => {
-      const updatedProducts = products.map((product, index) => {
-        if (index === products.length - 1) {
+          <BuilderInput register={register('title')} title="연혁" type="text" placeholder="예: 패스트캠퍼스 기업협력 프로젝트 MOU 진행" id="pageTitle" onChange={(e) => {
+      const updatedProducts = historys.map((product, index) => {
+        if (index === historys.length - 1) {
           return {
             ...product,
-            name: e.target.value
+            title: e.target.value
           };
         }
         return product;
       });
     
-      setProducts(updatedProducts);
+      setHistorys(updatedProducts);
     }}/>
     <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             최대30자
@@ -172,8 +196,8 @@ function TeamCultureAdd() {
             placeholder="예: 패스트캠퍼스와 함께 진행한 MOU프로젝트, 전체 고객 수 30프로 이상 증가하는 프로젝트로 다양한 파트너사에 긍정적 피드백 받음"
             id="businessNumber"
             onChange={(e) => {
-              const updatedProducts = products.map((product, index) => {
-                if (index === products.length - 1) {
+              const updatedProducts = historys.map((product, index) => {
+                if (index === historys.length - 1) {
                   return {
                     ...product,
                     description: e.target.value
@@ -182,7 +206,7 @@ function TeamCultureAdd() {
                 return product;
               });
             
-              setProducts(updatedProducts);
+              setHistorys(updatedProducts);
             }}
           />
           </div>
@@ -208,11 +232,11 @@ function TeamCultureAdd() {
 
 
 
-export default function TeamCulture() {
-    const { add } = useStore();
+export default function History() {
+    const { historyadd } = useStore();
     return (
       <div>
-        {add ? <Layout>{<TeamCultureAdd />}</Layout> : <Layout>{<TeamCultureView />}</Layout>}
+        {historyadd ? <Layout>{<HistoryAdd />}</Layout> : <Layout>{<HistoryView />}</Layout>}
         
       </div>
     );

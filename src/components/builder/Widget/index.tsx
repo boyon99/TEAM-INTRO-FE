@@ -486,11 +486,26 @@ export function Download({ theme }: HeaderProps) {
 }
 
 export function History({ theme }: HeaderProps) {
-  const newarray = [
-    { title: '2023', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-    { title: '2022', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-    { title: '반가워', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-  ];
+  // const newarray = [
+  //   { title: '2023', text: '05-08', font: '미디어스타트업 지원사업 선정' },
+  //   { title: '2022', text: '05-08', font: '미디어스타트업 지원사업 선정' },
+  //   { title: '반가워', text: '05-08', font: '미디어스타트업 지원사업 선정' },
+  // ];
+
+  const { historys, setHistorys, historyimgurl, setHistoryImgurl  } = useStore();
+  useEffect(() => {
+    const updatedProducts = historys.map((item, index) => {
+      if (index === historys.length - 1) {
+        return {
+          ...item,
+          image: historyimgurl,
+        };
+      }
+      return item;
+    });
+
+    setHistorys(updatedProducts);
+  }, [historyimgurl]);
   if (theme === 'ThemeA') {
     return (
       <section id="w-08" className="h-[700px] font-[LINE] pt-20">
@@ -500,8 +515,8 @@ export function History({ theme }: HeaderProps) {
         </div>
 
         <div className="mt-[15px] flex flex-col md:grid grid-cols-9 mx-auto p-2 text-GrayScalePrimary-800">
-          {newarray.map((e, i) => (
-            <React.Fragment key={i}>
+          {historys.map((item,i) => (
+            <React.Fragment key={item.history_element_id}>
               {i % 2 === 0 ? (
                 <div className="flex md:contents">
                   <div className="col-start-5 col-end-6 mr-10 md:mx-auto relative">
@@ -511,19 +526,19 @@ export function History({ theme }: HeaderProps) {
                     <div className="w-5 h-5 ml-[2px] absolute top-1/2 -mt-3 rounded-full bg-white border-4 border-primary-400"></div>
                   </div>
                   <div className="col-start-6 col-end-10 p-4 my-4 mr-auto mt-[60px]">
-                    <p className="font-bold text-[17px]/[100%]">{e.title}</p>
-                    <p className="font-bold text-[9px]/[100%] mt-[13px]">{e.text}</p>
-                    <p className="font-bold text-[10px]/[170%] mt-[5px] text-[#464646]">{e.font}</p>
+                    <p className="font-bold text-[17px]/[100%]">{item.date}</p>
+                    <p className="font-bold text-[9px]/[100%] mt-[13px]">{item.title}</p>
+                    <p className="font-bold text-[10px]/[170%] mt-[5px] text-[#464646]">{item.description}</p>
                   </div>
                 </div>
               ) : (
                 <div className="flex flex-row-reverse md:contents">
                   <div className="col-start-1 col-end-5 ml-auto mt-[60px]">
-                    <h3 className="mb-1 flex justify-end font-bold text-[17px]/[100%]">{e.title}</h3>
+                    <h3 className="mb-1 flex justify-end font-bold text-[17px]/[100%]">{item.date}</h3>
                     <p className="leading-tight text-justify flex justify-end font-bold text-[9px]/[100%] mt-[13px]">
-                      {e.text}
+                    {item.title}
                     </p>
-                    <p className="leading-tight text-justify font-bold text-[9px]/[100%] mt-[5px]">{e.font}</p>
+                    <p className="leading-tight text-justify font-bold text-[9px]/[100%] mt-[5px]">{item.description}</p>
                   </div>
                   <div className="col-start-5 col-end-6 md:mx-auto relative mr-10">
                     <div className="h-full w-6 flex items-center justify-center">
@@ -548,7 +563,7 @@ export function History({ theme }: HeaderProps) {
 
           <div className="w-[820px] h-[481px] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[27px]">
             <ul className="w-[720px] h-[400px] m-[0px_auto] pt-[40px]">
-              {[1, 2, 3].map((_, i) => (
+            {historys.map((item,i) => (
                 <li className="relative flex items-baseline gap-6 pb-8">
                   <div className="before:absolute before:left-[5.5px] before:h-full before:w-[2.5px] before:bg-review">
                     <svg
@@ -563,11 +578,10 @@ export function History({ theme }: HeaderProps) {
                   </div>
                   <div className="flex justify-center items-center">
                     <div>
-                      <p className="text-[22px] font-bold text-[#464646]">2022</p>
-                      <p className="text-sm mt-[11px] text-[14px] font-bold text-[#464646]">04-03</p>
+                      <p className="text-[22px] font-bold text-[#464646]">{item.date}</p>
+                      <p className="text-sm mt-[11px] text-[14px] font-bold text-[#464646]">{item.title}</p>
                       <p className="text-[11px] text-[#464646]">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores incidunt blanditiis
-                        dignissimos, enim earum mollitia.
+                      {item.description}
                       </p>
                     </div>
                     <img src="/history.png" className="mt-[10px]" alt="" />

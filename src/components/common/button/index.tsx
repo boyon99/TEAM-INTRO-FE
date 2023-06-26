@@ -7,14 +7,15 @@ import { useRouter } from "next/router";
 // leftpanel
 export function BeforeButtonSmall({ pageName }: BeforeButtonProps) {
   //제품/서비스 페이지에서 뒤로가기 클릭시 만들고 있던 아이템 삭제
-  const { add, setAdd, teamadd, setTeamAdd, newsadd, setNewsAdd, products,setProducts } = useStore();
+  const { add, setAdd, teamadd, setTeamAdd, newsadd, setNewsAdd, historyadd,setHistoryAdd,products,setProducts } = useStore();
   
   const router = useRouter();
   const backPage = () => {
-    if(add || teamadd || newsadd) {
+    if(add || teamadd || newsadd || historyadd) {
       setAdd(false)
       setTeamAdd(false)
       setNewsAdd(false)
+      setHistoryAdd(false)
       setProducts(products.slice(0, -1))
     } else {
       router.back();
