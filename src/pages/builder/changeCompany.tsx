@@ -1,6 +1,6 @@
 import EditBuilder from '@/components/builder/LeftPanel';
 import Layout from '@/components/builder/Layout';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BeforeButtonSmall, PrimaryButton } from '@/components/common/button';
 import useStore from '@/store';
 import { BuilderInput, BuilderUploadImage } from '@/components/common/input';
@@ -12,9 +12,13 @@ import { useUpdateCompany } from '@/hooks/useUpdateCompany';
 
 function Preview() {
   const { companyInfo, uploadImage, setUploadImage, setCompanyInfo, setLogo } = useStore();
-  const uploadImageMutation = useUploadImage(uploadImage, 'company');
+  const { mutate: uploadImageMutation, isSuccess } = useUploadImage(uploadImage, 'company');
   const updateCompanyMutation = useUpdateCompany(companyInfo);
-
+  useEffect(() => {
+    if (isSuccess) {
+      updateCompanyMutation();
+    }
+  }, [isSuccess]);
   return (
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 회사 정보 수정" />
@@ -115,7 +119,7 @@ function Preview() {
         type="primary"
         text="저장하기"
         onClick={() => {
-          if (uploadImage !== null) {
+          if (companyInfo.logo === '') {
             updateCompanyMutation();
           } else {
             uploadImageMutation();

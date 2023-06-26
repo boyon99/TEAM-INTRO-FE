@@ -16,15 +16,12 @@ export const useUploadImage = (imgSrc: any, type: string) => {
       // 데이터 성공 시 store에 저장 및 업데이트
       if (type === 'company') {
         setCompanyInfo({ ...companyInfo, logo: data.data.upload_path });
-        // useUpdateCompany(companyInfo);
       }
       if (type === 'site') {
         setSiteInfo({ ...siteInfo, pavicon: data.data.upload_path });
-        // useUpdateSite(siteInfo);
       }
       if (type === 'keyvisual') {
         setKeyVisual({ ...keyVisual, background: data.data.upload_path });
-        // useUpdateKeyVisual(keyVisual);
       }
     },
     onError: (error: AxiosError) => {
