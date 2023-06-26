@@ -16,6 +16,7 @@ function Preview() {
   const updateKeyVisualMutation = useUpdateKeyVisual({ widget_status: widgets[0].toggle, ...keyVisual });
   const { mutate: uploadImageMutation, isSuccess } = useUploadImage(uploadImage, 'keyvisual');
 
+  console.log('keyVisual', keyVisual);
   useEffect(() => {
     if (isSuccess) {
       updateKeyVisualMutation();

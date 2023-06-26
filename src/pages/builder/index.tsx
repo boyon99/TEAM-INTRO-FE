@@ -15,11 +15,18 @@ export default function Builder() {
   useEffect(() => {
     if (!isLoading) {
       console.log(builderData);
-      // CHRCKLIST - setHeaderAndFooter 초기 데이터 설정하기
+      const keyvisual = builderData.widgets.find((widget: any) => widget.widget_type === 'KEYVISUALANDSLOGAN');
+      setHeaderAndFooterList(builderData.header_and_footer.header_and_footer_status_list);
       setCompanyInfo(builderData.company_info);
       setSiteInfo(builderData.site_info);
       setTheme({ theme_type: builderData.theme.type, color: builderData.theme.color });
-      // setKeyVisual(builderData.key_visual);
+      // CHECKLIST: 이미지 경로 제대로 전달되는지 테스트하기
+      setKeyVisual({
+        background: keyvisual.background,
+        slogan: keyvisual.slogan,
+        filter: keyvisual.filter,
+        slogan_detail: keyvisual.slogan_detail,
+      });
     }
   }, [builderData]);
 
