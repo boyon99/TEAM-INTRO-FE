@@ -4,6 +4,8 @@ import exp from 'constants';
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { headerName } from '@/data/headerName';
+import { channelList } from '@/data/channel';
 
 export function KeyVisual({ theme }: HeaderProps) {
   const { keyVisual } = useStore();
@@ -13,13 +15,13 @@ export function KeyVisual({ theme }: HeaderProps) {
       <section id="w-01" className="h-[450px] w-full flex relative">
         <div
           className={
-            'w-full h-full z-10 ' + (keyVisual.filter === 'Black' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
+            'w-full h-full z-10 ' + (keyVisual.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
           }
         ></div>
         <span
           className={
             "absolute w-[500px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
-            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
           {keyVisual.slogan}
@@ -27,12 +29,14 @@ export function KeyVisual({ theme }: HeaderProps) {
         <span
           className={
             "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[10px] z-[11] " +
-            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
-          {keyVisual.sloganDetail}
+          {keyVisual.slogan_detail}
         </span>
-        <img src={keyVisual.bgImg} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
+        {keyVisual.background === '' ? null : (
+          <img src={keyVisual.background} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
+        )}{' '}
       </section>
     );
   } else {
@@ -40,13 +44,13 @@ export function KeyVisual({ theme }: HeaderProps) {
       <section id="w-01" className="h-[450px] w-full flex relative">
         <div
           className={
-            'w-full h-full z-10 ' + (keyVisual.filter === 'Black' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
+            'w-full h-full z-10 ' + (keyVisual.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
           }
         ></div>
         <span
           className={
             "absolute w-[700px] top-[100px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[500] text-center " +
-            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
           {keyVisual.slogan}
@@ -54,14 +58,14 @@ export function KeyVisual({ theme }: HeaderProps) {
         <span
           className={
             "absolute w-[700px] top-[220px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
-            (keyVisual.filter === 'Black' ? 'text-white' : 'text-black')
+            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
-          {keyVisual.sloganDetail}
+          {keyVisual.slogan_detail}
         </span>
-        {keyVisual.bgImg !== '' ? (
-          <Image src={keyVisual.bgImg} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
-        ) : null}
+        {keyVisual.background === '' ? null : (
+          <img src={keyVisual.background} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
+        )}
       </section>
     );
   }
@@ -87,7 +91,7 @@ export function MissionVision({ theme }: HeaderProps) {
             <div className="mt-[20px] black h-[auto] w-full">
               <p className="font-[700] text-[13px]">{missionVision.mission}</p>
               <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
-                {missionVision.missionDetail}
+                {missionVision.mission_detail}
               </p>
             </div>
           </div>
@@ -107,7 +111,7 @@ export function MissionVision({ theme }: HeaderProps) {
             <div className="mt-[20px] black h-[auto] w-full">
               <p className="font-[700] text-[13px]">{missionVision.vision}</p>
               <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
-                {missionVision.visionDetail}
+                {missionVision.vision_detail}
               </p>
             </div>
           </div>{' '}
@@ -124,7 +128,7 @@ export function MissionVision({ theme }: HeaderProps) {
             <div className="mt-[20px] flex h-[auto] w-full">
               <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.mission}</div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
-                {missionVision.missionDetail}
+                {missionVision.mission_detail}
               </div>
             </div>
           </div>
@@ -136,7 +140,7 @@ export function MissionVision({ theme }: HeaderProps) {
             <div className="mt-[20px] flex h-[auto] w-full">
               <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.vision}</div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
-                {missionVision.visionDetail}
+                {missionVision.vision_detail}
               </div>
             </div>
           </div>
@@ -147,18 +151,20 @@ export function MissionVision({ theme }: HeaderProps) {
 }
 
 export function Header({ theme }: HeaderProps) {
-  const { headerfooter } = useStore();
+  const { header_and_footer_status_list, companyInfo } = useStore();
   if (theme === 'ThemeA') {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
-        <img src="" className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
-        <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px]">ZILLINKS</span>
+        {companyInfo.logo === '' ? null : (
+          <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
+        )}
+        <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px] font-[700]">ZILLINKS</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
-          {headerfooter.quickmenu.map((item, index) => {
-            if (item.toggle) {
+          {header_and_footer_status_list.map((toggle, index) => {
+            if (toggle) {
               return (
                 <span key={index} className="font-['Roboto'] text-[10px] ml-[26px]">
-                  {item.name}
+                  {headerName[index]}
                 </span>
               );
             } else {
@@ -171,14 +177,16 @@ export function Header({ theme }: HeaderProps) {
   } else {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
-        <img src="" className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
+        {companyInfo.logo === '' ? null : (
+          <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
+        )}{' '}
         <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">Upperb</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
-          {headerfooter.quickmenu.map((item, index) => {
-            if (item.toggle) {
+          {header_and_footer_status_list.map((toggle, index) => {
+            if (toggle) {
               return (
                 <span key={index} className="font-['Roboto'] text-[10px] ml-[26px]">
-                  {item.name}
+                  {headerName[index]}
                 </span>
               );
             } else {
@@ -192,18 +200,80 @@ export function Header({ theme }: HeaderProps) {
 }
 
 export function Footer({ theme }: HeaderProps) {
-  const { headerfooter } = useStore();
-  if (theme === 'ThemeA') {
+  const { companyInfo } = useStore();
+  if (theme === 'ThemeB') {
     return (
-      <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative">
-        <div className="w-[255px] ml-[99px] mt-[73px] bg-primary-500 mb-[25px]">phone</div>
-        <div className="w-[177px] ml-[10px] mt-[87px] bg-primary-500 mb-[25px]">대표</div>
-        <div className="w-[255px] ml-[10px] mt-[30px] bg-primary-500 mb-[25px]">버튼</div>
+      <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative font-['LINE']">
+        <div className="w-[230px] ml-[99px] mt-[70px] mb-[25px] text-GrayScaleNeutral-400">
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[70px]">phone</div>
+            <div className="font-[300]">{companyInfo.phone_number}</div>
+          </div>
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[70px]">FAX</div>
+            <div className="font-[300]">{companyInfo.fax_number}</div>
+          </div>
+          <div className="font-[500] text-[12px] flex">
+            <div className="w-[70px]">Address</div>
+            <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
+          </div>
+        </div>
+        <div className="w-[177px] ml-[10px] mt-[87px] text-GrayScaleNeutral-400 mb-[25px]">
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[60px]">대표</div>
+            <div className="font-[300]">{companyInfo.representative}</div>
+          </div>
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[60px]">Email</div>
+            <div className="font-[300]">{companyInfo.contact_email}</div>
+          </div>
+        </div>
+        <div className="w-[240px] ml-[30px] mt-[30px] text-GrayScaleNeutral-400 mb-[25px] flex flex-col">
+          <div className="border w-[110px] pl-[13px] py-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px]">
+            기업 상세 정보
+          </div>
+          {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
+          <div className="font-[300] text-[12px] flex ml-[163px]">주식회사 질링스</div>
+          <div className="font-[300] text-[12px] flex">Copyright&#169;Zillinks.Co.Ltd. All Right Reserved</div>
+        </div>
       </section>
     );
   } else {
     return (
-      <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex flex-row-reverse relative"></section>
+      <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-550 flex relative font-['Korail']">
+        <div className="w-[230px] ml-[99px] mt-[70px] mb-[25px] text-white">
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[70px]">phone</div>
+            <div className="font-[300]">{companyInfo.phone_number}</div>
+          </div>
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[70px]">FAX</div>
+            <div className="font-[300]">{companyInfo.fax_number}</div>
+          </div>
+          <div className="font-[500] text-[12px] flex">
+            <div className="w-[70px]">Address</div>
+            <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
+          </div>
+        </div>
+        <div className="w-[177px] ml-[10px] mt-[87px] text-white mb-[25px]">
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[60px]">대표</div>
+            <div className="font-[300]">{companyInfo.representative}</div>
+          </div>
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[60px]">Email</div>
+            <div className="font-[300]">{companyInfo.contact_email}</div>
+          </div>
+        </div>
+        <div className="w-[250px] ml-[35px] mt-[30px] text-white mb-[25px] flex flex-col">
+          <div className="border w-[110px] pl-[16px] py-[5px] text-[12px] rounded-[18px] border-GrayScaleNeutral-400 ml-[133px]">
+            기업 상세 정보
+          </div>
+          {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
+          <div className="font-[300] text-[12px] flex ml-[156px]">주식회사 질링스</div>
+          <div className="font-[300] text-[12px] flex">Copyright&#169;Zillinks.Co.Ltd. All Right Reserved</div>
+        </div>
+      </section>
     );
   }
 }
@@ -623,18 +693,20 @@ export function Review({ theme }: HeaderProps) {
 
 export function Channel({ theme }: HeaderProps) {
   const { channel } = useStore();
+  const channelValues = Object.values(channel);
+
   if (theme === 'ThemeA') {
     return (
       <section id="w-13" className="h-[200px] w-full relative mt-[20px]">
         <span className="font-[700] text-[22px] font-[LINE] ml-[100px]">SNS Channel</span>
         <span className="font-[500] text-[10px] text-GrayScaleNeutral-700 ml-[5px] mt-[30px]">채널</span>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
-          {channel.channelList.map((items, index) => {
-            if (items.checked) {
+          {channelList.map((items, index) => {
+            if (channelValues[index * 2]) {
               return (
-                <div className="flex flex-row mr-[4px]">
+                <div className="flex flex-row mr-[4px]" key={index}>
                   <img src={items.img} className="w-[50px] h-[50px]" />
-                  <span className="text-[10px] mt-[30px]">{items.value}</span>
+                  <span className="text-[10px] mt-[30px]">{channelValues[index * 2 + 1]}</span>
                 </div>
               );
             } else {
@@ -649,10 +721,13 @@ export function Channel({ theme }: HeaderProps) {
       <section id="w-13" className="h-[200px] w-full relative mt bg-GrayScaleNeutral-100">
         <div className="font-[500] text-[16px] text-[#FFB800] ml-[100px] pt-[20px]">SNS Channel</div>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
-          {channel.channelList.map((items, index) => {
-            if (items.checked) {
+          {channelList.map((items, index) => {
+            if (channelValues[index * 2]) {
               return (
-                <div className="flex flex-row mr-[4px] bg-white w-[70px] h-[70px] rounded-[14px] drop-shadow-xl mx-[20px] items-center justify-center">
+                <div
+                  className="flex flex-row mr-[4px] bg-white w-[70px] h-[70px] rounded-[14px] drop-shadow-xl mx-[20px] items-center justify-center"
+                  key={index}
+                >
                   <img src={items.img} className="w-[50px] h-[50px]" />
                 </div>
               );

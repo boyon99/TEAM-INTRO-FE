@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { PrimaryButton } from '../button';
 import { set } from 'react-hook-form';
 import { on } from 'events';
+import useStore from '@/store';
 
 // 기본 입력창
 export function BuilderInput({
@@ -44,6 +45,7 @@ export function BuilderInput({
 
 // 이미지 업로드 입력창
 export function BuilderUploadImage({ title, ratio, imgSrc, setImgSrc, name, setUploadImg }: BuilderUploadImageProps) {
+  const { resetUploadImage } = useStore();
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
@@ -62,6 +64,7 @@ export function BuilderUploadImage({ title, ratio, imgSrc, setImgSrc, name, setU
               className="w-[32px] h-[32px] absolute right-[8px] top-[7px]"
               onClick={() => {
                 setImgSrc(''); // 이미지 삭제
+                resetUploadImage(); // 이미지 삭제
               }}
             >
               <img src="/delete.png" />
@@ -164,7 +167,7 @@ export function BuilderTextarea({
 }
 
 // 체크박스 입력창
-export function BuilderCheckbox({ list, setValue, setChecked }: BuilderCheckboxProps) {
+export function BuilderCheckbox({ list, onChange, setChecked, checked, value }: BuilderCheckboxProps) {
   return (
     <>
       <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{list.name}</div>
@@ -173,9 +176,9 @@ export function BuilderCheckbox({ list, setValue, setChecked }: BuilderCheckboxP
           type="checkbox"
           className="w-[16px] h-[16px] rounded-[2px] border-[2px] border-GrayScalePrimary-300 flex indent-[10px] font-[400] ml-[10px] translate-y-[4px]"
           id={list.name + 'checkbox'}
-          checked={list.checked}
+          checked={checked}
           onChange={(e) => {
-            setChecked(list.name);
+            setChecked();
           }}
         />
         <span className="text-GrayScalePrimary-150">|</span>
@@ -184,10 +187,8 @@ export function BuilderCheckbox({ list, setValue, setChecked }: BuilderCheckboxP
           type="text"
           placeholder="예: sns 아이디 입력"
           className="ml-[10px] w-[150px]"
-          value={list.value}
-          onChange={(e) => {
-            setValue(list.name, e.target.value);
-          }}
+          value={value}
+          onChange={onChange}
         />
       </div>
     </>
