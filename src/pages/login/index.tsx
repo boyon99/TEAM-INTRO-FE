@@ -54,7 +54,7 @@ export default function Login() {
            <span className="font-sans font-bold text-[20px]/[100%] text-primary-100 text-center">회사소개페이지 제작 PLUG-IN</span>
          </div>
        </div>
-       <div className="w-[640px] bg-primary-100">
+       <div className="w-[640px]">
         <div className="ml-[calc(50%-360px/2)] pt-[203px]">
             <span className="align-top not-italic text-GrayScalePrimary-800 font-black text-[27px]/[100%] w-[85px] h-[32px] ml-[137.5px] top-[2px] tracking-[0.03em] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">로그인</span>
            <form id="join" onSubmit={handleSubmit(onValid)} className="flex flex-col pt-[36px] w-[360px] h-[359px] left-0">
