@@ -1,12 +1,21 @@
 import {
   AuthResponse,
   FindId,
+  HistoryAdd,
+  HistoryDelete,
+  HistoryModify,
   LoginRequest,
   NewPass,
+  NewsAdd,
+  NewsDelete,
+  NewsModify,
   ProductAdd,
   ProductDelete,
   ProductModify,
   RegisterRequest,
+  TeamAdd,
+  TeamDelete,
+  TeamModify,
   UserModify,
   checkbiznumRequest,
   checkidRequest,
@@ -129,11 +138,85 @@ export const productview = async (modifyitem: ProductModify) => {
   console.log(response);
   return response;
 };
+
+
+// 팀 멤버 요소 추가
+export const teamadd = async (item: TeamAdd) => {
+  const { data } = await axiosInstance().post<any>('/api/s/user/introPage/teamMember/detail', item)
+  const response = data.data;
+  console.log(response);
+  return response;
+};
+// 팀 멤버 요소 삭제
+export const teamdelete = async (deleteitem: TeamDelete) => {
+  const { data } = await axiosInstance().delete<any>('/api/s/user/introPage/teamMember/detail', {data:deleteitem})
+  const response = data.data;
+  console.log(response);
+  return response;
+};
+// 팀 멤버 메인페이지 저장하기
+export const teamview = async (modifyitem: TeamModify) => {
+  const { data } = await axiosInstance().put<any>('/api/s/user/introPage/teamMember', modifyitem)
+  const response = data.data;
+  console.log(response);
+  return response;
+};
+
+// 연혁 요소 추가
+export const historyadd = async (item: HistoryAdd) => {
+  const { data } = await axiosInstance().post<any>('/api/s/user/introPage/history/detail', item)
+  const response = data.data;
+  console.log(response);
+  return response;
+};
+// 연혁 요소 삭제
+export const historydelete = async (deleteitem: HistoryDelete) => {
+  const { data } = await axiosInstance().delete<any>('/api/s/user/introPage/history/detail', {data:deleteitem})
+  const response = data.data;
+  console.log(response);
+  return response;
+};
+// 연혁 메인페이지 저장하기
+export const historyview = async (modifyitem: HistoryModify) => {
+  const { data } = await axiosInstance().put<any>('/api/s/user/introPage/history', modifyitem)
+  const response = data.data;
+  console.log(response);
+  return response;
+};
+
+// 보도자료 불러오기
+export const newsget = async (url: string) => {
+  const { data } = await axiosInstance().get<any>(`/api/s/user/introPage/news/import?url=${url}`)
+  const response = data.data;
+  console.log(response);
+  return response;
+};
+// 보도자료 요소 추가
+export const newsadd = async (item: NewsAdd) => {
+  const { data } = await axiosInstance().post<any>('/api/s/user/introPage/news/detail')
+  const response = data.data;
+  console.log(response);
+  return response;
+};
+
+// 보도자료 요소 삭제
+export const newsdelete = async (deleteitem: NewsDelete) => {
+  const { data } = await axiosInstance().delete<any>('/api/s/user/introPage/news/detail', {data:deleteitem})
+  const response = data.data;
+  console.log(response);
+  return response;
+};
+// 보도자료 메인페이지 저장
+export const newsview = async (modifyitem: NewsModify) => {
+  const { data } = await axiosInstance().put<any>('/api/s/user/introPage/news')
+  const response = data.data;
+  console.log(response);
+  return response;
+};
 export const accesstoken = async (user: LoginRequest) => {
       const { data } = await axiosInstance().post<AuthResponse>('/api/accessToken', user)
       const response = data.data;
       console.log(response)
       return response
   }
-  
  

@@ -1,12 +1,16 @@
+import { teamadd, teamdelete } from '@/apis/auth';
 import Layout from '@/components/builder/Layout';
 import { BeforeButtonSmall, PrimaryButton } from '@/components/common/button';
 import { BuilderInput, BuilderTextarea } from '@/components/common/input';
-import { ProductTitle } from '@/components/common/product';
+import { ProductTitle, TeamTitle } from '@/components/common/product';
 import { Toggle, ToggleWidget } from '@/components/common/toggle';
+import { TeamDelete } from '@/interfaces/auth';
 import useStore from '@/store';
+import { getCookie } from '@/utils/cookies';
 import { validateImageSize } from '@/utils/fileCheck';
 import { useMutation } from '@tanstack/react-query';
-import React, { useState } from 'react'
+import axios, { AxiosError } from 'axios';
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 function TeamMemberView() {
@@ -32,14 +36,40 @@ function TeamMemberView() {
   }
   console.log(teammembers)
 //  배열 리스트 삭제/위치 이동시 체크박스 그대로 유지
-const [teamselectedItems, setTeamSelectedItems] = useState<any[]>([]);
-const teamHandleChange = (productId: any) => {
-  if (teamselectedItems.includes(productId)) {
-    setTeamSelectedItems(teamselectedItems.filter((id: any) => id !== productId));
+const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  
+console.log(selectedItems)
+
+// 팀 멤버 삭제 요청api
+const { mutate: deletemutate} = useMutation(teamdelete, {
+  onSuccess: (data) => {
+   console.log(data)
+  },
+  onError: (err: AxiosError) => { 
+    const Eresponse = err.response?.data
+    const { data }: any = Eresponse
+    console.log(data.value)
+  },
+})
+const handleCheckboxChange = (productId: any) => {
+  if (selectedItems.includes(productId)) {
+    setSelectedItems(selectedItems.filter((id: any) => id !== productId));
   } else {
-    setTeamSelectedItems([...teamselectedItems, productId]);
+    setSelectedItems([...selectedItems, productId]);
   }
  
+};
+// 삭제 요청과의 별개로 저장되어있던 미리보기 ui 삭제 
+const deleteSelectedItems = () => {
+  const updatedProducts = teammembers.filter((product) => !selectedItems.includes(product.team_member_element_id));
+  const filteredArray: TeamDelete = {
+    delete_list:selectedItems.filter((item) => item !== undefined) as number[]
+  }
+  ;
+  console.log(filteredArray)
+  deletemutate(filteredArray)
+  setTeamMember(updatedProducts);
+  setSelectedItems([]);
 };
 
   return (
@@ -70,7 +100,7 @@ const teamHandleChange = (productId: any) => {
    <div className='mt-[48px]'>
    <span className='font-bold text-lg/[110%] text-[#57566a]'>팀 멤버 편집</span>
    </div>
-   <ProductTitle TeamAddonClick={TeamAddonClick} teamHandleChange={teamHandleChange} teamselectedItems={teamselectedItems} setTeamSelectedItems={setTeamSelectedItems}/> 
+   <TeamTitle onClick={TeamAddonClick} deleteSelectedItems={deleteSelectedItems} handleCheckboxChange={handleCheckboxChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} /> 
    </>: <></>}
    
     {/* 저장하기 */}
@@ -88,11 +118,101 @@ const teamHandleChange = (productId: any) => {
 
 
 function TeamMemberAdd() {
-    
-      const { register, handleSubmit, watch, formState: { errors } } = useForm();
-      const { teammembers, setTeamMember, teamimgurl, setTeamImgurl } = useStore();
+  interface EnterForm {
+    name: string;
+    group: string;
+    position: string;
+    profile: FileList;
+    tagline: string;
+    email: string;
+  }
+      const { register, handleSubmit, watch, formState: { errors } } = useForm<EnterForm>();
+      const { teammembers, setTeamMember, teamimgurl, setTeamImgurl, setTeamAdd } = useStore();
       const [teammemberview, setTeamMemberView] = useState('');
-   
+
+useEffect(() => {
+    const updatedProducts = teammembers.map((teammember, index) => {
+      if (index === teammembers.length - 1) {
+        return {
+          ...teammember,
+          profile: teammemberview,
+        };
+      }
+      return teammember;
+    });
+
+    setTeamMember(updatedProducts);
+  }, [teammemberview]);
+
+
+
+   // 팀 멤버 추가하기 api 요청
+  const { mutate: teammutate, isLoading: userLoading, error: usererror } = useMutation(teamadd, {
+    onSuccess: (data) => {
+      console.log(data)
+      // 저장하기가 성공하면 결과값의 데이터를 원래 products에 저장, 여기서 사용자가 넣은 이미지 결과를 바로 볼 수 있음
+        // const updatedProducts = teammembers.map((product, index) => {
+        //   if (index === teammembers.length - 1) {
+        //     return {
+        //       ...product,
+        //       products_and_services_element_id: data.products_and_services_element_id,
+        //       order: data.order,
+        //       name: data.name,
+        //       title: data.title,
+        //       description: data.description,
+        //       image: data.image
+        //     };
+        //   }
+        //   return product;
+        // });
+        // setTeamMember(updatedProducts);
+      
+        setTeamAdd(false) // 저장하기가 성공하면 뒤로가기
+    },
+    onError: (err: AxiosError) => { 
+      const Eresponse = err.response?.data
+      const { data }: any = Eresponse
+      console.log(data.value)
+    },
+  })
+
+
+   // 이미지를 포함하여 요청을 보낼 경우 이미지 경로를 미리 받아와서 요청 보내기
+  const token = getCookie('access_token')
+  const onValid = async (data:any) => {
+    
+    const image = watch('profile')
+    console.log(data)
+    const form = new FormData();   
+    form.append("image", data.profile[0])    
+    form.append("name", `${image}`);
+    form.append("type", 'string');
+   try {
+    const response = await axios.post('/api/s/user/uploadImage',  form, {
+      headers: {
+        "Authorization": `${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    
+    const avatar = response.data.data.upload_path;
+    console.log(avatar)
+    const user = {
+      name: data.name,
+      group: data.group,
+      position: data.position,
+      profile: avatar,
+      tagline: data.tagline,
+      email: data.email,
+      sns_status: true,
+    }
+    
+    teammutate(user)
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
    
    
    // 이미지의 삭제 버튼 클릭시 미리보기 이미지 삭제
@@ -113,7 +233,7 @@ function TeamMemberAdd() {
         <div className="w-[260px] font-[500] text-[16px] mt-[16px] text-GrayScalePrimary-700">
         팀 멤버들의 아이덴티티, 역량과 발전 가능성과 성과 등을 회사에서 맡은 역할과 연결해 표현해주세요.
         </div>
-    <form id='team'>
+    <form id='team' onSubmit={handleSubmit(onValid)}>
        <div className='mt-[48px]'>
         <span className='mt-[20px] text-GrayScalePrimary-700 font-bold text-[18px]/110%'>팀 멤버 추가하기</span>
           <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">프로필 이미지</div>
@@ -142,7 +262,7 @@ function TeamMemberAdd() {
         {teammemberview === '' ? (
           <>
             <div className="w-[60px] h-[60px] rounded-[10px] bg-primary-100 mx-[auto] mt-[14px]">
-              <input className="hidden" type="file" id='file-input'{...register('image', {
+              <input className="hidden" type="file" id='file-input'{...register('profile', {
                 onChange: (e) => {
                   validateImageSize({e, setTeamMemberView, setTeamImgurl})
                 }

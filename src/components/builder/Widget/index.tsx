@@ -280,20 +280,20 @@ export function Footer({ theme }: HeaderProps) {
 
 export function ProductService({ theme }: HeaderProps) {
   const { products, setProducts, imgurl, setImgurl, productservices } = useStore();
-  useEffect(() => {
-    const updatedProducts = products.map((product, index) => {
-      if (index === products.length - 1) {
-        return {
-          ...product,
-          image: imgurl,
-        };
-      }
-      return product;
-    });
+  // useEffect(() => {
+  //   const updatedProducts = products.map((product, index) => {
+  //     if (index === products.length - 1) {
+  //       return {
+  //         ...product,
+  //         image: imgurl,
+  //       };
+  //     }
+  //     return product;
+  //   });
 
-    setProducts(updatedProducts);
-  }, [imgurl]);
-  console.log(products);
+  //   setProducts(updatedProducts);
+  // }, [imgurl]);
+  // console.log(products);
   if (theme === 'ThemeA') {
     return (
       <section id="w-04" className="h-[402px] font-[LINE]">
@@ -378,19 +378,20 @@ export function ProductService({ theme }: HeaderProps) {
 
 export function TeamMember({ theme }: HeaderProps) {
   const { teammembers, setTeamMember, teamimgurl, setTeamImgurl  } = useStore();
-  useEffect(() => {
-    const updatedProducts = teammembers.map((teammember, index) => {
-      if (index === teammembers.length - 1) {
-        return {
-          ...teammember,
-          profile: teamimgurl,
-        };
-      }
-      return teammember;
-    });
+  // useEffect(() => {
+  //   const updatedProducts = teammembers.map((teammember, index) => {
+  //     if (index === teammembers.length - 1) {
+  //       return {
+  //         ...teammember,
+  //         profile: teamimgurl,
+  //       };
+  //     }
+  //     return teammember;
+  //   });
 
-    setTeamMember(updatedProducts);
-  }, [teamimgurl]);
+  //   setTeamMember(updatedProducts);
+  // }, [teamimgurl]);
+  console.log(teammembers);
   if (theme === 'ThemeA') {
     return (
       <section id="w-04" className="h-[600px] font-[LINE]">
@@ -400,7 +401,8 @@ export function TeamMember({ theme }: HeaderProps) {
         </div>
 
         <div className="w-[703.12px] h-[337px] m-[0_auto] mt-[42.19px] flex flex-wrap">
-          {teammembers.map((team) => (
+          {teammembers?.map((team) => {
+            return (
             <div key={team.team_member_element_id} className="w-[169px] h-[337px] ml-[5px]">
               {team.profile? <img src={team.profile} alt="" className="w-[169px] h-[198px]" /> : <img src="/프로필.png" alt="" className="w-[169px] h-[198px]" />}
               <div className="w-[169px] h-[337px] mt-[11.4px]">
@@ -412,7 +414,8 @@ export function TeamMember({ theme }: HeaderProps) {
                 <p className="font-normal text-[9.84px]/[100%] mt-[14px]">{team.email}</p>
               </div>
             </div>
-          ))}
+            )
+          })}
         </div>
       </section>
     );
@@ -563,19 +566,19 @@ export function History({ theme }: HeaderProps) {
   // ];
 
   const { historys, setHistorys, historyimgurl, setHistoryImgurl  } = useStore();
-  useEffect(() => {
-    const updatedProducts = historys.map((item, index) => {
-      if (index === historys.length - 1) {
-        return {
-          ...item,
-          image: historyimgurl,
-        };
-      }
-      return item;
-    });
+  // useEffect(() => {
+  //   const updatedProducts = historys.map((item, index) => {
+  //     if (index === historys.length - 1) {
+  //       return {
+  //         ...item,
+  //         image: historyimgurl,
+  //       };
+  //     }
+  //     return item;
+  //   });
 
-    setHistorys(updatedProducts);
-  }, [historyimgurl]);
+  //   setHistorys(updatedProducts);
+  // }, [historyimgurl]);
   if (theme === 'ThemeA') {
     return (
       <section id="w-08" className="h-[700px] font-[LINE] pt-20">

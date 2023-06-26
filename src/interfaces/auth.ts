@@ -63,3 +63,47 @@ export interface ProductModify {
   text: string;
   link: string;
 }
+// 팀 멤버
+export interface TeamAdd {
+  name: string;
+  group: string;
+  position: string;
+  tagline: string;
+  email: string;
+  profile: string;
+}
+export interface TeamDelete {
+  delete_list: number[]
+}
+export interface TeamModify {
+  widget_status: boolean;
+  order_list: (number | undefined)[];
+}
+// 연혁
+export interface HistoryAdd {
+  image: string;
+  date: string;
+  title: string;
+  description: string;
+}
+export interface HistoryDelete {
+  delete_list: number[]
+}
+export interface HistoryModify {
+  widget_status: boolean;
+}
+//보도자료
+export interface NewsAdd {
+  image: string;
+  date: string;
+  title: string;
+  press: string;
+  description: string;
+}
+export interface NewsDelete {
+  delete_list: number[]
+}
+export interface NewsModify {
+  widget_status: boolean;
+  order_list: (number | undefined)[];
+}
