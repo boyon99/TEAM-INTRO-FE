@@ -16,7 +16,8 @@ export interface Store {
   setAdd: (add: boolean) => void;
   products: Products[];
   setProducts: (products: Products[]) => void;
-  headerfooter: HeaderFooter;
+  header_and_footer_status_list: boolean[];
+  setHeaderAndFooter: (header_and_footer_status_list: number) => void;
   imgurl: string;
   setImgurl: (imgurl: string) => void;
   keyVisual: KeyVisual;
@@ -80,13 +81,6 @@ export interface KeyVisual {
   setFilter: (filter: 'Black' | 'White') => void;
   setSlogan: (slogan: string) => void;
   setSloganDetail: (sloganDetail: string) => void;
-}
-
-export interface HeaderFooter {
-  quickmenu: QuickMenu[];
-  lowerMenuToggle: boolean;
-  setQuickMenuToggle: (name: string) => void;
-  setLowerMenuToggle: (lowerMenuToggle: boolean) => void;
 }
 
 export interface QuickMenu {

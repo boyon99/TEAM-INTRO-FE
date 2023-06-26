@@ -4,6 +4,7 @@ import exp from 'constants';
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { headerName } from '@/data/headerName';
 
 export function KeyVisual({ theme }: HeaderProps) {
   const { keyVisual } = useStore();
@@ -147,18 +148,20 @@ export function MissionVision({ theme }: HeaderProps) {
 }
 
 export function Header({ theme }: HeaderProps) {
-  const { headerfooter } = useStore();
+  const { header_and_footer_status_list, companyInfo } = useStore();
   if (theme === 'ThemeA') {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
-        <img src="" className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
-        <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px]">ZILLINKS</span>
+        {companyInfo.logo === '' ? null : (
+          <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
+        )}
+        <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px] font-[700]">ZILLINKS</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
-          {headerfooter.quickmenu.map((item, index) => {
-            if (item.toggle) {
+          {header_and_footer_status_list.map((toggle, index) => {
+            if (toggle) {
               return (
                 <span key={index} className="font-['Roboto'] text-[10px] ml-[26px]">
-                  {item.name}
+                  {headerName[index]}
                 </span>
               );
             } else {
@@ -171,14 +174,16 @@ export function Header({ theme }: HeaderProps) {
   } else {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
-        <img src="" className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
+        {companyInfo.logo === '' ? null : (
+          <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
+        )}{' '}
         <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">Upperb</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
-          {headerfooter.quickmenu.map((item, index) => {
-            if (item.toggle) {
+          {header_and_footer_status_list.map((toggle, index) => {
+            if (toggle) {
               return (
                 <span key={index} className="font-['Roboto'] text-[10px] ml-[26px]">
-                  {item.name}
+                  {headerName[index]}
                 </span>
               );
             } else {
@@ -192,18 +197,80 @@ export function Header({ theme }: HeaderProps) {
 }
 
 export function Footer({ theme }: HeaderProps) {
-  const { headerfooter } = useStore();
-  if (theme === 'ThemeA') {
+  const { companyInfo } = useStore();
+  if (theme === 'ThemeB') {
     return (
-      <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative">
-        <div className="w-[255px] ml-[99px] mt-[73px] bg-primary-500 mb-[25px]">phone</div>
-        <div className="w-[177px] ml-[10px] mt-[87px] bg-primary-500 mb-[25px]">대표</div>
-        <div className="w-[255px] ml-[10px] mt-[30px] bg-primary-500 mb-[25px]">버튼</div>
+      <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative font-['LINE']">
+        <div className="w-[230px] ml-[99px] mt-[70px] mb-[25px] text-GrayScaleNeutral-400">
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[70px]">phone</div>
+            <div className="font-[300]">{companyInfo.phone_number}</div>
+          </div>
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[70px]">FAX</div>
+            <div className="font-[300]">{companyInfo.fax_number}</div>
+          </div>
+          <div className="font-[500] text-[12px] flex">
+            <div className="w-[70px]">Address</div>
+            <div className="font-[300]">{/* 추가하기 - address 주소목록 가져오기 */}</div>
+          </div>
+        </div>
+        <div className="w-[177px] ml-[10px] mt-[87px] text-GrayScaleNeutral-400 mb-[25px]">
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[60px]">대표</div>
+            <div className="font-[300]">{companyInfo.representative}</div>
+          </div>
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[60px]">Email</div>
+            <div className="font-[300]">{companyInfo.contact_email}</div>
+          </div>
+        </div>
+        <div className="w-[240px] ml-[30px] mt-[30px] text-GrayScaleNeutral-400 mb-[25px] flex flex-col">
+          <div className="border w-[110px] pl-[13px] py-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px]">
+            기업 상세 정보
+          </div>
+          {/* 추가하기 - 해당 링크로 이동하는 이미지 버튼 추가 */}
+          <div className="font-[300] text-[12px] flex ml-[163px]">주식회사 질링스</div>
+          <div className="font-[300] text-[12px] flex">Copyright&#169;Zillinks.Co.Ltd. All Right Reserved</div>
+        </div>
       </section>
     );
   } else {
     return (
-      <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex flex-row-reverse relative"></section>
+      <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-550 flex relative font-['Korail']">
+        <div className="w-[230px] ml-[99px] mt-[70px] mb-[25px] text-white">
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[70px]">phone</div>
+            <div className="font-[300]">{companyInfo.phone_number}</div>
+          </div>
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[70px]">FAX</div>
+            <div className="font-[300]">{companyInfo.fax_number}</div>
+          </div>
+          <div className="font-[500] text-[12px] flex">
+            <div className="w-[70px]">Address</div>
+            <div className="font-[300]">{/* 추가하기 - address 주소목록 가져오기 */}</div>
+          </div>
+        </div>
+        <div className="w-[177px] ml-[10px] mt-[87px] text-white mb-[25px]">
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[60px]">대표</div>
+            <div className="font-[300]">{companyInfo.representative}</div>
+          </div>
+          <div className="font-[500] text-[12px] mb-[1px] flex">
+            <div className="w-[60px]">Email</div>
+            <div className="font-[300]">{companyInfo.contact_email}</div>
+          </div>
+        </div>
+        <div className="w-[250px] ml-[35px] mt-[30px] text-white mb-[25px] flex flex-col">
+          <div className="border w-[110px] pl-[16px] py-[5px] text-[12px] rounded-[18px] border-GrayScaleNeutral-400 ml-[133px]">
+            기업 상세 정보
+          </div>
+          {/* 추가하기 - 해당 링크로 이동하는 이미지 버튼 추가 */}
+          <div className="font-[300] text-[12px] flex ml-[156px]">주식회사 질링스</div>
+          <div className="font-[300] text-[12px] flex">Copyright&#169;Zillinks.Co.Ltd. All Right Reserved</div>
+        </div>
+      </section>
     );
   }
 }

@@ -180,41 +180,17 @@ const useStore = create<Store>((set) => ({
     },
   },
   // builder - header, footer
-  headerfooter: {
-    quickmenu: [
-      { name: '미션/비젼', toggle: false },
-      { name: '제품/서비스 소개', toggle: false },
-      { name: '팀 소개', toggle: false },
-      { name: '컨택어스', toggle: false },
-      { name: '보도자료', toggle: false },
-      { name: '다운로드', toggle: false },
-      { name: '연혁', toggle: false },
-      { name: '팀 문화', toggle: false },
-      { name: '핵심성과', toggle: false },
-      { name: '파트너스', toggle: false },
-      { name: '고객리뷰', toggle: false },
-      { name: '특허/인증', toggle: false },
-    ],
-    lowerMenuToggle: false,
-    setQuickMenuToggle: (name) => {
-      set((state) => ({
-        headerfooter: {
-          ...state.headerfooter,
-          quickmenu: state.headerfooter.quickmenu.map((menu) => {
-            if (menu.name === name) {
-              return { ...menu, toggle: !menu.toggle };
-            } else {
-              return menu;
-            }
-          }),
-        },
-      }));
-    },
-    setLowerMenuToggle: (toggle) => {
-      set((state) => ({
-        headerfooter: { ...state.headerfooter, lowerMenuToggle: toggle },
-      }));
-    },
+  header_and_footer_status_list: [true, false, true, false, true, false, true, false, true, false, true, false, true],
+  setHeaderAndFooter: (index) => {
+    set((state) => {
+      const arr = state.header_and_footer_status_list.map((item, i) => {
+        if (i === index) {
+          return !item;
+        }
+        return item;
+      });
+      return { header_and_footer_status_list: arr };
+    });
   },
   // builder - keyvisual
   keyVisual: {

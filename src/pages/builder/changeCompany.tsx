@@ -13,7 +13,7 @@ import { useUpdateCompany } from '@/hooks/useUpdateCompany';
 function Preview() {
   const { companyInfo, uploadImage, setUploadImage, setCompanyInfo, setLogo } = useStore();
   const uploadImageMutation = useUploadImage(uploadImage, 'company');
-  const updateCompany = useUpdateCompany(companyInfo);
+  const updateCompanyMutation = useUpdateCompany(companyInfo);
 
   return (
     <div className="ml-[28px]">
@@ -116,7 +116,7 @@ function Preview() {
         text="저장하기"
         onClick={() => {
           if (uploadImage !== null) {
-            updateCompany();
+            updateCompanyMutation();
           } else {
             uploadImageMutation();
           }

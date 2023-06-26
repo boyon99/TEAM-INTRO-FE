@@ -11,6 +11,7 @@ export const useUploadImage = (imgSrc: any, type: string) => {
   const { mutate } = useMutation(() => uploadImage({ image: imgSrc }), {
     onSuccess: (data) => {
       console.log(data);
+      // 데이터 성공 시 store에 저장 및 업데이트
       if (type === 'company') {
         setCompanyInfo({ ...companyInfo, logo: data.data.upload_path });
         useUpdateCompany(companyInfo);

@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 function Preview() {
   const { siteInfo, setSiteInfo, uploadImage, setUploadImage, setPaivcon } = useStore();
   const uploadImageMutation = useUploadImage(uploadImage, 'site');
-  const updateSite = useUpdateSite(siteInfo);
+  const updateSiteMutation = useUpdateSite(siteInfo);
 
   return (
     <div className="ml-[28px]">
@@ -82,7 +82,7 @@ function Preview() {
         text="저장하기"
         onClick={() => {
           if (uploadImage !== null) {
-            updateSite();
+            updateSiteMutation();
           } else {
             uploadImageMutation();
           }

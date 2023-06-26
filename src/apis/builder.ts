@@ -22,6 +22,11 @@ export const updateTheme = async (theme: any) => {
   return data;
 };
 
+export const updateHeaderAndFooter = async (headerAndFooter: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/headerAndFooter', headerAndFooter);
+  return data;
+};
+
 export const updateSiteInfo = async (siteInfo: any) => {
   const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/siteInfo', siteInfo);
   return data;

@@ -148,7 +148,7 @@ export function ToggleWidget({ toggle, setToggle, setWidgetToggle, toggleText, w
             (toggle ? 'bg-primary-500' : 'bg-GrayScalePrimary-200')
           }
           onClick={() => {
-            setToggle && setToggle(!toggle);
+            setToggle && setToggle(12);
             setWidgetToggle && setWidgetToggle(widgetName);
           }}
         >
@@ -218,9 +218,8 @@ export function Checkbox({ checked, handleClick }: CheckboxProps) {
   );
 }
 
-
 // 일반 토글
-export function Toggle({ toggle, setToggle, toggleText}: any) {
+export function Toggle({ toggle, setToggle, toggleText }: any) {
   // 토글 애니메이션
   const toggleAnimation = 'transform translate-x-[16px]';
 
