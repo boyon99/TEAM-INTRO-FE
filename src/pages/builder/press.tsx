@@ -91,7 +91,7 @@ const deleteSelectedItems = () => {
       />
       </div>
    </div>
-   {widgets[5].toggle ? 
+   {findWigetToggle?.toggle ? 
    <>
    <div className='mt-[48px]'>
    <span className='font-bold text-lg/[110%] text-[#57566a]'>보도 자료 편집</span>

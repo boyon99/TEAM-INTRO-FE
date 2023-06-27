@@ -97,7 +97,7 @@ function TeamMemberView() {
           />
         </div>
       </div>
-      {widgets[3].toggle ? (
+      {findWigetToggle?.toggle ? (
         <>
           <div className="mt-[48px]">
             <span className="font-bold text-lg/[110%] text-[#57566a]">팀 멤버 편집</span>

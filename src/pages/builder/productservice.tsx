@@ -126,7 +126,7 @@ function ProductView() {
       />
       </div>
    </div>
-   {widgets[2].toggle ? 
+   {findWigetToggle?.toggle ? 
    <>
    <div className='mt-[48px]'>
    <span className='font-bold text-lg/[110%] text-[#57566a]'>제품 편집</span>

@@ -22,6 +22,7 @@ function HistoryView() {
   } = useForm();
   const { historyadd, setHistoryAdd, historys, setHistorys, widgets, setToggle } = useStore();
   const findWigetToggle = widgets.find((widget) => widget.widget_id === 9);
+  console.log(findWigetToggle?.toggle)
   // 추가하기 버튼 클릭시 빈상자(빈배열)가 생김
   const HistoryAddonClick = () => {
     setHistoryAdd(!historyadd);
@@ -92,7 +93,7 @@ function HistoryView() {
       />
       </div>
    </div>
-   {widgets[7].toggle ? 
+   {findWigetToggle?.toggle ? 
    <>
    <div className='mt-[48px]'>
    <span className='font-bold text-lg/[110%] text-[#57566a]'>연혁 편집</span>
