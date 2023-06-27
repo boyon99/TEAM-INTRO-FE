@@ -6,9 +6,9 @@ import Link from 'next/link';
 import { headerName } from '@/data/headerName';
 import { channelList } from '@/data/channel';
 import { HeaderPageProps } from '@/interfaces/subdoamin';
+import { type } from 'os';
 
 export function KeyVisual({ theme, data }: HeaderPageProps) {
-  console.log(data);
   if (theme === 'ThemeA') {
     return (
       <section id="w-01" className="h-[450px] w-full flex relative">
@@ -19,7 +19,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         ></div>
         <span
           className={
-            "absolute w-[500px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
+            "absolute w-[500px] top-[120px] left-[150px] font-['LINE'] text-[36px] z-[11] font-[700] " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -27,7 +27,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         </span>
         <span
           className={
-            "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[10px] z-[11] " +
+            "absolute w-[600px] top-[240px] left-[150px] font-['LINE'] font-[400] text-[17px] z-[11] " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -48,7 +48,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         ></div>
         <span
           className={
-            "absolute w-[700px] top-[100px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[500] text-center " +
+            "absolute w-[700px] top-[120px] left-[300px] font-['Korail'] text-[36px] z-[11] font-[700] text-center " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -56,7 +56,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         </span>
         <span
           className={
-            "absolute w-[700px] top-[220px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
+            "absolute w-[700px] top-[240px] left-[300px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -71,10 +71,9 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
 }
 
 export function MissionVision({ theme, data }: HeaderPageProps) {
-  const { missionVision } = useStore();
   if (theme === 'ThemeA') {
     return (
-      <section id="w-02" className="h-[300px] w-full flex relative font-[LINE]">
+      <section id="w-02" className="h-[300px] w-full flex relative font-['LINE']">
         {/* 미션 */}
         <div className="w-[50%] h-full bg-GrayScaleNeutral-100">
           <div className="h-[141px] w-[255px] m-[auto] mt-[70px] relative">
@@ -88,10 +87,8 @@ export function MissionVision({ theme, data }: HeaderPageProps) {
               className="absolute top-[1px] right-[4px]"
             />
             <div className="mt-[20px] black h-[auto] w-full">
-              <p className="font-[700] text-[13px]">{missionVision.mission}</p>
-              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
-                {missionVision.mission_detail}
-              </p>
+              <p className="font-[700] text-[13px]">{data.mission}</p>
+              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[8px]">{data.mission_detail}</p>
             </div>
           </div>
         </div>
@@ -108,10 +105,8 @@ export function MissionVision({ theme, data }: HeaderPageProps) {
               className="absolute top-[1px] right-[4px]"
             />
             <div className="mt-[20px] black h-[auto] w-full">
-              <p className="font-[700] text-[13px]">{missionVision.vision}</p>
-              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
-                {missionVision.vision_detail}
-              </p>
+              <p className="font-[700] text-[13px]">{data.vision}</p>
+              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[8px]">{data.vision_detail}</p>
             </div>
           </div>{' '}
         </div>
@@ -119,28 +114,24 @@ export function MissionVision({ theme, data }: HeaderPageProps) {
     );
   } else {
     return (
-      <section id="w-02" className="h-[400px] w-full relative">
+      <section id="w-02" className="h-[320px] w-full relative">
         {/* 미션 */}
-        <div className="w-full h-[200px] border border-white">
+        <div className="w-full h-[140px] border border-white mt-[20px]">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Mission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.mission}</div>
-              <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
-                {missionVision.mission_detail}
-              </div>
+              <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{data.mission}</div>
+              <div className="font-[500] text-[16px] w-[50%] overflow-hidden">{data.mission_detail}</div>
             </div>
           </div>
         </div>
         {/* 비전 */}
-        <div className="w-full h-[200px] border border-white">
+        <div className="w-full h-[140px] border border-white mt-[20px]">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Vission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.vision}</div>
-              <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
-                {missionVision.vision_detail}
-              </div>
+              <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{data.vision}</div>
+              <div className="font-[500] text-[16px] w-[50%] overflow-hidden ">{data.vision_detail}</div>
             </div>
           </div>
         </div>
@@ -149,19 +140,16 @@ export function MissionVision({ theme, data }: HeaderPageProps) {
   }
 }
 
-export function Header({ theme, data }: HeaderPageProps) {
-  const { header_and_footer_status_list, companyInfo } = useStore();
+export function Header({ theme, data, header_and_footer_status_list }: HeaderPageProps) {
   if (theme === 'ThemeA') {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
-        {companyInfo.logo === '' ? null : (
-          <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
-        )}
+        {data.logo === '' ? null : <img src={data.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />}
         <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px] font-[700]">
-          {companyInfo.company_name}
+          {data.company_name}
         </span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
-          {header_and_footer_status_list.map((toggle, index) => {
+          {header_and_footer_status_list?.map((toggle, index) => {
             if (toggle) {
               return (
                 <span key={index} className="font-['Roboto'] text-[10px] ml-[26px]">
@@ -178,12 +166,10 @@ export function Header({ theme, data }: HeaderPageProps) {
   } else {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
-        {companyInfo.logo === '' ? null : (
-          <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
-        )}{' '}
-        <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">{companyInfo.company_name}</span>
+        {data.logo === '' ? null : <img src={data.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />}{' '}
+        <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">{data.company_name}</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
-          {header_and_footer_status_list.map((toggle, index) => {
+          {header_and_footer_status_list?.map((toggle, index) => {
             if (toggle) {
               return (
                 <span key={index} className="font-['Roboto'] text-[10px] ml-[26px]">
@@ -201,32 +187,31 @@ export function Header({ theme, data }: HeaderPageProps) {
 }
 
 export function Footer({ theme, data }: HeaderPageProps) {
-  const { companyInfo } = useStore();
   if (theme === 'ThemeA') {
     return (
       <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative font-['LINE']">
-        <div className="w-[230px] ml-[99px] mt-[70px] mb-[25px] text-GrayScaleNeutral-400">
+        <div className="w-[370px] ml-[99px] mt-[70px] mb-[25px] text-GrayScaleNeutral-400">
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[70px]">phone</div>
-            <div className="font-[300]">{companyInfo.phone_number}</div>
+            <div className="font-[300]">{data.phone_number}</div>
           </div>
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[70px]">FAX</div>
-            <div className="font-[300]">{companyInfo.fax_number}</div>
+            <div className="font-[300]">{data.fax_number}</div>
           </div>
           <div className="font-[500] text-[12px] flex">
             <div className="w-[70px]">Address</div>
             <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
           </div>
         </div>
-        <div className="w-[177px] ml-[10px] mt-[87px] text-GrayScaleNeutral-400 mb-[25px]">
+        <div className="w-[350px] ml-[80px] mt-[87px] text-GrayScaleNeutral-400 mb-[25px]">
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[60px]">대표</div>
-            <div className="font-[300]">{companyInfo.representative}</div>
+            <div className="font-[300]">{data.representative}</div>
           </div>
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[60px]">Email</div>
-            <div className="font-[300]">{companyInfo.contact_email}</div>
+            <div className="font-[300]">{data.contact_email}</div>
           </div>
         </div>
         <div className="w-[240px] ml-[30px] mt-[30px] text-GrayScaleNeutral-400 mb-[25px] flex flex-col">
@@ -244,31 +229,31 @@ export function Footer({ theme, data }: HeaderPageProps) {
   } else {
     return (
       <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-550 flex relative font-['Korail']">
-        <div className="w-[230px] ml-[99px] mt-[70px] mb-[25px] text-white">
+        <div className="w-[350px] ml-[99px] mt-[60px] mb-[25px] text-white">
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[70px]">phone</div>
-            <div className="font-[300]">{companyInfo.phone_number}</div>
+            <div className="font-[300]">{data.phone_number}</div>
           </div>
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[70px]">FAX</div>
-            <div className="font-[300]">{companyInfo.fax_number}</div>
+            <div className="font-[300]">{data.fax_number}</div>
           </div>
           <div className="font-[500] text-[12px] flex">
             <div className="w-[70px]">Address</div>
             <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
           </div>
         </div>
-        <div className="w-[177px] ml-[10px] mt-[87px] text-white mb-[25px]">
+        <div className="w-[350px] ml-[70px] mt-[77px] text-white mb-[25px]">
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[60px]">대표</div>
-            <div className="font-[300]">{companyInfo.representative}</div>
+            <div className="font-[300]">{data.representative}</div>
           </div>
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[60px]">Email</div>
-            <div className="font-[300]">{companyInfo.contact_email}</div>
+            <div className="font-[300]">{data.contact_email}</div>
           </div>
         </div>
-        <div className="w-[250px] ml-[35px] mt-[30px] text-white mb-[25px] flex flex-col">
+        <div className="w-[250px] ml-[60px] mt-[20px] text-white mb-[25px] flex flex-col">
           <div className="border w-[110px] pl-[16px] py-[5px] text-[12px] rounded-[18px] border-GrayScaleNeutral-400 ml-[135px] mt-[20px]">
             기업 상세 정보
           </div>
@@ -578,10 +563,10 @@ export function Download({ theme, data }: HeaderPageProps) {
     return (
       <section id="w-07" className="h-[120px] font-['LINE'] bg-primary-500 text-white flex">
         <div className="font-[700] text-[25px] pt-[45px] pl-[100px]">DOWNLOAD</div>
-        <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[260px] mt-[40px]">
+        <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[620px] mt-[40px]">
           미디어 키트 <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
         </button>
-        <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[40px]">
+        <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[50px] mt-[40px]">
           회사 소개서 <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
         </button>
       </section>
@@ -590,10 +575,10 @@ export function Download({ theme, data }: HeaderPageProps) {
     return (
       <section
         id="w-07"
-        className="h-[110px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[20px] mx-[10px] flex"
+        className="h-[110px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[20px] mx-[50px] flex"
       >
-        <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[550px]">{data.description}</div>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-white text-[12px]">
+        <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[750px]">{data.description}</div>
+        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[120px] mt-[35px] rounded-[80px] text-white text-[12px]">
           미디어 키트 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
         </button>
         <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-white text-[12px]">
@@ -762,9 +747,8 @@ export function Result({ theme, data }: HeaderPageProps) {
 }
 
 export function Channel({ theme, data }: HeaderPageProps) {
-  const { channel } = useStore();
-  const channelValues = Object.values(channel);
-
+  const channelValues = Object.values(data);
+  console.log(channelValues);
   if (theme === 'ThemeA') {
     return (
       <section id="w-13" className="h-[200px] w-full relative mt-[20px]">
@@ -772,12 +756,20 @@ export function Channel({ theme, data }: HeaderPageProps) {
         <span className="font-[500] text-[10px] text-GrayScaleNeutral-700 ml-[5px] mt-[30px]">채널</span>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
           {channelList.map((items, index) => {
-            if (channelValues[index * 2]) {
+            if (channelValues[index * 2 + 1]) {
               return (
-                <div className="flex flex-row mr-[4px]" key={index}>
+                <button
+                  className="flex flex-row mr-[4px]"
+                  key={index}
+                  onClick={() => {
+                    const url = channelValues[index * 2 + 1];
+                    if (typeof url === 'string') {
+                      window.open(url, '_blank');
+                    }
+                  }}
+                >
                   <img src={items.img} className="w-[50px] h-[50px]" />
-                  <span className="text-[10px] mt-[30px]">{channelValues[index * 2 + 1]}</span>
-                </div>
+                </button>
               );
             } else {
               return null;
@@ -792,14 +784,20 @@ export function Channel({ theme, data }: HeaderPageProps) {
         <div className="font-[500] text-[16px] text-[#FFB800] ml-[100px] pt-[20px]">SNS Channel</div>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
           {channelList.map((items, index) => {
-            if (channelValues[index * 2]) {
+            if (channelValues[index * 2 + 1]) {
               return (
-                <div
+                <button
                   className="flex flex-row mr-[4px] bg-white w-[70px] h-[70px] rounded-[14px] drop-shadow-xl mx-[20px] items-center justify-center"
                   key={index}
+                  onClick={() => {
+                    const url = channelValues[index * 2 + 1];
+                    if (typeof url === 'string') {
+                      window.open(url, '_blank');
+                    }
+                  }}
                 >
                   <img src={items.img} className="w-[50px] h-[50px]" />
-                </div>
+                </button>
               );
             } else {
               return null;
