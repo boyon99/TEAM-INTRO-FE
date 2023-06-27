@@ -469,19 +469,7 @@ export function ContactUs({ theme }: HeaderProps) {
 
 export function Press({ theme }: HeaderProps) {
   const { news, setNews, newsimgurl, setNewsImgurl  } = useStore();
-  useEffect(() => {
-    const updatedProducts = news.map((item, index) => {
-      if (index === news.length - 1) {
-        return {
-          ...item,
-          image: newsimgurl,
-        };
-      }
-      return item;
-    });
-
-    setNews(updatedProducts);
-  }, [newsimgurl]);
+  
   if (theme === 'ThemeA') {
     return (
       <section id="w-06" className="h-[350px] font-[LINE]">
@@ -490,7 +478,8 @@ export function Press({ theme }: HeaderProps) {
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">보도 자료</span>
         </div>
         <div className="w-[709px] mt-[43px] m-[0_auto]">
-          {news.map((item) => (
+          {news.map((item) => {
+            return (
             <div key={item.news_element_id} className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex">
               <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
                 <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
@@ -510,7 +499,8 @@ export function Press({ theme }: HeaderProps) {
                 
               </div>
             </div>
-          ))}
+            )
+        })}
         </div>
       </section>
     );

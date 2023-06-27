@@ -96,7 +96,7 @@ const deleteSelectedItems = () => {
    <div className='mt-[48px]'>
    <span className='font-bold text-lg/[110%] text-[#57566a]'>연혁 편집</span>
    </div>
-   <HistoryTitle HistoryAddonClick={HistoryAddonClick} deleteSelectedClick={deleteSelectedItems} handleCheckboxChange={handleCheckboxChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} /> 
+   <HistoryTitle HistoryAddonClick={HistoryAddonClick} deleteSelectedItems={deleteSelectedItems} handleCheckboxChange={handleCheckboxChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} /> 
    </>: <></>}
    
     {/* 저장하기 */}

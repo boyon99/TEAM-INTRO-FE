@@ -21,6 +21,7 @@ export default function Builder() {
     setProducts,
     setTeamMember,
     setHistorys,
+    setNews,
   } = useStore();
   useEffect(() => {
     if (!isLoading) {
@@ -31,6 +32,7 @@ export default function Builder() {
       const products = builderData.widgets.find((widget: any) => widget.widget_type === 'PRODUCTSANDSERVICES');
       const teammembers = builderData.widgets.find((widget: any) => widget.widget_type === 'TEAMMEMBER');
       const historys = builderData.widgets.find((widget: any) => widget.widget_type === 'HISTORY');
+      const news = builderData.widgets.find((widget: any) => widget.widget_type === 'NEWS');
       setHeaderAndFooterList(builderData.header_and_footer.header_and_footer_status_list);
       setCompanyInfo(builderData.company_info);
       setSiteInfo(builderData.site_info);
@@ -125,6 +127,25 @@ export default function Builder() {
     setHistorys(updatedHistorys);
     console.log(updatedHistorys)
     // console.log(teammembers)
+
+    // 보도자료
+    const updatedNews = news.news_elements.map((item: any, index: any) => {
+      if (index === news.length - 1) {
+        return {
+          ...item,
+          news_element_id: item.news_element_id,
+          order: item.order,
+          date: item.date,
+          description: item.description,
+          title: item.title,
+          image: item.image,
+          press: item.press,
+        };
+      }
+      return item;
+    });
+    setNews(updatedNews);
+    console.log(updatedNews)
     }
   }, [builderData]);
   // 페이지 진입 시 resetUploadImage 호출
