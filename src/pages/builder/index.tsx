@@ -28,6 +28,7 @@ export default function Builder() {
     setProducts,
     setTeamMember,
     setHistorys,
+    setNews,
   } = useStore();
   useEffect(() => {
     if (!isLoading) {
@@ -43,7 +44,8 @@ export default function Builder() {
       const download = builderData.widgets.find((widget: any) => widget.widget_type === 12);
       const products = builderData.widgets.find((widget: any) => widget.widget_type === 2);
       const teammembers = builderData.widgets.find((widget: any) => widget.widget_type === 6);
-      const historys = builderData.widgets.find((widget: any) => widget.widget_type === 8);
+      const historys = builderData.widgets.find((widget: any) => widget.widget_type === 9);
+      const news = builderData.widgets.find((widget: any) => widget.widget_type === 11);
       setHeaderAndFooterList(builderData.header_and_footer.header_and_footer_status_list);
       setCompanyInfo(builderData.company_info);
       setSiteInfo(builderData.site_info);
@@ -149,8 +151,28 @@ export default function Builder() {
           return item;
         });
         setHistorys(updatedHistorys);
-        // console.log(teammembers)
+     
       }
+      if (news !== undefined && news.news_elements !== undefined) {
+        const updatedNews = news.news_elements.map((item: any, index: any) => {
+          if (index === news.length - 1) {
+            return {
+              ...item,
+              news_element_id: item.news_element_id,
+              order: item.order,
+              date: item.date,
+              description: item.description,
+              title: item.title,
+              image: item.image,
+              press: item.press,
+            };
+          }
+          return item;
+        });
+        setNews(updatedNews);
+        console.log(updatedNews)
+      }
+
     }
   }, [builderData]);
   // 페이지 진입 시 resetUploadImage 호출

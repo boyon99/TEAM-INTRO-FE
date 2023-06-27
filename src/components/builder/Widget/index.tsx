@@ -282,20 +282,7 @@ export function Footer({ theme }: HeaderProps) {
 
 export function ProductService({ theme }: HeaderProps) {
   const { products, setProducts, imgurl, setImgurl, productservices } = useStore();
-  // useEffect(() => {
-  //   const updatedProducts = products.map((product, index) => {
-  //     if (index === products.length - 1) {
-  //       return {
-  //         ...product,
-  //         image: imgurl,
-  //       };
-  //     }
-  //     return product;
-  //   });
-
-  //   setProducts(updatedProducts);
-  // }, [imgurl]);
-  // console.log(products);
+  
   if (theme === 'ThemeA') {
     return (
       <section id="w-04" className="h-[402px] font-[LINE]">
@@ -346,7 +333,7 @@ export function ProductService({ theme }: HeaderProps) {
   } else {
     return (
       <section id="w-03" className="h-[400px] font-[LINE]">
-        <div className="ml-[40px]">
+        <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Products & Services</span>
         </div>
         <div className="w-[720px] h-[337px] m-[0_auto] mt-[40px] flex flex-wrap">
@@ -354,13 +341,13 @@ export function ProductService({ theme }: HeaderProps) {
             return (
               <div
                 key={items.products_and_services_element_id}
-                className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[36px] m-[0_auto]"
+                className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[36px] m-[0_auto] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
               >
-                <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
+                <div className="w-[196.88px] h-[259.81px] ml-[14px]">
                   {items.image ? (
-                    <img src={items.image} alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                      <img src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
                   ) : (
-                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px] rounded-2xl" />
                   )}
                   <span className="font-bold text-[20px]/[100%] mt-[16.88px] flex justify-center">{items.name}</span>
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
@@ -393,23 +380,10 @@ export function ProductService({ theme }: HeaderProps) {
 
 export function TeamMember({ theme }: HeaderProps) {
   const { teammembers, setTeamMember, teamimgurl, setTeamImgurl } = useStore();
-  // useEffect(() => {
-  //   const updatedProducts = teammembers.map((teammember, index) => {
-  //     if (index === teammembers.length - 1) {
-  //       return {
-  //         ...teammember,
-  //         profile: teamimgurl,
-  //       };
-  //     }
-  //     return teammember;
-  //   });
 
-  //   setTeamMember(updatedProducts);
-  // }, [teamimgurl]);
-  console.log(teammembers);
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[600px] font-[LINE]">
+      <section id="w-04" className="h-[750px] font-[LINE]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">Meat the Team</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
@@ -441,7 +415,7 @@ export function TeamMember({ theme }: HeaderProps) {
   } else {
     return (
       <section id="w-04" className="font-[LINE] h-[795px] ">
-        <div className="ml-[40px]">
+        <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Meat the Team</span>
           <p className="text-[#000] text-[30px] mt-[30px] pl-[2px]">팀원들을 소개합니다.</p>
         </div>
@@ -494,33 +468,19 @@ export function ContactUs({ theme }: HeaderProps) {
 }
 
 export function Press({ theme }: HeaderProps) {
-  const { news, setNews, newsimgurl, setNewsImgurl } = useStore();
-  useEffect(() => {
-    const updatedProducts = news.map((item, index) => {
-      if (index === news.length - 1) {
-        return {
-          ...item,
-          image: newsimgurl,
-        };
-      }
-      return item;
-    });
-
-    setNews(updatedProducts);
-  }, [newsimgurl]);
+  const { news, setNews, newsimgurl, setNewsImgurl  } = useStore();
+  
   if (theme === 'ThemeA') {
     return (
-      <section id="w-06" className="h-[350px] font-[LINE]">
+      <section id="w-06" className="h-[450px] font-[LINE]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">News Room</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">보도 자료</span>
         </div>
         <div className="w-[709px] mt-[43px] m-[0_auto]">
-          {news.map((item) => (
-            <div
-              key={item.news_element_id}
-              className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex"
-            >
+          {news.map((item) => {
+            return (
+            <div key={item.news_element_id} className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex">
               <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
                 <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
                 <div className="mt-[-12px]">
@@ -536,13 +496,14 @@ export function Press({ theme }: HeaderProps) {
                 {item.image ? <img src={item.image} alt="" /> : <img src="/기사사진.png" alt="" />}
               </div>
             </div>
-          ))}
+            )
+        })}
         </div>
       </section>
     );
   } else {
     return (
-      <section id="w-06" className="h-[450px] font-[LINE]">
+      <section id="w-06" className="h-[500px] font-[LINE]">
         <div className="ml-[40px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">News Room</span>
           <p className="text-[#000] text-[35px] mt-[30px] pl-[2px]">새로운 소식</p>
@@ -564,6 +525,9 @@ export function Press({ theme }: HeaderProps) {
               </div>
             </div>
           ))}
+          <div className='w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full'>
+               <button className='w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]'>더 보기 (3/N)</button>
+            </div>
         </div>
       </section>
     );
@@ -591,10 +555,10 @@ export function Download({ theme }: HeaderProps) {
         className="h-[110px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[20px] mx-[10px] flex"
       >
         <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[550px]">{download.description}</div>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-white text-[12px]">
+        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-[12px]">
           미디어 키트 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
         </button>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-white text-[12px]">
+        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-[12px]">
           회사 소개서 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
         </button>
       </section>
@@ -603,26 +567,8 @@ export function Download({ theme }: HeaderProps) {
 }
 
 export function History({ theme }: HeaderProps) {
-  // const newarray = [
-  //   { title: '2023', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-  //   { title: '2022', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-  //   { title: '반가워', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-  // ];
-
+  
   const { historys, setHistorys, historyimgurl, setHistoryImgurl } = useStore();
-  // useEffect(() => {
-  //   const updatedProducts = historys.map((item, index) => {
-  //     if (index === historys.length - 1) {
-  //       return {
-  //         ...item,
-  //         image: historyimgurl,
-  //       };
-  //     }
-  //     return item;
-  //   });
-
-  //   setHistorys(updatedProducts);
-  // }, [historyimgurl]);
   if (theme === 'ThemeA') {
     return (
       <section id="w-08" className="h-[700px] font-[LINE] pt-20">
@@ -677,13 +623,13 @@ export function History({ theme }: HeaderProps) {
     return (
       <section id="w-08" className="h-[700px] font-[LINE]">
         <div className="ml-[40px]">
-          <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">History</span>
-          <p className="text-[#000] text-[34px] mt-[23px] pl-[2px]">질링스가 걸어온 길</p>
+          <span className="mr-[9px] ml-[60px] font-[700] text-[23px] text-[#FFB800]">History</span>
+          <p className="text-[#000] ml-[57px] text-[34px] mt-[23px] pl-[2px]">질링스가 걸어온 길</p>
 
           <div className="w-[820px] h-[481px] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[27px]">
-            <ul className="w-[720px] h-[400px] m-[0px_auto] pt-[40px]">
+            <ul className="w-[620px] h-[400px] m-[0px_auto] pt-[40px]">
               {historys.map((item, i) => (
-                <li className="relative flex items-baseline gap-6 pb-8">
+                <li key={i} className="relative flex items-baseline gap-6 pb-8">
                   <div className="before:absolute before:left-[5.5px] before:h-full before:w-[2.5px] before:bg-review">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -701,11 +647,18 @@ export function History({ theme }: HeaderProps) {
                       <p className="text-sm mt-[11px] text-[14px] font-bold text-[#464646]">{item.title}</p>
                       <p className="text-[11px] text-[#464646]">{item.description}</p>
                     </div>
-                    <img src="/history.png" className="mt-[10px]" alt="" />
+                    <div className='w-[85px] h-[85px] absolute right-0'>
+
+                    {item.image ? <img src={item.image} className="w-[85px] h-[85px] mt-[10px] rounded-xl" alt="" /> : <img src="/기본이미지.png" className="w-[85px] h-[85px] mt-[10px]" alt="" />}
+                    </div>
+                    
                   </div>
                 </li>
               ))}
             </ul>
+            <div className='w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full'>
+               <button className='w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]'>더 보기 (3/N)</button>
+            </div>
           </div>
         </div>
       </section>

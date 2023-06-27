@@ -21,7 +21,8 @@ function HistoryView() {
     formState: { errors },
   } = useForm();
   const { historyadd, setHistoryAdd, historys, setHistorys, widgets, setToggle } = useStore();
-  const [toggle, setTogglebase] = useState(true);
+  const findWigetToggle = widgets.find((widget) => widget.widget_id === 9);
+  console.log(findWigetToggle?.toggle)
   // 추가하기 버튼 클릭시 빈상자(빈배열)가 생김
   const HistoryAddonClick = () => {
     setHistoryAdd(!historyadd);
@@ -78,40 +79,31 @@ function HistoryView() {
         <img src="/chart-gantt.png" alt="product" className="w-[26px] h-[26px]" />
         <span className="ml-[8px]">연혁</span>
       </div>
-      <div className="w-[260px] font-[500] text-[16px] mt-[16px] text-GrayScalePrimary-700">
-        우리 회사가 진행해 온 프로젝트들을 연월에 따라 정렬해주세요.
+    <div className="w-[260px] font-[500] text-[16px] mt-[16px] text-GrayScalePrimary-700">
+    우리 회사가 진행해 온 프로젝트들을 연월에 따라 정렬해주세요.
+    </div>
+   <div className='mt-[48px]'>
+      <span className='font-bold text-sm/[100%] text-[#57566a]'>사용여부</span>
+      <div className="mt-[12px]">
+      <ToggleWidget
+        toggle={findWigetToggle?.toggle as boolean}
+        setWidgetToggle={setToggle}
+        widgetId={9}
+        toggleText={{ true: '사용', false: '사용 안함' }}
+      />
       </div>
-      <div className="mt-[48px]">
-        <span className="font-bold text-sm/[100%] text-[#57566a]">사용여부</span>
-        <div className="mt-[12px]">
-          <ToggleWidget
-            toggle={widgets[7].toggle}
-            setWidgetToggle={setToggle}
-            widgetId={9}
-            toggleText={{ true: '사용', false: '사용 안함' }}
-          />
-        </div>
-      </div>
-      {widgets[7].toggle ? (
-        <>
-          <div className="mt-[48px]">
-            <span className="font-bold text-lg/[110%] text-[#57566a]">연혁 편집</span>
-          </div>
-          <HistoryTitle
-            HistoryAddonClick={HistoryAddonClick}
-            deleteSelectedClick={deleteSelectedItems}
-            handleCheckboxChange={handleCheckboxChange}
-            selectedItems={selectedItems}
-            setSelectedItems={setSelectedItems}
-          />
-        </>
-      ) : (
-        <></>
-      )}
-
-      {/* 저장하기 */}
-      <PrimaryButton
-        form="view"
+   </div>
+   {findWigetToggle?.toggle ? 
+   <>
+   <div className='mt-[48px]'>
+   <span className='font-bold text-lg/[110%] text-[#57566a]'>연혁 편집</span>
+   </div>
+   <HistoryTitle HistoryAddonClick={HistoryAddonClick} deleteSelectedItems={deleteSelectedItems} handleCheckboxChange={handleCheckboxChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} /> 
+   </>: <></>}
+   
+    {/* 저장하기 */}
+    <PrimaryButton
+        form='view'
         type="primary"
         text="저장하기"
         onClick={() => {}}
@@ -269,70 +261,60 @@ function HistoryAdd() {
           <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             500x330, png 권장, 최대 100mb
           </div>
-          <div className="mt-[34px]">
-            <BuilderInput
-              register={register('date')}
-              title="날짜"
-              type="text"
-              placeholder="예: 2023-07-07"
-              id="pageTitle"
-              onChange={(e) => {
-                const updatedProducts = historys.map((product, index) => {
-                  if (index === historys.length - 1) {
-                    return {
-                      ...product,
-                      date: e.target.value,
-                    };
-                  }
-                  return product;
-                });
-
-                setHistorys(updatedProducts);
-              }}
-            />
-            <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">최대20자</div>
-            <BuilderInput
-              register={register('title')}
-              title="연혁"
-              type="text"
-              placeholder="예: 패스트캠퍼스 기업협력 프로젝트 MOU 진행"
-              id="pageTitle"
-              onChange={(e) => {
-                const updatedProducts = historys.map((product, index) => {
-                  if (index === historys.length - 1) {
-                    return {
-                      ...product,
-                      title: e.target.value,
-                    };
-                  }
-                  return product;
-                });
-
-                setHistorys(updatedProducts);
-              }}
-            />
-            <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">최대30자</div>
-
-            <BuilderTextarea
-              register={register('description')}
-              title="연혁 설명"
-              type="text"
-              placeholder="예: 패스트캠퍼스와 함께 진행한 MOU프로젝트, 전체 고객 수 30프로 이상 증가하는 프로젝트로 다양한 파트너사에 긍정적 피드백 받음"
-              id="businessNumber"
-              onChange={(e) => {
-                const updatedProducts = historys.map((product, index) => {
-                  if (index === historys.length - 1) {
-                    return {
-                      ...product,
-                      description: e.target.value,
-                    };
-                  }
-                  return product;
-                });
-
-                setHistorys(updatedProducts);
-              }}
-            />
+          <div className='mt-[34px]'>
+          <BuilderInput register={register('date')} title="날짜" type="text" placeholder="예: 2023-07-07" id="pageTitle" onChange={(e) => {
+      const updatedProducts = historys.map((product, index) => {
+        if (index === historys.length - 1) {
+          return {
+            ...product,
+            date: e.target.value
+          };
+        }
+        return product;
+      });
+    
+      setHistorys(updatedProducts);
+    }}/>
+    <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+            최대20자
+          </div>
+          <BuilderInput register={register('title')} title="연혁" type="text" placeholder="예: 패스트캠퍼스 기업협력 프로젝트 MOU 진행" id="pageTitle" onChange={(e) => {
+      const updatedProducts = historys.map((product, index) => {
+        if (index === historys.length - 1) {
+          return {
+            ...product,
+            title: e.target.value
+          };
+        }
+        return product;
+      });
+    
+      setHistorys(updatedProducts);
+    }}/>
+    <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+            최대30자
+          </div>
+          
+          <BuilderTextarea
+            register={register('description')}
+            title="연혁 설명"
+            type="text"
+            placeholder="예: 패스트캠퍼스와 함께 진행한 MOU프로젝트, 전체 고객 수 30프로 이상 증가하는 프로젝트로 다양한 파트너사에 긍정적 피드백 받음"
+            id="businessNumber"
+            onChange={(e) => {
+              const updatedProducts = historys.map((product, index) => {
+                if (index === historys.length - 1) {
+                  return {
+                    ...product,
+                    description: e.target.value
+                  };
+                }
+                return product;
+              });
+            
+              setHistorys(updatedProducts);
+            }}
+          />
           </div>
           <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
             우리 회사에만 있는 특색 있는 문화를 설명해주세요.
