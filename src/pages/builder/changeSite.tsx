@@ -5,12 +5,18 @@ import { BuilderInput, BuilderTextarea, BuilderUploadImage, DuplicateCheck } fro
 import { useUploadImage } from '@/hooks/useUploadImage';
 import { useUpdateSite } from '@/hooks/useUploadSite';
 import useStore from '@/store';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Preview() {
   const { siteInfo, setSiteInfo, uploadImage, setUploadImage, setPaivcon } = useStore();
-  const uploadImageMutation = useUploadImage(uploadImage, 'site');
-  const updateSite = useUpdateSite(siteInfo);
+  const { mutate: uploadImageMutation, isSuccess } = useUploadImage(uploadImage, 'site');
+  const updateSiteMutation = useUpdateSite(siteInfo);
+
+  useEffect(() => {
+    if (isSuccess) {
+      updateSiteMutation();
+    }
+  }, [isSuccess]);
 
   return (
     <div className="ml-[28px]">
@@ -81,8 +87,8 @@ function Preview() {
         type="primary"
         text="저장하기"
         onClick={() => {
-          if (uploadImage !== null) {
-            updateSite();
+          if (siteInfo.pavicon === '') {
+            updateSiteMutation();
           } else {
             uploadImageMutation();
           }

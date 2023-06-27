@@ -5,8 +5,8 @@ export const getIntroPage = async () => {
   return data;
 };
 
-export const updateChannel = async () => {
-  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/channel');
+export const updateChannel = async (channel: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/channel', channel);
   const response = data.data;
   console.log(response);
   return response;
@@ -19,6 +19,21 @@ export const updateCompanyInfo = async (companyInfo: any) => {
 
 export const updateTheme = async (theme: any) => {
   const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/theme', theme);
+  return data;
+};
+
+export const updateHeaderAndFooter = async (headerAndFooter: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/headerAndFooter', headerAndFooter);
+  return data;
+};
+
+export const updateKeyVisual = async (keyVisual: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/keyVisualAndSlogan', keyVisual);
+  return data;
+};
+
+export const updateMissionVision = async (missionVision: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/missionAndVision', missionVision);
   return data;
 };
 

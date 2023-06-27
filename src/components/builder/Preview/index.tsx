@@ -21,7 +21,7 @@ import useStore from '@/store';
 
 export default function Preview() {
   // 위젯 목록 가져오기
-  const { widgets, theme, headerfooter } = useStore();
+  const { widgets, theme, header_and_footer_status_list } = useStore();
 
   return (
     <div className="w-[945px] h-[calc(100vh-72px)] overflow-y-scroll">
@@ -69,7 +69,7 @@ export default function Preview() {
           </div>
         ))}
         {/* 푸터 */}
-        {headerfooter.lowerMenuToggle ? <Footer theme={theme.theme_type} /> : null}
+        {header_and_footer_status_list[12] ? <Footer theme={theme.theme_type} /> : null}
       </div>
     </div>
   );
