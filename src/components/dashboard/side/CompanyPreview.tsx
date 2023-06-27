@@ -18,7 +18,7 @@ export default function CompanyPreview() {
             <Loader className="w-8 h-8 my-2" />
           ) : isError ? (
             <span className="text-error-500 font-bold text-sm my-2">서브도메인 조회 실패</span>
-          ) : (
+          ) : subDomain ? (
             <Link href={'/'} className="text-base text-[#121115] flex items-center space-x-3">
               <span className="underline">{subDomain}</span>
               <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,6 +33,8 @@ export default function CompanyPreview() {
                 </g>
               </svg>
             </Link>
+          ) : (
+            <p className="text-sm my-1.5">서브도메인을 생성하세요</p>
           )}
           <span className="text-GrayScalePrimary-700 font-normal text-xs">최종 변경일: 2022-06-06 00:43</span>
         </div>

@@ -9,6 +9,7 @@ import { Inquiry } from '@/interfaces/dashboard';
 import { ContactContentsProps } from './ContactContents';
 import ChevronLeft from '@/components/common/icons/ChevronLeft';
 import ChevronRight from '@/components/common/icons/ChevronRight';
+import ClockDown from '@/components/common/icons/ClockDown';
 
 export default function InquiryTable({ data, page, setPage, isFetching, isPreviousData }: ContactContentsProps) {
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
@@ -116,19 +117,7 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
                 <th className="text-[15px] text-GrayScaleNeutral-1000 text-center mx-10 w-[150px]">내용</th>
                 <th className="text-[15px] text-GrayScaleNeutral-1000 w-[70px] text-center">구분</th>
                 <th className="w-14 mx-10 flex items-center justify-center">
-                  <button>
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <mask id="mask0_1382_14335" maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="18">
-                        <rect width="18" height="18" fill="#D9D9D9" />
-                      </mask>
-                      <g mask="url(#mask0_1382_14335)">
-                        <path
-                          d="M11.7298 12.0202L12.5202 11.2298L9.68746 8.39693V4.87498H8.5625V8.85287L11.7298 12.0202ZM9.12624 15.75C8.14079 15.75 7.21451 15.563 6.34741 15.189C5.4803 14.815 4.72604 14.3074 4.08463 13.6663C3.4432 13.0251 2.93541 12.2712 2.56124 11.4045C2.18708 10.5378 2 9.61169 2 8.62624C2 7.64079 2.187 6.71451 2.561 5.84741C2.935 4.9803 3.44256 4.22604 4.08369 3.58463C4.72483 2.9432 5.47876 2.43541 6.34548 2.06124C7.21219 1.68708 8.13828 1.5 9.12373 1.5C10.1092 1.5 11.0355 1.687 11.9026 2.061C12.7697 2.435 13.5239 2.94256 14.1653 3.58369C14.8068 4.22483 15.3146 4.97876 15.6887 5.84548C16.0629 6.71219 16.25 7.63828 16.25 8.62373C16.25 9.60918 16.063 10.5355 15.689 11.4026C15.315 12.2697 14.8074 13.0239 14.1663 13.6653C13.5251 14.3068 12.7712 14.8146 11.9045 15.1887C11.0378 15.5629 10.1117 15.75 9.12624 15.75ZM9.12498 14.625C10.7875 14.625 12.2031 14.0406 13.3719 12.8719C14.5406 11.7031 15.125 10.2875 15.125 8.62498C15.125 6.96248 14.5406 5.54686 13.3719 4.37811C12.2031 3.20936 10.7875 2.62498 9.12498 2.62498C7.46248 2.62498 6.04686 3.20936 4.87811 4.37811C3.70936 5.54686 3.12498 6.96248 3.12498 8.62498C3.12498 10.2875 3.70936 11.7031 4.87811 12.8719C6.04686 14.0406 7.46248 14.625 9.12498 14.625Z"
-                          fill="#1C1B1F"
-                        />
-                      </g>
-                    </svg>
-                  </button>
+                  <ClockDown />
                 </th>
               </tr>
             </thead>
