@@ -150,6 +150,7 @@ const useStore = create<Store>((set) => ({
 
   imgurl: '',
   setImgurl: (imgurl) => set({ imgurl }),
+
   products: [
     // {
     //   id: 1,
@@ -250,6 +251,83 @@ const useStore = create<Store>((set) => ({
   setChannel: (channel) => {
     set((state) => ({ channel: { ...state.channel, ...channel } }));
   },
+  // 팀 멤버
+  teamadd: false,
+  setTeamAdd: (teamadd) => set({ teamadd}),
+  teamimgurl: '',
+  setTeamImgurl: (teamimgurl) => set({ teamimgurl }),
+  teammembers: [
+    // {
+    //   id: 1,
+    //   name: '홍길동',
+    //   group: '지원사업부',
+    //   position: '주임',
+    //   tagline: '스타트업 전문 패스트 빌더입니다.',
+    //   email: 'example@gmail.com'
+    //   profile: ''
+    // },
+  ],
+
+  setTeamMember: (arr) => set(() => ({ teammembers: arr })),
+
+  // 보도자료
+  newsadd: false,
+  setNewsAdd: (newsadd) => set({ newsadd }),
+  newsimgurl: '',
+  setNewsImgurl: (newsimgurl) => set({ newsimgurl }),
+  news: [
+    // {
+    //   id: 1,
+    //   name: '홍길동',
+    //   group: '지원사업부',
+    //   position: '주임',
+    //   tagline: '스타트업 전문 패스트 빌더입니다.',
+    //   email: 'example@gmail.com'
+    //   profile: ''
+    // },
+  ],
+
+  setNews: (arr) => set(() => ({ news: arr })),
+
+  // 연혁
+  historyadd: false,
+  setHistoryAdd: (historyadd) => set({ historyadd }),
+  historyimgurl: '',
+  setHistoryImgurl: (historyimgurl) => set({ historyimgurl }),
+  historys: [
+    // {
+    //   id: 1,
+    //   name: '홍길동',
+    //   group: '지원사업부',
+    //   position: '주임',
+    //   tagline: '스타트업 전문 패스트 빌더입니다.',
+    //   email: 'example@gmail.com'
+    //   profile: ''
+    // },
+  ],
+
+  setHistorys: (arr) => set(() => ({ historys: arr })),
+
+  // 핵심 성과
+  resultadd: false,
+  setResultAdd: (resultadd) => set({ resultadd }),
+  resultimgurl: '',
+  setResultImgurl: (resultimgurl) => set({ resultimgurl }),
+  results: [
+    // {
+    //   id: 1,
+    //   name: '홍길동',
+    //   group: '지원사업부',
+    //   position: '주임',
+    //   tagline: '스타트업 전문 패스트 빌더입니다.',
+    //   email: 'example@gmail.com'
+    //   profile: ''
+    // },
+  ],
+
+  setResults: (arr) => set(() => ({ results: arr })),
 }));
+
+
 
 export default useStore;

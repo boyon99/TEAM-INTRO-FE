@@ -2,7 +2,8 @@ import type { NextFetchEvent, NextRequest } from "next/server";
 import { NextResponse, userAgent } from "next/server";
 
 
-    
+
+
 export function middleware(req: NextRequest, ev: NextFetchEvent) {
     if (req.nextUrl.pathname.startsWith("/")) {
         const { device } = userAgent(req);
