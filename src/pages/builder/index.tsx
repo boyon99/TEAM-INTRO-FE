@@ -37,18 +37,18 @@ export default function Builder() {
           toggle: widget.widget_status,
         };
       });
-      const keyvisual = builderData.widgets.find((widget: any) => widget.widget_type === 'KEYVISUALANDSLOGAN');
-      const missionvision = builderData.widgets.find((widget: any) => widget.widget_type === 'MISSIONANDVISION');
-      const channel = builderData.widgets.find((widget: any) => widget.widget_type === 'CHANNEL');
-      const download = builderData.widgets.find((widget: any) => widget.widget_type === 'DOWNLOAD');
-      const products = builderData.widgets.find((widget: any) => widget.widget_type === 'PRODUCTSANDSERVICES');
-      const teammembers = builderData.widgets.find((widget: any) => widget.widget_type === 'TEAMMEMBER');
-      const historys = builderData.widgets.find((widget: any) => widget.widget_type === 'HISTORY');
+      const keyvisual = builderData.widgets.find((widget: any) => widget.widget_type === 5);
+      const missionvision = builderData.widgets.find((widget: any) => widget.widget_type === 1);
+      const channel = builderData.widgets.find((widget: any) => widget.widget_type === 14);
+      const download = builderData.widgets.find((widget: any) => widget.widget_type === 12);
+      const products = builderData.widgets.find((widget: any) => widget.widget_type === 2);
+      const teammembers = builderData.widgets.find((widget: any) => widget.widget_type === 6);
+      const historys = builderData.widgets.find((widget: any) => widget.widget_type === 8);
       setHeaderAndFooterList(builderData.header_and_footer.header_and_footer_status_list);
       setCompanyInfo(builderData.company_info);
       setSiteInfo(builderData.site_info);
       setTheme({ theme_type: builderData.theme.type, color: builderData.theme.color });
-      if (keyvisual !== undefined) {
+      if (keyvisual) {
         setKeyVisual({
           background: keyvisual.background === undefined ? '' : keyvisual.background,
           slogan: keyvisual.slogan === undefined ? '' : keyvisual.slogan,
@@ -56,7 +56,7 @@ export default function Builder() {
           slogan_detail: keyvisual.slogan_detail === undefined ? '' : keyvisual.slogan_detail,
         });
       }
-      if (missionvision !== undefined) {
+      if (missionvision) {
         setMissionVision({
           mission: missionvision.mission,
           mission_detail: missionvision.mission_detail,
@@ -134,7 +134,7 @@ export default function Builder() {
       }
 
       // 연혁
-      if (historys !== undefined) {
+      if (historys !== undefined && historys.history_elements !== undefined) {
         const updatedHistorys = historys.history_elements.map((item: any, index: any) => {
           if (index === historys.length - 1) {
             return {
