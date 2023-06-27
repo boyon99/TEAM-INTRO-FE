@@ -108,7 +108,7 @@ export default function InquiryTable() {
         <>
           <div className="flex items-center justify-between pl-9 pr-5 h-[58px] border-b border-b-GrayScalePrimary-200">
             <section className="text-[15px] text-GrayScalePrimary-600 space-x-[23px]">
-              <button>확인</button>
+              <button>읽음으로 변경</button>
               <button>삭제</button>
             </section>
             <section>
@@ -118,7 +118,7 @@ export default function InquiryTable() {
                 activeClassName="confirm-active-link"
                 className="confirm-link"
               >
-                확인 필요
+                읽지 않음
               </ActiveLink>
               <ActiveLink
                 href={'/dashboard/contact/confirmed'}
@@ -126,7 +126,7 @@ export default function InquiryTable() {
                 activeClassName="confirm-active-link"
                 className="confirm-link"
               >
-                확인 완료
+                읽음
               </ActiveLink>
             </section>
           </div>
@@ -134,7 +134,9 @@ export default function InquiryTable() {
           <table className="mx-auto">
             <thead>
               <tr className="flex items-center border-b border-b-GrayScalePrimary-200 w-full h-[54px] px-4">
-                <Checkbox checked={allSelected} handleClick={toggleAllSelected} />
+                <th className="h-full leading-[54px]">
+                  <Checkbox checked={allSelected} handleClick={toggleAllSelected} />
+                </th>
 
                 <th className="text-[15px] text-GrayScaleNeutral-1000 mx-10 text-center w-[130px]">이메일</th>
                 <th className="text-[15px] text-GrayScaleNeutral-1000 text-center w-10">이름</th>
@@ -164,32 +166,38 @@ export default function InquiryTable() {
                   key={el.contact_us_log_id}
                   className="h-[68px] flex items-center w-full border-b-[0.5px] border-b-GrayScalePrimary-150 last:border-b-0 px-4"
                 >
-                  <Checkbox checked={el.selected} handleClick={() => toggleRow(el.contact_us_log_id)} />
+                  <td>
+                    <Checkbox checked={el.selected} handleClick={() => toggleRow(el.contact_us_log_id)} />
+                  </td>
 
-                  <div onClick={openDetailModal} className="cursor-pointer flex items-center">
-                    <td className="text-[14px] text-GrayScalePrimary-800 mx-10 text-center truncate w-[130px]">
+                  <td onClick={openDetailModal} className="cursor-pointer flex items-center">
+                    <span className="text-[14px] text-GrayScalePrimary-800 mx-10 text-center truncate w-[130px]">
                       {el.email}
-                    </td>
-                    <td className="text-[14px] text-GrayScalePrimary-800 text-center truncate w-10">{el.name}</td>
-                    <td className="text-[14px] text-GrayScalePrimary-800 mx-10 text-center truncate w-[150px]">
+                    </span>
+                    <span className="text-[14px] text-GrayScalePrimary-800 text-center truncate w-10">{el.name}</span>
+                    <span className="text-[14px] text-GrayScalePrimary-800 mx-10 text-center truncate w-[150px]">
                       {el.content}
-                    </td>
-                    <td className="text-[14px] text-GrayScalePrimary-800 text-center truncate w-[70px]">{el.type}</td>
-                    <td className="mx-10 text-[14px] text-GrayScalePrimary-800 w-14 text-center">{el.date}</td>
-                  </div>
+                    </span>
+                    <span className="text-[14px] text-GrayScalePrimary-800 text-center truncate w-[70px]">
+                      {el.type}
+                    </span>
+                    <span className="mx-10 text-[14px] text-GrayScalePrimary-800 w-14 text-center">{el.date}</span>
+                  </td>
+                  <td>
+                    <PrimaryButton
+                      text="읽음"
+                      classname="font-bold w-[72px] h-9 rounded-lg mr-[6px]"
+                      type="primary"
+                      onClick={openConfirmModal}
+                    />
 
-                  <PrimaryButton
-                    text="확인"
-                    classname="font-bold w-[72px] h-9 rounded-lg mr-[6px]"
-                    type="primary"
-                    onClick={openConfirmModal}
-                  />
-                  <button
-                    onClick={openDeleteModal}
-                    className="w-[72px] h-9 border border-GrayScalePrimary-500 rounded-lg text-sm text-GrayScalePrimary-600"
-                  >
-                    삭제
-                  </button>
+                    <button
+                      onClick={openDeleteModal}
+                      className="w-[72px] h-9 border border-GrayScalePrimary-500 rounded-lg text-sm text-GrayScalePrimary-600"
+                    >
+                      삭제
+                    </button>
+                  </td>
                   {showDetailModal &&
                     createPortal(<DetailModal closeModal={closeDetailModal} {...el} />, document.body)}
                 </tr>
@@ -204,7 +212,7 @@ export default function InquiryTable() {
               createPortal(
                 <ConfirmModal
                   closeModal={closeConfirmModal}
-                  msg1="연락 내역을 확인으로 변경하시겠습니까?"
+                  msg1="연락 내역을 읽음으로 변경하시겠습니까?"
                   msg2="· 중요한 연락만 남겨주세요."
                 />,
                 document.body,
