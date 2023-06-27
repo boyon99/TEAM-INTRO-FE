@@ -31,7 +31,7 @@ export function MenuB({ routerName, buttonName, isEssential }: MenuProps) {
   const { widgets, isChangeOederToggle } = useStore();
   // 위젯 목록에서 현재 위젯을 찾아서 가져옴
   const widget = widgets.find((widget) => widget.name === buttonName);
-
+  console.log(widget?.name);
   return (
     <div
       className={
@@ -51,6 +51,13 @@ export function MenuB({ routerName, buttonName, isEssential }: MenuProps) {
         onClick={() => {
           if (widget?.toggle || isEssential) {
             router.push(routerName);
+          } else if (
+            widget?.name === '고객리뷰' ||
+            widget?.name === '팀 문화' ||
+            widget?.name === '파트너스' ||
+            widget?.name === '특허/인증'
+          ) {
+            alert('해당 위젯은 곧 추가될 예정입니다.');
           } else {
             alert('사용중인 위젯만 수정 가능합니다.');
           }
