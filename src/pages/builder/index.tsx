@@ -6,6 +6,9 @@ import { get } from 'http';
 import { getIntroPage } from '@/apis/builder';
 import useStore from '@/store';
 import { useBuilder } from '@/hooks/useBuilder';
+import { set } from 'react-hook-form';
+import { widgetName } from '@/data/widgetName';
+
 export default function Builder() {
   const { data: builderData, isLoading } = useBuilder();
   const {
@@ -18,6 +21,9 @@ export default function Builder() {
     setKeyVisual,
     setMissionVision,
     setChannel,
+    setDownload,
+    setIsPublicToggle,
+    setWidget,
     setProducts,
     setTeamMember,
     setHistorys,
@@ -25,9 +31,16 @@ export default function Builder() {
   useEffect(() => {
     if (!isLoading) {
       console.log(builderData);
+      const widgetData = builderData.widgets.map((widget: any) => {
+        return {
+          widget_id: widget.widget_id,
+          toggle: widget.widget_status,
+        };
+      });
       const keyvisual = builderData.widgets.find((widget: any) => widget.widget_type === 'KEYVISUALANDSLOGAN');
       const missionvision = builderData.widgets.find((widget: any) => widget.widget_type === 'MISSIONANDVISION');
       const channel = builderData.widgets.find((widget: any) => widget.widget_type === 'CHANNEL');
+      const download = builderData.widgets.find((widget: any) => widget.widget_type === 'DOWNLOAD');
       const products = builderData.widgets.find((widget: any) => widget.widget_type === 'PRODUCTSANDSERVICES');
       const teammembers = builderData.widgets.find((widget: any) => widget.widget_type === 'TEAMMEMBER');
       const historys = builderData.widgets.find((widget: any) => widget.widget_type === 'HISTORY');
@@ -68,7 +81,14 @@ export default function Builder() {
           facebook: channel.sns_list.facebook === undefined ? '' : channel.sns_list.facebook,
         });
       }
-      
+      setDownload({
+        description: download.description === undefined ? '' : download.description,
+        intro_file: download.intro_file === undefined ? '' : download.intro_file,
+        media_kit_file: download.media_kit_file === undefined ? '' : download.media_kit_file,
+      });
+      setIsPublicToggle(builderData.intro_page_status === 'PRIVATE' ? false : true);
+      setWidget(widgetData);
+
       const updatedProducts = products.products_and_services_elements.map((item: any, index: any) => {
         if (index === products.length - 1) {
           return {
@@ -84,52 +104,52 @@ export default function Builder() {
         return item;
       });
       setProducts(updatedProducts);
-      
 
-       const updatedTeamMembers = teammembers.team_member_elements.map((item: any, index: any) => {
-         if (index === products.length - 1) {
-           return {
-             ...item,
-             team_member_element_id: item.team_member_element_id,
-             order: item.order,
-             profile: item.profile,
-             group: item.group,
-             name: item.name,
-             position:  item.position,
-             tagline:  item.tagline,
-             email: item.email,
-             sns_status: item.sns_status,
-           };
-         }
-         return item;
-       });
-       setTeamMember(updatedTeamMembers);
-       console.log(updatedTeamMembers)
-       console.log(teammembers)
+      const updatedTeamMembers = teammembers.team_member_elements.map((item: any, index: any) => {
+        if (index === products.length - 1) {
+          return {
+            ...item,
+            team_member_element_id: item.team_member_element_id,
+            order: item.order,
+            profile: item.profile,
+            group: item.group,
+            name: item.name,
+            position: item.position,
+            tagline: item.tagline,
+            email: item.email,
+            sns_status: item.sns_status,
+          };
+        }
+        return item;
+      });
+      setTeamMember(updatedTeamMembers);
+      console.log(updatedTeamMembers);
+      console.log(teammembers);
 
-     // 연혁
-     
-     const updatedHistorys = historys.history_elements.map((item: any, index: any) => {
-      if (index === historys.length - 1) {
-        return {
-          ...item,
-          history_element_id: item.history_element_id,
-          date: item.date,
-          description: item.description,
-          title: item.title,
-          image: item.image,
-        };
-      }
-      return item;
-    });
-    setHistorys(updatedHistorys);
-    console.log(updatedHistorys)
-    // console.log(teammembers)
+      // 연혁
+
+      const updatedHistorys = historys.history_elements.map((item: any, index: any) => {
+        if (index === historys.length - 1) {
+          return {
+            ...item,
+            history_element_id: item.history_element_id,
+            date: item.date,
+            description: item.description,
+            title: item.title,
+            image: item.image,
+          };
+        }
+        return item;
+      });
+      setHistorys(updatedHistorys);
+      console.log(updatedHistorys);
+      // console.log(teammembers)
     }
   }, [builderData]);
   // 페이지 진입 시 resetUploadImage 호출
   useEffect(() => {
     resetUploadImage();
+    return setIsPublicToggle(false);
   }, []);
   return (
     <>

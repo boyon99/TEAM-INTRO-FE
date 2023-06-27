@@ -13,7 +13,7 @@ import { useUploadImage } from '@/hooks/useUploadImage';
 function Preview() {
   const { widgets, setToggle, keyVisual, uploadImage, setUploadImage, setBackground, setKeyVisual, setSloganDetail } =
     useStore();
-  const findWigetToggle = widgets.find((widget) => widget.name === '키비주얼/슬로건');
+  const findWigetToggle = widgets.find((widget) => widget.widget_id === 5);
   const updateKeyVisualMutation = useUpdateKeyVisual({ widget_status: findWigetToggle?.toggle, ...keyVisual });
   const { mutate: uploadImageMutation, isSuccess } = useUploadImage(uploadImage, 'keyvisual');
 
@@ -43,7 +43,7 @@ function Preview() {
       <ToggleWidget
         toggle={findWigetToggle?.toggle as boolean}
         setWidgetToggle={setToggle}
-        widgetName="키비주얼/슬로건"
+        widgetId={5}
         toggleText={{ true: '사용', false: '사용 안함' }}
       />
       {findWigetToggle?.toggle ? (

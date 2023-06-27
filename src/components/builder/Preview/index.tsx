@@ -31,41 +31,21 @@ export default function Preview() {
         {/* 위젯 */}
         {widgets.map((widget, index) => (
           <div key={index}>
-            {widget.routerName === 'builder/keyvisual#w-01' && widget.toggle ? (
-              <KeyVisual theme={theme.theme_type} />
-            ) : null}
-            {widget.routerName === 'builder/missionvision#w-02' && widget.toggle ? (
-              <MissionVision theme={theme.theme_type} />
-            ) : null}
+            {widget.widget_id === 5 && widget.toggle ? <KeyVisual theme={theme.theme_type} /> : null}
+            {widget.widget_id === 1 && widget.toggle ? <MissionVision theme={theme.theme_type} /> : null}
 
-            {widget.routerName === 'builder/productservice#w-03' && widget.toggle ? (
-              <ProductService theme={theme.theme_type} />
-            ) : null}
-            {widget.routerName === 'builder/teammember#w-04' && widget.toggle ? (
-              <TeamMember theme={theme.theme_type} />
-            ) : null}
-            {widget.routerName === 'builder/contactu#w-05' && widget.toggle ? (
-              <ContactUs theme={theme.theme_type} />
-            ) : null}
-            {widget.routerName === 'builder/press#w-06' && widget.toggle ? <Press theme={theme.theme_type} /> : null}
-            {widget.routerName === 'builder/download#w-07' && widget.toggle ? (
-              <Download theme={theme.theme_type} />
-            ) : null}
-            {widget.routerName === 'builder/history#w-08' && widget.toggle ? (
-              <History theme={theme.theme_type} />
-            ) : null}
-            {widget.routerName === 'builder/teamculture#w-09' && widget.toggle ? (
-              <TeamCulture theme={theme.theme_type} />
-            ) : null}
-            {widget.routerName === 'builder/result#w-10' && widget.toggle ? <Result theme={theme.theme_type} /> : null}
-            {widget.routerName === 'builder/partners#w-11' && widget.toggle ? (
-              <Partners theme={theme.theme_type} />
-            ) : null}
-            {widget.routerName === 'builder/review#w-12' && widget.toggle ? <Review theme={theme.theme_type} /> : null}
-            {widget.routerName === 'builder/channel#w-13' && widget.toggle ? (
-              <Channel theme={theme.theme_type} />
-            ) : null}
-            {widget.routerName === 'builder/patent#w-14' && widget.toggle ? <Patent theme={theme.theme_type} /> : null}
+            {widget.widget_id === 2 && widget.toggle ? <ProductService theme={theme.theme_type} /> : null}
+            {widget.widget_id === 6 && widget.toggle ? <TeamMember theme={theme.theme_type} /> : null}
+            {widget.widget_id === 3 && widget.toggle ? <ContactUs theme={theme.theme_type} /> : null}
+            {widget.widget_id === 11 && widget.toggle ? <Press theme={theme.theme_type} /> : null}
+            {widget.widget_id === 12 && widget.toggle ? <Download theme={theme.theme_type} /> : null}
+            {widget.widget_id === 9 && widget.toggle ? <History theme={theme.theme_type} /> : null}
+            {/* {widget.widget_id === 8 && widget.toggle ? <TeamCulture theme={theme.theme_type} /> : null} */}
+            {widget.widget_id === 7 && widget.toggle ? <Result theme={theme.theme_type} /> : null}
+            {/* {widget.widget_id === 13 && widget.toggle ? <Partners theme={theme.theme_type} /> : null} */}
+            {/* {widget.widget_id === 4 && widget.toggle ? <Review theme={theme.theme_type} /> : null} */}
+            {widget.widget_id === 14 && widget.toggle ? <Channel theme={theme.theme_type} /> : null}
+            {/* {widget.widget_id === 10 && widget.toggle ? <Patent theme={theme.theme_type} /> : null} */}
           </div>
         ))}
         {/* 푸터 */}

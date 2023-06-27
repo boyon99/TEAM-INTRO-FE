@@ -1,10 +1,17 @@
-import { BuilderCheckboxProps, BuilderInputProps, BuilderUploadImageProps } from '@/interfaces/input';
+import {
+  BuilderCheckboxProps,
+  BuilderInputProps,
+  BuilderSelectProps,
+  BuilderUploadFileProps,
+  BuilderUploadImageProps,
+} from '@/interfaces/input';
 import { fileCheck } from '@/utils/fileCheck';
 import { useEffect, useState } from 'react';
 import { PrimaryButton } from '../button';
 import { set } from 'react-hook-form';
 import { on } from 'events';
 import useStore from '@/store';
+import { useUploadFile } from '@/hooks/useUploadFile';
 
 // 기본 입력창
 export function BuilderInput({
@@ -92,6 +99,75 @@ export function BuilderUploadImage({ title, ratio, imgSrc, setImgSrc, name, setU
             </div>
             <span className="font-[500] text-[14px] text-GrayScalePrimary-700 mt-[8px] ml-[55px]">
               이미지를 추가해주세요.
+            </span>
+            <span className="font-[500] text-[14px] text-GrayScalePrimary-400 ml-[80px]">최대 100mb</span>
+          </>
+        ) : null}
+      </div>
+    </>
+  );
+}
+
+// 파일 업로드 입력창
+export function BuilderUploadFile({ title, type }: BuilderUploadFileProps) {
+  const [file, setFile] = useState<File>();
+  const { mutate: uploadFileMutation, isSuccess } = useUploadFile(file, type);
+  const { setDownload, download } = useStore();
+  return (
+    <>
+      <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
+      <div
+        className={
+          'w-[264px] h-[138px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] indent-[10px] flex flex-col'
+        }
+      >
+        {/* 이미지 업로드 시 업로드한 이미지 미리보기 */}
+        {file === undefined ? null : (
+          <div className="relative overflow-hidden flex">
+            <div className="mx-auto flex flex-col mt-[20px]">
+              <img src="/pdf.svg" alt="pdf file img" className="h-[60px] w-[60px] mx-auto" />
+              <p className="text-GrayScalePrimary-700 text-[14px]">{file.name}</p>
+            </div>
+            {/* 삭제 버튼 */}
+            <button
+              className="w-[32px] h-[32px] absolute right-[8px] top-[7px]"
+              onClick={() => {
+                setFile(undefined);
+                if (type === 'mediakit') {
+                  setDownload({ ...download, media_kit_file: '' });
+                }
+                if (type === 'introfile') {
+                  setDownload({ ...download, intro_file: '' });
+                }
+              }}
+            >
+              <img src="/delete.png" />
+            </button>
+          </div>
+        )}
+        {/* 이미지 업로드 버튼 */}
+        {/* 이미지가 존재하지 않는 경우, 이미지 업로드 버튼이 보이고, 이미지가 존재하는 경우 사라짐 */}
+        {file === undefined ? (
+          <>
+            <div className="w-[60px] h-[60px] rounded-[10px] bg-primary-100 mx-[auto] mt-[14px]">
+              <input
+                type="file"
+                name="file"
+                id="file-input"
+                className="hidden"
+                onChange={(e) => {
+                  if (e.target.files !== null) {
+                    setFile(e.target.files[0]);
+                    uploadFileMutation();
+                  }
+                }}
+              />
+              <label className="file-input__label" htmlFor="file-input">
+                <img src="/union.png" className="w-[20px] h-[20px] m-[auto] mt-[20px]" />
+              </label>
+            </div>
+            <span className="font-[500] text-[14px] text-GrayScalePrimary-700 mt-[8px] ml-[55px]">
+              파일을 추가해주세요.
             </span>
             <span className="font-[500] text-[14px] text-GrayScalePrimary-400 ml-[80px]">최대 100mb</span>
           </>
@@ -192,5 +268,24 @@ export function BuilderCheckbox({ list, onChange, setChecked, checked, value }: 
         />
       </div>
     </>
+  );
+}
+
+// 셀렉트박스
+export function BuilderSelect({ title }: BuilderSelectProps) {
+  return (
+    <div>
+      <div className="mt-[24px] font-[700] text-[14px] text-GrayScalePrimary-700">{title}</div>
+      <select
+        className="w-[264px] h-[42px] rounded-[6px] border-[2px] border-GrayScalePrimary-300 mt-[8px] flex py-[7px] indent-[10px] font-[400]"
+        onChange={(e) => {
+          console.log(e.target.value);
+        }}
+      >
+        {/* TODOLIST - 디자인 작업 */}
+        <option value="PARTNERS">파트너</option>
+        <option value="INVESTMENT">투자자</option>
+      </select>
+    </div>
   );
 }
