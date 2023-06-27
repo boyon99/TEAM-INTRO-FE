@@ -26,7 +26,7 @@ export default function Header() {
         </div>
       ) : profile ? (
         <Link href={'/mypage'} className="relative rounded-full w-12 h-12 overflow-hidden">
-          <Image src={profile} alt="profile picture" fill className="object-cover" />
+          <Image src={profile} alt="profile picture" fill sizes="100%" className="object-cover" />
         </Link>
       ) : (
         <Link href={'/mypage'} className="w-12 h-12 rounded-full bg-[#D9D9D9]"></Link>

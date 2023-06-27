@@ -6,8 +6,11 @@ import { createPortal } from 'react-dom';
 import { ConfirmModal, DetailModal } from '../../common/popup';
 import useModal from '@/hooks/useModal';
 import { Inquiry } from '@/interfaces/dashboard';
+import { ContactContentsProps } from './ContactContents';
+import ChevronLeft from '@/components/common/icons/ChevronLeft';
+import ChevronRight from '@/components/common/icons/ChevronRight';
 
-export default function InquiryTable() {
+export default function InquiryTable({ data, page, setPage, isFetching, isPreviousData }: ContactContentsProps) {
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   const [showDetailModal, setShowDetailModal] = useState<boolean>(false);
@@ -18,48 +21,13 @@ export default function InquiryTable() {
   const { openModal: openDeleteModal, closeModal: closeDeleteModal } = useModal(showDeleteModal, setShowDeleteModal);
   const { openModal: openDetailModal, closeModal: closeDetailModal } = useModal(showDetailModal, setShowDetailModal);
   const [rows, setRows] = useState<Inquiry[] | []>([]);
-  const [selectedRows, setSelectedRows] = useState<Inquiry[]>([]);
+  const [checkedRows, setCheckededRows] = useState<Inquiry[]>([]);
+  const [selectedRow, setSelectedRow] = useState<Inquiry | null>(null);
   const [allSelected, setAllSelected] = useState<boolean>(false);
 
-  const data = [
-    {
-      contact_us_log_id: 1,
-      email: 'admin@admin.com',
-      name: '김응열',
-      content:
-        '안녕하세요. ##명의 활성 사용자가 있는 ##을 서비스하고 있는 ##입니다. 저희가 현재 ##를 준비중인데요, 관련해 도움 받고자 요청드립니다. 괜찮으시다면 약 1시간 가량의 오프라인 미팅 요청드립니다. 기존 저희 서비스는 다음 링크로 보실 수 있어요. https:// ~ 인터뷰 진행 의사 회신 부탁드립니다. 감사합니다.',
-      type: 'IR 자료 요청',
-      date: '23.06.15',
-    },
-    {
-      contact_us_log_id: 2,
-      email: 'admin@admin.com',
-      name: '김응열',
-      content:
-        '안녕하세요. ##명의 활성 사용자가 있는 ##을 서비스하고 있는 ##입니다. 저희가 현재 ##를 준비중인데요, 관련해 도움 받고자 요청드립니다. 괜찮으시다면 약 1시간 가량의 오프라인 미팅 요청드립니다. 기존 저희 서비스는 다음 링크로 보실 수 있어요. https:// ~ 인터뷰 진행 의사 회신 부탁드립니다. 감사합니다.',
-      type: 'IR 자료 요청',
-      date: '23.06.15',
-    },
-    {
-      contact_us_log_id: 3,
-      email: 'admin@admin.com',
-      name: '김응열',
-      content:
-        '안녕하세요. ##명의 활성 사용자가 있는 ##을 서비스하고 있는 ##입니다. 저희가 현재 ##를 준비중인데요, 관련해 도움 받고자 요청드립니다. 괜찮으시다면 약 1시간 가량의 오프라인 미팅 요청드립니다. 기존 저희 서비스는 다음 링크로 보실 수 있어요. https:// ~ 인터뷰 진행 의사 회신 부탁드립니다. 감사합니다.',
-      type: 'IR 자료 요청',
-      date: '23.06.15',
-    },
-  ];
-
-  // select option으로 처리
-
   useEffect(() => {
-    const newData = data.map((el) => ({
-      ...el,
-      selected: false,
-    }));
-    setRows(newData);
-  }, []);
+    setRows(data.content);
+  }, [data]);
 
   const toggleRow = (id: number) => {
     const updatedRows = rows.map((row) => {
@@ -70,7 +38,7 @@ export default function InquiryTable() {
     });
     setRows(updatedRows);
 
-    setSelectedRows([...updatedRows.filter((row) => row.selected === true)]);
+    setCheckededRows([...updatedRows.filter((row) => row.selected === true)]);
   };
 
   const toggleAllSelected = () => {
@@ -84,9 +52,9 @@ export default function InquiryTable() {
     setRows(updatedRows);
 
     if (allSelected) {
-      setSelectedRows([]);
+      setCheckededRows([]);
     } else {
-      setSelectedRows(updatedRows);
+      setCheckededRows(updatedRows);
     }
   };
 
@@ -100,12 +68,17 @@ export default function InquiryTable() {
     } else {
       setAllSelected(false);
     }
-  }, [rows, selectedRows]);
+  }, [rows, checkedRows]);
+
+  const selectRow = (row: Inquiry) => {
+    openDetailModal();
+    setSelectedRow(row);
+  };
 
   return (
-    <div className="h-[calc(100vh-224px)] border border-GrayScalePrimary-150 bg-white rounded-xl mt-5">
+    <>
       {rows.length ? (
-        <>
+        <div className="border border-GrayScalePrimary-150 bg-white rounded-xl mt-5">
           <div className="flex items-center justify-between pl-9 pr-5 h-[58px] border-b border-b-GrayScalePrimary-200">
             <section className="text-[15px] text-GrayScalePrimary-600 space-x-[23px]">
               <button>읽음으로 변경</button>
@@ -161,27 +134,27 @@ export default function InquiryTable() {
             </thead>
 
             <tbody>
-              {rows.map((el) => (
+              {rows.map((row) => (
                 <tr
-                  key={el.contact_us_log_id}
+                  key={row.contact_us_log_id}
                   className="h-[68px] flex items-center w-full border-b-[0.5px] border-b-GrayScalePrimary-150 last:border-b-0 px-4"
                 >
                   <td>
-                    <Checkbox checked={el.selected} handleClick={() => toggleRow(el.contact_us_log_id)} />
+                    <Checkbox checked={row.selected} handleClick={() => toggleRow(row.contact_us_log_id)} />
                   </td>
 
-                  <td onClick={openDetailModal} className="cursor-pointer flex items-center">
+                  <td onClick={() => selectRow(row)} className="cursor-pointer flex items-center">
                     <span className="text-[14px] text-GrayScalePrimary-800 mx-10 text-center truncate w-[130px]">
-                      {el.email}
+                      {row.email}
                     </span>
-                    <span className="text-[14px] text-GrayScalePrimary-800 text-center truncate w-10">{el.name}</span>
+                    <span className="text-[14px] text-GrayScalePrimary-800 text-center truncate w-10">{row.name}</span>
                     <span className="text-[14px] text-GrayScalePrimary-800 mx-10 text-center truncate w-[150px]">
-                      {el.content}
+                      {row.content}
                     </span>
                     <span className="text-[14px] text-GrayScalePrimary-800 text-center truncate w-[70px]">
-                      {el.type}
+                      {row.type}
                     </span>
-                    <span className="mx-10 text-[14px] text-GrayScalePrimary-800 w-14 text-center">{el.date}</span>
+                    <span className="mx-10 text-[14px] text-GrayScalePrimary-800 w-14 text-center">{row.date}</span>
                   </td>
                   <td>
                     <PrimaryButton
@@ -198,11 +171,13 @@ export default function InquiryTable() {
                       삭제
                     </button>
                   </td>
-                  {showDetailModal &&
-                    createPortal(<DetailModal closeModal={closeDetailModal} {...el} />, document.body)}
                 </tr>
               ))}
             </tbody>
+
+            {showDetailModal &&
+              selectedRow &&
+              createPortal(<DetailModal closeModal={closeDetailModal} {...selectedRow} />, document.body)}
             {showDeleteModal &&
               createPortal(
                 <ConfirmModal closeModal={closeDeleteModal} msg1="연락 내역을 삭제하시겠습니까?" />,
@@ -218,12 +193,43 @@ export default function InquiryTable() {
                 document.body,
               )}
           </table>
-        </>
+
+          <section className="mt-12 mb-6 gap-x-1 flex items-center justify-center">
+            <button onClick={() => setPage((old) => Math.max(old - 1, 0))} disabled={page === 0}>
+              <ChevronLeft disabled={page === 0} />
+            </button>
+
+            {[...Array(data.total_page)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setPage(index)}
+                disabled={page === index}
+                className={`${
+                  page === index ? 'font-bold bg-primary-150 text-primary-500' : 'text-GrayScalePrimary-600'
+                } text-[13px] w-7 h-7 rounded-[4px]`}
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            <button
+              onClick={() => {
+                if (!isPreviousData && data.has_next) {
+                  setPage((old) => old + 1);
+                }
+              }}
+              // Disable the Next Page button until we know a next page is available
+              disabled={isPreviousData || !data?.has_next}
+            >
+              <ChevronRight disabled={isPreviousData || !data?.has_next} />
+            </button>
+          </section>
+        </div>
       ) : (
-        <p className="flex justify-center items-center h-full text-[22px] text-GrayScaleNeutral-1000">
+        <div className="h-[626px] text-center leading-[626px] text-[22px] text-GrayScaleNeutral-1000 border border-GrayScalePrimary-150 bg-white rounded-xl mt-5">
           연락 내역이 없습니다!
-        </p>
+        </div>
       )}
-    </div>
+    </>
   );
 }

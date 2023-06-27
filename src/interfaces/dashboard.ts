@@ -17,3 +17,14 @@ export interface Inquiry {
   date: string;
   selected?: boolean;
 }
+
+export interface ContactUs {
+  status: string;
+  page: number;
+}
+
+export interface ContactData {
+  content: Inquiry[];
+  total_page: number;
+  has_next: boolean;
+}

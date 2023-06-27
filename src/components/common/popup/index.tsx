@@ -65,6 +65,7 @@ export function ConfirmModal({ msg1, msg2, closeModal }: ConfirmModalProps) {
 }
 
 export function DetailModal({ closeModal, email, name, type, date, content }: DetailModalProps) {
+  console.log(date);
   return (
     <>
       <div className="modal-contents w-[520px] h-[600px] rounded-2xl pt-10 px-[54px] py-9">
