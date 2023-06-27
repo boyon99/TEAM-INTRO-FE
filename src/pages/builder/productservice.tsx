@@ -27,6 +27,7 @@ function ProductView() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<ProductModify>();
   const { buttondes, setButtondes, add, setAdd, products, setProducts, widgets, setToggle, productservices } = useStore();
   const [toggle, setTogglebase] = useState(true)
+  const findWigetToggle = widgets.find((widget) => widget.name === '제품/서비스 소개');
   // 추가하기 버튼 클릭시 빈상자(빈배열)가 생김
   const onClick = () => {
     setAdd(!add)
@@ -116,7 +117,7 @@ const deleteSelectedItems = () => {
       <span className='font-bold text-sm/[100%] text-[#57566a]'>사용여부</span>
       <div className="mt-[12px]">
       <ToggleWidget
-        toggle={widgets[2].toggle}
+        toggle={findWigetToggle?.toggle as boolean}
         setWidgetToggle={setToggle}
         widgetName="제품/서비스 소개"
         toggleText={{ true: '사용', false: '사용 안함' }}

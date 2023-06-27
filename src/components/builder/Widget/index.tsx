@@ -394,7 +394,7 @@ export function TeamMember({ theme }: HeaderProps) {
   console.log(teammembers);
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[600px] font-[LINE]">
+      <section id="w-04" className="h-[750px] font-[LINE]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">Meat the Team</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
