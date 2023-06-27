@@ -7,3 +7,8 @@ const getDashboard = async () => {
 };
 
 export { getDashboard };
+
+export const downloadDashboard = async (download: any) => {
+  const { data } = await axiosInstance().post(`/api/dashboard/download`, download);
+  return data;
+};

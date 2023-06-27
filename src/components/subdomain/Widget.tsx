@@ -1,12 +1,15 @@
 import useStore from '@/store';
 import exp from 'constants';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { headerName } from '@/data/headerName';
 import { channelList } from '@/data/channel';
 import { HeaderPageProps } from '@/interfaces/subdoamin';
 import { type } from 'os';
+import { useMutation } from '@tanstack/react-query';
+import { downloadDashboard } from '@/apis/dashborad';
+import { set } from 'date-fns';
 
 export function KeyVisual({ theme, data }: HeaderPageProps) {
   if (theme === 'ThemeA') {
@@ -557,18 +560,47 @@ export function Press({ theme, data }: HeaderPageProps) {
   }
 }
 
-export function Download({ theme, data }: HeaderPageProps) {
-  // const { download } = useStore();
+export function Download({ theme, data, intro_page_id }: HeaderPageProps) {
+  const [type, setType] = useState('MEDIAKIT');
+  const { mutate: downloadDashboardMutation } = useMutation(
+    () => downloadDashboard({ type: type, email: '', intro_page_id: intro_page_id }),
+    {
+      onSuccess: (data) => {
+        console.log('success', data);
+      },
+      onError: (error) => {
+        console.log('error', error);
+      },
+    },
+  );
   if (theme === 'ThemeA') {
     return (
       <section id="w-07" className="h-[120px] font-['LINE'] bg-primary-500 text-white flex">
         <div className="font-[700] text-[25px] pt-[45px] pl-[100px]">DOWNLOAD</div>
-        <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[620px] mt-[40px]">
-          미디어 키트 <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
-        </button>
-        <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[50px] mt-[40px]">
-          회사 소개서 <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
-        </button>
+        <a href={data.media_kit_file} download target="_blank">
+          <button
+            className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[620px] mt-[40px]"
+            onClick={() => {
+              setType('MEDIAKIT');
+              downloadDashboardMutation();
+            }}
+          >
+            미디어 키트
+            <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
+          </button>
+        </a>
+        <a href={data.intro_file} download target="_blank">
+          <button
+            className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[50px] mt-[40px]"
+            onClick={() => {
+              setType('INTROFILE');
+              downloadDashboardMutation();
+            }}
+          >
+            회사 소개서
+            <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
+          </button>
+        </a>
       </section>
     );
   } else {
@@ -578,12 +610,31 @@ export function Download({ theme, data }: HeaderPageProps) {
         className="h-[110px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[20px] mx-[50px] flex"
       >
         <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[750px]">{data.description}</div>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[120px] mt-[35px] rounded-[80px] text-white text-[12px]">
-          미디어 키트 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
-        </button>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-white text-[12px]">
-          회사 소개서 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
-        </button>
+        <a href={data.media_kit_file} download target="_blank">
+          <button
+            className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[120px] mt-[35px] rounded-[80px] text-white text-[12px]"
+            onClick={() => {
+              setType('MEDIAKIT');
+              downloadDashboardMutation();
+            }}
+            type="button"
+          >
+            미디어 키트
+            <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
+          </button>
+        </a>
+        <a href={data.intro_file} download target="_blank">
+          <button
+            className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-white text-[12px]"
+            onClick={() => {
+              setType('INTROFILE');
+              downloadDashboardMutation();
+            }}
+          >
+            회사 소개서
+            <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
+          </button>
+        </a>
       </section>
     );
   }
@@ -748,7 +799,6 @@ export function Result({ theme, data }: HeaderPageProps) {
 
 export function Channel({ theme, data }: HeaderPageProps) {
   const channelValues = Object.values(data);
-  console.log(channelValues);
   if (theme === 'ThemeA') {
     return (
       <section id="w-13" className="h-[200px] w-full relative mt-[20px]">

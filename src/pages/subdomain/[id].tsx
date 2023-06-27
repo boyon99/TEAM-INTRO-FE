@@ -21,7 +21,7 @@ import { is } from 'date-fns/locale';
 
 function Preview({ data, isLoading }: { data: any; isLoading: boolean }) {
   if (isLoading) return <div>loading...</div>;
-  const { widgets, theme, header_and_footer, company_info, site_info } = data;
+  const { widgets, theme, header_and_footer, company_info, site_info, intro_page_id } = data;
   return (
     <div>
       {
@@ -44,7 +44,7 @@ function Preview({ data, isLoading }: { data: any; isLoading: boolean }) {
                 {widgetId === 6 && widget.widget_status ? <TeamMember theme={theme.type} data={widget} /> : null}
                 {widgetId === 3 && widget.widget_status ? <ContactUs theme={theme.type} data={widget} /> : null}
                 {widgetId === 11 && widget.widget_status ? <Press theme={theme.type} data={widget} /> : null}
-                {widgetId === 12 && widget.widget_status ? <Download theme={theme.type} data={widget} /> : null}
+                {widgetId === 12 && widget.widget_status ? <Download theme={theme.type} data={widget} intro_page_id={intro_page_id}/> : null}
                 {widgetId === 9 && widget.widget_status ? <History theme={theme.type} data={widget} /> : null}
                 {/* {widgetId === 8 && widget.widget_status ? <TeamCulture theme={theme.type} /> : null} */}
                 {widgetId === 7 && widget.widget_status ? <Result theme={theme.type} data={widget} /> : null}
