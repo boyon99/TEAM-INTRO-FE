@@ -5,6 +5,11 @@ export const getIntroPage = async () => {
   return data;
 };
 
+export const createIntroPage = async (introPage: any) => {
+  const { data } = await axiosInstance().post<any>('/api/s/user/introPage', introPage);
+  return data;
+};
+
 export const updateIntroPage = async (introPage: any) => {
   const { data } = await axiosInstance().patch<any>('/api/s/user/introPage', introPage);
   return data;
