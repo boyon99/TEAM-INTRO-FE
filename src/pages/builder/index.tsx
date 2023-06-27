@@ -30,10 +30,9 @@ export default function Builder() {
   } = useStore();
   useEffect(() => {
     if (!isLoading) {
-      console.log(builderData);
       const widgetData = builderData.widgets.map((widget: any) => {
         return {
-          widget_id: widget.widget_id,
+          widget_id: widget.widget_id % 14 === 0 ? 14 : widget.widget_id % 14,
           toggle: widget.widget_status,
         };
       });

@@ -1,5 +1,7 @@
+import { createIntroPage } from '@/apis/builder';
 import { PrimaryButton } from '@/components/common/button';
-import { useRouter } from 'next/router';
+import { useMutation } from '@tanstack/react-query';
+import Router, { useRouter } from 'next/router';
 
 type Sentences = {
   s1: string;
@@ -30,7 +32,16 @@ function CheckMark({ s1, s2 }: Sentences) {
 }
 
 export default function LandingPage() {
-  const { push } = useRouter();
+  const { mutate: createIntroPageMutation } = useMutation(() => createIntroPage({ widget_type_list: [] }), {
+    onSuccess: (data) => {
+      console.log('success', data);
+      Router.push('/builder');
+    },
+    onError: (error) => {
+      console.log('error', error);
+      alert('회사 소개 페이지 생성에 실패했습니다.');
+    },
+  });
 
   return (
     <div className="mx-auto flex flex-col items-center mt-[117px]">
@@ -53,7 +64,9 @@ export default function LandingPage() {
         classname="text-xl font-bold w-[350px] h-[60px] mt-[53px]"
         type="primary"
         text="회사 소개 페이지 만들기"
-        onClick={() => push('/')}
+        onClick={() => {
+          createIntroPageMutation();
+        }}
       />
       <div className="h-[1px] w-[440px] bg-GrayScalePrimary-250 mt-[49px]"></div>
 
