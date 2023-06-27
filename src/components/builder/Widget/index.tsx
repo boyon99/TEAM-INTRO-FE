@@ -158,7 +158,9 @@ export function Header({ theme }: HeaderProps) {
         {companyInfo.logo === '' ? null : (
           <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
         )}
-        <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px] font-[700]">ZILLINKS</span>
+        <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px] font-[700]">
+          {companyInfo.company_name}
+        </span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
           {header_and_footer_status_list.map((toggle, index) => {
             if (toggle) {
@@ -180,7 +182,7 @@ export function Header({ theme }: HeaderProps) {
         {companyInfo.logo === '' ? null : (
           <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
         )}{' '}
-        <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">Upperb</span>
+        <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">{companyInfo.company_name}</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
           {header_and_footer_status_list.map((toggle, index) => {
             if (toggle) {
