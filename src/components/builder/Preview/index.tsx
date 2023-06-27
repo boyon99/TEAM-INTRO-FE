@@ -25,7 +25,7 @@ export default function Preview() {
 
   return (
     <div className="w-[945px] h-[calc(100vh-72px)] overflow-y-scroll">
-      <div className="w-[908px] h-full mx-[auto] mt-[16px] border border-[2px] border-GrayScalePrimary-150">
+      <div className="w-[908px] h-[auto] mx-[auto] mt-[16px] border border-[2px] border-GrayScalePrimary-150">
         {/* 헤더 */}
         <Header theme={theme.theme_type} />
         {/* 위젯 */}
