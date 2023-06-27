@@ -466,7 +466,7 @@ export function Press({ theme, data }: HeaderPageProps) {
   } else {
     return (
       <section id="w-06" className="h-[540px] font-[LINE]">
-        <div className="ml-[40px]">
+        <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">News Room</span>
           <p className="text-[#000] text-[35px] mt-[20px] pl-[2px]">새로운 소식</p>
         </div>
