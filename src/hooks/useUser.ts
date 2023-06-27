@@ -5,6 +5,7 @@ const useUser = () => {
   return useQuery({
     queryKey: ['user'],
     queryFn: getUser,
+    select: (data) => data.data,
   });
 };
 
