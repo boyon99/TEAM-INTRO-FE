@@ -13,4 +13,13 @@ const getContact = async ({ status, page = 0 }: ContactUs) => {
   return data;
 };
 
-export { getDashboard, getContact };
+const changeContactStatus = async (id: number, status: string) => {
+  const { data } = await axiosInstance().put(`/api/s/user/dashboard/contactUs?contactUsId=${id}`, {
+    status,
+    contact_us_id: id,
+  });
+
+  return data;
+};
+
+export { getDashboard, getContact, changeContactStatus };

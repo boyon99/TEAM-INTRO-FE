@@ -8,7 +8,7 @@ import { AxiosError } from 'axios';
 import { useState } from 'react';
 
 export default function UnConfirmed() {
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(0);
   const { isLoading, isError, error, data, isFetching, isPreviousData, isSuccess } = useContact({
     status: 'UNCONFIRMED',
     page,

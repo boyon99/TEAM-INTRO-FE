@@ -16,7 +16,7 @@ export default function ContactConfirmed() {
   const err = error as AxiosError;
 
   const errStatus = err?.response?.status;
-  console.log(data);
+
   return (
     <div>
       <Header />

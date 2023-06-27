@@ -10,6 +10,8 @@ import { ContactContentsProps } from './ContactContents';
 import ChevronLeft from '@/components/common/icons/ChevronLeft';
 import ChevronRight from '@/components/common/icons/ChevronRight';
 import ClockDown from '@/components/common/icons/ClockDown';
+import Loader from '../Loader';
+import { useRouter } from 'next/router';
 
 export default function InquiryTable({ data, page, setPage, isFetching, isPreviousData }: ContactContentsProps) {
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
@@ -24,7 +26,11 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
   const [rows, setRows] = useState<Inquiry[] | []>([]);
   const [checkedRows, setCheckededRows] = useState<Inquiry[]>([]);
   const [selectedRow, setSelectedRow] = useState<Inquiry | null>(null);
+  const [canceledRow, setCanceledRow] = useState<number | null>(null);
+  const [confirmedRow, setConfirmedRow] = useState<number | null>(null);
   const [allSelected, setAllSelected] = useState<boolean>(false);
+  const { pathname } = useRouter();
+  const path = pathname.split('/')[3];
 
   useEffect(() => {
     setRows(data.content);
@@ -82,7 +88,7 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
         <div className="border border-GrayScalePrimary-150 bg-white rounded-xl mt-5">
           <div className="flex items-center justify-between pl-9 pr-5 h-[58px] border-b border-b-GrayScalePrimary-200">
             <section className="text-[15px] text-GrayScalePrimary-600 space-x-[23px]">
-              <button>읽음으로 변경</button>
+              {path === 'unconfirmed' && <button>읽음으로 변경</button>}
               <button>삭제</button>
             </section>
             <section>
@@ -146,15 +152,23 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
                     <span className="mx-10 text-[14px] text-GrayScalePrimary-800 w-14 text-center">{row.date}</span>
                   </td>
                   <td>
-                    <PrimaryButton
-                      text="읽음"
-                      classname="font-bold w-[72px] h-9 rounded-lg mr-[6px]"
-                      type="primary"
-                      onClick={openConfirmModal}
-                    />
+                    {path === 'unconfirmed' && (
+                      <PrimaryButton
+                        text="읽음"
+                        classname="font-bold w-[72px] h-9 rounded-lg mr-[6px]"
+                        type="primary"
+                        onClick={() => {
+                          openConfirmModal();
+                          setConfirmedRow(row.contact_us_log_id);
+                        }}
+                      />
+                    )}
 
                     <button
-                      onClick={openDeleteModal}
+                      onClick={() => {
+                        openDeleteModal();
+                        setCanceledRow(row.contact_us_log_id);
+                      }}
                       className="w-[72px] h-9 border border-GrayScalePrimary-500 rounded-lg text-sm text-GrayScalePrimary-600"
                     >
                       삭제
@@ -168,13 +182,24 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
               selectedRow &&
               createPortal(<DetailModal closeModal={closeDetailModal} {...selectedRow} />, document.body)}
             {showDeleteModal &&
+              canceledRow &&
               createPortal(
-                <ConfirmModal closeModal={closeDeleteModal} msg1="연락 내역을 삭제하시겠습니까?" />,
+                <ConfirmModal
+                  status="CANCEL"
+                  page={page}
+                  id={canceledRow}
+                  closeModal={closeDeleteModal}
+                  msg1="연락 내역을 삭제하시겠습니까?"
+                />,
                 document.body,
               )}
             {showConfirmModal &&
+              confirmedRow &&
               createPortal(
                 <ConfirmModal
+                  status="CONFIRM"
+                  id={confirmedRow}
+                  page={page}
                   closeModal={closeConfirmModal}
                   msg1="연락 내역을 읽음으로 변경하시겠습니까?"
                   msg2="· 중요한 연락만 남겨주세요."
@@ -200,18 +225,21 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
                 {index + 1}
               </button>
             ))}
+            <article className="relative flex">
+              <button
+                onClick={() => {
+                  if (!isPreviousData && data.has_next) {
+                    setPage((old) => old + 1);
+                  }
+                }}
+                // Disable the Next Page button until we know a next page is available
+                disabled={isPreviousData || !data?.has_next}
+              >
+                <ChevronRight disabled={isPreviousData || !data?.has_next} />
+              </button>
 
-            <button
-              onClick={() => {
-                if (!isPreviousData && data.has_next) {
-                  setPage((old) => old + 1);
-                }
-              }}
-              // Disable the Next Page button until we know a next page is available
-              disabled={isPreviousData || !data?.has_next}
-            >
-              <ChevronRight disabled={isPreviousData || !data?.has_next} />
-            </button>
+              {isFetching && <Loader className="w-6 h-6 absolute left-7" />}
+            </article>
           </section>
         </div>
       ) : (

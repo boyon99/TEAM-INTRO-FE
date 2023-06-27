@@ -2,8 +2,12 @@ import { DetailModalProps, popup } from '@/interfaces/popup';
 import { PrimaryButton } from '../button';
 import Clipboard from '../icons/ClipBoard';
 import { useRef, useState } from 'react';
+import useChangeContactStatus from '@/hooks/useChangeContactStatus';
 
 type ConfirmModalProps = {
+  status: string;
+  id: number;
+  page: number;
   msg1: string;
   msg2?: string;
   closeModal: () => void;
@@ -39,7 +43,9 @@ export function Popup({ text, cancle, confirm, isOpen, onClick }: popup) {
   );
 }
 
-export function ConfirmModal({ msg1, msg2, closeModal }: ConfirmModalProps) {
+export function ConfirmModal({ id, status, page, msg1, msg2, closeModal }: ConfirmModalProps) {
+  const { mutate, isLoading } = useChangeContactStatus({ id, status, page, closeModal });
+
   return (
     <>
       <div className="modal-contents w-[420px] h-64 flex items-center flex-col pt-14 space-y-10">
@@ -56,7 +62,7 @@ export function ConfirmModal({ msg1, msg2, closeModal }: ConfirmModalProps) {
           <PrimaryButton
             text="확인"
             type="primary"
-            onClick={() => {}}
+            onClick={mutate}
             classname="w-32 h-12 rounded-lg text-xl font-bold"
           />
         </section>

@@ -28,3 +28,10 @@ export interface ContactData {
   total_page: number;
   has_next: boolean;
 }
+
+export interface ChangeContactStatus {
+  id: number;
+  status: string;
+  page: number;
+  closeModal: () => void;
+}
