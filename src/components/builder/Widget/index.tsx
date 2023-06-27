@@ -201,7 +201,7 @@ export function Header({ theme }: HeaderProps) {
 
 export function Footer({ theme }: HeaderProps) {
   const { companyInfo } = useStore();
-  if (theme === 'ThemeB') {
+  if (theme === 'ThemeA') {
     return (
       <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative font-['LINE']">
         <div className="w-[230px] ml-[99px] mt-[70px] mb-[25px] text-GrayScaleNeutral-400">
@@ -229,12 +229,14 @@ export function Footer({ theme }: HeaderProps) {
           </div>
         </div>
         <div className="w-[240px] ml-[30px] mt-[30px] text-GrayScaleNeutral-400 mb-[25px] flex flex-col">
-          <div className="border w-[110px] pl-[13px] py-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px]">
+          <div className="border w-[110px] pl-[13px] py-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px] mt-[20px]">
             기업 상세 정보
           </div>
           {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
-          <div className="font-[300] text-[12px] flex ml-[163px]">주식회사 질링스</div>
-          <div className="font-[300] text-[12px] flex">Copyright&#169;Zillinks.Co.Ltd. All Right Reserved</div>
+          <div className="font-[300] text-[10px] flex ml-[175px] mt-[10px]">주식회사 질링스</div>
+          <div className="font-[300] text-[10px] ml-[40px] flex">
+            Copyright&#169;Zillinks.Co.Ltd. All Right Reserved
+          </div>
         </div>
       </section>
     );
@@ -266,12 +268,14 @@ export function Footer({ theme }: HeaderProps) {
           </div>
         </div>
         <div className="w-[250px] ml-[35px] mt-[30px] text-white mb-[25px] flex flex-col">
-          <div className="border w-[110px] pl-[16px] py-[5px] text-[12px] rounded-[18px] border-GrayScaleNeutral-400 ml-[133px]">
+          <div className="border w-[110px] pl-[16px] py-[5px] text-[12px] rounded-[18px] border-GrayScaleNeutral-400 ml-[135px] mt-[20px]">
             기업 상세 정보
           </div>
           {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
-          <div className="font-[300] text-[12px] flex ml-[156px]">주식회사 질링스</div>
-          <div className="font-[300] text-[12px] flex">Copyright&#169;Zillinks.Co.Ltd. All Right Reserved</div>
+          <div className="font-[300] text-[10px] flex ml-[170px] mt-[10px]">주식회사 질링스</div>
+          <div className="font-[300] text-[10px] flex ml-[40px]">
+            Copyright&#169;Zillinks.Co.Ltd. All Right Reserved
+          </div>
         </div>
       </section>
     );
@@ -488,16 +492,32 @@ export function Press({ theme }: HeaderProps) {
 }
 
 export function Download({ theme }: HeaderProps) {
+  const { download } = useStore();
   if (theme === 'ThemeA') {
     return (
-      <section id="w-07" className="h-[200px]">
-        Download A
+      <section id="w-07" className="h-[120px] font-['LINE'] bg-primary-500 text-white flex">
+        <div className="font-[700] text-[25px] pt-[45px] pl-[100px]">DOWNLOAD</div>
+        <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[260px] mt-[40px]">
+          미디어 키트 <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
+        </button>
+        <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[40px]">
+          회사 소개서 <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
+        </button>
       </section>
     );
   } else {
     return (
-      <section id="w-07" className="h-[200px]">
-        Download B
+      <section
+        id="w-07"
+        className="h-[110px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[20px] mx-[10px] flex"
+      >
+        <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[550px]">{download.description}</div>
+        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-white text-[12px]">
+          미디어 키트 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
+        </button>
+        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-white text-[12px]">
+          회사 소개서 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
+        </button>
       </section>
     );
   }

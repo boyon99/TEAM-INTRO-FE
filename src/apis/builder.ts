@@ -42,8 +42,19 @@ export const updateSiteInfo = async (siteInfo: any) => {
   return data;
 };
 
+export const updateDownload = async (download: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/download', download);
+  return data;
+};
+
 export const uploadImage = async (formData: any) => {
   console.log(formData);
   const { data } = await axiosInstance({ multi: true }).post<any>('/api/s/user/uploadImage', formData);
+  return data;
+};
+
+export const uploadFile = async (formData: any) => {
+  console.log(formData);
+  const { data } = await axiosInstance({ multi: true }).post<any>('/api/s/user/uploadFile', formData);
   return data;
 };

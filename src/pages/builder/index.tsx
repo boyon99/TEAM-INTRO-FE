@@ -19,6 +19,7 @@ export default function Builder() {
     setKeyVisual,
     setMissionVision,
     setChannel,
+    setDownload,
   } = useStore();
 
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function Builder() {
       const keyvisual = builderData.widgets.find((widget: any) => widget.widget_type === 'KEYVISUALANDSLOGAN');
       const missionvision = builderData.widgets.find((widget: any) => widget.widget_type === 'MISSIONANDVISION');
       const channel = builderData.widgets.find((widget: any) => widget.widget_type === 'CHANNEL');
+      const download = builderData.widgets.find((widget: any) => widget.widget_type === 'DOWNLOAD');
       setHeaderAndFooterList(builderData.header_and_footer.header_and_footer_status_list);
       setCompanyInfo(builderData.company_info);
       setSiteInfo(builderData.site_info);
@@ -64,6 +66,11 @@ export default function Builder() {
           facebook: channel.sns_list.facebook === undefined ? '' : channel.sns_list.facebook,
         });
       }
+      setDownload({
+        description: download.description === undefined ? '' : download.description,
+        intro_file: download.intro_file === undefined ? '' : download.intro_file,
+        media_kit_file: download.media_kit_file === undefined ? '' : download.media_kit_file,
+      });
     }
   }, [builderData]);
 

@@ -31,7 +31,6 @@ export function MenuB({ routerName, buttonName, isEssential }: MenuProps) {
   const { widgets, isChangeOederToggle } = useStore();
   // 위젯 목록에서 현재 위젯을 찾아서 가져옴
   const widget = widgets.find((widget) => widget.name === buttonName);
-  console.log(widget?.name);
   return (
     <div
       className={

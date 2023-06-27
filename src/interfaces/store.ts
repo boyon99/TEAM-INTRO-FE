@@ -39,6 +39,14 @@ export interface Store {
   companyInfo: CompanyInfo;
   setLogo: (logo: string) => void;
   setCompanyInfo: (companyInfo: CompanyInfo) => void;
+  download: Download;
+  setDownload: (download: Download) => void;
+}
+
+export interface Download {
+  description: string;
+  media_kit_file: string;
+  intro_file: string;
 }
 
 export interface CompanyInfo {

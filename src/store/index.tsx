@@ -250,6 +250,17 @@ const useStore = create<Store>((set) => ({
   setChannel: (channel) => {
     set((state) => ({ channel: { ...state.channel, ...channel } }));
   },
+  // builder - partner
+  partner: {},
+  // builder - download
+  download: {
+    description: '',
+    media_kit_file: '',
+    intro_file: '',
+  },
+  setDownload: (download) => {
+    set((state) => ({ download: { ...state.download, ...download } }));
+  },
 }));
 
 export default useStore;
