@@ -7,6 +7,7 @@ import { getIntroPage } from '@/apis/builder';
 import useStore from '@/store';
 import { useBuilder } from '@/hooks/useBuilder';
 import { set } from 'react-hook-form';
+import { widgetName } from '@/data/widgetName';
 
 export default function Builder() {
   const { data: builderData, isLoading } = useBuilder();
@@ -22,11 +23,18 @@ export default function Builder() {
     setChannel,
     setDownload,
     setIsPublicToggle,
+    setWidget,
   } = useStore();
 
   useEffect(() => {
     if (!isLoading) {
       console.log(builderData);
+      const widgetData = builderData.widgets.map((widget: any) => {
+        return {
+          widget_id: widget.widget_id,
+          toggle: widget.widget_status,
+        };
+      });
       const keyvisual = builderData.widgets.find((widget: any) => widget.widget_type === 'KEYVISUALANDSLOGAN');
       const missionvision = builderData.widgets.find((widget: any) => widget.widget_type === 'MISSIONANDVISION');
       const channel = builderData.widgets.find((widget: any) => widget.widget_type === 'CHANNEL');
@@ -74,13 +82,14 @@ export default function Builder() {
         media_kit_file: download.media_kit_file === undefined ? '' : download.media_kit_file,
       });
       setIsPublicToggle(builderData.intro_page_status === 'PRIVATE' ? false : true);
+      setWidget(widgetData);
     }
   }, [builderData]);
 
   // 페이지 진입 시 resetUploadImage 호출
   useEffect(() => {
     resetUploadImage();
-    setIsPublicToggle(false);
+    return setIsPublicToggle(false);
   }, []);
 
   return (
