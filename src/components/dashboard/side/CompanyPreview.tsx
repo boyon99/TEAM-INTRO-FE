@@ -3,8 +3,8 @@ import Link from 'next/link';
 import Loader from '../Loader';
 
 export default function CompanyPreview() {
-  const { data, isLoading, isError } = useDashboard();
-  const subDomain = data?.intro_page_info.sub_domain;
+  const { data, isLoading, isError, isSuccess } = useDashboard();
+  const subDomain = isSuccess && data.intro_page_info.sub_domain;
 
   return (
     <div>
