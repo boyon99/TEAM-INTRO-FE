@@ -81,6 +81,17 @@ function HistoryView() {
       <div className="w-[260px] font-[500] text-[16px] mt-[16px] text-GrayScalePrimary-700">
         우리 회사가 진행해 온 프로젝트들을 연월에 따라 정렬해주세요.
       </div>
+      <div className="mt-[48px]">
+        <span className="font-bold text-sm/[100%] text-[#57566a]">사용여부</span>
+        <div className="mt-[12px]">
+          <ToggleWidget
+            toggle={widgets[7].toggle}
+            setWidgetToggle={setToggle}
+            widgetId={9}
+            toggleText={{ true: '사용', false: '사용 안함' }}
+          />
+        </div>
+      </div>
       {widgets[7].toggle ? (
         <>
           <div className="mt-[48px]">

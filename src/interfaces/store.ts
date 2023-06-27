@@ -43,12 +43,6 @@ export interface Store {
   setCompanyInfo: (companyInfo: CompanyInfo) => void;
   download: Download;
   setDownload: (download: Download) => void;
-}
-
-export interface Download {
-  description: string;
-  media_kit_file: string;
-  intro_file: string;
   //팀 멤버
   teammembers: TeamMember[];
   setTeamMember: (teammembers: TeamMember[]) => void;
@@ -77,6 +71,12 @@ export interface Download {
   setResultImgurl: (resultimgurl: string) => void;
   results: Result[];
   setResults: (results: Result[]) => void;
+}
+
+export interface Download {
+  description: string;
+  media_kit_file: string;
+  intro_file: string;
 }
 
 export interface CompanyInfo {
