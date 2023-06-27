@@ -11,7 +11,7 @@ import Router from 'next/router';
 
 function Preview() {
   const { widgets, setToggle, missionVision, setMissionDetail, setVisionDetail, setMissionVision } = useStore();
-  const findWigetToggle = widgets.find((widget) => widget.name === '미션/비젼');
+  const findWigetToggle = widgets.find((widget) => widget.widget_id === 1);
   const { mutate: updateMissionVisionMutation } = useMutation(
     () => updateMissionVision({ widget_status: findWigetToggle?.toggle, ...missionVision }),
     {
@@ -40,7 +40,7 @@ function Preview() {
       <ToggleWidget
         toggle={findWigetToggle?.toggle as boolean}
         setWidgetToggle={setToggle}
-        widgetName="미션/비젼"
+        widgetId={1}
         toggleText={{ true: '사용', false: '사용 안함' }}
       />
       {findWigetToggle?.toggle ? (

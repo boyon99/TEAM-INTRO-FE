@@ -5,6 +5,11 @@ export const getIntroPage = async () => {
   return data;
 };
 
+export const updateIntroPage = async (introPage: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage', introPage);
+  return data;
+};
+
 export const updateChannel = async (channel: any) => {
   const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/channel', channel);
   const response = data.data;

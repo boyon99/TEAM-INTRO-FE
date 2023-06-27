@@ -1,8 +1,9 @@
 import useStore from '@/store';
 import React, { useState } from 'react';
 import { List, arrayMove } from 'react-movable';
-import { MenuA, MenuB } from '../Menu';
+import { MenuA, MenuB, MenuC } from '../Menu';
 import { ToggleLarge } from '@/components/common/toggle';
+import { widgetName } from '@/data/widgetName';
 
 export default function LeftPanal() {
   // 위젯 목록과 위젯 순서 변경을 위한 함수
@@ -24,7 +25,7 @@ export default function LeftPanal() {
           <ToggleLarge toggleText="순서 변경"></ToggleLarge>
         </div>
         {/* 필수 위젯 */}
-        <MenuB buttonName={'헤더/푸터'} routerName={'builder/headerfooter#w-15'} isEssential={true} />
+        <MenuC buttonName={'헤더/푸터'} routerName={'builder/headerfooter#w-15'} />
         {/* 선택 위젯 */}
         {/* react-movable 라이브러리 사용하여 위젯 순서 변경 */}
         <List
@@ -35,7 +36,7 @@ export default function LeftPanal() {
               {children}
             </ul>
           )}
-          renderItem={({ value, props, isDragged, isSelected }) => (
+          renderItem={({ value, props, isDragged, isSelected, index }) => (
             <li
               {...props}
               style={{
@@ -46,7 +47,7 @@ export default function LeftPanal() {
               }}
               className={'w-[268px] h-[49px] mb-[6px]'}
             >
-              <MenuB buttonName={value.name} routerName={value.routerName} isEssential={false} />
+              <MenuB buttonId={value.widget_id} routerName={widgetName[value.widget_id - 1]?.routerName} />
             </li>
           )}
         />

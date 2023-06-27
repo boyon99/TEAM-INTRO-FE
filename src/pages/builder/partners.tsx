@@ -29,7 +29,7 @@ function PartnerView() {
     add,
     setAdd,
   } = useStore();
-  const findWigetToggle = widgets.find((widget) => widget.name === '파트너스');
+  const findWigetToggle = widgets.find((widget) => widget.widget_id === 13);
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
   return (
@@ -47,7 +47,7 @@ function PartnerView() {
       <ToggleWidget
         toggle={findWigetToggle?.toggle as boolean}
         setWidgetToggle={setToggle}
-        widgetName="파트너스"
+        widgetId={13}
         toggleText={{ true: '사용', false: '사용 안함' }}
       />
       {findWigetToggle?.toggle ? (

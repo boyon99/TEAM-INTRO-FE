@@ -6,6 +6,7 @@ import { get } from 'http';
 import { getIntroPage } from '@/apis/builder';
 import useStore from '@/store';
 import { useBuilder } from '@/hooks/useBuilder';
+import { set } from 'react-hook-form';
 
 export default function Builder() {
   const { data: builderData, isLoading } = useBuilder();
@@ -20,6 +21,7 @@ export default function Builder() {
     setMissionVision,
     setChannel,
     setDownload,
+    setIsPublicToggle,
   } = useStore();
 
   useEffect(() => {
@@ -71,12 +73,14 @@ export default function Builder() {
         intro_file: download.intro_file === undefined ? '' : download.intro_file,
         media_kit_file: download.media_kit_file === undefined ? '' : download.media_kit_file,
       });
+      setIsPublicToggle(builderData.intro_page_status === 'PRIVATE' ? false : true);
     }
   }, [builderData]);
 
   // 페이지 진입 시 resetUploadImage 호출
   useEffect(() => {
     resetUploadImage();
+    setIsPublicToggle(false);
   }, []);
 
   return (

@@ -15,7 +15,7 @@ import Router from 'next/router';
 
 function Preview() {
   const { widgets, setToggle, download, setDownload } = useStore();
-  const findWigetToggle = widgets.find((widget) => widget.name === '다운로드');
+  const findWigetToggle = widgets.find((widget) => widget.widget_id === 12);
   const { mutate: updateDownloadMutation } = useMutation(
     () => updateDownload({ widget_status: findWigetToggle?.toggle, ...download }),
     {
@@ -46,7 +46,7 @@ function Preview() {
       <ToggleWidget
         toggle={findWigetToggle?.toggle as boolean}
         setWidgetToggle={setToggle}
-        widgetName="다운로드"
+        widgetId={12}
         toggleText={{ true: '사용', false: '사용 안함' }}
       />
       {findWigetToggle?.toggle ? (

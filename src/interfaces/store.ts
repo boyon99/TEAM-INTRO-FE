@@ -4,9 +4,11 @@ export interface Store {
   uploadImage: {};
   setUploadImage: (uploadImage: (imgSrc: any) => void) => void;
   resetUploadImage: () => void;
+  isPublicToggle: boolean;
+  setIsPublicToggle: (isPublicToggle: boolean) => void;
   widgets: Widget[];
   setWidget: (widgets: Widget[]) => void;
-  setToggle: (name: string) => void;
+  setToggle: (id: number) => void;
   isChangeOederToggle: boolean;
   setIsChangeOederToggle: (isChangeOederToggle: boolean) => void;
   theme: Theme; // ThemeA or ThemeB
@@ -103,10 +105,8 @@ export interface QuickMenu {
 }
 
 export interface Widget {
-  id: number;
-  name: string;
+  widget_id: number;
   toggle: boolean;
-  routerName: string;
 }
 
 export interface Theme {
