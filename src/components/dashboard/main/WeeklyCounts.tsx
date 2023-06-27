@@ -54,7 +54,7 @@ export default function WeeklyCounts({ data }: { data: DashboardData }) {
       count: download_log[6 - i],
     });
   }
-  console.log(contactData);
+
   return (
     <div className="grid grid-cols-2 gap-5 mt-5">
       <CountBar data={viewData} title="주간 조회수" />
