@@ -49,6 +49,34 @@ export interface Download {
   description: string;
   media_kit_file: string;
   intro_file: string;
+  //팀 멤버
+  teammembers: TeamMember[];
+  setTeamMember: (teammembers: TeamMember[]) => void;
+  teamimgurl: string;
+  setTeamImgurl: (teamimgurl: string) => void;
+  teamadd: boolean;
+  setTeamAdd: (teamadd: boolean) => void;
+  //보도자료
+  newsadd: boolean;
+  setNewsAdd: (newsadd: boolean) => void;
+  newsimgurl: string;
+  setNewsImgurl: (newsimgurl: string) => void;
+  news: News[];
+  setNews: (news: News[]) => void;
+  //연혁
+  historyadd: boolean;
+  setHistoryAdd: (historyadd: boolean) => void;
+  historyimgurl: string;
+  setHistoryImgurl: (historyimgurl: string) => void;
+  historys: History[];
+  setHistorys: (historys: History[]) => void;
+  //핵심 성과
+  resultadd: boolean;
+  setResultAdd: (resultadd: boolean) => void;
+  resultimgurl: string;
+  setResultImgurl: (resultimgurl: string) => void;
+  results: Result[];
+  setResults: (results: Result[]) => void;
 }
 
 export interface CompanyInfo {
@@ -136,4 +164,42 @@ export interface ProductServices {
   setDescription: (description: string) => void;
   setText: (text: string) => void;
   setLink: (link: string) => void;
+}
+export interface TeamMember {
+  id?: number;
+  name: string;
+  group: string;
+  position: string;
+  tagline: string;
+  email: string;
+  profile: string;
+  team_member_element_id?: number;
+  order?: number;
+}
+export interface News {
+  id?: number;
+  date: string;
+  press: string;
+  title: string;
+  description: string;
+  image: string;
+  news_element_id?: number;
+  order?: number;
+}
+export interface History {
+  id?: number;
+  date: string;
+  title: string;
+  description: string;
+  image: string;
+  history_element_id?: number;
+  order?: number;
+}
+export interface Result {
+  id?: number;
+  descrition: string;
+  additional_descrition: string;
+  indicator: string;
+  performance_element_id?: number;
+  order?: number;
 }

@@ -62,7 +62,7 @@ function FindPass() {
        <div className='w-[449px] h-[46px] m-[0_auto]'>
      <form onSubmit={handleSubmit(onValid)}>
         <div className='w-[449px] h-[46px] mb-[20px]'>
-                <Input register={register('login_id')} name="findid_pass" label="아이디*" type="text" size="large"/>                   
+                <Input register={register('login_id')} name="findid_pass" label="아이디*" type="text" size="large" placeholder='example123'/>                   
                     
                     
         </div> 
@@ -75,7 +75,7 @@ function FindPass() {
                         message: "이메일 형식이 아닙니다.",
                         },
                     }
-                    )} name="findemail_pass" label="이메일*" type="text" size="large"/>
+                    )} name="findemail_pass" label="이메일*" type="text" size="large" placeholder='example@zilinks.com'/>
                     
         </div> 
         <div className='mt-[62px] ml-[125px]'>

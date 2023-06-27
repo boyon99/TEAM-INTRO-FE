@@ -109,11 +109,7 @@ function ProductView() {
     setProducts(updatedProducts);
     setSelectedItems([]);
   };
-  // const filteredArray: ProductDelete = {
-  //   delete_list:selectedItems.filter((item) => item !== undefined) as number[]
-  // }
-  // ;
-  // console.log(filteredArray.delete_list)
+
   return (
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 위젯 &#8739; 제품/서비스 소개" />
@@ -239,6 +235,20 @@ function ProductUpload() {
   // const [productdata,setProductData] = useState<any>();
   const [avatarPreview, setAvatarPreview] = useState('');
 
+  useEffect(() => {
+    const updatedProducts = products.map((product, index) => {
+      if (index === products.length - 1) {
+        return {
+          ...product,
+          image: avatarPreview,
+        };
+      }
+      return product;
+    });
+
+    setProducts(updatedProducts);
+  }, [avatarPreview]);
+
   // 제품/서비스 추가하기 api 요청
   const {
     mutate: productmutate,
@@ -246,22 +256,23 @@ function ProductUpload() {
     error: usererror,
   } = useMutation(productadd, {
     onSuccess: (data) => {
+      console.log(data);
       //저장하기가 성공하면 결과값의 데이터를 원래 products에 저장, 여기서 사용자가 넣은 이미지 결과를 바로 볼 수 있음
-      const updatedProducts = products.map((product, index) => {
-        if (index === products.length - 1) {
-          return {
-            ...product,
-            products_and_services_element_id: data.products_and_services_element_id,
-            order: data.order,
-            name: data.name,
-            title: data.title,
-            description: data.description,
-            image: data.image,
-          };
-        }
-        return product;
-      });
-      setProducts(updatedProducts);
+      // const updatedProducts = products.map((product, index) => {
+      //   if (index === products.length - 1) {
+      //     return {
+      //       ...product,
+      //       products_and_services_element_id: data.products_and_services_element_id,
+      //       order: data.order,
+      //       name: data.name,
+      //       title: data.title,
+      //       description: data.description,
+      //       image: avatar
+      //     };
+      //   }
+      //   return product;
+      // });
+      // setProducts(updatedProducts);
 
       setAdd(false); // 저장하기가 성공하면 뒤로가기
     },
