@@ -28,7 +28,7 @@ export function KeyVisual({ theme }: HeaderProps) {
         </span>
         <span
           className={
-            "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[10px] z-[11] " +
+            "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[17px] z-[11] " +
             (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -49,7 +49,7 @@ export function KeyVisual({ theme }: HeaderProps) {
         ></div>
         <span
           className={
-            "absolute w-[700px] top-[100px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[500] text-center " +
+            "absolute w-[700px] top-[120px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[700] text-center " +
             (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -57,7 +57,7 @@ export function KeyVisual({ theme }: HeaderProps) {
         </span>
         <span
           className={
-            "absolute w-[700px] top-[220px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
+            "absolute w-[700px] top-[240px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
             (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -75,7 +75,7 @@ export function MissionVision({ theme }: HeaderProps) {
   const { missionVision } = useStore();
   if (theme === 'ThemeA') {
     return (
-      <section id="w-02" className="h-[300px] w-full flex relative font-[LINE]">
+      <section id="w-02" className="h-[300px] w-full flex relative font-['LINE']">
         {/* 미션 */}
         <div className="w-[50%] h-full bg-GrayScaleNeutral-100">
           <div className="h-[141px] w-[255px] m-[auto] mt-[70px] relative">
@@ -120,28 +120,24 @@ export function MissionVision({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-02" className="h-[400px] w-full relative">
+      <section id="w-02" className="h-[320px] w-full relative">
         {/* 미션 */}
-        <div className="w-full h-[200px] border border-white">
+        <div className="w-full h-[140px] border border-white mt-[20px]">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Mission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.mission}</div>
-              <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
-                {missionVision.mission_detail}
-              </div>
+              <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{missionVision.mission}</div>
+              <div className="font-[500] text-[16px] w-[50%] overflow-hidden">{missionVision.mission_detail}</div>
             </div>
           </div>
         </div>
         {/* 비전 */}
-        <div className="w-full h-[200px] border border-white">
+        <div className="w-full h-[140px] border border-white mt-[20px]">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Vission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.vision}</div>
-              <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
-                {missionVision.vision_detail}
-              </div>
+              <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{missionVision.vision}</div>
+              <div className="font-[500] text-[16px] w-[50%] overflow-hidden ">{missionVision.vision_detail}</div>
             </div>
           </div>
         </div>
@@ -817,8 +813,8 @@ export function Channel({ theme }: HeaderProps) {
 
   if (theme === 'ThemeA') {
     return (
-      <section id="w-13" className="h-[200px] w-full relative mt-[20px]">
-        <span className="font-[700] text-[22px] font-[LINE] ml-[100px]">SNS Channel</span>
+      <section id="w-13" className="h-[180px] w-full relative mt-[40px]">
+        <span className="font-[700] text-[22px] font-['LINE'] ml-[100px]">SNS Channel</span>
         <span className="font-[500] text-[10px] text-GrayScaleNeutral-700 ml-[5px] mt-[30px]">채널</span>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
           {channelList.map((items, index) => {
