@@ -11,6 +11,7 @@ import { widgetName } from '@/data/widgetName';
 
 export default function Builder() {
   const { data: builderData, isLoading } = useBuilder();
+  console.log(builderData);
   const {
     setTheme,
     setSiteInfo,
@@ -33,7 +34,7 @@ export default function Builder() {
     if (!isLoading) {
       const widgetData = builderData.widgets.map((widget: any) => {
         return {
-          widget_id: widget.widget_id % 14 === 0 ? 14 : widget.widget_id % 14,
+          widget_id: widget.widget_type,
           toggle: widget.widget_status,
         };
       });
@@ -49,20 +50,23 @@ export default function Builder() {
       setCompanyInfo(builderData.company_info);
       setSiteInfo(builderData.site_info);
       setTheme({ theme_type: builderData.theme.type, color: builderData.theme.color });
-      setKeyVisual({
-        background: keyvisual.background === undefined ? '' : keyvisual.background,
-        slogan: keyvisual.slogan === undefined ? '' : keyvisual.slogan,
-        filter: keyvisual.filter === undefined ? '' : keyvisual.filter,
-        slogan_detail: keyvisual.slogan_detail === undefined ? '' : keyvisual.slogan_detail,
-      });
-      setMissionVision({
-        mission: missionvision.mission,
-        mission_detail: missionvision.mission_detail,
-        vision: missionvision.vision,
-        vision_detail: missionvision.vision_detail,
-      });
-      if (channel.sns_list === undefined) {
-      } else {
+      if (keyvisual !== undefined) {
+        setKeyVisual({
+          background: keyvisual.background === undefined ? '' : keyvisual.background,
+          slogan: keyvisual.slogan === undefined ? '' : keyvisual.slogan,
+          filter: keyvisual.filter === undefined ? '' : keyvisual.filter,
+          slogan_detail: keyvisual.slogan_detail === undefined ? '' : keyvisual.slogan_detail,
+        });
+      }
+      if (missionvision !== undefined) {
+        setMissionVision({
+          mission: missionvision.mission,
+          mission_detail: missionvision.mission_detail,
+          vision: missionvision.vision,
+          vision_detail: missionvision.vision_detail,
+        });
+      }
+      if (channel !== undefined && channel.sns_list !== undefined) {
         setChannel({
           instagram_status: channel.sns_list.instagram_status === undefined ? false : channel.sns_list.instagram_status,
           instagram: channel.sns_list.instagram === undefined ? '' : channel.sns_list.instagram,
@@ -82,89 +86,93 @@ export default function Builder() {
           facebook: channel.sns_list.facebook === undefined ? '' : channel.sns_list.facebook,
         });
       }
-      setDownload({
-        description: download.description === undefined ? '' : download.description,
-        intro_file: download.intro_file === undefined ? '' : download.intro_file,
-        media_kit_file: download.media_kit_file === undefined ? '' : download.media_kit_file,
-      });
+      if (download !== undefined) {
+        setDownload({
+          description: download.description === undefined ? '' : download.description,
+          intro_file: download.intro_file === undefined ? '' : download.intro_file,
+          media_kit_file: download.media_kit_file === undefined ? '' : download.media_kit_file,
+        });
+      }
       setIsPublicToggle(builderData.intro_page_status === 'PRIVATE' ? false : true);
       setWidget(widgetData);
 
-      const updatedProducts = products.products_and_services_elements.map((item: any, index: any) => {
-        if (index === products.length - 1) {
-          return {
-            ...item,
-            products_and_services_element_id: item.products_and_services_element_id,
-            order: item.order,
-            name: item.name,
-            title: item.title,
-            description: item.description,
-            image: item.image,
-          };
-        }
-        return item;
-      });
-      setProducts(updatedProducts);
-      
-
-       const updatedTeamMembers = teammembers.team_member_elements.map((item: any, index: any) => {
-         if (index === products.length - 1) {
-           return {
-             ...item,
-             team_member_element_id: item.team_member_element_id,
-             order: item.order,
-             profile: item.profile,
-             group: item.group,
-             name: item.name,
-             position:  item.position,
-             tagline:  item.tagline,
-             email: item.email,
-             sns_status: item.sns_status,
-           };
-         }
-         return item;
-       });
-       setTeamMember(updatedTeamMembers);
-       console.log(updatedTeamMembers)
-       console.log(teammembers)
-
-    // 연혁
-     
-    const updatedHistorys = historys.history_elements.map((item: any, index: any) => {
-      if (index === historys.length - 1) {
-        return {
-          ...item,
-          history_element_id: item.history_element_id,
-          date: item.date,
-          description: item.description,
-          title: item.title,
-          image: item.image,
-        };
+      if (products !== undefined) {
+        const updatedProducts = products.products_and_services_elements.map((item: any, index: any) => {
+          if (index === products.length - 1) {
+            return {
+              ...item,
+              products_and_services_element_id: item.products_and_services_element_id,
+              order: item.order,
+              name: item.name,
+              title: item.title,
+              description: item.description,
+              image: item.image,
+            };
+          }
+          return item;
+        });
+        setProducts(updatedProducts);
       }
-      return item;
-    });
-    setHistorys(updatedHistorys);
-    console.log(updatedHistorys)
-    // console.log(teammembers)
 
-    // 보도자료
-    const updatedNews = news.news_elements.map((item: any, index: any) => {
-      if (index === news.length - 1) {
-        return {
-          ...item,
-          news_element_id: item.news_element_id,
-          order: item.order,
-          date: item.date,
-          description: item.description,
-          title: item.title,
-          image: item.image,
-          press: item.press,
-        };
+      if (teammembers !== undefined) {
+        const updatedTeamMembers = teammembers.team_member_elements.map((item: any, index: any) => {
+          if (index === products.length - 1) {
+            return {
+              ...item,
+              team_member_element_id: item.team_member_element_id,
+              order: item.order,
+              profile: item.profile,
+              group: item.group,
+              name: item.name,
+              position: item.position,
+              tagline: item.tagline,
+              email: item.email,
+              sns_status: item.sns_status,
+            };
+          }
+          return item;
+        });
+        setTeamMember(updatedTeamMembers);
       }
-      return item;
-    });
-    setNews(updatedNews);
-    console.log(updatedNews)
+
+      // 연혁
+      if (historys !== undefined) {
+        const updatedHistorys = historys.history_elements.map((item: any, index: any) => {
+          if (index === historys.length - 1) {
+            return {
+              ...item,
+              history_element_id: item.history_element_id,
+              date: item.date,
+              description: item.description,
+              title: item.title,
+              image: item.image,
+            };
+          }
+          return item;
+        });
+        setHistorys(updatedHistorys);
+        // console.log(teammembers)
+      }
+      if (news !== undefined) {
+        const updatedNews = news.news_elements.map((item: any, index: any) => {
+          if (index === news.length - 1) {
+            return {
+              ...item,
+              news_element_id: item.news_element_id,
+              order: item.order,
+              date: item.date,
+              description: item.description,
+              title: item.title,
+              image: item.image,
+              press: item.press,
+            };
+          }
+          return item;
+        });
+        setNews(updatedNews);
+        console.log(updatedNews)
+      }
+
     }
   }, [builderData]);
   // 페이지 진입 시 resetUploadImage 호출

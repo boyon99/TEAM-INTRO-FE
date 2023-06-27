@@ -1,4 +1,3 @@
-import { HeaderProps } from '@/interfaces/widget';
 import useStore from '@/store';
 import exp from 'constants';
 import React, { useEffect } from 'react';
@@ -6,36 +5,36 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { headerName } from '@/data/headerName';
 import { channelList } from '@/data/channel';
+import { HeaderPageProps } from '@/interfaces/subdoamin';
 
-export function KeyVisual({ theme }: HeaderProps) {
-  const { keyVisual } = useStore();
-
+export function KeyVisual({ theme, data }: HeaderPageProps) {
+  console.log(data);
   if (theme === 'ThemeA') {
     return (
       <section id="w-01" className="h-[450px] w-full flex relative">
         <div
           className={
-            'w-full h-full z-10 ' + (keyVisual.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
+            'w-full h-full z-10 ' + (data.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
           }
         ></div>
         <span
           className={
             "absolute w-[500px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
-            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
+            (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
-          {keyVisual.slogan}
+          {data.slogan}
         </span>
         <span
           className={
-            "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[17px] z-[11] " +
-            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
+            "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[10px] z-[11] " +
+            (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
-          {keyVisual.slogan_detail}
+          {data.slogan_detail}
         </span>
-        {keyVisual.background === '' ? null : (
-          <img src={keyVisual.background} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
+        {data.background === '' ? null : (
+          <img src={data.background} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
         )}{' '}
       </section>
     );
@@ -44,38 +43,38 @@ export function KeyVisual({ theme }: HeaderProps) {
       <section id="w-01" className="h-[450px] w-full flex relative">
         <div
           className={
-            'w-full h-full z-10 ' + (keyVisual.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
+            'w-full h-full z-10 ' + (data.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
           }
         ></div>
         <span
           className={
-            "absolute w-[700px] top-[120px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[700] text-center " +
-            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
+            "absolute w-[700px] top-[100px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[500] text-center " +
+            (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
-          {keyVisual.slogan}
+          {data.slogan}
         </span>
         <span
           className={
-            "absolute w-[700px] top-[240px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
-            (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
+            "absolute w-[700px] top-[220px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
+            (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
-          {keyVisual.slogan_detail}
+          {data.slogan_detail}
         </span>
-        {keyVisual.background === '' ? null : (
-          <img src={keyVisual.background} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
+        {data.background === '' ? null : (
+          <img src={data.background} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
         )}
       </section>
     );
   }
 }
 
-export function MissionVision({ theme }: HeaderProps) {
+export function MissionVision({ theme, data }: HeaderPageProps) {
   const { missionVision } = useStore();
   if (theme === 'ThemeA') {
     return (
-      <section id="w-02" className="h-[300px] w-full flex relative font-['LINE']">
+      <section id="w-02" className="h-[300px] w-full flex relative font-[LINE]">
         {/* 미션 */}
         <div className="w-[50%] h-full bg-GrayScaleNeutral-100">
           <div className="h-[141px] w-[255px] m-[auto] mt-[70px] relative">
@@ -120,24 +119,28 @@ export function MissionVision({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-02" className="h-[320px] w-full relative">
+      <section id="w-02" className="h-[400px] w-full relative">
         {/* 미션 */}
-        <div className="w-full h-[140px] border border-white mt-[20px]">
+        <div className="w-full h-[200px] border border-white">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Mission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{missionVision.mission}</div>
-              <div className="font-[500] text-[16px] w-[50%] overflow-hidden">{missionVision.mission_detail}</div>
+              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.mission}</div>
+              <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
+                {missionVision.mission_detail}
+              </div>
             </div>
           </div>
         </div>
         {/* 비전 */}
-        <div className="w-full h-[140px] border border-white mt-[20px]">
+        <div className="w-full h-[200px] border border-white">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Vission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{missionVision.vision}</div>
-              <div className="font-[500] text-[16px] w-[50%] overflow-hidden ">{missionVision.vision_detail}</div>
+              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.vision}</div>
+              <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
+                {missionVision.vision_detail}
+              </div>
             </div>
           </div>
         </div>
@@ -146,7 +149,7 @@ export function MissionVision({ theme }: HeaderProps) {
   }
 }
 
-export function Header({ theme }: HeaderProps) {
+export function Header({ theme, data }: HeaderPageProps) {
   const { header_and_footer_status_list, companyInfo } = useStore();
   if (theme === 'ThemeA') {
     return (
@@ -197,7 +200,7 @@ export function Header({ theme }: HeaderProps) {
   }
 }
 
-export function Footer({ theme }: HeaderProps) {
+export function Footer({ theme, data }: HeaderPageProps) {
   const { companyInfo } = useStore();
   if (theme === 'ThemeA') {
     return (
@@ -280,7 +283,7 @@ export function Footer({ theme }: HeaderProps) {
   }
 }
 
-export function ProductService({ theme }: HeaderProps) {
+export function ProductService({ theme, data }: HeaderPageProps) {
   const { products, setProducts, imgurl, setImgurl, productservices } = useStore();
   // useEffect(() => {
   //   const updatedProducts = products.map((product, index) => {
@@ -391,7 +394,7 @@ export function ProductService({ theme }: HeaderProps) {
   }
 }
 
-export function TeamMember({ theme }: HeaderProps) {
+export function TeamMember({ theme, data }: HeaderPageProps) {
   const { teammembers, setTeamMember, teamimgurl, setTeamImgurl } = useStore();
   // useEffect(() => {
   //   const updatedProducts = teammembers.map((teammember, index) => {
@@ -406,10 +409,9 @@ export function TeamMember({ theme }: HeaderProps) {
 
   //   setTeamMember(updatedProducts);
   // }, [teamimgurl]);
-  console.log(teammembers);
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[750px] font-[LINE]">
+      <section id="w-04" className="h-[600px] font-[LINE]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">Meat the Team</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
@@ -477,7 +479,7 @@ export function TeamMember({ theme }: HeaderProps) {
   }
 }
 
-export function ContactUs({ theme }: HeaderProps) {
+export function ContactUs({ theme, data }: HeaderPageProps) {
   if (theme === 'ThemeA') {
     return (
       <section id="w-05" className="h-[200px]">
@@ -493,9 +495,21 @@ export function ContactUs({ theme }: HeaderProps) {
   }
 }
 
-export function Press({ theme }: HeaderProps) {
-  const { news, setNews, newsimgurl, setNewsImgurl  } = useStore();
-  
+export function Press({ theme, data }: HeaderPageProps) {
+  const { news, setNews, newsimgurl, setNewsImgurl } = useStore();
+  useEffect(() => {
+    const updatedProducts = news.map((item, index) => {
+      if (index === news.length - 1) {
+        return {
+          ...item,
+          image: newsimgurl,
+        };
+      }
+      return item;
+    });
+
+    setNews(updatedProducts);
+  }, [newsimgurl]);
   if (theme === 'ThemeA') {
     return (
       <section id="w-06" className="h-[350px] font-[LINE]">
@@ -504,9 +518,11 @@ export function Press({ theme }: HeaderProps) {
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">보도 자료</span>
         </div>
         <div className="w-[709px] mt-[43px] m-[0_auto]">
-          {news.map((item) => {
-            return (
-            <div key={item.news_element_id} className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex">
+          {news.map((item) => (
+            <div
+              key={item.news_element_id}
+              className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex"
+            >
               <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
                 <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
                 <div className="mt-[-12px]">
@@ -522,8 +538,7 @@ export function Press({ theme }: HeaderProps) {
                 {item.image ? <img src={item.image} alt="" /> : <img src="/기사사진.png" alt="" />}
               </div>
             </div>
-            )
-        })}
+          ))}
         </div>
       </section>
     );
@@ -557,8 +572,8 @@ export function Press({ theme }: HeaderProps) {
   }
 }
 
-export function Download({ theme }: HeaderProps) {
-  const { download } = useStore();
+export function Download({ theme, data }: HeaderPageProps) {
+  // const { download } = useStore();
   if (theme === 'ThemeA') {
     return (
       <section id="w-07" className="h-[120px] font-['LINE'] bg-primary-500 text-white flex">
@@ -577,11 +592,11 @@ export function Download({ theme }: HeaderProps) {
         id="w-07"
         className="h-[110px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[20px] mx-[10px] flex"
       >
-        <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[550px]">{download.description}</div>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-[12px]">
+        <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[550px]">{data.description}</div>
+        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-white text-[12px]">
           미디어 키트 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
         </button>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-[12px]">
+        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-white text-[12px]">
           회사 소개서 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
         </button>
       </section>
@@ -589,7 +604,7 @@ export function Download({ theme }: HeaderProps) {
   }
 }
 
-export function History({ theme }: HeaderProps) {
+export function History({ theme, data }: HeaderPageProps) {
   // const newarray = [
   //   { title: '2023', text: '05-08', font: '미디어스타트업 지원사업 선정' },
   //   { title: '2022', text: '05-08', font: '미디어스타트업 지원사업 선정' },
@@ -700,23 +715,7 @@ export function History({ theme }: HeaderProps) {
   }
 }
 
-export function TeamCulture({ theme }: HeaderProps) {
-  if (theme === 'ThemeA') {
-    return (
-      <section id="w-09" className="h-[200px]">
-        TeamCulture A
-      </section>
-    );
-  } else {
-    return (
-      <section id="w-09" className="h-[200px]">
-        TeamCulture B
-      </section>
-    );
-  }
-}
-
-export function Result({ theme }: HeaderProps) {
+export function Result({ theme, data }: HeaderPageProps) {
   if (theme === 'ThemeA') {
     return (
       <section id="w-10" className="font-[LINE] h-[180px]">
@@ -762,46 +761,14 @@ export function Result({ theme }: HeaderProps) {
   }
 }
 
-export function Partners({ theme }: HeaderProps) {
-  if (theme === 'ThemeA') {
-    return (
-      <section id="w-11" className="h-[200px]">
-        Partners A
-      </section>
-    );
-  } else {
-    return (
-      <section id="w-11" className="h-[200px]">
-        Partners B
-      </section>
-    );
-  }
-}
-
-export function Review({ theme }: HeaderProps) {
-  if (theme === 'ThemeA') {
-    return (
-      <section id="w-12" className="h-[200px]">
-        Review A
-      </section>
-    );
-  } else {
-    return (
-      <section id="w-12" className="h-[200px]">
-        Review B
-      </section>
-    );
-  }
-}
-
-export function Channel({ theme }: HeaderProps) {
+export function Channel({ theme, data }: HeaderPageProps) {
   const { channel } = useStore();
   const channelValues = Object.values(channel);
 
   if (theme === 'ThemeA') {
     return (
-      <section id="w-13" className="h-[180px] w-full relative mt-[40px]">
-        <span className="font-[700] text-[22px] font-['LINE'] ml-[100px]">SNS Channel</span>
+      <section id="w-13" className="h-[200px] w-full relative mt-[20px]">
+        <span className="font-[700] text-[22px] font-[LINE] ml-[100px]">SNS Channel</span>
         <span className="font-[500] text-[10px] text-GrayScaleNeutral-700 ml-[5px] mt-[30px]">채널</span>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
           {channelList.map((items, index) => {
@@ -839,22 +806,6 @@ export function Channel({ theme }: HeaderProps) {
             }
           })}
         </div>
-      </section>
-    );
-  }
-}
-
-export function Patent({ theme }: HeaderProps) {
-  if (theme === 'ThemeA') {
-    return (
-      <section id="w-14" className="h-[200px]">
-        Patent A
-      </section>
-    );
-  } else {
-    return (
-      <section id="w-14" className="h-[200px]">
-        Patent B
       </section>
     );
   }
