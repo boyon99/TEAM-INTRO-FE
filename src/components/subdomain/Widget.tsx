@@ -1,14 +1,17 @@
 import useStore from '@/store';
 import exp from 'constants';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { headerName } from '@/data/headerName';
 import { channelList } from '@/data/channel';
 import { HeaderPageProps } from '@/interfaces/subdoamin';
+import { type } from 'os';
+import { useMutation } from '@tanstack/react-query';
+import { downloadDashboard } from '@/apis/dashborad';
+import { set } from 'date-fns';
 
 export function KeyVisual({ theme, data }: HeaderPageProps) {
-  console.log(data);
   if (theme === 'ThemeA') {
     return (
       <section id="w-01" className="h-[450px] w-full flex relative">
@@ -19,7 +22,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         ></div>
         <span
           className={
-            "absolute w-[500px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
+            "absolute w-[500px] top-[120px] left-[150px] font-['LINE'] text-[36px] z-[11] font-[700] " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -27,7 +30,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         </span>
         <span
           className={
-            "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[10px] z-[11] " +
+            "absolute w-[600px] top-[240px] left-[150px] font-['LINE'] font-[400] text-[17px] z-[11] " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -48,7 +51,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         ></div>
         <span
           className={
-            "absolute w-[700px] top-[100px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[500] text-center " +
+            "absolute w-[700px] top-[120px] left-[300px] font-['Korail'] text-[36px] z-[11] font-[700] text-center " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -56,7 +59,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         </span>
         <span
           className={
-            "absolute w-[700px] top-[220px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
+            "absolute w-[700px] top-[240px] left-[300px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -71,10 +74,9 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
 }
 
 export function MissionVision({ theme, data }: HeaderPageProps) {
-  const { missionVision } = useStore();
   if (theme === 'ThemeA') {
     return (
-      <section id="w-02" className="h-[300px] w-full flex relative font-[LINE]">
+      <section id="w-02" className="h-[300px] w-full flex relative font-['LINE']">
         {/* 미션 */}
         <div className="w-[50%] h-full bg-GrayScaleNeutral-100">
           <div className="h-[141px] w-[255px] m-[auto] mt-[70px] relative">
@@ -88,10 +90,8 @@ export function MissionVision({ theme, data }: HeaderPageProps) {
               className="absolute top-[1px] right-[4px]"
             />
             <div className="mt-[20px] black h-[auto] w-full">
-              <p className="font-[700] text-[13px]">{missionVision.mission}</p>
-              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
-                {missionVision.mission_detail}
-              </p>
+              <p className="font-[700] text-[13px]">{data.mission}</p>
+              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[8px]">{data.mission_detail}</p>
             </div>
           </div>
         </div>
@@ -108,10 +108,8 @@ export function MissionVision({ theme, data }: HeaderPageProps) {
               className="absolute top-[1px] right-[4px]"
             />
             <div className="mt-[20px] black h-[auto] w-full">
-              <p className="font-[700] text-[13px]">{missionVision.vision}</p>
-              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
-                {missionVision.vision_detail}
-              </p>
+              <p className="font-[700] text-[13px]">{data.vision}</p>
+              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[8px]">{data.vision_detail}</p>
             </div>
           </div>{' '}
         </div>
@@ -119,28 +117,24 @@ export function MissionVision({ theme, data }: HeaderPageProps) {
     );
   } else {
     return (
-      <section id="w-02" className="h-[400px] w-full relative">
+      <section id="w-02" className="h-[320px] w-full relative">
         {/* 미션 */}
-        <div className="w-full h-[200px] border border-white">
+        <div className="w-full h-[140px] border border-white mt-[20px]">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Mission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.mission}</div>
-              <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
-                {missionVision.mission_detail}
-              </div>
+              <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{data.mission}</div>
+              <div className="font-[500] text-[16px] w-[50%] overflow-hidden">{data.mission_detail}</div>
             </div>
           </div>
         </div>
         {/* 비전 */}
-        <div className="w-full h-[200px] border border-white">
+        <div className="w-full h-[140px] border border-white mt-[20px]">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
             <span className="font-[500] text-[16px] text-[#FFB800]">Vission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
-              <div className="font-[700] text-[13px] w-[50%] font-['Korail']">{missionVision.vision}</div>
-              <div className="font-[500] text-[16px] w-[50%] overflow-hidden indent-[20px]">
-                {missionVision.vision_detail}
-              </div>
+              <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{data.vision}</div>
+              <div className="font-[500] text-[16px] w-[50%] overflow-hidden ">{data.vision_detail}</div>
             </div>
           </div>
         </div>
@@ -149,19 +143,16 @@ export function MissionVision({ theme, data }: HeaderPageProps) {
   }
 }
 
-export function Header({ theme, data }: HeaderPageProps) {
-  const { header_and_footer_status_list, companyInfo } = useStore();
+export function Header({ theme, data, header_and_footer_status_list }: HeaderPageProps) {
   if (theme === 'ThemeA') {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
-        {companyInfo.logo === '' ? null : (
-          <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
-        )}
+        {data.logo === '' ? null : <img src={data.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />}
         <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px] font-[700]">
-          {companyInfo.company_name}
+          {data.company_name}
         </span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
-          {header_and_footer_status_list.map((toggle, index) => {
+          {header_and_footer_status_list?.map((toggle, index) => {
             if (toggle) {
               return (
                 <span key={index} className="font-['Roboto'] text-[10px] ml-[26px]">
@@ -178,12 +169,10 @@ export function Header({ theme, data }: HeaderPageProps) {
   } else {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
-        {companyInfo.logo === '' ? null : (
-          <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
-        )}{' '}
-        <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">{companyInfo.company_name}</span>
+        {data.logo === '' ? null : <img src={data.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />}{' '}
+        <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">{data.company_name}</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
-          {header_and_footer_status_list.map((toggle, index) => {
+          {header_and_footer_status_list?.map((toggle, index) => {
             if (toggle) {
               return (
                 <span key={index} className="font-['Roboto'] text-[10px] ml-[26px]">
@@ -201,32 +190,31 @@ export function Header({ theme, data }: HeaderPageProps) {
 }
 
 export function Footer({ theme, data }: HeaderPageProps) {
-  const { companyInfo } = useStore();
   if (theme === 'ThemeA') {
     return (
       <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-150 flex relative font-['LINE']">
-        <div className="w-[230px] ml-[99px] mt-[70px] mb-[25px] text-GrayScaleNeutral-400">
+        <div className="w-[370px] ml-[99px] mt-[70px] mb-[25px] text-GrayScaleNeutral-400">
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[70px]">phone</div>
-            <div className="font-[300]">{companyInfo.phone_number}</div>
+            <div className="font-[300]">{data.phone_number}</div>
           </div>
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[70px]">FAX</div>
-            <div className="font-[300]">{companyInfo.fax_number}</div>
+            <div className="font-[300]">{data.fax_number}</div>
           </div>
           <div className="font-[500] text-[12px] flex">
             <div className="w-[70px]">Address</div>
             <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
           </div>
         </div>
-        <div className="w-[177px] ml-[10px] mt-[87px] text-GrayScaleNeutral-400 mb-[25px]">
+        <div className="w-[350px] ml-[80px] mt-[87px] text-GrayScaleNeutral-400 mb-[25px]">
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[60px]">대표</div>
-            <div className="font-[300]">{companyInfo.representative}</div>
+            <div className="font-[300]">{data.representative}</div>
           </div>
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[60px]">Email</div>
-            <div className="font-[300]">{companyInfo.contact_email}</div>
+            <div className="font-[300]">{data.contact_email}</div>
           </div>
         </div>
         <div className="w-[240px] ml-[30px] mt-[30px] text-GrayScaleNeutral-400 mb-[25px] flex flex-col">
@@ -244,31 +232,31 @@ export function Footer({ theme, data }: HeaderPageProps) {
   } else {
     return (
       <section id="w-16" className="h-[140px] w-full bg-GrayScaleNeutral-550 flex relative font-['Korail']">
-        <div className="w-[230px] ml-[99px] mt-[70px] mb-[25px] text-white">
+        <div className="w-[350px] ml-[99px] mt-[60px] mb-[25px] text-white">
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[70px]">phone</div>
-            <div className="font-[300]">{companyInfo.phone_number}</div>
+            <div className="font-[300]">{data.phone_number}</div>
           </div>
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[70px]">FAX</div>
-            <div className="font-[300]">{companyInfo.fax_number}</div>
+            <div className="font-[300]">{data.fax_number}</div>
           </div>
           <div className="font-[500] text-[12px] flex">
             <div className="w-[70px]">Address</div>
             <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
           </div>
         </div>
-        <div className="w-[177px] ml-[10px] mt-[87px] text-white mb-[25px]">
+        <div className="w-[350px] ml-[70px] mt-[77px] text-white mb-[25px]">
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[60px]">대표</div>
-            <div className="font-[300]">{companyInfo.representative}</div>
+            <div className="font-[300]">{data.representative}</div>
           </div>
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[60px]">Email</div>
-            <div className="font-[300]">{companyInfo.contact_email}</div>
+            <div className="font-[300]">{data.contact_email}</div>
           </div>
         </div>
-        <div className="w-[250px] ml-[35px] mt-[30px] text-white mb-[25px] flex flex-col">
+        <div className="w-[250px] ml-[60px] mt-[20px] text-white mb-[25px] flex flex-col">
           <div className="border w-[110px] pl-[16px] py-[5px] text-[12px] rounded-[18px] border-GrayScaleNeutral-400 ml-[135px] mt-[20px]">
             기업 상세 정보
           </div>
@@ -284,21 +272,8 @@ export function Footer({ theme, data }: HeaderPageProps) {
 }
 
 export function ProductService({ theme, data }: HeaderPageProps) {
-  const { products, setProducts, imgurl, setImgurl, productservices } = useStore();
-  // useEffect(() => {
-  //   const updatedProducts = products.map((product, index) => {
-  //     if (index === products.length - 1) {
-  //       return {
-  //         ...product,
-  //         image: imgurl,
-  //       };
-  //     }
-  //     return product;
-  //   });
-
-  //   setProducts(updatedProducts);
-  // }, [imgurl]);
-  // console.log(products);
+   const products = data.products_and_services_elements
+  
   if (theme === 'ThemeA') {
     return (
       <section id="w-04" className="h-[402px] font-[LINE]">
@@ -310,7 +285,7 @@ export function ProductService({ theme, data }: HeaderPageProps) {
         </div>
 
         <div className="w-[703.12px] h-[299.19px] m-[0_auto] mt-[42.19px] mr-[] flex">
-          {products?.map((items) => {
+          {products?.map((items: any) => {
             return (
               <div
                 key={items.products_and_services_element_id}
@@ -330,40 +305,26 @@ export function ProductService({ theme, data }: HeaderPageProps) {
             );
           })}
         </div>
-        {productservices ? (
-          <div className="flex w-[700px] ml-[98.44px] mt-[30.22px] items-center">
-            <p className="text-[22.5px]/[100%] font-[`LINE`] font-bold">{productservices.description}</p>
-            <Link href={productservices.link} className="ml-[auto]">
-              {productservices.text ? (
-                <button className="w-[126px] h-[41px] bg-[#4B48DF] text-[#fff]">{productservices.text}</button>
-              ) : (
-                <></>
-              )}
-            </Link>
-          </div>
-        ) : (
-          <></>
-        )}
       </section>
     );
   } else {
     return (
       <section id="w-03" className="h-[400px] font-[LINE]">
-        <div className="ml-[40px]">
+        <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Products & Services</span>
         </div>
-        <div className="w-[720px] h-[337px] m-[0_auto] mt-[40px] flex flex-wrap">
-          {products?.map((items) => {
+        <div className="w-[920px] h-[337px] m-[0_auto] mt-[40px] flex flex-wrap">
+          {products?.map((items: any) => {
             return (
               <div
                 key={items.products_and_services_element_id}
-                className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[36px] m-[0_auto]"
+                className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[36px] m-[0_auto] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
               >
-                <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
+                <div className="w-[196.88px] h-[259.81px] ml-[14px]">
                   {items.image ? (
-                    <img src={items.image} alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                      <img src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
                   ) : (
-                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px] rounded-2xl" />
                   )}
                   <span className="font-bold text-[20px]/[100%] mt-[16.88px] flex justify-center">{items.name}</span>
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
@@ -375,50 +336,23 @@ export function ProductService({ theme, data }: HeaderPageProps) {
             );
           })}
         </div>
-        {productservices ? (
-          <div className="flex w-[700px] ml-[98.44px] mt-[30.22px] items-center">
-            <p className="text-[22.5px]/[100%] font-[`LINE`] font-bold">{productservices.description}</p>
-            <Link href={productservices.link} className="ml-[auto]">
-              {productservices.text ? (
-                <button className="w-[126px] h-[41px] bg-[#4B48DF] text-[#fff]">{productservices.text}</button>
-              ) : (
-                <></>
-              )}
-            </Link>
-          </div>
-        ) : (
-          <></>
-        )}
       </section>
     );
   }
 }
 
 export function TeamMember({ theme, data }: HeaderPageProps) {
-  const { teammembers, setTeamMember, teamimgurl, setTeamImgurl } = useStore();
-  // useEffect(() => {
-  //   const updatedProducts = teammembers.map((teammember, index) => {
-  //     if (index === teammembers.length - 1) {
-  //       return {
-  //         ...teammember,
-  //         profile: teamimgurl,
-  //       };
-  //     }
-  //     return teammember;
-  //   });
-
-  //   setTeamMember(updatedProducts);
-  // }, [teamimgurl]);
+   const teammembers = data.team_member_elements
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[600px] font-[LINE]">
+      <section id="w-04" className="h-[750px] font-[LINE]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">Meat the Team</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
         </div>
 
         <div className="w-[703.12px] h-[337px] m-[0_auto] mt-[42.19px] flex flex-wrap">
-          {teammembers?.map((team) => {
+          {teammembers?.map((team: any) => {
             return (
               <div key={team.team_member_element_id} className="w-[169px] h-[337px] ml-[5px]">
                 {team.profile ? (
@@ -443,16 +377,16 @@ export function TeamMember({ theme, data }: HeaderPageProps) {
   } else {
     return (
       <section id="w-04" className="font-[LINE] h-[795px] ">
-        <div className="ml-[40px]">
+        <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Meat the Team</span>
           <p className="text-[#000] text-[30px] mt-[30px] pl-[2px]">팀원들을 소개합니다.</p>
         </div>
 
-        <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px] flex flex-wrap">
-          {teammembers.map((team) => (
+        <div className="w-[890px] h-[337px] m-[0_auto] mt-[25px] flex flex-wrap">
+          {teammembers.map((team: any) => (
             <div
               key={team.team_member_element_id}
-              className="w-[193px] h-[300px] ml-[10px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
+              className="w-[200px] h-[300px] ml-[20px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
             >
               <div className="w-[130px] h-[130px] m-[0_auto] mt-[12px]">
                 {team.profile ? (
@@ -496,33 +430,19 @@ export function ContactUs({ theme, data }: HeaderPageProps) {
 }
 
 export function Press({ theme, data }: HeaderPageProps) {
-  const { news, setNews, newsimgurl, setNewsImgurl } = useStore();
-  useEffect(() => {
-    const updatedProducts = news.map((item, index) => {
-      if (index === news.length - 1) {
-        return {
-          ...item,
-          image: newsimgurl,
-        };
-      }
-      return item;
-    });
-
-    setNews(updatedProducts);
-  }, [newsimgurl]);
+  const news = data.news_elements
+  
   if (theme === 'ThemeA') {
     return (
-      <section id="w-06" className="h-[350px] font-[LINE]">
+      <section id="w-06" className="h-[450px] font-[LINE]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">News Room</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">보도 자료</span>
         </div>
         <div className="w-[709px] mt-[43px] m-[0_auto]">
-          {news.map((item) => (
-            <div
-              key={item.news_element_id}
-              className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex"
-            >
+          {news.map((item: any) => {
+            return (
+            <div key={item.news_element_id} className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex">
               <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
                 <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
                 <div className="mt-[-12px]">
@@ -538,20 +458,21 @@ export function Press({ theme, data }: HeaderPageProps) {
                 {item.image ? <img src={item.image} alt="" /> : <img src="/기사사진.png" alt="" />}
               </div>
             </div>
-          ))}
+            )
+        })}
         </div>
       </section>
     );
   } else {
     return (
-      <section id="w-06" className="h-[450px] font-[LINE]">
+      <section id="w-06" className="h-[540px] font-[LINE]">
         <div className="ml-[40px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">News Room</span>
-          <p className="text-[#000] text-[35px] mt-[30px] pl-[2px]">새로운 소식</p>
+          <p className="text-[#000] text-[35px] mt-[20px] pl-[2px]">새로운 소식</p>
         </div>
         <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px]">
-          {news.map((item) => (
-            <div key={item.news_element_id} className="w-[820px] flex mb-[20px]">
+          {news.map((item: any) => (
+            <div key={item.news_element_id} className="w-[820px] flex mb-[40px]">
               <div>
                 {item.image ? (
                   <img src={item.image} className="w-[180px] h-[70px] rounded-[24px]" alt="" />
@@ -566,65 +487,97 @@ export function Press({ theme, data }: HeaderPageProps) {
               </div>
             </div>
           ))}
+          <div className='w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full'>
+               <button className='w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]'>더 보기 (3/N)</button>
+            </div>
         </div>
       </section>
     );
   }
 }
 
-export function Download({ theme, data }: HeaderPageProps) {
-  // const { download } = useStore();
+export function Download({ theme, data, intro_page_id }: HeaderPageProps) {
+  const [type, setType] = useState('MEDIAKIT');
+  const { mutate: downloadDashboardMutation } = useMutation(
+    () => downloadDashboard({ type: type, email: '', intro_page_id: intro_page_id }),
+    {
+      onSuccess: (data) => {
+        console.log('success', data);
+      },
+      onError: (error) => {
+        console.log('error', error);
+      },
+    },
+  );
   if (theme === 'ThemeA') {
     return (
       <section id="w-07" className="h-[120px] font-['LINE'] bg-primary-500 text-white flex">
         <div className="font-[700] text-[25px] pt-[45px] pl-[100px]">DOWNLOAD</div>
-        <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[260px] mt-[40px]">
-          미디어 키트 <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
-        </button>
-        <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[40px]">
-          회사 소개서 <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
-        </button>
+        <a href={data.media_kit_file} download target="_blank">
+          <button
+            className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[620px] mt-[40px]"
+            onClick={() => {
+              setType('MEDIAKIT');
+              downloadDashboardMutation();
+            }}
+          >
+            미디어 키트
+            <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
+          </button>
+        </a>
+        <a href={data.intro_file} download target="_blank">
+          <button
+            className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[50px] mt-[40px]"
+            onClick={() => {
+              setType('INTROFILE');
+              downloadDashboardMutation();
+            }}
+          >
+            회사 소개서
+            <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
+          </button>
+        </a>
       </section>
     );
   } else {
     return (
       <section
         id="w-07"
-        className="h-[110px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[20px] mx-[10px] flex"
+        className="h-[110px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[20px] mx-[50px] flex"
       >
-        <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[550px]">{data.description}</div>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-[12px]">
-          미디어 키트 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
-        </button>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-[12px]">
-          회사 소개서 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
-        </button>
+        <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[750px]">{data.description}</div>
+        <a href={data.media_kit_file} download target="_blank">
+          <button
+            className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[120px] mt-[35px] rounded-[80px] text-[12px]"
+            onClick={() => {
+              setType('MEDIAKIT');
+              downloadDashboardMutation();
+            }}
+            type="button"
+          >
+            미디어 키트
+            <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
+          </button>
+        </a>
+        <a href={data.intro_file} download target="_blank">
+          <button
+            className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-[12px]"
+            onClick={() => {
+              setType('INTROFILE');
+              downloadDashboardMutation();
+            }}
+          >
+            회사 소개서
+            <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
+          </button>
+        </a>
       </section>
     );
   }
 }
 
 export function History({ theme, data }: HeaderPageProps) {
-  // const newarray = [
-  //   { title: '2023', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-  //   { title: '2022', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-  //   { title: '반가워', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-  // ];
-
-  const { historys, setHistorys, historyimgurl, setHistoryImgurl } = useStore();
-  // useEffect(() => {
-  //   const updatedProducts = historys.map((item, index) => {
-  //     if (index === historys.length - 1) {
-  //       return {
-  //         ...item,
-  //         image: historyimgurl,
-  //       };
-  //     }
-  //     return item;
-  //   });
-
-  //   setHistorys(updatedProducts);
-  // }, [historyimgurl]);
+  const historys = data.history_elements
   if (theme === 'ThemeA') {
     return (
       <section id="w-08" className="h-[700px] font-[LINE] pt-20">
@@ -634,7 +587,7 @@ export function History({ theme, data }: HeaderPageProps) {
         </div>
 
         <div className="mt-[15px] flex flex-col md:grid grid-cols-9 mx-auto p-2 text-GrayScalePrimary-800">
-          {historys.map((item, i) => (
+          {historys.map((item: any, i: any) => (
             <React.Fragment key={item.history_element_id}>
               {i % 2 === 0 ? (
                 <div className="flex md:contents">
@@ -679,13 +632,13 @@ export function History({ theme, data }: HeaderPageProps) {
     return (
       <section id="w-08" className="h-[700px] font-[LINE]">
         <div className="ml-[40px]">
-          <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">History</span>
-          <p className="text-[#000] text-[34px] mt-[23px] pl-[2px]">질링스가 걸어온 길</p>
+          <span className="mr-[9px] ml-[60px] font-[700] text-[23px] text-[#FFB800]">History</span>
+          <p className="text-[#000] ml-[57px] text-[34px] mt-[23px] pl-[2px]">질링스가 걸어온 길</p>
 
-          <div className="w-[820px] h-[481px] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[27px]">
+          <div className="w-[860px] h-[481px] m-[0_auto] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[27px]">
             <ul className="w-[720px] h-[400px] m-[0px_auto] pt-[40px]">
-              {historys.map((item, i) => (
-                <li className="relative flex items-baseline gap-6 pb-8">
+              {historys.map((item: any, i: any) => (
+                <li key={i} className="relative flex items-baseline gap-6 pb-8">
                   <div className="before:absolute before:left-[5.5px] before:h-full before:w-[2.5px] before:bg-review">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -703,11 +656,18 @@ export function History({ theme, data }: HeaderPageProps) {
                       <p className="text-sm mt-[11px] text-[14px] font-bold text-[#464646]">{item.title}</p>
                       <p className="text-[11px] text-[#464646]">{item.description}</p>
                     </div>
-                    <img src="/history.png" className="mt-[10px]" alt="" />
+                    <div className='w-[85px] h-[85px] absolute right-0'>
+
+                    {item.image ? <img src={item.image} className="w-[85px] h-[85px] mt-[10px] rounded-xl" alt="" /> : <img src="/기본이미지.png" className="w-[85px] h-[85px] mt-[10px]" alt="" />}
+                    </div>
+                    
                   </div>
                 </li>
               ))}
             </ul>
+            <div className='w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full'>
+               <button className='w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]'>더 보기 (3/N)</button>
+            </div>
           </div>
         </div>
       </section>
@@ -738,14 +698,14 @@ export function Result({ theme, data }: HeaderPageProps) {
   } else {
     return (
       <section id="w-10" className="h-[300px]">
-        <div className="ml-[40px] mt-[40px]">
+        <div className="ml-[100px] mt-[40px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Key Achievements</span>
           <p className="text-[#000] text-[30px] mt-[20px] pl-[2px]">우리는 성장하고 있습니다.</p>
         </div>
-        <div className="w-[810.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
+        <div className="w-[865.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
           {[1, 2, 3, 4].map((_, i) => (
             <div
-              className="w-[185px] h-[113px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)]"
+              className="w-[200px] h-[113px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)]"
               key={i}
             >
               <p className="font-bold text-[32px]/[100%] text-[#000] text-center mt-[15px]">7억원</p>
@@ -762,9 +722,7 @@ export function Result({ theme, data }: HeaderPageProps) {
 }
 
 export function Channel({ theme, data }: HeaderPageProps) {
-  const { channel } = useStore();
-  const channelValues = Object.values(channel);
-
+  const channelValues = Object.values(data);
   if (theme === 'ThemeA') {
     return (
       <section id="w-13" className="h-[200px] w-full relative mt-[20px]">
@@ -772,12 +730,20 @@ export function Channel({ theme, data }: HeaderPageProps) {
         <span className="font-[500] text-[10px] text-GrayScaleNeutral-700 ml-[5px] mt-[30px]">채널</span>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
           {channelList.map((items, index) => {
-            if (channelValues[index * 2]) {
+            if (channelValues[index * 2 + 1]) {
               return (
-                <div className="flex flex-row mr-[4px]" key={index}>
+                <button
+                  className="flex flex-row mr-[4px]"
+                  key={index}
+                  onClick={() => {
+                    const url = channelValues[index * 2 + 1];
+                    if (typeof url === 'string') {
+                      window.open(url, '_blank');
+                    }
+                  }}
+                >
                   <img src={items.img} className="w-[50px] h-[50px]" />
-                  <span className="text-[10px] mt-[30px]">{channelValues[index * 2 + 1]}</span>
-                </div>
+                </button>
               );
             } else {
               return null;
@@ -792,14 +758,20 @@ export function Channel({ theme, data }: HeaderPageProps) {
         <div className="font-[500] text-[16px] text-[#FFB800] ml-[100px] pt-[20px]">SNS Channel</div>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
           {channelList.map((items, index) => {
-            if (channelValues[index * 2]) {
+            if (channelValues[index * 2 + 1]) {
               return (
-                <div
+                <button
                   className="flex flex-row mr-[4px] bg-white w-[70px] h-[70px] rounded-[14px] drop-shadow-xl mx-[20px] items-center justify-center"
                   key={index}
+                  onClick={() => {
+                    const url = channelValues[index * 2 + 1];
+                    if (typeof url === 'string') {
+                      window.open(url, '_blank');
+                    }
+                  }}
                 >
                   <img src={items.img} className="w-[50px] h-[50px]" />
-                </div>
+                </button>
               );
             } else {
               return null;
