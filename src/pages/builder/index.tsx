@@ -44,7 +44,7 @@ export default function Builder() {
       const download = builderData.widgets.find((widget: any) => widget.widget_type === 12);
       const products = builderData.widgets.find((widget: any) => widget.widget_type === 2);
       const teammembers = builderData.widgets.find((widget: any) => widget.widget_type === 6);
-      const historys = builderData.widgets.find((widget: any) => widget.widget_type === 8);
+      const historys = builderData.widgets.find((widget: any) => widget.widget_type === 9);
       const news = builderData.widgets.find((widget: any) => widget.widget_type === 11);
       setHeaderAndFooterList(builderData.header_and_footer.header_and_footer_status_list);
       setCompanyInfo(builderData.company_info);
@@ -151,7 +151,7 @@ export default function Builder() {
           return item;
         });
         setHistorys(updatedHistorys);
-        // console.log(teammembers)
+     
       }
       if (news !== undefined && news.news_elements !== undefined) {
         const updatedNews = news.news_elements.map((item: any, index: any) => {

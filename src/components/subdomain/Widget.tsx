@@ -593,10 +593,10 @@ export function Download({ theme, data }: HeaderPageProps) {
         className="h-[110px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[20px] mx-[10px] flex"
       >
         <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[550px]">{data.description}</div>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-white text-[12px]">
+        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-[12px]">
           미디어 키트 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
         </button>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-white text-[12px]">
+        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-[12px]">
           회사 소개서 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
         </button>
       </section>

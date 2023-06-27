@@ -157,8 +157,8 @@ export function TeamTitle({
                     onChange={() => handleCheckboxChange(value.team_member_element_id)}
                   />
                 </div>
-                <div className="absolute w-[144px] h-[24px] top-[9px] left-[60px]">
-                  <span className="w-[144px] h-[24px] flex justify-center font-medium text-base/[150%] text-[#57566a]">
+                <div className="absolute w-[150px] h-[24px] top-[9px] left-[60px]">
+                  <span className="w-[150px] h-[24px] block truncate font-medium text-base/[150%] text-[#57566a]">
                     {value.name}
                   </span>
                 </div>
@@ -225,8 +225,8 @@ export function TeamTitle({
                     <div className="absolute top-[11px] left-[12px]">
                        <input type="checkbox" className="w-[16px] h-[16px] bg-[#6e6d86]" checked={selectedItems.includes(value.history_element_id)} onChange={() => handleCheckboxChange(value.history_element_id)}/>
                        </div>
-                       <div className="absolute w-[144px] h-[24px] top-[9px] left-[60px]">
-                          <span className="w-[144px] h-[24px] flex justify-center font-medium text-base/[150%] text-[#57566a]">{value.title}</span>
+                       <div className="absolute w-[150px] h-[24px] top-[9px] left-[60px]">
+                          <span className="w-[150px] h-[24px] block font-medium text-base/[150%] text-[#57566a] truncate">{value.title}</span>
                        </div>
                        <div>
                        <img src="/handler.png" className="w-[24px] h-[24px] absolute top-[9px] right-[10px]" alt="hanlder-img" />
@@ -290,7 +290,7 @@ export function TeamTitle({
                        <input type="checkbox" className="w-[16px] h-[16px] bg-[#6e6d86]" checked={selectedItems.includes(value.news_element_id)} onChange={() => handleCheckboxChange(value.news_element_id)}/>
                        </div>
                        <div className="absolute w-[144px] h-[24px] top-[9px] left-[60px]">
-                          <span className="w-[144px] h-[24px] flex justify-center font-medium text-base/[150%] text-[#57566a]">{value.title}</span>
+                          <span className="w-[144px] h-[24px] block truncate font-medium text-base/[150%] text-[#57566a]">{value.title}</span>
                        </div>
                        <div>
                        <img src="/handler.png" className="w-[24px] h-[24px] absolute top-[9px] right-[10px]" alt="hanlder-img" />

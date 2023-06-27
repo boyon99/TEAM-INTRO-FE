@@ -120,10 +120,9 @@ function PressAdd() {
       const [newsview, setNewsView] = useState('');
       const [newsgets, setNewsGet] = useState(false);
       // 보도자료 불러오기
-      // console.log(watch('name'))
       const link = watch('name')
       const { isLoading, data } = useQuery(['news'], () => newsget(`${link}`), {enabled: newsgets})
-      // console.log(data?.date)
+    
 
       // 보도자료 불러오기 후 input창에 value값 넣기
       const date = data? data.date : ''
@@ -222,7 +221,7 @@ function PressAdd() {
       >
         {/* 이미지 업로드 시 업로드한 이미지 미리보기 */}
         
-        {newsview === '' ? null : (
+        {newsview === undefined ? null : (
           <div className="relative overflow-hidden">
             <div>
               <img src={newsview} className="m-[auto] object-contain max-w-[264px] max-h-[138px]" alt="logo-img" />
@@ -240,7 +239,7 @@ function PressAdd() {
         {/* 이미지가 존재하지 않는 경우, 이미지 업로드 버튼이 보이고, 이미지가 존재하는 경우 사라짐 */}
         
           <>
-          {newsview === '' ? (
+          {newsview === undefined ? (
           <>
             <div className="w-[60px] h-[60px] rounded-[10px] bg-primary-100 mx-[auto] mt-[14px]">
               <input className="hidden" type="file" id='file-input'{...register('image', {
