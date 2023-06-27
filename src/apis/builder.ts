@@ -5,6 +5,16 @@ export const getIntroPage = async () => {
   return data;
 };
 
+export const createIntroPage = async (introPage: any) => {
+  const { data } = await axiosInstance().post<any>('/api/s/user/introPage', introPage);
+  return data;
+};
+
+export const updateIntroPage = async (introPage: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage', introPage);
+  return data;
+};
+
 export const updateChannel = async (channel: any) => {
   const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/channel', channel);
   const response = data.data;
@@ -42,8 +52,19 @@ export const updateSiteInfo = async (siteInfo: any) => {
   return data;
 };
 
+export const updateDownload = async (download: any) => {
+  const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/download', download);
+  return data;
+};
+
 export const uploadImage = async (formData: any) => {
   console.log(formData);
   const { data } = await axiosInstance({ multi: true }).post<any>('/api/s/user/uploadImage', formData);
+  return data;
+};
+
+export const uploadFile = async (formData: any) => {
+  console.log(formData);
+  const { data } = await axiosInstance({ multi: true }).post<any>('/api/s/user/uploadFile', formData);
   return data;
 };

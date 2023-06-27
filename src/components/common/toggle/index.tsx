@@ -10,7 +10,7 @@ type CheckboxProps = {
 // toggle handler 안에 텍스트 있는 버튼
 // builder 공개 숨김 토글
 export function ToggleInText({ classname }: { classname: string }) {
-  const [toggle, setToggle] = useState(true);
+  const { isPublicToggle: toggle, setIsPublicToggle: setToggle } = useStore();
   const toggleAnimation = 'transform translate-x-[40px]';
 
   return (
@@ -49,11 +49,11 @@ export function ToggleInText({ classname }: { classname: string }) {
 
 // toggle 텍스트 없는 버튼
 // builder 위젯 토글
-export function ToggleSmall({ buttonName }: { buttonName: string }) {
+export function ToggleSmall({ buttonId }: { buttonId: number }) {
   // store에서 위젯 목록과 토글 상태 가져오기
   const { widgets, setToggle } = useStore();
   // 위젯 목록에서 현재 위젯을 찾아서 가져옴
-  const widget = widgets.find((widget) => widget.name === buttonName);
+  const widget = widgets.find((widget) => widget.widget_id === buttonId);
   // 토글 애니메이션
   const toggleAnimation = 'transform translate-x-[11px]';
 
@@ -71,7 +71,16 @@ export function ToggleSmall({ buttonName }: { buttonName: string }) {
           (widget?.toggle ? 'bg-primary-500' : 'bg-GrayScalePrimary-200')
         }
         onClick={() => {
-          setToggle(widget!.name);
+          if (
+            widget?.widget_id === 4 ||
+            widget?.widget_id === 8 ||
+            widget?.widget_id === 10 ||
+            widget?.widget_id === 13
+          ) {
+            alert('해당 위젯은 곧 추가될 예정입니다.');
+          } else {
+            setToggle(widget!.widget_id);
+          }
         }}
       >
         {/* Toggle controller */}
@@ -130,7 +139,7 @@ export function ToggleLarge({ toggleText }: { toggleText: string }) {
 }
 
 // widget 페이지에서 사용하는 토클
-export function ToggleWidget({ toggle, setToggle, setWidgetToggle, toggleText, widgetName }: ToggleWidgetProps) {
+export function ToggleWidget({ toggle, setToggle, setWidgetToggle, toggleText, widgetId }: ToggleWidgetProps) {
   // 토글 애니메이션
   const toggleAnimation = 'transform translate-x-[16px]';
 
@@ -149,7 +158,7 @@ export function ToggleWidget({ toggle, setToggle, setWidgetToggle, toggleText, w
           }
           onClick={() => {
             setToggle && setToggle(12);
-            setWidgetToggle && setWidgetToggle(widgetName);
+            setWidgetToggle && setWidgetToggle(widgetId);
           }}
         >
           {/* Toggle controller */}

@@ -16,7 +16,7 @@ import { useForm } from 'react-hook-form';
 function PressView() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const {newsadd, setNewsAdd,news,setNews, widgets, setToggle } = useStore();
-  const [toggle, setTogglebase] = useState(true)
+  const findWigetToggle = widgets.find((widget) => widget.widget_id === 11);
   const NewsAddonClick = () => {
     setNewsAdd(!newsadd)
     setNews([...news,
@@ -84,9 +84,9 @@ const deleteSelectedItems = () => {
       <span className='font-bold text-sm/[100%] text-[#57566a]'>사용여부</span>
       <div className="mt-[12px]">
       <ToggleWidget
-        toggle={widgets[5].toggle}
+        toggle={findWigetToggle?.toggle as boolean}
         setWidgetToggle={setToggle}
-        widgetName="보도자료"
+        widgetId={11}
         toggleText={{ true: '사용', false: '사용 안함' }}
       />
       </div>
@@ -171,23 +171,6 @@ function PressAdd() {
    // 이미지를 포함하여 요청을 보낼 경우 이미지 경로를 미리 받아와서 요청 보내기
   const token = getCookie('access_token')
   const onValid = async (data:any) => {
-    
-  //   const image = watch('image')
-    
-  //   const form = new FormData();   
-  //   form.append("image", data.image[0])    
-  //   form.append("name", `${image}`);
-  //   form.append("type", 'string');
-  //  try {
-  //   const response = await axios.post('/api/s/user/uploadImage',  form, {
-  //     headers: {
-  //       "Authorization": `${token}`,
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   })
-    
-    // const avatar = response.data.data.upload_path;
-    // console.log(avatar)
     const user = {
       date: date,
       title: title,
@@ -197,10 +180,6 @@ function PressAdd() {
     }
     console.log(user)
     newsmutate(user)
-    
-  // } catch (error) {
-  //   console.log(error);
-  // }
 }
 
      // 이미지의 삭제 버튼 클릭시 미리보기 이미지 삭제

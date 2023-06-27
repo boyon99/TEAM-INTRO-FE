@@ -13,7 +13,7 @@ import Router from 'next/router';
 
 function Preview() {
   const { widgets, setToggle, channel, setChannel } = useStore();
-  const findWigetToggle = widgets.find((widget) => widget.name === '채널');
+  const findWigetToggle = widgets.find((widget) => widget.widget_id === 14);
   const { mutate: updateChannelMutation } = useMutation(
     () => updateChannel({ widget_status: findWigetToggle?.toggle, ...channel }),
     {
@@ -46,7 +46,7 @@ function Preview() {
       <ToggleWidget
         toggle={findWigetToggle?.toggle as boolean}
         setWidgetToggle={setToggle}
-        widgetName="채널"
+        widgetId={14}
         toggleText={{ true: '사용', false: '사용 안함' }}
       />
       {findWigetToggle?.toggle ? (
