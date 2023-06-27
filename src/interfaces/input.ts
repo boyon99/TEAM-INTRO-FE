@@ -39,3 +39,8 @@ export interface BuilderCheckboxProps {
 export interface BuilderSelectProps {
   title: string; // label
 }
+
+export interface BuilderUploadFileProps {
+  title: string; // label
+  type: string; // 업로드할 파일의 타입
+}
