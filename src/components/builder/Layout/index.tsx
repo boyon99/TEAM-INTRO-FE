@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return widget.toggle;
   });
   const order_list = widgets.map((widget) => {
-    return widget.widget_id;
+    return widget.order_list;
   });
   const { mutate: updateIntroPageMutation } = useMutation(
     () => updateIntroPage({ status: isPublicToggle, widget_status_list: widget_status_list, order_list: order_list }),
