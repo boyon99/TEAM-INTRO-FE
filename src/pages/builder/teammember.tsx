@@ -22,6 +22,7 @@ function TeamMemberView() {
   } = useForm();
   const { teamadd, setTeamAdd, teammembers, setTeamMember, widgets, setToggle } = useStore();
   const [toggle, setTogglebase] = useState(true);
+  const findWigetToggle = widgets.find((widget) => widget.widget_id === 6);
   // 추가하기 버튼 클릭시 빈상자(빈배열)가 생김
   const TeamAddonClick = () => {
     setTeamAdd(!teamadd);
@@ -53,7 +54,6 @@ function TeamMemberView() {
     onError: (err: AxiosError) => {
       const Eresponse = err.response?.data;
       const { data }: any = Eresponse;
-      console.log(data.value);
     },
   });
   const handleCheckboxChange = (productId: any) => {
@@ -89,14 +89,14 @@ function TeamMemberView() {
         <span className="font-bold text-sm/[100%] text-[#57566a]">사용여부</span>
         <div className="mt-[12px]">
           <ToggleWidget
-            toggle={widgets[3].toggle}
+            toggle={findWigetToggle?.toggle as boolean}
             setWidgetToggle={setToggle}
             widgetId={6}
             toggleText={{ true: '사용', false: '사용 안함' }}
           />
         </div>
       </div>
-      {widgets[3].toggle ? (
+      {findWigetToggle?.toggle ? (
         <>
           <div className="mt-[48px]">
             <span className="font-bold text-lg/[110%] text-[#57566a]">팀 멤버 편집</span>
@@ -165,23 +165,6 @@ function TeamMemberAdd() {
   } = useMutation(teamadd, {
     onSuccess: (data) => {
       console.log(data);
-      // 저장하기가 성공하면 결과값의 데이터를 원래 products에 저장, 여기서 사용자가 넣은 이미지 결과를 바로 볼 수 있음
-      // const updatedProducts = teammembers.map((product, index) => {
-      //   if (index === teammembers.length - 1) {
-      //     return {
-      //       ...product,
-      //       products_and_services_element_id: data.products_and_services_element_id,
-      //       order: data.order,
-      //       name: data.name,
-      //       title: data.title,
-      //       description: data.description,
-      //       image: data.image
-      //     };
-      //   }
-      //   return product;
-      // });
-      // setTeamMember(updatedProducts);
-
       setTeamAdd(false); // 저장하기가 성공하면 뒤로가기
     },
     onError: (err: AxiosError) => {

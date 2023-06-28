@@ -23,15 +23,10 @@ interface ProductModify {
 }
 
 function ProductView() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<ProductModify>();
-  const { buttondes, setButtondes, add, setAdd, products, setProducts, widgets, setToggle, productservices } =
-    useStore();
-  const [toggle, setTogglebase] = useState(true);
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<ProductModify>();
+  const { buttondes, setButtondes, add, setAdd, products, setProducts, widgets, setToggle, productservices } = useStore();
+  const [toggle, setTogglebase] = useState(true)
+  const findWigetToggle = widgets.find((widget) => widget.widget_id === 2);
   // 추가하기 버튼 클릭시 빈상자(빈배열)가 생김
   const onClick = () => {
     setAdd(!add);
@@ -117,96 +112,64 @@ function ProductView() {
         <img src="/product.png" alt="product" className="w-[26px] h-[26px]" />
         <span className="ml-[8px]">제품/서비스 소개</span>
       </div>
-      <div className="w-[260px] font-[500] text-[16px] mt-[16px] text-GrayScalePrimary-700">
-        회사가 다루는 제품 또는 서비스를 자세히 알려주세요.
+    <div className="w-[260px] font-[500] text-[16px] mt-[16px] text-GrayScalePrimary-700">
+      회사가 다루는 제품 또는 서비스를 자세히 알려주세요.
+    </div>
+   <div className='mt-[48px]'>
+      <span className='font-bold text-sm/[100%] text-[#57566a]'>사용여부</span>
+      <div className="mt-[12px]">
+      <ToggleWidget
+        toggle={findWigetToggle?.toggle as boolean}
+        setWidgetToggle={setToggle}
+        widgetId={2}
+        toggleText={{ true: '사용', false: '사용 안함' }}
+      />
       </div>
-      <div className="mt-[48px]">
-        <span className="font-bold text-sm/[100%] text-[#57566a]">사용여부</span>
-        <div className="mt-[12px]">
-          <ToggleWidget
-            toggle={widgets[2].toggle}
-            setWidgetToggle={setToggle}
-            widgetId={2}
-            toggleText={{ true: '사용', false: '사용 안함' }}
-          />
-        </div>
+   </div>
+   {findWigetToggle?.toggle ? 
+   <>
+   <div className='mt-[48px]'>
+   <span className='font-bold text-lg/[110%] text-[#57566a]'>제품 편집</span>
+   </div>
+   <ProductTitle onClick={onClick} deleteSelectedClick={deleteSelectedItems} handleCheckboxChange={handleCheckboxChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} /> 
+   </>: <></>}
+   <div className='w-[264px] mt-[40px]'>
+       <p className='font-bold text-lg/[110%] text-[#57566a]'>Call To Action</p>
+       <p className='mt-[16px] font-medium text-sm/[100%] text-[#57566a]'>클릭을 유도할 수 있는 메세지를 입력해주세요.</p>
+    <div className='mt-[36px] flex justify-end'>
+     <Toggle toggle={toggle} setToggle={setTogglebase} toggleText={{ true: '사용', false: '사용 안함' }}/>
+    </div>
+    
+   {toggle? 
+   <form id='view' onSubmit={handleSubmit(onValidView)}>
+    <BuilderInput title="버튼 설명" register={register('description')}  onChange={(e) => {
+      productservices.setDescription(e.target.value)}
+    }  type="text" placeholder="예: 이 상품이 궁금하세요?" id="" />
+    <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+        &#8226; 클릭을 유도할 수 있는 메시지를 입력해주세요. <br />
+        &#8226; 최대 30자.
       </div>
-      {widgets[2].toggle ? (
-        <>
-          <div className="mt-[48px]">
-            <span className="font-bold text-lg/[110%] text-[#57566a]">제품 편집</span>
-          </div>
-          <ProductTitle
-            onClick={onClick}
-            deleteSelectedClick={deleteSelectedItems}
-            handleCheckboxChange={handleCheckboxChange}
-            selectedItems={selectedItems}
-            setSelectedItems={setSelectedItems}
-          />
-        </>
-      ) : (
-        <></>
-      )}
-      <div className="w-[264px] mt-[40px]">
-        <p className="font-bold text-lg/[110%] text-[#57566a]">Call To Action</p>
-        <p className="mt-[16px] font-medium text-sm/[100%] text-[#57566a]">
-          클릭을 유도할 수 있는 메세지를 입력해주세요.
-        </p>
-        <div className="mt-[36px] flex justify-end">
-          <Toggle toggle={toggle} setToggle={setTogglebase} toggleText={{ true: '사용', false: '사용 안함' }} />
-        </div>
-
-        {toggle ? (
-          <form id="view" onSubmit={handleSubmit(onValidView)}>
-            <BuilderInput
-              title="버튼 설명"
-              register={register('description')}
-              onChange={(e) => {
-                productservices.setDescription(e.target.value);
-              }}
-              type="text"
-              placeholder="예: 이 상품이 궁금하세요?"
-              id=""
-            />
-            <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
-              &#8226; 클릭을 유도할 수 있는 메시지를 입력해주세요. <br />
-              &#8226; 최대 30자.
-            </div>
-            <BuilderInput
-              title="버튼 텍스트"
-              register={register('text')}
-              type="text"
-              placeholder="예: 상품 보러가기"
-              id="email"
-              onChange={(e) => {
-                productservices.setText(e.target.value);
-              }}
-            />
-            <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
-              &#8226; 클릭을 유도할 수 있는 메시지를 입력해주세요. <br />
-              &#8226; 최대 8자.
-            </div>
-            <BuilderInput
-              title="버튼 링크"
-              register={register('link')}
-              onChange={(e) => {
-                productservices.setLink(e.target.value);
-              }}
-              type="text"
-              placeholder="예: https://zillinks.com"
-              id="email"
-            />
-            <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
-              &#8226; 버튼 클릭 시, 이동하는 링크를 입력해주세요.
-            </div>
-          </form>
-        ) : (
-          <></>
-        )}
+    <BuilderInput title="버튼 텍스트" register={register('text')} type="text" placeholder="예: 상품 보러가기" id="email"     
+      onChange={(e) => {
+      productservices.setText(e.target.value)}
+    } />
+    <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+        &#8226; 클릭을 유도할 수 있는 메시지를 입력해주세요. <br />
+        &#8226; 최대 8자.
       </div>
-      {/* 저장하기 */}
-      <PrimaryButton
-        form="view"
+    <BuilderInput title="버튼 링크" register={register('link')} onChange={(e) => {
+      productservices.setLink(e.target.value)}
+    } type="text" placeholder="예: https://zillinks.com" id="email" />
+    <div className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+        &#8226; 버튼 클릭 시, 이동하는 링크를 입력해주세요.
+      </div>
+   </form>: <></>}
+    
+      
+   </div>
+    {/* 저장하기 */}
+    <PrimaryButton
+        form='view'
         type="primary"
         text="저장하기"
         onClick={() => {}}

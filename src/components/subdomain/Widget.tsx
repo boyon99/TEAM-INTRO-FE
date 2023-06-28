@@ -272,21 +272,8 @@ export function Footer({ theme, data }: HeaderPageProps) {
 }
 
 export function ProductService({ theme, data }: HeaderPageProps) {
-  const { products, setProducts, imgurl, setImgurl, productservices } = useStore();
-  // useEffect(() => {
-  //   const updatedProducts = products.map((product, index) => {
-  //     if (index === products.length - 1) {
-  //       return {
-  //         ...product,
-  //         image: imgurl,
-  //       };
-  //     }
-  //     return product;
-  //   });
-
-  //   setProducts(updatedProducts);
-  // }, [imgurl]);
-  // console.log(products);
+   const products = data.products_and_services_elements
+  
   if (theme === 'ThemeA') {
     return (
       <section id="w-04" className="h-[402px] font-[LINE]">
@@ -298,7 +285,7 @@ export function ProductService({ theme, data }: HeaderPageProps) {
         </div>
 
         <div className="w-[703.12px] h-[299.19px] m-[0_auto] mt-[42.19px] mr-[] flex">
-          {products?.map((items) => {
+          {products?.map((items: any) => {
             return (
               <div
                 key={items.products_and_services_element_id}
@@ -318,40 +305,26 @@ export function ProductService({ theme, data }: HeaderPageProps) {
             );
           })}
         </div>
-        {productservices ? (
-          <div className="flex w-[700px] ml-[98.44px] mt-[30.22px] items-center">
-            <p className="text-[22.5px]/[100%] font-[`LINE`] font-bold">{productservices.description}</p>
-            <Link href={productservices.link} className="ml-[auto]">
-              {productservices.text ? (
-                <button className="w-[126px] h-[41px] bg-[#4B48DF] text-[#fff]">{productservices.text}</button>
-              ) : (
-                <></>
-              )}
-            </Link>
-          </div>
-        ) : (
-          <></>
-        )}
       </section>
     );
   } else {
     return (
       <section id="w-03" className="h-[400px] font-[LINE]">
-        <div className="ml-[40px]">
+        <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Products & Services</span>
         </div>
-        <div className="w-[720px] h-[337px] m-[0_auto] mt-[40px] flex flex-wrap">
-          {products?.map((items) => {
+        <div className="w-[920px] h-[337px] m-[0_auto] mt-[40px] flex flex-wrap">
+          {products?.map((items: any) => {
             return (
               <div
                 key={items.products_and_services_element_id}
-                className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[36px] m-[0_auto]"
+                className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[36px] m-[0_auto] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
               >
-                <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
+                <div className="w-[196.88px] h-[259.81px] ml-[14px]">
                   {items.image ? (
-                    <img src={items.image} alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                      <img src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
                   ) : (
-                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px] rounded-2xl" />
                   )}
                   <span className="font-bold text-[20px]/[100%] mt-[16.88px] flex justify-center">{items.name}</span>
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
@@ -363,50 +336,23 @@ export function ProductService({ theme, data }: HeaderPageProps) {
             );
           })}
         </div>
-        {productservices ? (
-          <div className="flex w-[700px] ml-[98.44px] mt-[30.22px] items-center">
-            <p className="text-[22.5px]/[100%] font-[`LINE`] font-bold">{productservices.description}</p>
-            <Link href={productservices.link} className="ml-[auto]">
-              {productservices.text ? (
-                <button className="w-[126px] h-[41px] bg-[#4B48DF] text-[#fff]">{productservices.text}</button>
-              ) : (
-                <></>
-              )}
-            </Link>
-          </div>
-        ) : (
-          <></>
-        )}
       </section>
     );
   }
 }
 
 export function TeamMember({ theme, data }: HeaderPageProps) {
-  const { teammembers, setTeamMember, teamimgurl, setTeamImgurl } = useStore();
-  // useEffect(() => {
-  //   const updatedProducts = teammembers.map((teammember, index) => {
-  //     if (index === teammembers.length - 1) {
-  //       return {
-  //         ...teammember,
-  //         profile: teamimgurl,
-  //       };
-  //     }
-  //     return teammember;
-  //   });
-
-  //   setTeamMember(updatedProducts);
-  // }, [teamimgurl]);
+   const teammembers = data.team_member_elements
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[600px] font-[LINE]">
+      <section id="w-04" className="h-[750px] font-[LINE]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">Meat the Team</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
         </div>
 
         <div className="w-[703.12px] h-[337px] m-[0_auto] mt-[42.19px] flex flex-wrap">
-          {teammembers?.map((team) => {
+          {teammembers?.map((team: any) => {
             return (
               <div key={team.team_member_element_id} className="w-[169px] h-[337px] ml-[5px]">
                 {team.profile ? (
@@ -431,16 +377,16 @@ export function TeamMember({ theme, data }: HeaderPageProps) {
   } else {
     return (
       <section id="w-04" className="font-[LINE] h-[795px] ">
-        <div className="ml-[40px]">
+        <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Meat the Team</span>
           <p className="text-[#000] text-[30px] mt-[30px] pl-[2px]">팀원들을 소개합니다.</p>
         </div>
 
-        <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px] flex flex-wrap">
-          {teammembers.map((team) => (
+        <div className="w-[890px] h-[337px] m-[0_auto] mt-[25px] flex flex-wrap">
+          {teammembers.map((team: any) => (
             <div
               key={team.team_member_element_id}
-              className="w-[193px] h-[300px] ml-[10px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
+              className="w-[200px] h-[300px] ml-[20px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
             >
               <div className="w-[130px] h-[130px] m-[0_auto] mt-[12px]">
                 {team.profile ? (
@@ -484,33 +430,19 @@ export function ContactUs({ theme, data }: HeaderPageProps) {
 }
 
 export function Press({ theme, data }: HeaderPageProps) {
-  const { news, setNews, newsimgurl, setNewsImgurl } = useStore();
-  useEffect(() => {
-    const updatedProducts = news.map((item, index) => {
-      if (index === news.length - 1) {
-        return {
-          ...item,
-          image: newsimgurl,
-        };
-      }
-      return item;
-    });
-
-    setNews(updatedProducts);
-  }, [newsimgurl]);
+  const news = data.news_elements
+  
   if (theme === 'ThemeA') {
     return (
-      <section id="w-06" className="h-[350px] font-[LINE]">
+      <section id="w-06" className="h-[450px] font-[LINE]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">News Room</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">보도 자료</span>
         </div>
         <div className="w-[709px] mt-[43px] m-[0_auto]">
-          {news.map((item) => (
-            <div
-              key={item.news_element_id}
-              className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex"
-            >
+          {news.map((item: any) => {
+            return (
+            <div key={item.news_element_id} className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex">
               <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
                 <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
                 <div className="mt-[-12px]">
@@ -526,20 +458,21 @@ export function Press({ theme, data }: HeaderPageProps) {
                 {item.image ? <img src={item.image} alt="" /> : <img src="/기사사진.png" alt="" />}
               </div>
             </div>
-          ))}
+            )
+        })}
         </div>
       </section>
     );
   } else {
     return (
-      <section id="w-06" className="h-[450px] font-[LINE]">
-        <div className="ml-[40px]">
+      <section id="w-06" className="h-[540px] font-[LINE]">
+        <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">News Room</span>
-          <p className="text-[#000] text-[35px] mt-[30px] pl-[2px]">새로운 소식</p>
+          <p className="text-[#000] text-[35px] mt-[20px] pl-[2px]">새로운 소식</p>
         </div>
         <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px]">
-          {news.map((item) => (
-            <div key={item.news_element_id} className="w-[820px] flex mb-[20px]">
+          {news.map((item: any) => (
+            <div key={item.news_element_id} className="w-[820px] flex mb-[40px]">
               <div>
                 {item.image ? (
                   <img src={item.image} className="w-[180px] h-[70px] rounded-[24px]" alt="" />
@@ -554,6 +487,9 @@ export function Press({ theme, data }: HeaderPageProps) {
               </div>
             </div>
           ))}
+          <div className='w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full'>
+               <button className='w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]'>더 보기 (3/N)</button>
+            </div>
         </div>
       </section>
     );
@@ -612,7 +548,7 @@ export function Download({ theme, data, intro_page_id }: HeaderPageProps) {
         <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[750px]">{data.description}</div>
         <a href={data.media_kit_file} download target="_blank">
           <button
-            className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[120px] mt-[35px] rounded-[80px] text-white text-[12px]"
+            className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[120px] mt-[35px] rounded-[80px] text-[12px]"
             onClick={() => {
               setType('MEDIAKIT');
               downloadDashboardMutation();
@@ -625,7 +561,7 @@ export function Download({ theme, data, intro_page_id }: HeaderPageProps) {
         </a>
         <a href={data.intro_file} download target="_blank">
           <button
-            className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-white text-[12px]"
+            className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-[12px]"
             onClick={() => {
               setType('INTROFILE');
               downloadDashboardMutation();
@@ -641,26 +577,7 @@ export function Download({ theme, data, intro_page_id }: HeaderPageProps) {
 }
 
 export function History({ theme, data }: HeaderPageProps) {
-  // const newarray = [
-  //   { title: '2023', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-  //   { title: '2022', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-  //   { title: '반가워', text: '05-08', font: '미디어스타트업 지원사업 선정' },
-  // ];
-
-  const { historys, setHistorys, historyimgurl, setHistoryImgurl } = useStore();
-  // useEffect(() => {
-  //   const updatedProducts = historys.map((item, index) => {
-  //     if (index === historys.length - 1) {
-  //       return {
-  //         ...item,
-  //         image: historyimgurl,
-  //       };
-  //     }
-  //     return item;
-  //   });
-
-  //   setHistorys(updatedProducts);
-  // }, [historyimgurl]);
+  const historys = data.history_elements
   if (theme === 'ThemeA') {
     return (
       <section id="w-08" className="h-[700px] font-[LINE] pt-20">
@@ -670,7 +587,7 @@ export function History({ theme, data }: HeaderPageProps) {
         </div>
 
         <div className="mt-[15px] flex flex-col md:grid grid-cols-9 mx-auto p-2 text-GrayScalePrimary-800">
-          {historys.map((item, i) => (
+          {historys.map((item: any, i: any) => (
             <React.Fragment key={item.history_element_id}>
               {i % 2 === 0 ? (
                 <div className="flex md:contents">
@@ -715,13 +632,13 @@ export function History({ theme, data }: HeaderPageProps) {
     return (
       <section id="w-08" className="h-[700px] font-[LINE]">
         <div className="ml-[40px]">
-          <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">History</span>
-          <p className="text-[#000] text-[34px] mt-[23px] pl-[2px]">질링스가 걸어온 길</p>
+          <span className="mr-[9px] ml-[60px] font-[700] text-[23px] text-[#FFB800]">History</span>
+          <p className="text-[#000] ml-[57px] text-[34px] mt-[23px] pl-[2px]">질링스가 걸어온 길</p>
 
-          <div className="w-[820px] h-[481px] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[27px]">
+          <div className="w-[860px] h-[481px] m-[0_auto] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[27px]">
             <ul className="w-[720px] h-[400px] m-[0px_auto] pt-[40px]">
-              {historys.map((item, i) => (
-                <li className="relative flex items-baseline gap-6 pb-8">
+              {historys.map((item: any, i: any) => (
+                <li key={i} className="relative flex items-baseline gap-6 pb-8">
                   <div className="before:absolute before:left-[5.5px] before:h-full before:w-[2.5px] before:bg-review">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -739,11 +656,18 @@ export function History({ theme, data }: HeaderPageProps) {
                       <p className="text-sm mt-[11px] text-[14px] font-bold text-[#464646]">{item.title}</p>
                       <p className="text-[11px] text-[#464646]">{item.description}</p>
                     </div>
-                    <img src="/history.png" className="mt-[10px]" alt="" />
+                    <div className='w-[85px] h-[85px] absolute right-0'>
+
+                    {item.image ? <img src={item.image} className="w-[85px] h-[85px] mt-[10px] rounded-xl" alt="" /> : <img src="/기본이미지.png" className="w-[85px] h-[85px] mt-[10px]" alt="" />}
+                    </div>
+                    
                   </div>
                 </li>
               ))}
             </ul>
+            <div className='w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full'>
+               <button className='w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]'>더 보기 (3/N)</button>
+            </div>
           </div>
         </div>
       </section>
@@ -774,14 +698,14 @@ export function Result({ theme, data }: HeaderPageProps) {
   } else {
     return (
       <section id="w-10" className="h-[300px]">
-        <div className="ml-[40px] mt-[40px]">
+        <div className="ml-[100px] mt-[40px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Key Achievements</span>
           <p className="text-[#000] text-[30px] mt-[20px] pl-[2px]">우리는 성장하고 있습니다.</p>
         </div>
-        <div className="w-[810.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
+        <div className="w-[865.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
           {[1, 2, 3, 4].map((_, i) => (
             <div
-              className="w-[185px] h-[113px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)]"
+              className="w-[200px] h-[113px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)]"
               key={i}
             >
               <p className="font-bold text-[32px]/[100%] text-[#000] text-center mt-[15px]">7억원</p>

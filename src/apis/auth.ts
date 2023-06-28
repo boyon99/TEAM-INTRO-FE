@@ -194,7 +194,7 @@ export const newsget = async (url: string) => {
 };
 // 보도자료 요소 추가
 export const newsadd = async (item: NewsAdd) => {
-  const { data } = await axiosInstance().post<any>('/api/s/user/introPage/news/detail');
+  const { data } = await axiosInstance().post<any>('/api/s/user/introPage/news/detail', item);
   const response = data.data;
   console.log(response);
   return response;
