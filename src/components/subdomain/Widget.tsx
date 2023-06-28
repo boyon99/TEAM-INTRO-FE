@@ -272,11 +272,11 @@ export function Footer({ theme, data }: HeaderPageProps) {
 }
 
 export function ProductService({ theme, data }: HeaderPageProps) {
-   const products = data.products_and_services_elements
-  
+  const products = data.products_and_services_elements;
+
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[402px] font-[LINE]">
+      <section id="w-04" className="h-[402px] font-['LINE']">
         <div className="ml-[110px] flex">
           <span className="mr-[7px] font-[700] text-[20px]">Products & Services</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
@@ -309,7 +309,7 @@ export function ProductService({ theme, data }: HeaderPageProps) {
     );
   } else {
     return (
-      <section id="w-03" className="h-[400px] font-[LINE]">
+      <section id="w-03" className="h-[400px] font-['LINE']">
         <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Products & Services</span>
         </div>
@@ -322,7 +322,7 @@ export function ProductService({ theme, data }: HeaderPageProps) {
               >
                 <div className="w-[196.88px] h-[259.81px] ml-[14px]">
                   {items.image ? (
-                      <img src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
+                    <img src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
                   ) : (
                     <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px] rounded-2xl" />
                   )}
@@ -342,7 +342,7 @@ export function ProductService({ theme, data }: HeaderPageProps) {
 }
 
 export function TeamMember({ theme, data }: HeaderPageProps) {
-   const teammembers = data.team_member_elements
+  const teammembers = data.team_member_elements;
   if (theme === 'ThemeA') {
     return (
       <section id="w-04" className="h-[750px] font-[LINE]">
@@ -376,8 +376,8 @@ export function TeamMember({ theme, data }: HeaderPageProps) {
     );
   } else {
     return (
-      <section id="w-04" className="font-[LINE] h-[795px] ">
-        <div className="ml-[100px]">
+      <section id="w-04" className="font-['LINE'] h-[795px] ">
+        <div className="ml-[100px] mt-[30px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Meat the Team</span>
           <p className="text-[#000] text-[30px] mt-[30px] pl-[2px]">팀원들을 소개합니다.</p>
         </div>
@@ -430,11 +430,11 @@ export function ContactUs({ theme, data }: HeaderPageProps) {
 }
 
 export function Press({ theme, data }: HeaderPageProps) {
-  const news = data.news_elements
-  
+  const news = data.news_elements;
+
   if (theme === 'ThemeA') {
     return (
-      <section id="w-06" className="h-[450px] font-[LINE]">
+      <section id="w-06" className="h-[450px] font-['LINE']">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">News Room</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">보도 자료</span>
@@ -442,30 +442,33 @@ export function Press({ theme, data }: HeaderPageProps) {
         <div className="w-[709px] mt-[43px] m-[0_auto]">
           {news.map((item: any) => {
             return (
-            <div key={item.news_element_id} className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex">
-              <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
-                <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
-                <div className="mt-[-12px]">
-                  <span className="text-[10px] font-bold text-[#868686] pr-[5px]">Jul</span>
-                  <span className="text-[10px] font-bold text-[#868686]">{item.date}</span>
+              <div
+                key={item.news_element_id}
+                className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex"
+              >
+                <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
+                  <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
+                  <div className="mt-[-12px]">
+                    <span className="text-[10px] font-bold text-[#868686] pr-[5px]">Jul</span>
+                    <span className="text-[10px] font-bold text-[#868686]">{item.date}</span>
+                  </div>
+                </div>
+                <div className="w-[384px] ml-[39px] mt-[20px]">
+                  <p className="text-[14px]/[110%] font-bold">{item.title}</p>
+                  <p className="text-[11px]/[170%] text-[#868686] mt-[10px]">{item.description}</p>
+                </div>
+                <div className="w-[141px] h-[74px] ml-[39px] mt-[11.5px] mb-[14px]">
+                  {item.image ? <img src={item.image} alt="" /> : <img src="/기사사진.png" alt="" />}
                 </div>
               </div>
-              <div className="w-[384px] ml-[39px] mt-[20px]">
-                <p className="text-[14px]/[110%] font-bold">{item.title}</p>
-                <p className="text-[11px]/[170%] text-[#868686] mt-[10px]">{item.description}</p>
-              </div>
-              <div className="w-[141px] h-[74px] ml-[39px] mt-[11.5px] mb-[14px]">
-                {item.image ? <img src={item.image} alt="" /> : <img src="/기사사진.png" alt="" />}
-              </div>
-            </div>
-            )
-        })}
+            );
+          })}
         </div>
       </section>
     );
   } else {
     return (
-      <section id="w-06" className="h-[540px] font-[LINE]">
+      <section id="w-06" className="h-[540px] font-['LINE'] mt-[20px]">
         <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">News Room</span>
           <p className="text-[#000] text-[35px] mt-[20px] pl-[2px]">새로운 소식</p>
@@ -487,9 +490,9 @@ export function Press({ theme, data }: HeaderPageProps) {
               </div>
             </div>
           ))}
-          <div className='w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full'>
-               <button className='w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]'>더 보기 (3/N)</button>
-            </div>
+          <div className="w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full">
+            <button className="w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]">더 보기 (3/N)</button>
+          </div>
         </div>
       </section>
     );
@@ -548,7 +551,7 @@ export function Download({ theme, data, intro_page_id }: HeaderPageProps) {
         <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[750px]">{data.description}</div>
         <a href={data.media_kit_file} download target="_blank">
           <button
-            className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[120px] mt-[35px] rounded-[80px] text-[12px]"
+            className="flex bg-GrayScaleNeutral-800 text-white pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[120px] mt-[35px] rounded-[80px] text-[12px]"
             onClick={() => {
               setType('MEDIAKIT');
               downloadDashboardMutation();
@@ -556,19 +559,19 @@ export function Download({ theme, data, intro_page_id }: HeaderPageProps) {
             type="button"
           >
             미디어 키트
-            <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
+            <img src="/attach_file_white.svg" className="w-[17px] h-[17px] ml-[3px]" />
           </button>
         </a>
         <a href={data.intro_file} download target="_blank">
           <button
-            className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-[12px]"
+            className="flex bg-GrayScaleNeutral-800 text-white pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-[12px]"
             onClick={() => {
               setType('INTROFILE');
               downloadDashboardMutation();
             }}
           >
             회사 소개서
-            <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
+            <img src="/attach_file_white.svg" className="w-[17px] h-[17px] ml-[3px]" />
           </button>
         </a>
       </section>
@@ -577,10 +580,10 @@ export function Download({ theme, data, intro_page_id }: HeaderPageProps) {
 }
 
 export function History({ theme, data }: HeaderPageProps) {
-  const historys = data.history_elements
+  const historys = data.history_elements;
   if (theme === 'ThemeA') {
     return (
-      <section id="w-08" className="h-[700px] font-[LINE] pt-20">
+      <section id="w-08" className="h-[700px] font-['LINE'] pt-20">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">History</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">연혁</span>
@@ -630,7 +633,7 @@ export function History({ theme, data }: HeaderPageProps) {
     );
   } else {
     return (
-      <section id="w-08" className="h-[700px] font-[LINE]">
+      <section id="w-08" className="h-[680px] font-['LINE']">
         <div className="ml-[40px]">
           <span className="mr-[9px] ml-[60px] font-[700] text-[23px] text-[#FFB800]">History</span>
           <p className="text-[#000] ml-[57px] text-[34px] mt-[23px] pl-[2px]">질링스가 걸어온 길</p>
@@ -656,17 +659,19 @@ export function History({ theme, data }: HeaderPageProps) {
                       <p className="text-sm mt-[11px] text-[14px] font-bold text-[#464646]">{item.title}</p>
                       <p className="text-[11px] text-[#464646]">{item.description}</p>
                     </div>
-                    <div className='w-[85px] h-[85px] absolute right-0'>
-
-                    {item.image ? <img src={item.image} className="w-[85px] h-[85px] mt-[10px] rounded-xl" alt="" /> : <img src="/기본이미지.png" className="w-[85px] h-[85px] mt-[10px]" alt="" />}
+                    <div className="w-[85px] h-[85px] absolute right-0">
+                      {item.image ? (
+                        <img src={item.image} className="w-[85px] h-[85px] mt-[10px] rounded-xl" alt="" />
+                      ) : (
+                        <img src="/기본이미지.png" className="w-[85px] h-[85px] mt-[10px]" alt="" />
+                      )}
                     </div>
-                    
                   </div>
                 </li>
               ))}
             </ul>
-            <div className='w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full'>
-               <button className='w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]'>더 보기 (3/N)</button>
+            <div className="w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full">
+              <button className="w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]">더 보기 (3/N)</button>
             </div>
           </div>
         </div>
@@ -755,7 +760,7 @@ export function Channel({ theme, data }: HeaderPageProps) {
   } else {
     return (
       <section id="w-13" className="h-[200px] w-full relative mt bg-GrayScaleNeutral-100">
-        <div className="font-[500] text-[16px] text-[#FFB800] ml-[100px] pt-[20px]">SNS Channel</div>
+        <div className="font-[700] text-[#FFB800] ml-[100px] pt-[20px] text-[23px]">SNS Channel</div>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
           {channelList.map((items, index) => {
             if (channelValues[index * 2 + 1]) {
