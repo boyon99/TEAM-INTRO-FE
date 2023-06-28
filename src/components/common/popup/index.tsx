@@ -3,6 +3,7 @@ import { PrimaryButton } from '../button';
 import { useState } from 'react';
 import useChangeContactStatus from '@/hooks/useChangeContactStatus';
 import Clipboard from '../icons/Clipboard';
+import useDownloadFile from '@/hooks/useDownloadFile';
 
 type ConfirmModalProps = {
   action: string;
@@ -11,6 +12,12 @@ type ConfirmModalProps = {
   page: number;
   msg1: string;
   msg2?: string;
+  closeModal: () => void;
+};
+
+type ExcelDownloadModalProps = {
+  status: string;
+  handleClick: () => void;
   closeModal: () => void;
 };
 
@@ -151,7 +158,9 @@ export function DetailModal({ closeModal, email, name, type, date, content }: De
   );
 }
 
-export function ExcelDownloadModal({ handleClick }: { handleClick: () => void }) {
+export function ExcelDownloadModal({ status, handleClick, closeModal }: ExcelDownloadModalProps) {
+  const { mutate, isLoading } = useDownloadFile(status, closeModal);
+
   return (
     <>
       <div className="modal-contents w-[420px] h-64 pt-11">
@@ -165,9 +174,9 @@ export function ExcelDownloadModal({ handleClick }: { handleClick: () => void })
             취소
           </button>
           <PrimaryButton
-            text="확인"
+            text={isLoading ? '처리 중...' : '확인'}
             type="primary"
-            onClick={() => {}}
+            onClick={mutate}
             classname="w-32 h-12 rounded-lg text-xl font-bold"
           />
         </section>

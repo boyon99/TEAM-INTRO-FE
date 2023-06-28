@@ -22,4 +22,16 @@ const changeContactStatus = async (idList: number[], action: string) => {
   return data;
 };
 
-export { getDashboard, getContact, changeContactStatus };
+const getExcelLink = async (status: string) => {
+  const { data } = await axiosInstance().post(
+    '/api/s/user/dashboard/contactUs/excel',
+    {
+      status,
+    },
+    { responseType: 'blob' },
+  );
+
+  return data;
+};
+
+export { getDashboard, getContact, changeContactStatus, getExcelLink };

@@ -11,7 +11,7 @@ import ChevronLeft from '@/components/common/icons/ChevronLeft';
 import ChevronRight from '@/components/common/icons/ChevronRight';
 import ClockDown from '@/components/common/icons/ClockDown';
 import Loader from '../Loader';
-import { useRouter } from 'next/router';
+import usePathConversion from '@/hooks/usePathConversion';
 
 export default function InquiryTable({ data, page, setPage, isFetching, isPreviousData }: ContactContentsProps) {
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
@@ -29,19 +29,7 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
   const [canceledRowsIdList, setCanceledRowsIdList] = useState<number[] | []>([]);
   const [confirmedRowsIdList, setConfirmedRowsIdList] = useState<number[] | []>([]);
   const [allSelected, setAllSelected] = useState<boolean>(false);
-  const { pathname } = useRouter();
-
-  let path = pathname.split('/')[3];
-
-  switch (path) {
-    case 'unconfirmed':
-      path = 'UNCONFIRMED';
-      break;
-    case 'confirmed':
-      path = 'CONFIRM';
-    default:
-      break;
-  }
+  const convertedPath = usePathConversion();
 
   useEffect(() => {
     setRows(data.content);
@@ -115,7 +103,7 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
         <div className="min-h-[626px] border border-GrayScalePrimary-150 bg-white rounded-xl mt-5">
           <div className="flex items-center justify-between pl-9 pr-5 h-[58px] border-b border-b-GrayScalePrimary-200">
             <section className="text-[15px] text-GrayScalePrimary-600 space-x-[23px]">
-              {path === 'UNCONFIRMED' && <button onClick={confirmRows}>읽음으로 변경</button>}
+              {convertedPath === 'UNCONFIRMED' && <button onClick={confirmRows}>읽음으로 변경</button>}
               <button onClick={cancelRows}>삭제</button>
             </section>
             <section>
@@ -179,7 +167,7 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
                     <span className="mx-10 text-[14px] text-GrayScalePrimary-800 w-14 text-center">{row.date}</span>
                   </td>
                   <td>
-                    {path === 'UNCONFIRMED' && (
+                    {convertedPath === 'UNCONFIRMED' && (
                       <PrimaryButton
                         text="읽음"
                         classname="font-bold w-[72px] h-9 rounded-lg mr-[6px]"
@@ -213,7 +201,7 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
               createPortal(
                 <ConfirmModal
                   action="CANCEL"
-                  status={path}
+                  status={convertedPath}
                   page={page}
                   idList={canceledRowsIdList}
                   closeModal={closeDeleteModal}
