@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 
-type ExclamationCircleProps = {
+type ExclamationTriangleProps = {
   className?: string;
   setIsHovered: Dispatch<SetStateAction<boolean>>;
 };
 
-export default function ExclamationCircle({ className, setIsHovered }: ExclamationCircleProps) {
+export default function ExclamationTriangle({ className, setIsHovered }: ExclamationTriangleProps) {
   return (
     <svg
       onMouseEnter={() => setIsHovered(true)}
