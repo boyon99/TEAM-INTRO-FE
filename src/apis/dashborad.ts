@@ -7,16 +7,16 @@ const getDashboard = async () => {
   return data;
 };
 
-const getContact = async ({ status, page = 0 }: ContactUs) => {
+const getContact = async ({ status, page }: ContactUs) => {
   const { data } = await axiosInstance().get(`/api/s/user/dashboard/contactUs?status=${status}&page=${page}`);
 
   return data;
 };
 
-const changeContactStatus = async (id: number, status: string) => {
-  const { data } = await axiosInstance().put(`/api/s/user/dashboard/contactUs?contactUsId=${id}`, {
-    status,
-    contact_us_id: id,
+const changeContactStatus = async (idList: number[], action: string) => {
+  const { data } = await axiosInstance().put('/api/s/user/dashboard/contactUs', {
+    status: action,
+    contact_us_id_list: idList,
   });
 
   return data;

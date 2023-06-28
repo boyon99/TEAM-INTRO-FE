@@ -30,7 +30,8 @@ export interface ContactData {
 }
 
 export interface ChangeContactStatus {
-  id: number;
+  idList: number[];
+  action: string;
   status: string;
   page: number;
   closeModal: () => void;

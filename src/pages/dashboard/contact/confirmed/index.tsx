@@ -7,7 +7,7 @@ import useContact from '@/hooks/useContact';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 
-export default function ContactConfirmed() {
+export default function Confirmed() {
   const [page, setPage] = useState<number>(0);
   const { isLoading, isError, error, data, isFetching, isPreviousData, isSuccess } = useContact({
     status: 'CONFIRM',

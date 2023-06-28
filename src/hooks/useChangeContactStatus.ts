@@ -3,11 +3,11 @@ import { useMutation } from '@tanstack/react-query';
 import useInvalidateQueries from './useInvalidateQuries';
 import { ChangeContactStatus } from '@/interfaces/dashboard';
 
-const useChangeContactStatus = ({ id, status, page, closeModal }: ChangeContactStatus) => {
+const useChangeContactStatus = ({ idList, action, status, page, closeModal }: ChangeContactStatus) => {
   const invalidateQueries = useInvalidateQueries();
   let msg = '';
 
-  switch (status) {
+  switch (action) {
     case 'CONFIRM':
       msg = '읽음으로 변경되었습니다.';
       break;
@@ -19,13 +19,15 @@ const useChangeContactStatus = ({ id, status, page, closeModal }: ChangeContactS
   }
 
   return useMutation({
-    mutationFn: () => changeContactStatus(id, status),
+    mutationFn: () => changeContactStatus(idList, action),
     onSuccess: () => {
-      invalidateQueries(['dashboard', 'contactUs', 'UNCONFIRMED', page.toString()]);
       closeModal();
       alert(msg);
     },
     onError: () => alert('요청 실패'),
+    onSettled: () => {
+      invalidateQueries(['dashboard', 'contactUs', status, page]);
+    },
   });
 };
 

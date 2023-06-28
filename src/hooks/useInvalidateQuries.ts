@@ -3,8 +3,8 @@ import { useQueryClient } from '@tanstack/react-query';
 const useInvalidateQueries = () => {
   const queryClient = useQueryClient();
 
-  const invalidateQueries = (queryKey: string[]) => {
-    queryClient.invalidateQueries(queryKey);
+  const invalidateQueries = (queryKey: (string | number)[]) => {
+    queryClient.invalidateQueries({ queryKey });
   };
 
   return invalidateQueries;

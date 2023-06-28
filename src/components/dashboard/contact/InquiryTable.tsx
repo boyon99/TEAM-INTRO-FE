@@ -26,11 +26,22 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
   const [rows, setRows] = useState<Inquiry[] | []>([]);
   const [checkedRows, setCheckededRows] = useState<Inquiry[]>([]);
   const [selectedRow, setSelectedRow] = useState<Inquiry | null>(null);
-  const [canceledRow, setCanceledRow] = useState<number | null>(null);
-  const [confirmedRow, setConfirmedRow] = useState<number | null>(null);
+  const [canceledRowsIdList, setCanceledRowsIdList] = useState<number[] | []>([]);
+  const [confirmedRowsIdList, setConfirmedRowsIdList] = useState<number[] | []>([]);
   const [allSelected, setAllSelected] = useState<boolean>(false);
   const { pathname } = useRouter();
-  const path = pathname.split('/')[3];
+
+  let path = pathname.split('/')[3];
+
+  switch (path) {
+    case 'unconfirmed':
+      path = 'UNCONFIRMED';
+      break;
+    case 'confirmed':
+      path = 'CONFIRM';
+    default:
+      break;
+  }
 
   useEffect(() => {
     setRows(data.content);
@@ -82,14 +93,30 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
     setSelectedRow(row);
   };
 
+  const confirmRows = () => {
+    const checkedRowsIdList = checkedRows.map((row) => row.contact_us_log_id);
+
+    setConfirmedRowsIdList(checkedRowsIdList);
+
+    openConfirmModal();
+  };
+
+  const cancelRows = () => {
+    const checkedRowsIdList = checkedRows.map((row) => row.contact_us_log_id);
+
+    setCanceledRowsIdList(checkedRowsIdList);
+
+    openDeleteModal();
+  };
+
   return (
     <>
       {rows.length ? (
-        <div className="border border-GrayScalePrimary-150 bg-white rounded-xl mt-5">
+        <div className="min-h-[626px] border border-GrayScalePrimary-150 bg-white rounded-xl mt-5">
           <div className="flex items-center justify-between pl-9 pr-5 h-[58px] border-b border-b-GrayScalePrimary-200">
             <section className="text-[15px] text-GrayScalePrimary-600 space-x-[23px]">
-              {path === 'unconfirmed' && <button>읽음으로 변경</button>}
-              <button>삭제</button>
+              {path === 'UNCONFIRMED' && <button onClick={confirmRows}>읽음으로 변경</button>}
+              <button onClick={cancelRows}>삭제</button>
             </section>
             <section>
               <ActiveLink
@@ -152,14 +179,14 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
                     <span className="mx-10 text-[14px] text-GrayScalePrimary-800 w-14 text-center">{row.date}</span>
                   </td>
                   <td>
-                    {path === 'unconfirmed' && (
+                    {path === 'UNCONFIRMED' && (
                       <PrimaryButton
                         text="읽음"
                         classname="font-bold w-[72px] h-9 rounded-lg mr-[6px]"
                         type="primary"
                         onClick={() => {
                           openConfirmModal();
-                          setConfirmedRow(row.contact_us_log_id);
+                          setConfirmedRowsIdList([row.contact_us_log_id]);
                         }}
                       />
                     )}
@@ -167,7 +194,7 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
                     <button
                       onClick={() => {
                         openDeleteModal();
-                        setCanceledRow(row.contact_us_log_id);
+                        setCanceledRowsIdList([row.contact_us_log_id]);
                       }}
                       className="w-[72px] h-9 border border-GrayScalePrimary-500 rounded-lg text-sm text-GrayScalePrimary-600"
                     >
@@ -182,23 +209,25 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
               selectedRow &&
               createPortal(<DetailModal closeModal={closeDetailModal} {...selectedRow} />, document.body)}
             {showDeleteModal &&
-              canceledRow &&
+              canceledRowsIdList &&
               createPortal(
                 <ConfirmModal
-                  status="CANCEL"
+                  action="CANCEL"
+                  status={path}
                   page={page}
-                  id={canceledRow}
+                  idList={canceledRowsIdList}
                   closeModal={closeDeleteModal}
                   msg1="연락 내역을 삭제하시겠습니까?"
                 />,
                 document.body,
               )}
             {showConfirmModal &&
-              confirmedRow &&
+              confirmedRowsIdList &&
               createPortal(
                 <ConfirmModal
-                  status="CONFIRM"
-                  id={confirmedRow}
+                  action="CONFIRM"
+                  status="UNCONFIRMED"
+                  idList={confirmedRowsIdList}
                   page={page}
                   closeModal={closeConfirmModal}
                   msg1="연락 내역을 읽음으로 변경하시겠습니까?"

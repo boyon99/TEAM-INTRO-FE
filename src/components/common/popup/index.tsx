@@ -1,12 +1,13 @@
 import { DetailModalProps, popup } from '@/interfaces/popup';
 import { PrimaryButton } from '../button';
-import Clipboard from '../icons/ClipBoard';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import useChangeContactStatus from '@/hooks/useChangeContactStatus';
+import Clipboard from '../icons/Clipboard';
 
 type ConfirmModalProps = {
+  action: string;
   status: string;
-  id: number;
+  idList: number[];
   page: number;
   msg1: string;
   msg2?: string;
@@ -43,8 +44,8 @@ export function Popup({ text, cancle, confirm, isOpen, onClick }: popup) {
   );
 }
 
-export function ConfirmModal({ id, status, page, msg1, msg2, closeModal }: ConfirmModalProps) {
-  const { mutate, isLoading } = useChangeContactStatus({ id, status, page, closeModal });
+export function ConfirmModal({ idList, action, status, page, msg1, msg2, closeModal }: ConfirmModalProps) {
+  const { mutate, isLoading } = useChangeContactStatus({ idList, action, status, page, closeModal });
 
   return (
     <>
@@ -60,10 +61,11 @@ export function ConfirmModal({ id, status, page, msg1, msg2, closeModal }: Confi
             취소
           </button>
           <PrimaryButton
-            text="확인"
+            text={isLoading ? '처리 중...' : '확인'}
             type="primary"
             onClick={mutate}
-            classname="w-32 h-12 rounded-lg text-xl font-bold"
+            disabled={isLoading}
+            classname="w-32 h-12 rounded-lg text-xl font-bold disabled:cursor-not-allowed disabled:opacity-50"
           />
         </section>
       </div>
