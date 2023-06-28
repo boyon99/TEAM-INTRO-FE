@@ -19,9 +19,10 @@ import React, { useEffect, useState } from 'react';
 import useStore from '@/store';
 import { is } from 'date-fns/locale';
 import ErrorPage from '../404';
+import Loading from '../Loading';
 
 function Preview({ data, isLoading, isSuccess }: { data: any; isLoading: boolean; isSuccess: boolean }) {
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <Loading />;
   if (!isSuccess) return <ErrorPage />;
   const { widgets, theme, header_and_footer, company_info, site_info, intro_page_id } = data;
   return (
