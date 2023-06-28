@@ -18,10 +18,11 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import useStore from '@/store';
 import { is } from 'date-fns/locale';
+import ErrorPage from '../404';
 
 function Preview({ data, isLoading, isSuccess }: { data: any; isLoading: boolean; isSuccess: boolean }) {
   if (isLoading) return <div>loading...</div>;
-  if (!isSuccess) return <div>error...</div>;
+  if (!isSuccess) return <ErrorPage />;
   const { widgets, theme, header_and_footer, company_info, site_info, intro_page_id } = data;
   return (
     <div>
@@ -89,12 +90,10 @@ function SubDomain() {
       },
     );
     return (
-      <div className="w-[1280px] mx-auto border">
+      <div className="w-[1280px] mx-auto">
         <Preview data={subDomainData} isLoading={isLoading} isSuccess={isSuccess} />
       </div>
     );
-  } else {
-    return <div>없는 페이지입니다.</div>;
   }
 }
 
