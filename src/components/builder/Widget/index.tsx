@@ -12,7 +12,7 @@ export function KeyVisual({ theme }: HeaderProps) {
 
   if (theme === 'ThemeA') {
     return (
-      <section id="w-01" className="h-[450px] w-full flex relative">
+      <section id="w-01" className="h-[400px] w-full flex relative">
         <div
           className={
             'w-full h-full z-10 ' + (keyVisual.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
@@ -20,7 +20,7 @@ export function KeyVisual({ theme }: HeaderProps) {
         ></div>
         <span
           className={
-            "absolute w-[500px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
+            "absolute w-[600px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
             (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -28,7 +28,7 @@ export function KeyVisual({ theme }: HeaderProps) {
         </span>
         <span
           className={
-            "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[17px] z-[11] " +
+            "absolute w-[700px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[17px] z-[11] " +
             (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -41,7 +41,7 @@ export function KeyVisual({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-01" className="h-[450px] w-full flex relative">
+      <section id="w-01" className="h-[400px] w-full flex relative">
         <div
           className={
             'w-full h-full z-10 ' + (keyVisual.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
@@ -49,7 +49,7 @@ export function KeyVisual({ theme }: HeaderProps) {
         ></div>
         <span
           className={
-            "absolute w-[700px] top-[120px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[700] text-center " +
+            "absolute w-[700px] top-[100px] left-[100px] font-['Korail'] text-[36px] z-[11] font-[700] text-center " +
             (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -57,7 +57,7 @@ export function KeyVisual({ theme }: HeaderProps) {
         </span>
         <span
           className={
-            "absolute w-[700px] top-[240px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
+            "absolute w-[700px] top-[220px] left-[100px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
             (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -90,7 +90,7 @@ export function MissionVision({ theme }: HeaderProps) {
             />
             <div className="mt-[20px] black h-[auto] w-full">
               <p className="font-[700] text-[13px]">{missionVision.mission}</p>
-              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
+              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[7px]">
                 {missionVision.mission_detail}
               </p>
             </div>
@@ -110,7 +110,7 @@ export function MissionVision({ theme }: HeaderProps) {
             />
             <div className="mt-[20px] black h-[auto] w-full">
               <p className="font-[700] text-[13px]">{missionVision.vision}</p>
-              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
+              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[7px]">
                 {missionVision.vision_detail}
               </p>
             </div>
@@ -120,11 +120,11 @@ export function MissionVision({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-02" className="h-[320px] w-full relative">
+      <section id="w-02" className="h-[380px] w-full relative">
         {/* 미션 */}
-        <div className="w-full h-[140px] border border-white mt-[20px]">
+        <div className="w-full h-[150px] border border-white mt-[20px]">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
-            <span className="font-[500] text-[16px] text-[#FFB800]">Mission</span>
+            <span className="font-[700] text-[23px] text-[#FFB800] ">Mission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
               <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{missionVision.mission}</div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden">{missionVision.mission_detail}</div>
@@ -132,9 +132,9 @@ export function MissionVision({ theme }: HeaderProps) {
           </div>
         </div>
         {/* 비전 */}
-        <div className="w-full h-[140px] border border-white mt-[20px]">
+        <div className="w-full h-[150px] border border-white mt-[20px]">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
-            <span className="font-[500] text-[16px] text-[#FFB800]">Vission</span>
+            <span className="font-[700] text-[23px] text-[#FFB800]">Vission</span>
             <div className="mt-[20px] flex h-[auto] w-full">
               <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{missionVision.vision}</div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden ">{missionVision.vision_detail}</div>
@@ -226,8 +226,8 @@ export function Footer({ theme }: HeaderProps) {
             <div className="font-[300]">{companyInfo.contact_email}</div>
           </div>
         </div>
-        <div className="w-[240px] ml-[30px] mt-[30px] text-GrayScaleNeutral-400 mb-[25px] flex flex-col">
-          <div className="border w-[110px] pl-[13px] py-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px] mt-[20px]">
+        <div className="w-[240px] ml-[35px] mt-[30px] text-GrayScaleNeutral-400 mb-[25px] flex flex-col">
+          <div className="border w-[110px] pl-[13px] pt-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px] mt-[20px]">
             기업 상세 정보
           </div>
           {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
@@ -282,13 +282,13 @@ export function Footer({ theme }: HeaderProps) {
 
 export function ProductService({ theme }: HeaderProps) {
   const { products, setProducts, imgurl, setImgurl, productservices } = useStore();
-  
+
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[402px] font-[LINE]">
+      <section id="w-04" className="h-[402px] font-['LINE'] mt-[30px]">
         <div className="ml-[110px] flex">
-          <span className="mr-[7px] font-[700] text-[20px]">Products & Services</span>
-          <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+          <span className="mr-[7px] font-[700] text-[22px]">Products & Services</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[10px] w-[256px] mt-[14px] pl-[2px]">
             제품 소개
           </span>
         </div>
@@ -332,8 +332,8 @@ export function ProductService({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-03" className="h-[400px] font-[LINE]">
-        <div className="ml-[100px]">
+      <section id="w-03" className="h-[440px]">
+        <div className="ml-[100px] mt-[20px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Products & Services</span>
         </div>
         <div className="w-[720px] h-[337px] m-[0_auto] mt-[40px] flex flex-wrap">
@@ -345,7 +345,7 @@ export function ProductService({ theme }: HeaderProps) {
               >
                 <div className="w-[196.88px] h-[259.81px] ml-[14px]">
                   {items.image ? (
-                      <img src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
+                    <img src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
                   ) : (
                     <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px] rounded-2xl" />
                   )}
@@ -383,13 +383,13 @@ export function TeamMember({ theme }: HeaderProps) {
 
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[750px] font-[LINE]">
-        <div className="ml-[100px] flex items-center">
-          <span className="mr-[9px] font-[700] text-[23px]">Meat the Team</span>
-          <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
+      <section id="w-04" className="h-[auto] font-['LINE'] mb-[20px]">
+        <div className="ml-[105px] flex items-center">
+          <span className="mr-[9px] font-[700] text-[22px]">Meat the Team</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[10px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
         </div>
 
-        <div className="w-[703.12px] h-[337px] m-[0_auto] mt-[42.19px] flex flex-wrap">
+        <div className="w-[703.12px] h-[auto] m-[0_auto] mt-[42.19px] flex flex-wrap">
           {teammembers?.map((team) => {
             return (
               <div key={team.team_member_element_id} className="w-[169px] h-[337px] ml-[5px]">
@@ -414,34 +414,32 @@ export function TeamMember({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-04" className="font-[LINE] h-[795px] ">
-        <div className="ml-[100px]">
+      <section id="w-04" className="h-[auto] ">
+        <div className="ml-[100px] mt-[20px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Meat the Team</span>
-          <p className="text-[#000] text-[30px] mt-[30px] pl-[2px]">팀원들을 소개합니다.</p>
+          <p className="text-[#000] text-[30px] mt-[10px] pl-[2px] font-['Korail'] font-[700]">팀원들을 소개합니다</p>
         </div>
 
-        <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px] flex flex-wrap">
+        <div className="w-[710px] h-[auto] m-[0_auto] mt-[25px] flex flex-wrap mb-[20px]">
           {teammembers.map((team) => (
             <div
               key={team.team_member_element_id}
-              className="w-[193px] h-[300px] ml-[10px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
+              className="w-[166px] h-[250px] ml-[10px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
             >
-              <div className="w-[130px] h-[130px] m-[0_auto] mt-[12px]">
+              <div className="w-[100px] h-[100px] ml-[20px] mt-[16px] mb-[8px]">
                 {team.profile ? (
-                  <img src={team.profile} alt="" className="w-[130px] h-[130px] rounded-[160px]" />
+                  <img src={team.profile} alt="" className="w-[100px] h-[100px] rounded-[160px] ml-[13px]" />
                 ) : (
-                  <img src="/프로필.png" alt="" className="w-[130px] h-[130px] rounded-[160px]" />
+                  <img src="/프로필.png" alt="" className="w-[100px] h-[100px] rounded-[160px] ml-[13px]" />
                 )}
               </div>
-              <div className="w-[190px] h-[337px] mt-[11.4px]">
-                <p className="font-bold text-[11px]/[100%] text-center mb-3">{team.name}</p>
-                <p className="w-[130px] font-bold text-[10px]/[100%] text-[#797979] text-center m-[0_auto]">
+              <div className="w-[160px] h-[337px]">
+                <p className="font-bold text-[10px] text-center mb-3">{team.name}</p>
+                <p className="w-[150px] font-bold text-[10px] text-[#797979] text-center m-[auto]">
                   {team.group}/{team.position}
                 </p>
-                <p className="w-[100px] font-normal text-[9.84px]/[150%] mt-[8.44px] text-center m-[0_auto]">
-                  {team.tagline}
-                </p>
-                <p className="font-normal text-[9.84px]/[100%] mt-[14px] text-center">{team.email}</p>
+                <p className="w-[140px] font-normal text-[8px] mt-[8.44px] text-center m-[auto]">{team.tagline}</p>
+                <p className="font-normal text-[6px] mt-[10px] text-center">{team.email}</p>
               </div>
             </div>
           ))}
@@ -468,49 +466,52 @@ export function ContactUs({ theme }: HeaderProps) {
 }
 
 export function Press({ theme }: HeaderProps) {
-  const { news, setNews, newsimgurl, setNewsImgurl  } = useStore();
-  
+  const { news, setNews, newsimgurl, setNewsImgurl } = useStore();
+
   if (theme === 'ThemeA') {
     return (
-      <section id="w-06" className="h-[450px] font-[LINE]">
-        <div className="ml-[100px] flex items-center">
-          <span className="mr-[9px] font-[700] text-[23px]">News Room</span>
+      <section id="w-06" className="h-[auto] font-['LINE'] mb-[20px]">
+        <div className="ml-[105px] flex items-center">
+          <span className="mr-[9px] font-[700] text-[22px]">News Room</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">보도 자료</span>
         </div>
-        <div className="w-[709px] mt-[43px] m-[0_auto]">
+        <div className="w-[709px] mt-[43px] m-[0_auto] h-[auto]">
           {news.map((item) => {
             return (
-            <div key={item.news_element_id} className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex">
-              <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
-                <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
-                <div className="mt-[-12px]">
-                  <span className="text-[10px] font-bold text-[#868686] pr-[5px]">Jul</span>
-                  <span className="text-[10px] font-bold text-[#868686]">{item.date}</span>
+              <div
+                key={item.news_element_id}
+                className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex"
+              >
+                <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
+                  <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
+                  <div className="mt-[-12px]">
+                    <span className="text-[10px] font-bold text-[#868686] pr-[5px]">Jul</span>
+                    <span className="text-[10px] font-bold text-[#868686]">{item.date}</span>
+                  </div>
+                </div>
+                <div className="w-[384px] ml-[39px] mt-[20px]">
+                  <p className="text-[14px]/[110%] font-bold">{item.title}</p>
+                  <p className="text-[11px]/[170%] text-[#868686] mt-[10px]">{item.description}</p>
+                </div>
+                <div className="w-[141px] h-[74px] ml-[39px] mt-[11.5px] mb-[14px]">
+                  {item.image ? <img src={item.image} alt="" /> : <img src="/기사사진.png" alt="" />}
                 </div>
               </div>
-              <div className="w-[384px] ml-[39px] mt-[20px]">
-                <p className="text-[14px]/[110%] font-bold">{item.title}</p>
-                <p className="text-[11px]/[170%] text-[#868686] mt-[10px]">{item.description}</p>
-              </div>
-              <div className="w-[141px] h-[74px] ml-[39px] mt-[11.5px] mb-[14px]">
-                {item.image ? <img src={item.image} alt="" /> : <img src="/기사사진.png" alt="" />}
-              </div>
-            </div>
-            )
-        })}
+            );
+          })}
         </div>
       </section>
     );
   } else {
     return (
-      <section id="w-06" className="h-[500px] font-[LINE]">
-        <div className="ml-[40px]">
+      <section id="w-06" className="h-[500px]">
+        <div className="ml-[100px] mt-[20px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">News Room</span>
-          <p className="text-[#000] text-[35px] mt-[30px] pl-[2px]">새로운 소식</p>
+          <p className="text-[#000] text-[30px] mt-[10px] pl-[2px] font-['Korail'] font-[700]">새로운 소식</p>
         </div>
-        <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px]">
+        <div className="w-[720px] h-[auto] m-[0_auto] mt-[25px]">
           {news.map((item) => (
-            <div key={item.news_element_id} className="w-[820px] flex mb-[20px]">
+            <div key={item.news_element_id} className="w-[720px] flex mb-[20px]">
               <div>
                 {item.image ? (
                   <img src={item.image} className="w-[180px] h-[70px] rounded-[24px]" alt="" />
@@ -525,9 +526,9 @@ export function Press({ theme }: HeaderProps) {
               </div>
             </div>
           ))}
-          <div className='w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full'>
-               <button className='w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]'>더 보기 (3/N)</button>
-            </div>
+          <div className="w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full">
+            <button className="w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]">더 보기 (3/N)</button>
+          </div>
         </div>
       </section>
     );
@@ -552,13 +553,13 @@ export function Download({ theme }: HeaderProps) {
     return (
       <section
         id="w-07"
-        className="h-[110px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[20px] mx-[10px] flex"
+        className="h-[130px] font-['Korail'] bg-GrayScaleNeutral-100 rounded-[112px] my-[30px] mx-[10px] flex"
       >
         <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[550px]">{download.description}</div>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-[12px]">
+        <button className="flex bg-GrayScaleNeutral-800 text-white pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-[12px]">
           미디어 키트 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
         </button>
-        <button className="flex bg-GrayScaleNeutral-800 text-black pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-[12px]">
+        <button className="flex bg-GrayScaleNeutral-800 text-white pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[10px] mt-[35px] rounded-[80px] text-[12px]">
           회사 소개서 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
         </button>
       </section>
@@ -567,13 +568,12 @@ export function Download({ theme }: HeaderProps) {
 }
 
 export function History({ theme }: HeaderProps) {
-  
   const { historys, setHistorys, historyimgurl, setHistoryImgurl } = useStore();
   if (theme === 'ThemeA') {
     return (
-      <section id="w-08" className="h-[700px] font-[LINE] pt-20">
-        <div className="ml-[100px] flex items-center">
-          <span className="mr-[9px] font-[700] text-[23px]">History</span>
+      <section id="w-08" className="h-[auto] font-['LINE'] pt-20 pb-[20px]">
+        <div className="ml-[105px] flex items-center">
+          <span className="mr-[9px] font-[700] text-[22px]">History</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">연혁</span>
         </div>
 
@@ -621,12 +621,12 @@ export function History({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-08" className="h-[700px] font-[LINE]">
-        <div className="ml-[40px]">
-          <span className="mr-[9px] ml-[60px] font-[700] text-[23px] text-[#FFB800]">History</span>
-          <p className="text-[#000] ml-[57px] text-[34px] mt-[23px] pl-[2px]">질링스가 걸어온 길</p>
+      <section id="w-08" className="h-[auto] pb-[20px]">
+        <div className="ml-[100px] mt-[20px]">
+          <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">History</span>
+          <p className="text-[#000] text-[30px] mt-[10px] pl-[2px] font-['Korail'] font-[700]">질링스가 걸어온 길</p>
 
-          <div className="w-[820px] h-[481px] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[27px]">
+          <div className="w-[720px] h-[481px] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[27px]">
             <ul className="w-[620px] h-[400px] m-[0px_auto] pt-[40px]">
               {historys.map((item, i) => (
                 <li key={i} className="relative flex items-baseline gap-6 pb-8">
@@ -647,17 +647,19 @@ export function History({ theme }: HeaderProps) {
                       <p className="text-sm mt-[11px] text-[14px] font-bold text-[#464646]">{item.title}</p>
                       <p className="text-[11px] text-[#464646]">{item.description}</p>
                     </div>
-                    <div className='w-[85px] h-[85px] absolute right-0'>
-
-                    {item.image ? <img src={item.image} className="w-[85px] h-[85px] mt-[10px] rounded-xl" alt="" /> : <img src="/기본이미지.png" className="w-[85px] h-[85px] mt-[10px]" alt="" />}
+                    <div className="w-[85px] h-[85px] absolute right-0">
+                      {item.image ? (
+                        <img src={item.image} className="w-[85px] h-[85px] mt-[10px] rounded-xl" alt="" />
+                      ) : (
+                        <img src="/기본이미지.png" className="w-[85px] h-[85px] mt-[10px]" alt="" />
+                      )}
                     </div>
-                    
                   </div>
                 </li>
               ))}
             </ul>
-            <div className='w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full'>
-               <button className='w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]'>더 보기 (3/N)</button>
+            <div className="w-[229px] h-[41px] m-[0_auto] border border-[#868686] rounded-full">
+              <button className="w-[229px] h-[41px] m-[0_auto] text-[#868686] text-[13px]">더 보기 (3/N)</button>
             </div>
           </div>
         </div>
@@ -685,9 +687,9 @@ export function TeamCulture({ theme }: HeaderProps) {
 export function Result({ theme }: HeaderProps) {
   if (theme === 'ThemeA') {
     return (
-      <section id="w-10" className="font-[LINE] h-[180px]">
-        <div className="ml-[100px] flex items-center mt-[14px]">
-          <span className="mr-[9px] font-[700] text-[23px]">Key Achievements</span>
+      <section id="w-10" className="font-['LINE'] h-[180px] pt-[20px]">
+        <div className="ml-[105px] flex items-center mt-[14px]">
+          <span className="mr-[9px] font-[700] text-[22px]">Key Achievements</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">핵심 성과</span>
         </div>
 
@@ -704,22 +706,22 @@ export function Result({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-10" className="h-[300px]">
-        <div className="ml-[40px] mt-[40px]">
+      <section id="w-10" className="h-[auto] pb-[20px]">
+        <div className="ml-[100px] mt-[20px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Key Achievements</span>
-          <p className="text-[#000] text-[30px] mt-[20px] pl-[2px]">우리는 성장하고 있습니다.</p>
+          <p className="text-[#000] text-[30px] mt-[10px] pl-[2px] font-['Korail'] font-[700]">
+            우리는 성장하고 있습니다.
+          </p>
         </div>
-        <div className="w-[810.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
+        <div className="w-[720px] h-[auto] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
           {[1, 2, 3, 4].map((_, i) => (
             <div
-              className="w-[185px] h-[113px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)]"
+              className="w-[165px] h-[113px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)] font-['Korail']"
               key={i}
             >
-              <p className="font-bold text-[32px]/[100%] text-[#000] text-center mt-[15px]">7억원</p>
-              <p className="font-bold text-[18px]/[100%] text-[#000] mt-[13px] text-center">초기 투자금 유치</p>
-              <p className="text-[10px]/[120%] mt-[5px] text-[#000] text-center">
-                2018년 5개 투자사로부터 초기 투자 자금 유치
-              </p>
+              <p className="font-bold text-[24px] text-[#000] text-center mt-[10px]">7억원</p>
+              <p className="font-bold text-[15px] text-[#000] mt-[2px] text-center">초기 투자금 유치</p>
+              <p className="text-[8px] mt-[2px] text-[#000] text-center">2018년 5개 투자사로부터 초기 투자 자금 유치</p>
             </div>
           ))}
         </div>
@@ -774,8 +776,7 @@ export function Channel({ theme }: HeaderProps) {
             if (channelValues[index * 2]) {
               return (
                 <div className="flex flex-row mr-[4px]" key={index}>
-                  <img src={items.img} className="w-[50px] h-[50px]" />
-                  <span className="text-[10px] mt-[30px]">{channelValues[index * 2 + 1]}</span>
+                  <img src={items.img} className="w-[60px] h-[60px]" />
                 </div>
               );
             } else {
@@ -787,8 +788,8 @@ export function Channel({ theme }: HeaderProps) {
     );
   } else {
     return (
-      <section id="w-13" className="h-[200px] w-full relative mt bg-GrayScaleNeutral-100">
-        <div className="font-[500] text-[16px] text-[#FFB800] ml-[100px] pt-[20px]">SNS Channel</div>
+      <section id="w-13" className="h-[200px] w-full relative mt-[20px] bg-GrayScaleNeutral-100">
+        <div className="font-[700] text-[23px] text-[#FFB800] ml-[100px] pt-[20px]">SNS Channel</div>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
           {channelList.map((items, index) => {
             if (channelValues[index * 2]) {

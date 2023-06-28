@@ -10,12 +10,12 @@ export default function useUser() {
     const { data ,isLoading, error } = useQuery(['user',`${token}`], user)    
     const router = useRouter();
       useEffect(() => {
-          if (!token || error) {
-              console.log(data)
+          if (!token && router.pathname !== '/register' && router.pathname !== '/findid' && router.pathname !== '/findpass') {
               router.replace("/login");
-            } else if(data && router.pathname === '/login') {
+           }            
+             else if(data && router.pathname === '/login' || data && router.pathname === '/') {
                 router.replace("/dashboard/main")
-            }
+            } 
     }, [data]);
     return { data, isLoading: !isLoading && !error };
     }

@@ -11,7 +11,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
         return new Response("pc로 접속 해 주세요");
         }
     }
-    if (req.headers.get('host') !== 'team-intro-a46vr6wjo-intro-5-fe.vercel.app') {
+    if (req.headers.get('host') !== 'localhost:3000') {
         const subdomain = req.headers.get('host')?.split('.')[0];
         const newURL = new URL(`/subdomain/${subdomain}`, req.url);
         return NextResponse.rewrite(newURL);
