@@ -35,3 +35,12 @@ export interface BuilderCheckboxProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // onChange
   setChecked: any; // setChecked
 }
+
+export interface BuilderSelectProps {
+  title: string; // label
+}
+
+export interface BuilderUploadFileProps {
+  title: string; // label
+  type: string; // 업로드할 파일의 타입
+}

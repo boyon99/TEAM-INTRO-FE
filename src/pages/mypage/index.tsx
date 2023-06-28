@@ -344,7 +344,7 @@ function RePass() {
  <Input name="keep" label='' type="alarm" onClick={alarmonClick}/>
  </div>
  <div className='ml-[160px] mt-[32px]'>
-{avatarPreview?<Button disable={true} text="저장하기"  size="xlarge"/>:<Button disable={false} text="저장하기"  size="xlarge"/>}
+{avatarPreview?<Button disable={true} text="저장하기" size="xlarge"/>:<Button disable={false} text="저장하기" size="xlarge"/>}
 </div>
    <button onClick={userDeleteClick} type='button' className='ml-[220px] mt-[32px] text-[#DF4848] text-[18px]'>회원 탈퇴</button>
 

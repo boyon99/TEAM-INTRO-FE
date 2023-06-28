@@ -13,6 +13,10 @@ export default function CompanyPreview() {
         <h3 className="flex items-center space-x-3">
           <div className="bg-success-500 w-4 h-4 rounded-full"></div>
           <span className="font-bold text-lg">공개</span>
+      <div className="h-[146px] flex flex-col items-center justify-center">
+        <h3 className="flex items-center space-x-3">
+          <div className="bg-success-500 w-4 h-4 rounded-full"></div>
+          <span className="font-bold text-lg">공개</span>
         </h3>
         <div className="flex flex-col items-center">
           {isLoading ? (

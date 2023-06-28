@@ -4,9 +4,11 @@ export interface Store {
   uploadImage: {};
   setUploadImage: (uploadImage: (imgSrc: any) => void) => void;
   resetUploadImage: () => void;
+  isPublicToggle: boolean;
+  setIsPublicToggle: (isPublicToggle: boolean) => void;
   widgets: Widget[];
   setWidget: (widgets: Widget[]) => void;
-  setToggle: (name: string) => void;
+  setToggle: (id: number) => void;
   isChangeOederToggle: boolean;
   setIsChangeOederToggle: (isChangeOederToggle: boolean) => void;
   theme: Theme; // ThemeA or ThemeB
@@ -39,6 +41,8 @@ export interface Store {
   companyInfo: CompanyInfo;
   setLogo: (logo: string) => void;
   setCompanyInfo: (companyInfo: CompanyInfo) => void;
+  download: Download;
+  setDownload: (download: Download) => void;
   //팀 멤버
   teammembers: TeamMember[];
   setTeamMember: (teammembers: TeamMember[]) => void;
@@ -51,22 +55,28 @@ export interface Store {
   setNewsAdd: (newsadd: boolean) => void;
   newsimgurl: string;
   setNewsImgurl: (newsimgurl: string) => void;
-  news: News[]
+  news: News[];
   setNews: (news: News[]) => void;
   //연혁
   historyadd: boolean;
   setHistoryAdd: (historyadd: boolean) => void;
   historyimgurl: string;
   setHistoryImgurl: (historyimgurl: string) => void;
-  historys: History[]
+  historys: History[];
   setHistorys: (historys: History[]) => void;
   //핵심 성과
   resultadd: boolean;
   setResultAdd: (resultadd: boolean) => void;
   resultimgurl: string;
   setResultImgurl: (resultimgurl: string) => void;
-  results: Result[]
+  results: Result[];
   setResults: (results: Result[]) => void;
+}
+
+export interface Download {
+  description: string;
+  media_kit_file: string;
+  intro_file: string;
 }
 
 export interface CompanyInfo {
@@ -123,10 +133,9 @@ export interface QuickMenu {
 }
 
 export interface Widget {
-  id: number;
-  name: string;
+  widget_id: number;
   toggle: boolean;
-  routerName: string;
+  order_list: number;
 }
 
 export interface Theme {

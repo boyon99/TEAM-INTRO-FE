@@ -2,8 +2,32 @@ import { BeforeButtonLarge, PrimaryButton } from '@/components/common/button';
 import { ToggleInText } from '@/components/common/toggle';
 import React from 'react';
 import Preview from '../Preview';
+import useStore from '@/store';
+import { useMutation } from '@tanstack/react-query';
+import { updateIntroPage } from '@/apis/builder';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const { widgets, isPublicToggle } = useStore();
+  const widget_status_list = widgets.map((widget) => {
+    return widget.toggle;
+  });
+  const order_list = widgets.map((widget) => {
+    return widget.order_list;
+  });
+  const { mutate: updateIntroPageMutation } = useMutation(
+    () => updateIntroPage({ status: isPublicToggle, widget_status_list: widget_status_list, order_list: order_list }),
+    {
+      onSuccess: (data) => {
+        console.log('success', data);
+        alert('저장되었습니다.');
+      },
+      onError: (error) => {
+        console.log('error', error);
+        alert('저장에 실패하였습니다.');
+      },
+    },
+  );
+
   return (
     <>
       {/* topbar */}
@@ -17,7 +41,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <PrimaryButton
           type="primary"
           text={'게시하기'}
-          onClick={() => {}}
+          onClick={() => {
+            updateIntroPageMutation();
+          }}
           classname={'w-[89px] h-[36px] my-[auto] ml-[16px]'}
         />
       </div>

@@ -35,3 +35,8 @@ const getExcelLink = async (status: string) => {
 };
 
 export { getDashboard, getContact, changeContactStatus, getExcelLink };
+
+export const downloadDashboard = async (download: any) => {
+  const { data } = await axiosInstance().post(`/api/dashboard/download`, download);
+  return data;
+};
