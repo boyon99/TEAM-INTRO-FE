@@ -18,9 +18,12 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import useStore from '@/store';
 import { is } from 'date-fns/locale';
+import ErrorPage from '../404';
+import Loading from '../Loading';
 
-function Preview({ data, isLoading }: { data: any; isLoading: boolean }) {
-  if (isLoading) return <div>loading...</div>;
+function Preview({ data, isLoading, isSuccess }: { data: any; isLoading: boolean; isSuccess: boolean }) {
+  if (isLoading) return <Loading />;
+  if (!isSuccess) return <ErrorPage />;
   const { widgets, theme, header_and_footer, company_info, site_info, intro_page_id } = data;
   return (
     <div>
@@ -44,7 +47,9 @@ function Preview({ data, isLoading }: { data: any; isLoading: boolean }) {
                 {widgetId === 6 && widget.widget_status ? <TeamMember theme={theme.type} data={widget} /> : null}
                 {widgetId === 3 && widget.widget_status ? <ContactUs theme={theme.type} data={widget} /> : null}
                 {widgetId === 11 && widget.widget_status ? <Press theme={theme.type} data={widget} /> : null}
-                {widgetId === 12 && widget.widget_status ? <Download theme={theme.type} data={widget} intro_page_id={intro_page_id}/> : null}
+                {widgetId === 12 && widget.widget_status ? (
+                  <Download theme={theme.type} data={widget} intro_page_id={intro_page_id} />
+                ) : null}
                 {widgetId === 9 && widget.widget_status ? <History theme={theme.type} data={widget} /> : null}
                 {/* {widgetId === 8 && widget.widget_status ? <TeamCulture theme={theme.type} /> : null} */}
                 {widgetId === 7 && widget.widget_status ? <Result theme={theme.type} data={widget} /> : null}
@@ -69,18 +74,25 @@ function SubDomain() {
     const {
       data: subDomainData,
       isLoading,
-      refetch,
-    } = useQuery(['postIntroPageUser'], () =>
-      postIntroPageUser({
-        sub_domain: router.query.id,
-      }).then((a) => {
-        return a.data;
-      }),
+      isSuccess,
+    } = useQuery(
+      ['postIntroPageUser'],
+      () =>
+        postIntroPageUser({
+          sub_domain: router.query.id,
+        }).then((a) => {
+          return a.data;
+        }),
+      {
+        staleTime: 60000, // 60초 (1분)으로 설정된 캐시 유효 시간
+        cacheTime: 10000,
+        refetchOnWindowFocus: false, // 포커스가 다시 들어왔을 때 다시 불러올지 여부
+        retry: false, // 에러 발생 시 재시도 여부
+      },
     );
-    console.log(subDomainData);
     return (
-      <div className="w-[1280px] mx-auto border">
-        <Preview data={subDomainData} isLoading={isLoading} />
+      <div className="w-[1280px] mx-auto">
+        <Preview data={subDomainData} isLoading={isLoading} isSuccess={isSuccess} />
       </div>
     );
   }

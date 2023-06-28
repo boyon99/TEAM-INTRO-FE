@@ -135,6 +135,7 @@ export interface QuickMenu {
 export interface Widget {
   widget_id: number;
   toggle: boolean;
+  order_list: number;
 }
 
 export interface Theme {

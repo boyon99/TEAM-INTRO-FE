@@ -36,6 +36,7 @@ export default function Builder() {
         return {
           widget_id: widget.widget_type,
           toggle: widget.widget_status,
+          order_list: widget.order,
         };
       });
       const keyvisual = builderData.widgets.find((widget: any) => widget.widget_type === 5);
@@ -151,7 +152,6 @@ export default function Builder() {
           return item;
         });
         setHistorys(updatedHistorys);
-     
       }
       if (news !== undefined && news.news_elements !== undefined) {
         const updatedNews = news.news_elements.map((item: any, index: any) => {
@@ -170,9 +170,8 @@ export default function Builder() {
           return item;
         });
         setNews(updatedNews);
-        console.log(updatedNews)
+        console.log(updatedNews);
       }
-
     }
   }, [builderData]);
   // 페이지 진입 시 resetUploadImage 호출

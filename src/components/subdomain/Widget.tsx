@@ -14,7 +14,7 @@ import { set } from 'date-fns';
 export function KeyVisual({ theme, data }: HeaderPageProps) {
   if (theme === 'ThemeA') {
     return (
-      <section id="w-01" className="h-[450px] w-full flex relative">
+      <section id="w-01" className="h-[400px] w-full flex relative">
         <div
           className={
             'w-full h-full z-10 ' + (data.filter === 'BLACK' ? 'opacity-50 bg-[#000]' : 'opacity-50 bg-[#fff]')
@@ -22,7 +22,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         ></div>
         <span
           className={
-            "absolute w-[500px] top-[120px] left-[150px] font-['LINE'] text-[36px] z-[11] font-[700] " +
+            "absolute w-[600px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -30,7 +30,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         </span>
         <span
           className={
-            "absolute w-[600px] top-[240px] left-[150px] font-['LINE'] font-[400] text-[17px] z-[11] " +
+            "absolute w-[900px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[22px] z-[11] " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -51,7 +51,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         ></div>
         <span
           className={
-            "absolute w-[700px] top-[120px] left-[300px] font-['Korail'] text-[36px] z-[11] font-[700] text-center " +
+            "absolute w-[800px] top-[120px] left-[250px] font-['Korail'] text-[36px] z-[11] font-[700] text-center " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -59,7 +59,7 @@ export function KeyVisual({ theme, data }: HeaderPageProps) {
         </span>
         <span
           className={
-            "absolute w-[700px] top-[240px] left-[300px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
+            "absolute w-[1000px] top-[240px] left-[130px] font-['Korail'] text-[24px] z-[11] font-[500] text-center " +
             (data.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -121,8 +121,8 @@ export function MissionVision({ theme, data }: HeaderPageProps) {
         {/* 미션 */}
         <div className="w-full h-[140px] border border-white mt-[20px]">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
-            <span className="font-[500] text-[16px] text-[#FFB800]">Mission</span>
-            <div className="mt-[20px] flex h-[auto] w-full">
+            <span className="font-[700] text-[23px] text-[#FFB800]">Mission</span>
+            <div className="mt-[20px] flex h-[auto] w-[1050px]">
               <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{data.mission}</div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden">{data.mission_detail}</div>
             </div>
@@ -131,8 +131,8 @@ export function MissionVision({ theme, data }: HeaderPageProps) {
         {/* 비전 */}
         <div className="w-full h-[140px] border border-white mt-[20px]">
           <div className="h-[60%] w-[calc(100%-200px)] ml-[100px] mt-[20px] relative">
-            <span className="font-[500] text-[16px] text-[#FFB800]">Vission</span>
-            <div className="mt-[20px] flex h-[auto] w-full">
+            <span className="font-[700] text-[23px] text-[#FFB800]">Vission</span>
+            <div className="mt-[20px] flex h-[auto] w-[1050px]">
               <div className="font-[700] text-[20px] w-[50%] font-['Korail']">{data.vision}</div>
               <div className="font-[500] text-[16px] w-[50%] overflow-hidden ">{data.vision_detail}</div>
             </div>
@@ -246,7 +246,7 @@ export function Footer({ theme, data }: HeaderPageProps) {
             <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
           </div>
         </div>
-        <div className="w-[350px] ml-[70px] mt-[77px] text-white mb-[25px]">
+        <div className="w-[330px] ml-[70px] mt-[77px] text-white mb-[25px]">
           <div className="font-[500] text-[12px] mb-[1px] flex">
             <div className="w-[60px]">대표</div>
             <div className="font-[300]">{data.representative}</div>
@@ -276,27 +276,27 @@ export function ProductService({ theme, data }: HeaderPageProps) {
 
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[402px] font-['LINE']">
-        <div className="ml-[110px] flex">
-          <span className="mr-[7px] font-[700] text-[20px]">Products & Services</span>
-          <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+      <section id="w-04" className="h-[402px] font-['LINE'] mt-[20px]">
+        <div className="ml-[100px] flex">
+          <span className="font-[700] text-[23px]">Products & Services</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[15px] ml-[10px]">
             제품 소개
           </span>
         </div>
 
-        <div className="w-[703.12px] h-[299.19px] m-[0_auto] mt-[42.19px] mr-[] flex">
+        <div className="w-[1200px] h-[299.19px] m-[0_auto] mt-[42.19px] mr-[] flex">
           {products?.map((items: any) => {
             return (
               <div
                 key={items.products_and_services_element_id}
-                className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[1.4px] m-[0_auto]"
+                className="w-[300px] h-[320px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[1.4px] m-[0_auto]"
               >
-                <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
+                <div className="w-[250px] h-[259.81px] ml-[18px] mt-[16px] text-center">
                   <span className="font-bold text-[15px]/[100%]">{items.name}</span>
                   {items.image ? (
-                    <img src={items.image} alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                    <img src={items.image} alt="" className="w-[191px] h-[140px] mt-[16px] ml-[30px]" />
                   ) : (
-                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px] ml-[30px]" />
                   )}
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
                   <p className="font-normal text-[9.84px]/[170%] mt-[8.44px]">{items.description}</p>
@@ -309,26 +309,26 @@ export function ProductService({ theme, data }: HeaderPageProps) {
     );
   } else {
     return (
-      <section id="w-03" className="h-[400px] font-['LINE']">
-        <div className="ml-[100px]">
+      <section id="w-03" className="h-[auto] pb-[20px]">
+        <div className="ml-[100px] mt-[30px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Products & Services</span>
         </div>
-        <div className="w-[920px] h-[337px] m-[0_auto] mt-[40px] flex flex-wrap">
+        <div className="w-[1080px] h-[auto] m-[0_auto] mt-[40px] flex flex-wrap">
           {products?.map((items: any) => {
             return (
               <div
                 key={items.products_and_services_element_id}
-                className="w-[226.88px] h-[298px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[36px] m-[0_auto] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
+                className="w-[280px] h-[320px] bg-[#fdfdfd] border border-solid border-[#ececec] rounded-[36px] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)] mx-[40px]"
               >
-                <div className="w-[196.88px] h-[259.81px] ml-[14px]">
+                <div className="w-[230px] h-[259.81px] ml-[20px]">
                   {items.image ? (
-                    <img src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
+                    <img src={items.image} alt="" className="w-[200px] h-[140px] mt-[16px] rounded-2xl ml-[20px]" />
                   ) : (
-                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px] rounded-2xl" />
+                    <img src="/productno.png" alt="" className="w-[200px] h-[140px] mt-[16px] rounded-2xl ml-[20px]" />
                   )}
-                  <span className="font-bold text-[20px]/[100%] mt-[16.88px] flex justify-center">{items.name}</span>
-                  <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
-                  <p className="font-normal text-[9.84px]/[170%] mt-[8.44px] flex justify-center">
+                  <span className="font-bold text-[20px]/[100%] mt-[26px] flex justify-center">{items.name}</span>
+                  <p className="font-bold text-[10.54px] text-center mt-[15px]">{items.title}</p>
+                  <p className="font-normal text-[9.84px] mt-[8.44px] flex justify-center text-center ">
                     {items.description}
                   </p>
                 </div>
@@ -345,24 +345,24 @@ export function TeamMember({ theme, data }: HeaderPageProps) {
   const teammembers = data.team_member_elements;
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[750px] font-[LINE]">
+      <section id="w-04" className="h-[auto] font-['LINE'] mt-[30px] mb-[60px]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">Meat the Team</span>
-          <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[10px] pl-[2px]">팀 소개</span>
         </div>
 
-        <div className="w-[703.12px] h-[337px] m-[0_auto] mt-[42.19px] flex flex-wrap">
+        <div className="w-[1200px] h-[auto] ml-[100px] mt-[42.19px] flex flex-wrap">
           {teammembers?.map((team: any) => {
             return (
-              <div key={team.team_member_element_id} className="w-[169px] h-[337px] ml-[5px]">
+              <div key={team.team_member_element_id} className="w-[220px] h-[337px] ml-[5px]">
                 {team.profile ? (
                   <img src={team.profile} alt="" className="w-[169px] h-[198px]" />
                 ) : (
                   <img src="/프로필.png" alt="" className="w-[169px] h-[198px]" />
                 )}
                 <div className="w-[169px] h-[337px] mt-[11.4px]">
-                  <span className="font-bold text-[11px]/[100%]">{team.name}</span>
-                  <p className="font-bold text-[10px]/[100%] text-[#797979]">
+                  <span className="font-bold text-[11px]/[100% mt-[5px]">{team.name}</span>
+                  <p className="font-bold text-[10px]/[100%] text-[#797979] mt-[10px]">
                     {team.group}/{team.position}
                   </p>
                   <p className="font-normal text-[9.84px]/[150%] mt-[8.44px]">{team.tagline}</p>
@@ -376,17 +376,17 @@ export function TeamMember({ theme, data }: HeaderPageProps) {
     );
   } else {
     return (
-      <section id="w-04" className="font-['LINE'] h-[795px] ">
-        <div className="ml-[100px] mt-[30px]">
+      <section id="w-04" className="font-['LINE'] h-[795px]">
+        <div className="ml-[100px] pt-[30px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Meat the Team</span>
-          <p className="text-[#000] text-[30px] mt-[30px] pl-[2px]">팀원들을 소개합니다.</p>
+          <p className="text-[#000] text-[30px] mt-[20px] pl-[2px] font-['Korail']">팀원들을 소개합니다.</p>
         </div>
 
-        <div className="w-[890px] h-[337px] m-[0_auto] mt-[25px] flex flex-wrap">
+        <div className="w-[1080px] h-[auto] m-[0_auto] mt-[25px] flex flex-wrap font-['Korail'] ">
           {teammembers.map((team: any) => (
             <div
               key={team.team_member_element_id}
-              className="w-[200px] h-[300px] ml-[20px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)]"
+              className="w-[250px] h-[300px] ml-[20px] mb-[15px] rounded-3xl bg-[#fff] shadow-[3.5px_9.4px_11.8px_0px__rgba(197,197,197,0.25)] text-center"
             >
               <div className="w-[130px] h-[130px] m-[0_auto] mt-[12px]">
                 {team.profile ? (
@@ -395,15 +395,13 @@ export function TeamMember({ theme, data }: HeaderPageProps) {
                   <img src="/프로필.png" alt="" className="w-[130px] h-[130px] rounded-[160px]" />
                 )}
               </div>
-              <div className="w-[190px] h-[337px] mt-[11.4px]">
-                <p className="font-bold text-[11px]/[100%] text-center mb-3">{team.name}</p>
-                <p className="w-[130px] font-bold text-[10px]/[100%] text-[#797979] text-center m-[0_auto]">
+              <div className="w-[250px] h-[337px] mt-[11.4px]">
+                <p className="font-bold text-[11px] text-center mb-3">{team.name}</p>
+                <p className="w-[200px] font-bold text-[10px] text-[#797979] text-center m-[0_auto]">
                   {team.group}/{team.position}
                 </p>
-                <p className="w-[100px] font-normal text-[9.84px]/[150%] mt-[8.44px] text-center m-[0_auto]">
-                  {team.tagline}
-                </p>
-                <p className="font-normal text-[9.84px]/[100%] mt-[14px] text-center">{team.email}</p>
+                <p className="w-[190px] font-normal text-[9.84px] mt-[8.44px] text-center m-[0_auto]">{team.tagline}</p>
+                <p className="font-normal text-[9.84px] mt-[14px] text-center">{team.email}</p>
               </div>
             </div>
           ))}
@@ -434,30 +432,32 @@ export function Press({ theme, data }: HeaderPageProps) {
 
   if (theme === 'ThemeA') {
     return (
-      <section id="w-06" className="h-[450px] font-['LINE']">
+      <section id="w-06" className="h-[auto] font-['LINE'] my-[30px]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">News Room</span>
-          <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">보도 자료</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+            보도 자료
+          </span>
         </div>
-        <div className="w-[709px] mt-[43px] m-[0_auto]">
+        <div className="w-[1200px] mt-[43px] ml-[100px]">
           {news.map((item: any) => {
             return (
               <div
                 key={item.news_element_id}
-                className="w-[709px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex"
+                className="w-[1190px] border-t-[1.4px] border-b-[1.4px] border-[#DFDFDF] flex"
               >
-                <div className="w-[55px] h-[55px] ml-[34px] mt-[20px] flex flex-col items-center justify-center">
+                <div className="w-[100px] h-[100px] ml-[34px] my-[10px] flex flex-col items-center justify-center">
                   <p className="text-[34px] font-bold text-[#4B48DF] text-center">3</p>
                   <div className="mt-[-12px]">
                     <span className="text-[10px] font-bold text-[#868686] pr-[5px]">Jul</span>
                     <span className="text-[10px] font-bold text-[#868686]">{item.date}</span>
                   </div>
                 </div>
-                <div className="w-[384px] ml-[39px] mt-[20px]">
+                <div className="w-[700px] ml-[39px] mt-[35px]">
                   <p className="text-[14px]/[110%] font-bold">{item.title}</p>
                   <p className="text-[11px]/[170%] text-[#868686] mt-[10px]">{item.description}</p>
                 </div>
-                <div className="w-[141px] h-[74px] ml-[39px] mt-[11.5px] mb-[14px]">
+                <div className="w-[160px] h-[80px] ml-[80px] pt-[6px]">
                   {item.image ? <img src={item.image} alt="" /> : <img src="/기사사진.png" alt="" />}
                 </div>
               </div>
@@ -468,19 +468,19 @@ export function Press({ theme, data }: HeaderPageProps) {
     );
   } else {
     return (
-      <section id="w-06" className="h-[540px] font-['LINE'] mt-[20px]">
+      <section id="w-06" className="h-[auto] mt-[20px]">
         <div className="ml-[100px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">News Room</span>
-          <p className="text-[#000] text-[35px] mt-[20px] pl-[2px]">새로운 소식</p>
+          <p className="text-[#000] text-[30px] mt-[20px] pl-[2px] font-['Korail']">새로운 소식</p>
         </div>
-        <div className="w-[820px] h-[337px] m-[0_auto] mt-[25px]">
+        <div className="w-[1080px] h-[auto] m-[0_auto] mt-[25px]">
           {news.map((item: any) => (
-            <div key={item.news_element_id} className="w-[820px] flex mb-[40px]">
+            <div key={item.news_element_id} className="w-[1080px] flex mb-[40px]">
               <div>
                 {item.image ? (
-                  <img src={item.image} className="w-[180px] h-[70px] rounded-[24px]" alt="" />
+                  <img src={item.image} className="w-[180px] h-[100px] rounded-[24px]" alt="" />
                 ) : (
-                  <img src="/기사사진.png" className="w-[180px] h-[70px] rounded-[24px]" alt="" />
+                  <img src="/기사사진.png" className="w-[180px] h-[100px] rounded-[24px]" alt="" />
                 )}
               </div>
               <div className="w-[820px] ml-[40px]">
@@ -551,7 +551,7 @@ export function Download({ theme, data, intro_page_id }: HeaderPageProps) {
         <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[750px]">{data.description}</div>
         <a href={data.media_kit_file} download target="_blank">
           <button
-            className="flex bg-GrayScaleNeutral-800 text-white pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[120px] mt-[35px] rounded-[80px] text-[12px]"
+            className="flex bg-GrayScaleNeutral-800 text-white pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[110px] mt-[35px] rounded-[80px] text-[12px]"
             onClick={() => {
               setType('MEDIAKIT');
               downloadDashboardMutation();
@@ -564,7 +564,7 @@ export function Download({ theme, data, intro_page_id }: HeaderPageProps) {
         </a>
         <a href={data.intro_file} download target="_blank">
           <button
-            className="flex bg-GrayScaleNeutral-800 text-white pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[35px] rounded-[80px] text-[12px]"
+            className="flex bg-GrayScaleNeutral-800 text-white pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[20px] mt-[35px] rounded-[80px] text-[12px]"
             onClick={() => {
               setType('INTROFILE');
               downloadDashboardMutation();
@@ -583,10 +583,10 @@ export function History({ theme, data }: HeaderPageProps) {
   const historys = data.history_elements;
   if (theme === 'ThemeA') {
     return (
-      <section id="w-08" className="h-[700px] font-['LINE'] pt-20">
+      <section id="w-08" className="h-[auto] font-['LINE'] my-[40px]">
         <div className="ml-[100px] flex items-center">
           <span className="mr-[9px] font-[700] text-[23px]">History</span>
-          <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">연혁</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">연혁</span>
         </div>
 
         <div className="mt-[15px] flex flex-col md:grid grid-cols-9 mx-auto p-2 text-GrayScalePrimary-800">
@@ -627,19 +627,19 @@ export function History({ theme, data }: HeaderPageProps) {
               )}
             </React.Fragment>
           ))}
-          <button className="w-[113px] h-[33px] border border-solid border-[#4B48DF] ml-[386px]">MORE (3/N)</button>
+          <button className="w-[113px] h-[33px] border border-solid border-[#4B48DF] ml-[580px]">MORE (3/N)</button>
         </div>
       </section>
     );
   } else {
     return (
-      <section id="w-08" className="h-[680px] font-['LINE']">
+      <section id="w-08" className="h-[auto]">
         <div className="ml-[40px]">
           <span className="mr-[9px] ml-[60px] font-[700] text-[23px] text-[#FFB800]">History</span>
-          <p className="text-[#000] ml-[57px] text-[34px] mt-[23px] pl-[2px]">질링스가 걸어온 길</p>
+          <p className="text-[#000] ml-[57px] text-[30px] mt-[20px] pl-[2px] font-['Korail']">질링스가 걸어온 길</p>
 
-          <div className="w-[860px] h-[481px] m-[0_auto] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[27px]">
-            <ul className="w-[720px] h-[400px] m-[0px_auto] pt-[40px]">
+          <div className="w-[1080px] h-[auto] m-[auto] rounded-[25px] shadow-[0px_0.7px_8.5px_0px__rgba(197,197,197,0.30)] mt-[30px] pb-[30px]">
+            <ul className="w-[800px] h-[400px] m-[0px_auto] pt-[40px]">
               {historys.map((item: any, i: any) => (
                 <li key={i} className="relative flex items-baseline gap-6 pb-8">
                   <div className="before:absolute before:left-[5.5px] before:h-full before:w-[2.5px] before:bg-review">
@@ -683,18 +683,20 @@ export function History({ theme, data }: HeaderPageProps) {
 export function Result({ theme, data }: HeaderPageProps) {
   if (theme === 'ThemeA') {
     return (
-      <section id="w-10" className="font-[LINE] h-[180px]">
+      <section id="w-10" className="font-['LINE'] h-[auto] my-[30px]">
         <div className="ml-[100px] flex items-center mt-[14px]">
           <span className="mr-[9px] font-[700] text-[23px]">Key Achievements</span>
-          <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">핵심 성과</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+            핵심 성과
+          </span>
         </div>
 
-        <div className="w-[704.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap">
+        <div className="w-[1200px] h-[150px] ml-[60px] mt-[42.19px] flex flex-wrap">
           {[1, 2, 3, 4].map((_, i) => (
-            <div className="w-[175px] h-[113px]" key={i}>
-              <p className="font-bold text-[32px]/[100%] text-primary-500 text-center mt-[15px]">100%</p>
-              <p className="text-[11px]/[100%] text-[#000] mt-[13px] text-center">초기 투자금 유치</p>
-              <p className="text-[8.84px]/[100%] mt-[8.44px] text-[#939393] text-center">성과 지표 부가 설명</p>
+            <div className="w-[300px] h-[113px]" key={i}>
+              <p className="font-bold text-[36px]/[100%] text-primary-500 text-center mt-[15px]">100%</p>
+              <p className="text-[20px]/[100%] text-[#000] mt-[20px] text-center">초기 투자금 유치</p>
+              <p className="text-[16px]/[100%] mt-[12px] text-[#939393] text-center">성과 지표 부가 설명</p>
             </div>
           ))}
         </div>
@@ -702,18 +704,18 @@ export function Result({ theme, data }: HeaderPageProps) {
     );
   } else {
     return (
-      <section id="w-10" className="h-[300px]">
+      <section id="w-10" className="h-[300px] mb-[40px]">
         <div className="ml-[100px] mt-[40px]">
           <span className="mr-[9px] font-[700] text-[23px] text-[#FFB800]">Key Achievements</span>
-          <p className="text-[#000] text-[30px] mt-[20px] pl-[2px]">우리는 성장하고 있습니다.</p>
+          <p className="text-[#000] text-[30px] mt-[20px] pl-[2px] font-['Korail']">우리는 성장하고 있습니다.</p>
         </div>
-        <div className="w-[865.12px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
+        <div className="w-[1080px] h-[114px] m-[0_auto] mt-[42.19px] flex flex-wrap space-x-5">
           {[1, 2, 3, 4].map((_, i) => (
             <div
-              className="w-[200px] h-[113px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)]"
+              className="w-[255px] h-[140px] rounded-2xl bg-[#fff] shadow-[0px_1px_12px_0px__rgba(197,197,197,0.3)]"
               key={i}
             >
-              <p className="font-bold text-[32px]/[100%] text-[#000] text-center mt-[15px]">7억원</p>
+              <p className="font-bold text-[32px]/[100%] text-[#000] text-center mt-[30px] font-['Korail']">7억원</p>
               <p className="font-bold text-[18px]/[100%] text-[#000] mt-[13px] text-center">초기 투자금 유치</p>
               <p className="text-[10px]/[120%] mt-[5px] text-[#000] text-center">
                 2018년 5개 투자사로부터 초기 투자 자금 유치
@@ -759,8 +761,8 @@ export function Channel({ theme, data }: HeaderPageProps) {
     );
   } else {
     return (
-      <section id="w-13" className="h-[200px] w-full relative mt bg-GrayScaleNeutral-100">
-        <div className="font-[700] text-[#FFB800] ml-[100px] pt-[20px] text-[23px]">SNS Channel</div>
+      <section id="w-13" className="h-[210px] w-full relative mt bg-GrayScaleNeutral-100 mt-[40px]">
+        <div className="font-[700] text-[#FFB800] ml-[100px] pt-[30px] text-[23px]">SNS Channel</div>
         <div className="flex mt-[30px] w-[calc(100%-200px)] ml-[100px] h-[50px] justify-center">
           {channelList.map((items, index) => {
             if (channelValues[index * 2 + 1]) {

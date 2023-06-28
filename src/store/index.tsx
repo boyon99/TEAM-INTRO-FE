@@ -17,52 +17,64 @@ const useStore = create<Store>((set) => ({
     {
       widget_id: 1,
       toggle: true,
+      order_list: 1,
     },
     {
       widget_id: 2,
       toggle: false,
+      order_list: 1,
     },
     {
       widget_id: 3,
       toggle: false,
+      order_list: 1,
     },
     {
       widget_id: 4,
       toggle: false,
+      order_list: 1,
     },
     {
       widget_id: 5,
       toggle: false,
+      order_list: 1,
     },
     {
       widget_id: 6,
       toggle: false,
+      order_list: 1,
     },
     {
       widget_id: 7,
       toggle: false,
+      order_list: 1,
     },
-    { widget_id: 8, toggle: false },
+    { widget_id: 8, toggle: false, order_list: 1 },
     {
       widget_id: 9,
       toggle: false,
+      order_list: 1,
     },
     {
       widget_id: 10,
       toggle: false,
+      order_list: 1,
     },
     {
       widget_id: 11,
       toggle: false,
+      order_list: 1,
     },
     {
       widget_id: 12,
       toggle: false,
+      order_list: 1,
     },
-    { widget_id: 13, toggle: false },
+    { widget_id: 13, toggle: false, order_list: 1 },
     {
       widget_id: 14,
       toggle: false,
+      order_list: 1,
     },
   ],
   setWidget: (arr) => {
