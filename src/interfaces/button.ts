@@ -10,4 +10,5 @@ export interface PrimaryButtonProps {
   classname: string; // className 속성 값 - 버튼의 크기를 조절하기 위해 사용
   inputType?: string; // input 태그의 type 속성 값
   [key: string]: any;
+  disabled?: boolean;
 }
