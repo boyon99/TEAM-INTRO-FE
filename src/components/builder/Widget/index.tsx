@@ -20,7 +20,7 @@ export function KeyVisual({ theme }: HeaderProps) {
         ></div>
         <span
           className={
-            "absolute w-[500px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
+            "absolute w-[600px] top-[120px] left-[100px] font-['LINE'] text-[36px] z-[11] font-[700] " +
             (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -28,7 +28,7 @@ export function KeyVisual({ theme }: HeaderProps) {
         </span>
         <span
           className={
-            "absolute w-[600px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[17px] z-[11] " +
+            "absolute w-[700px] top-[240px] left-[100px] font-['LINE'] font-[400] text-[17px] z-[11] " +
             (keyVisual.filter === 'BLACK' ? 'text-white' : 'text-black')
           }
         >
@@ -90,7 +90,7 @@ export function MissionVision({ theme }: HeaderProps) {
             />
             <div className="mt-[20px] black h-[auto] w-full">
               <p className="font-[700] text-[13px]">{missionVision.mission}</p>
-              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
+              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[7px]">
                 {missionVision.mission_detail}
               </p>
             </div>
@@ -110,7 +110,7 @@ export function MissionVision({ theme }: HeaderProps) {
             />
             <div className="mt-[20px] black h-[auto] w-full">
               <p className="font-[700] text-[13px]">{missionVision.vision}</p>
-              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[3px]">
+              <p className="font-[500] text-[12px] w-[auto] h-[70px] overflow-hidden mt-[7px]">
                 {missionVision.vision_detail}
               </p>
             </div>
@@ -226,8 +226,8 @@ export function Footer({ theme }: HeaderProps) {
             <div className="font-[300]">{companyInfo.contact_email}</div>
           </div>
         </div>
-        <div className="w-[240px] ml-[30px] mt-[30px] text-GrayScaleNeutral-400 mb-[25px] flex flex-col">
-          <div className="border w-[110px] pl-[13px] py-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px] mt-[20px]">
+        <div className="w-[240px] ml-[35px] mt-[30px] text-GrayScaleNeutral-400 mb-[25px] flex flex-col">
+          <div className="border w-[110px] pl-[13px] pt-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px] mt-[20px]">
             기업 상세 정보
           </div>
           {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
@@ -285,10 +285,10 @@ export function ProductService({ theme }: HeaderProps) {
 
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[402px] font-[LINE]">
+      <section id="w-04" className="h-[402px] font-['LINE'] mt-[30px]">
         <div className="ml-[110px] flex">
-          <span className="mr-[7px] font-[700] text-[20px]">Products & Services</span>
-          <span className="text-GrayScalePrimary-600 font-[400] text-[12px] w-[256px] mt-[8px] pl-[2px]">
+          <span className="mr-[7px] font-[700] text-[22px]">Products & Services</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[10px] w-[256px] mt-[14px] pl-[2px]">
             제품 소개
           </span>
         </div>
@@ -383,13 +383,13 @@ export function TeamMember({ theme }: HeaderProps) {
 
   if (theme === 'ThemeA') {
     return (
-      <section id="w-04" className="h-[750px] font-[LINE]">
-        <div className="ml-[100px] flex items-center">
-          <span className="mr-[9px] font-[700] text-[23px]">Meat the Team</span>
-          <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
+      <section id="w-04" className="h-[auto] font-['LINE'] mb-[20px]">
+        <div className="ml-[105px] flex items-center">
+          <span className="mr-[9px] font-[700] text-[22px]">Meat the Team</span>
+          <span className="text-GrayScalePrimary-600 font-[400] text-[10px] w-[256px] mt-[8px] pl-[2px]">팀 소개</span>
         </div>
 
-        <div className="w-[703.12px] h-[337px] m-[0_auto] mt-[42.19px] flex flex-wrap">
+        <div className="w-[703.12px] h-[auto] m-[0_auto] mt-[42.19px] flex flex-wrap">
           {teammembers?.map((team) => {
             return (
               <div key={team.team_member_element_id} className="w-[169px] h-[337px] ml-[5px]">
@@ -470,12 +470,12 @@ export function Press({ theme }: HeaderProps) {
 
   if (theme === 'ThemeA') {
     return (
-      <section id="w-06" className="h-[450px] font-[LINE]">
-        <div className="ml-[100px] flex items-center">
-          <span className="mr-[9px] font-[700] text-[23px]">News Room</span>
+      <section id="w-06" className="h-[auto] font-['LINE'] mb-[20px]">
+        <div className="ml-[105px] flex items-center">
+          <span className="mr-[9px] font-[700] text-[22px]">News Room</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">보도 자료</span>
         </div>
-        <div className="w-[709px] mt-[43px] m-[0_auto]">
+        <div className="w-[709px] mt-[43px] m-[0_auto] h-[auto]">
           {news.map((item) => {
             return (
               <div
@@ -571,9 +571,9 @@ export function History({ theme }: HeaderProps) {
   const { historys, setHistorys, historyimgurl, setHistoryImgurl } = useStore();
   if (theme === 'ThemeA') {
     return (
-      <section id="w-08" className="h-[700px] font-[LINE] pt-20">
-        <div className="ml-[100px] flex items-center">
-          <span className="mr-[9px] font-[700] text-[23px]">History</span>
+      <section id="w-08" className="h-[auto] font-['LINE'] pt-20 pb-[20px]">
+        <div className="ml-[105px] flex items-center">
+          <span className="mr-[9px] font-[700] text-[22px]">History</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">연혁</span>
         </div>
 
@@ -687,9 +687,9 @@ export function TeamCulture({ theme }: HeaderProps) {
 export function Result({ theme }: HeaderProps) {
   if (theme === 'ThemeA') {
     return (
-      <section id="w-10" className="font-[LINE] h-[180px]">
-        <div className="ml-[100px] flex items-center mt-[14px]">
-          <span className="mr-[9px] font-[700] text-[23px]">Key Achievements</span>
+      <section id="w-10" className="font-['LINE'] h-[180px] pt-[20px]">
+        <div className="ml-[105px] flex items-center mt-[14px]">
+          <span className="mr-[9px] font-[700] text-[22px]">Key Achievements</span>
           <span className="text-GrayScalePrimary-600 font-[400] text-[9px] w-[256px] mt-[8px] pl-[2px]">핵심 성과</span>
         </div>
 
@@ -776,8 +776,7 @@ export function Channel({ theme }: HeaderProps) {
             if (channelValues[index * 2]) {
               return (
                 <div className="flex flex-row mr-[4px]" key={index}>
-                  <img src={items.img} className="w-[50px] h-[50px]" />
-                  <span className="text-[10px] mt-[30px]">{channelValues[index * 2 + 1]}</span>
+                  <img src={items.img} className="w-[60px] h-[60px]" />
                 </div>
               );
             } else {
