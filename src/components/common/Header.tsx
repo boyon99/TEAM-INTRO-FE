@@ -1,6 +1,6 @@
 import useUser from '@/hooks/useUser';
 import Image from 'next/image';
-import ExclamationCircle from './icons/ExclamationCircle';
+import ExclamationTriangle from './icons/ExclamationTriangle';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -17,7 +17,7 @@ export default function Header() {
         <div className="w-12 h-12 rounded-full bg-GrayScaleNeutral-300 animate-pulse"></div>
       ) : isError ? (
         <div className="relative">
-          <ExclamationCircle className="text-error-500 w-9 h-9" setIsHovered={setIsHovered} />
+          <ExclamationTriangle className="text-error-500 w-9 h-9" setIsHovered={setIsHovered} />
           {isHovered && (
             <p className="bg-GrayScaleNeutral-100 rounded-sm z-10 shadow-md text-error-500 font-bold absolute w-24 text-sm p-2 text-center right-0">
               프로필 이미지 불러오기 실패
