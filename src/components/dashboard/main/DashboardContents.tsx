@@ -1,6 +1,7 @@
 import Title from '../Title';
 import TodayCounts from './TodayCounts';
 import WeeklyCounts from './WeeklyCounts';
+import { DashboardData } from '@/interfaces/dashboard';
 
 export default function DashboardContents({ data }: { data: DashboardData }) {
   return (

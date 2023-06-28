@@ -1,4 +1,6 @@
-interface popup {
+import { Inquiry } from './dashboard';
+
+export interface popup {
   text: string;
   cancle: string;
   confirm: string;
@@ -6,6 +8,6 @@ interface popup {
   onClick: () => void;
 }
 
-interface DetailModalProps extends Inquiry {
+export interface DetailModalProps extends Inquiry {
   closeModal: () => void;
 }

@@ -1,3 +1,4 @@
+import { DashboardData } from '@/interfaces/dashboard';
 import Count from './Count';
 import { format } from 'date-fns';
 
