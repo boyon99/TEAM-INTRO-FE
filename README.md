@@ -4,8 +4,8 @@
 
 |                                              이어진(조장)                                               |                                          김응열                                           |                                            신환수                                            |                                                      
 | :-----------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: | 
-|          <img src="https://avatars.githubusercontent.com/u/64579380?v=4" style="zoom: 20%;" />          |  <img src="https://avatars.githubusercontent.com/u/98297436?v=4" style="zoom: 20%;" />   |    <img src="https://avatars.githubusercontent.com/u/69514169?v=4" style="zoom: 20%;" />                  |
-|                                  [boyon99](https://github.com/boyon99)                                  |                         [whansoo](https://github.com/whansoo)                         |                        [Valentin1495](https://github.com/Valentin1495)                    |       
+|          <img src="https://avatars.githubusercontent.com/u/64579380?v=4" style="zoom: 20%;" />          |  <img src="https://avatars.githubusercontent.com/u/69514169?v=4" style="zoom: 20%;" />   |    <img src="https://avatars.githubusercontent.com/u/98297436?v=4" style="zoom: 20%;" />                  |
+|                                  [boyon99](https://github.com/boyon99)                                  |                                    [Valentin1495](https://github.com/Valentin1495)            |                           [whansoo](https://github.com/whansoo)                   |       
 | \- 배포 및 서브도메인 <br /> - 빌더 공통 컴포넌트 <br /> - 빌더 위젯 컴포넌트 <br /> - 회사소개 페이지 | - 대시보드 페이지 | -로그인 및 회원가입 페이지 <br /> - 빌더 위젯 컴포넌트 <br /> - 마이페이지 <br /> - 회사 소개 페이지 |
 ---
 
