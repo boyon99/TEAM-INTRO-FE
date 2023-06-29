@@ -20,7 +20,10 @@ export default function CompanyPreview() {
           ) : isError ? (
             <span className="text-error-500 font-bold text-sm my-2">서브도메인 조회 실패</span>
           ) : sub_domain ? (
-            <Link href={'/'} className="text-base text-[#121115] flex items-center space-x-3">
+            <a
+              href={`https://${sub_domain}.intro-fe.shop`}
+              className="text-base text-[#121115] flex items-center space-x-3"
+            >
               <span className="underline">{sub_domain}</span>
               <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_1376_6202" maskUnits="userSpaceOnUse" x="0" y="0" width="21" height="20">
@@ -33,7 +36,7 @@ export default function CompanyPreview() {
                   />
                 </g>
               </svg>
-            </Link>
+            </a>
           ) : (
             <p className="text-sm my-1.5">서브도메인을 생성하세요</p>
           )}
