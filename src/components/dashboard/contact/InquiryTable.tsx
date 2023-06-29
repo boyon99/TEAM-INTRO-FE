@@ -103,8 +103,22 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
         <div className="min-h-[626px] border border-GrayScalePrimary-150 bg-white rounded-xl mt-5">
           <div className="flex items-center justify-between pl-9 pr-5 h-[58px] border-b border-b-GrayScalePrimary-200">
             <section className="text-[15px] text-GrayScalePrimary-600 space-x-[23px]">
-              {convertedPath === 'UNCONFIRMED' && <button onClick={confirmRows}>읽음으로 변경</button>}
-              <button onClick={cancelRows}>삭제</button>
+              {convertedPath === 'UNCONFIRMED' && (
+                <button
+                  onClick={confirmRows}
+                  disabled={checkedRows.length === 0}
+                  className="disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  읽음으로 변경
+                </button>
+              )}
+              <button
+                onClick={cancelRows}
+                disabled={checkedRows.length === 0}
+                className="disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                삭제
+              </button>
             </section>
             <section>
               <ActiveLink
@@ -198,6 +212,7 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
               createPortal(<DetailModal closeModal={closeDetailModal} {...selectedRow} />, document.body)}
             {showDeleteModal &&
               canceledRowsIdList &&
+              checkedRows.length &&
               createPortal(
                 <ConfirmModal
                   action="CANCEL"
@@ -211,6 +226,7 @@ export default function InquiryTable({ data, page, setPage, isFetching, isPrevio
               )}
             {showConfirmModal &&
               confirmedRowsIdList &&
+              checkedRows.length &&
               createPortal(
                 <ConfirmModal
                   action="CONFIRM"

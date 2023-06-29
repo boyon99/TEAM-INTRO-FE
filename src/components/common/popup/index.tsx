@@ -177,7 +177,8 @@ export function ExcelDownloadModal({ status, handleClick, closeModal }: ExcelDow
             text={isLoading ? '처리 중...' : '확인'}
             type="primary"
             onClick={mutate}
-            classname="w-32 h-12 rounded-lg text-xl font-bold"
+            disabled={isLoading}
+            classname="disabled:cursor-not-allowed disabled:opacity-50 w-32 h-12 rounded-lg text-xl font-bold"
           />
         </section>
       </div>

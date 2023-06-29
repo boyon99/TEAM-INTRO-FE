@@ -14,7 +14,7 @@ export default function Header() {
       <Image src="/zlllinks.png" alt="emblem1" width={150} height={52.5} className="ml-5 mt-[10px]" />
 
       {isLoading ? (
-        <div className="w-12 h-12 rounded-full bg-GrayScaleNeutral-300 animate-pulse"></div>
+        <div className="w-12 h-12 rounded-full bg-GrayScaleNeutral-200 animate-pulse"></div>
       ) : isError ? (
         <div className="relative">
           <ExclamationTriangle className="text-error-500 w-9 h-9" setIsHovered={setIsHovered} />
