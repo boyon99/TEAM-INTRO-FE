@@ -1,4 +1,4 @@
-interface DashboardData {
+export interface DashboardData {
   contact_us_log: number[];
   download_log: number[];
   sharing: number[];
@@ -8,7 +8,7 @@ interface DashboardData {
   };
 }
 
-interface Inquiry {
+export interface Inquiry {
   contact_us_log_id: number;
   email: string;
   name: string;
@@ -16,4 +16,23 @@ interface Inquiry {
   type: string;
   date: string;
   selected?: boolean;
+}
+
+export interface ContactUs {
+  status: string;
+  page: number;
+}
+
+export interface ContactData {
+  content: Inquiry[];
+  total_page: number;
+  has_next: boolean;
+}
+
+export interface ChangeContactStatus {
+  idList: number[];
+  action: string;
+  status: string;
+  page: number;
+  closeModal: () => void;
 }

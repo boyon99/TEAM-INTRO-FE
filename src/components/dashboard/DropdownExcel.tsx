@@ -29,7 +29,8 @@ export default function DropdownExcel({ dropdownItems, data, history }: Dropdown
         classname="font-bold text-base w-32 h-10 mr-6 absolute right-0 top-1/2 -translate-y-1/2"
         onClick={openModal}
       />
-      {showModal && createPortal(<ExcelDownloadModal handleClick={closeModal} />, document.body)}
+      {showModal &&
+        createPortal(<ExcelDownloadModal status="" closeModal={() => {}} handleClick={closeModal} />, document.body)}
     </section>
   );
 }

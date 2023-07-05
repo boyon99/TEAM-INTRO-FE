@@ -19,8 +19,6 @@ interface EnterForm {
   bizNum: string;
   code: string;
   image: FileList;
-  // profile: string;
-  // marketing: boolean;
 }
 function RePass() {
   const [emailmesaage, setEmailMessage] = useState('')

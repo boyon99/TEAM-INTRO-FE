@@ -24,7 +24,7 @@ export default function Dashboard() {
         )}
         {isError && errStatus !== 400 && (
           <p className="text-error-500 font-bold text-2xl h-[calc(100vh-75px)] w-full flex items-center justify-center">
-            대시보드 조회 실패
+            대시보드 불러오기 실패
           </p>
         )}
         {errStatus === 400 && <LandingPage />}

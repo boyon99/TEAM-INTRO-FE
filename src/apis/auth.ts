@@ -103,6 +103,12 @@ export const user = async () => {
   const response = data.data;
   return response;
 };
+
+export const getUser = async () => {
+  const { data } = await axiosInstance().get('/api/s/user');
+
+  return data;
+};
 // 유저 기본정보 수정
 export const usermodify = async (user: UserModify) => {
   const { data } = await axiosInstance().put<any>('/api/s/user', user);
