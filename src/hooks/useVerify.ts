@@ -1,6 +1,7 @@
-import { user } from "@/apis/auth";
-import { getCookie } from "@/utils/cookies";
-import { useQuery } from "@tanstack/react-query";
+import { refresh, user } from "@/apis/auth";
+import { getCookie, setCookie } from "@/utils/cookies";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -20,6 +21,7 @@ export function useUser() {
     enabled: !!token , // 토큰이 있을 때만 verify
   }) // 쿠키가 없으면 undefined 라서, boolean 타입으로 변환하기 위해 !! 사용
 
+ 
   return isAuthenticated // 인증 여부 값을 리턴해서 사용
 }
 
