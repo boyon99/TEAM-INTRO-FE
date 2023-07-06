@@ -4,7 +4,6 @@ import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 const getAxiosInstance = (option?: { multi?: boolean }) => {
   const config: AxiosRequestConfig = {
     // 타입 지정
-    // baseURL: 'http://43.201.194.212:8080',
     baseURL: '/',
     headers: {
       'Content-type': 'application/json',
