@@ -7,8 +7,10 @@ import { cls } from '@/utils/utile';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import Image from 'next/image'
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { setTimeout } from 'timers';
 
 interface EnterForm {
   password: string;
@@ -40,7 +42,7 @@ function RePass() {
     const newpass = watch('new_password')
     const newpasscon = watch('new_passwordConfirm')
     const code = watch('code')
-    
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -75,7 +77,10 @@ function RePass() {
       onSuccess: (data) => {
         setSignMessage('성공적으로 저장 되었습니다.')
         openModal()
-       
+        setTimeout(() => {
+          router.replace('/dashboard/main')
+        }, 2000)
+          
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
@@ -136,6 +141,7 @@ function RePass() {
       onSuccess: (data) => {
        
        alert('비밀번호가 변경되었습니다')
+    
       },
       onError: (err: AxiosError) => { 
        
