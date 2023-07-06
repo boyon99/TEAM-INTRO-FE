@@ -32,7 +32,7 @@ function RePass() {
 
   const login_id = data?.login_id
   const biz_num = data?.biz_num
-  console.log(data)
+  
   const [method, setMethod] = useState<"info" | "pass">("info");
     const { register, handleSubmit, watch, reset, getValues, formState: { errors } } = useForm<EnterForm>();
     const email = watch('email')
@@ -75,12 +75,12 @@ function RePass() {
       onSuccess: (data) => {
         setSignMessage('성공적으로 저장 되었습니다.')
         openModal()
-       console.log(data)
+       
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
-        console.log(data.value)
+        
       },
     })
     const { mutate: checkemailmutate, isLoading: emailLoading, error: checkemailerror } = useMutation(emailcheck, {
@@ -88,13 +88,13 @@ function RePass() {
         setEmailMessage('메일이 발송되었습니다.')
         setEmailData(data)
         openModal()
-       console.log(data)
+       
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
    
-        console.log(data.value)
+        
       },
     })
     const { mutate: checkconfirmmutate, error: checkconfirmerror } = useMutation(emailconfirm, {
@@ -102,13 +102,13 @@ function RePass() {
         setConFirmMessage('인증되었습니다.')
         setConFirmdata(data)
         openModal()
-       console.log(data)
+       
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
         setConFirmErrMessage(data.value)
-        console.log(data.value)
+        
       },
     })
     const checkemailonClick = () => {
@@ -134,11 +134,11 @@ function RePass() {
 
     const { mutate, error } = useMutation(repass, {
       onSuccess: (data) => {
-       console.log(data)
+       
        alert('비밀번호가 변경되었습니다')
       },
       onError: (err: AxiosError) => { 
-        console.log(err)
+       
       },
     })
     // 비밀번호 재설정
@@ -153,7 +153,7 @@ function RePass() {
     const token = getCookie('access_token')
     const onValids = async (data:EnterForm) => {
       const image = watch('image')
-      console.log(data)
+      
       const form = new FormData();
       form.append("image", data.image[0])    
       form.append("name", `${image}`);
@@ -166,9 +166,9 @@ function RePass() {
         },
       })
       
-      console.log(response.data.data.upload_path)
+      
       const avatar = response.data.data.upload_path;
-      console.log(avatar)
+     
       const user = {
         email: data.email,
         profile: avatar,
@@ -179,7 +179,7 @@ function RePass() {
         usermutate(user)
       }
     } catch (error) {
-      console.log(error);
+      
     }
   }
   // 회원 탈퇴
