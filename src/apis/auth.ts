@@ -226,3 +226,8 @@ export const accesstoken = async (user: LoginRequest) => {
   console.log(response);
   return response;
 };
+
+export const refresh = async (rememberme: boolean) => {
+  const { data } = await axiosInstance().post<any>('/api/accessToken', rememberme)
+  return data
+}
