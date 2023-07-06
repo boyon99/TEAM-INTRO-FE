@@ -230,31 +230,32 @@ function RePass() {
 
  <form onSubmit={handleSubmit(onValid)} className='w-[500px] h-[70px] m-[0_auto]'>
   
-    <div className='w-[500px] h-[70px] mb-[20px] mt-[104px]'>
+    <div className='w-[500px] h-[70px] mt-[104px] text-right'>
             <Input register={register('password',
-                // {
-                //     required: "Email is required",
-                //     pattern: {
-                //     value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                //     message: "이메일 형식이 아닙니다.",
-                //     },
-                // }
+            {
+                required: '비밀번호는 필수 입력 항목입니다.',
+                pattern: {
+                  value: /^(?=.*[A-Za-z0-9])(?=.*[@!#$%^&+=])(?!.*\s).{10,}$/,
+                  message: '10자 이상의 영문, 숫자, 특수문자 조합을 입력해주세요.',
+                },
+            }
                 )} name="old_repass" label="기존 비밀번호*" type="password" size="large" placeholder='기존 비밀번호를 입력하세요.'/>
                 
+    <span className="text-[13px]/[100%] font-normal text-[#4264da]">{errors.password?.message as string}</span>
     </div> 
-    <div className='w-[500px] mb-[20px] mt-[38px]'>
+    <div className='w-[500px] mb-[20px] mt-[38px] text-right'>
             <Input register={register('new_password',
-                {
-                    required: "Email is required",
-                    // pattern: {
-                    // value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                    // message: "이메일 형식이 아닙니다.",
-                    // },
-                }
+             {
+              required: '새로운 비밀번호는 필수 입력 항목입니다.',
+              pattern: {
+                value: /^(?=.*[A-Za-z0-9])(?=.*[@!#$%^&+=])(?!.*\s).{10,}$/,
+                message: '10자 이상의 영문, 숫자, 특수문자 조합을 입력해주세요.',
+              },
+          }
                 )} name="repass" label="새 비밀번호*" type="password" size="large" placeholder='새 비밀번호를 입력하세요.'/>
-                
+        <span className="text-[13px]/[100%] font-normal text-[#4264da]">{errors.new_password?.message as string}</span>
     </div> 
-    <div className='w-[500px] h-[66px]'>
+    <div className='w-[500px] h-[66px] text-right'>
             <Input register={register('new_passwordConfirm', {
                         required: '비밀번호 확인은 필수 입력 항목입니다.',
                         validate: {
@@ -267,14 +268,14 @@ function RePass() {
                       }
               
                 )} name="repass_check" label="새 비밀번호 확인*" type="password" size="large" placeholder='새 비밀번호를 다시 입력해주세요.'/>
-                
+        <span className="text-[13px]/[100%] font-normal text-[#4264da]">{errors.new_passwordConfirm?.message as string}</span>
     </div> 
     <div className='ml-[160px] mt-[62px]'>
       {oldpass && newpass && newpasscon ?
          <Button disable={true} text="비밀번호 변경" size="xlarge"/> : <Button disable={false} text="비밀번호 변경" size="xlarge"/>
        }
     </div>
-    {errors.new_passwordConfirm?.message as string}
+    {/* {errors.new_passwordConfirm?.message as string} */}
  </form>
  </div>:
  <>
