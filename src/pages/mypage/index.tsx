@@ -319,7 +319,7 @@ function RePass() {
  <div className='w-[500px] h-[153px] flex mt-[25px]'>
     <span className='w-[138px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800'>프로필 이미지</span>
        <label className="w-[356px] ml-[4px] cursor-pointer border-[#CFCED7] flex items-center justify-center border-2 border-solid rounded-[4px]">
-    {avatarPreview? <img src={avatarPreview} alt='profile'/> : <svg
+    {avatarPreview? <img src={avatarPreview} className='w-[350px] h-[147px]' alt='profile'/> : <svg
            className="h-12 w-12"
            stroke="currentColor"
            fill="none"
