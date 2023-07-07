@@ -35,12 +35,10 @@ function FindPass() {
 
     const { mutate, isLoading,error } = useMutation(findpass, {
       onSuccess: (data) => {
-       console.log(data)
        setemailmessage('메일이 발송되었습니다.')
        openModal()
       },
       onError: (err: AxiosError) => { 
-        console.log(err)
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
         setemailmessage(data.value)

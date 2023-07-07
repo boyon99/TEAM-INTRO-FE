@@ -44,7 +44,6 @@ function FindId() {
           setData(data)
         },
         onError: (err: AxiosError) => { 
-          console.log(err)
           setemailmessage('가입된 아이디/이메일 정보가 없습니다')
            openModal()
         },
@@ -55,7 +54,7 @@ function FindId() {
           setBzdata(data)
         },
         onError: (err: AxiosError) => { 
-          console.log(err)
+          
         },
       })
      
