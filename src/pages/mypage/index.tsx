@@ -189,6 +189,7 @@ function RePass() {
     }
   }
   // 회원 탈퇴
+  const deletetoken = getCookie('access_token')
   const { mutate: deletemutate } = useMutation(deleteuser, {
     onSuccess: (data) => {
      console.log(data)
@@ -198,7 +199,7 @@ function RePass() {
     },
   })
   const userDeleteClick = () => {
-    deletemutate()
+    deletemutate(deletetoken)
   }
   return (
     <div>
@@ -351,7 +352,7 @@ function RePass() {
  <div className='ml-[160px] mt-[32px]'>
 {avatarPreview?<Button disable={true} text="저장하기" size="xlarge"/>:<Button disable={false} text="저장하기" size="xlarge"/>}
 </div>
-   <button onClick={userDeleteClick} type='button' className='ml-[220px] mt-[32px] text-[#DF4848] text-[18px]'>회원 탈퇴</button>
+   <button onClick={userDeleteClick} type="button" className='ml-[220px] mt-[32px] text-[#DF4848] text-[18px]'>회원 탈퇴</button>
 
 </form></div>: ""}</>
   

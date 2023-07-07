@@ -106,8 +106,10 @@ export const usermodify = async (user: UserModify) => {
   return response;
 };
 // 유저 회원 탈퇴
-export const deleteuser = async () => {
-  const { data } = await axiosInstance().delete<any>('/api/s/user');
+export const deleteuser = async (deletetoken: string) => {
+  const { data } = await axiosInstance().delete<any>('/api/s/user', {
+    data: deletetoken,
+  });
   const response = data.data;
   return response;
 };
