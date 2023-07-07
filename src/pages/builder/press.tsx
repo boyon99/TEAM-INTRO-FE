@@ -35,17 +35,17 @@ function PressView() {
   //  배열 리스트 삭제/위치 이동시 체크박스 그대로 유지
 const [selectedItems, setSelectedItems] = useState<any[]>([]);
   
-console.log(selectedItems)
+
 
 // 보도자료 삭제 요청api
 const { mutate: deletemutate} = useMutation(newsdelete, {
   onSuccess: (data) => {
-   console.log(data)
+   
   },
   onError: (err: AxiosError) => { 
     const Eresponse = err.response?.data
     const { data }: any = Eresponse
-    console.log(data.value)
+   
   },
 })
 const handleCheckboxChange = (productId: any) => {
@@ -63,7 +63,7 @@ const deleteSelectedItems = () => {
     delete_list:selectedItems.filter((item) => item !== undefined) as number[]
   }
   ;
-  console.log(filteredArray)
+ 
   deletemutate(filteredArray)
   setNews(updatedProducts);
   setSelectedItems([]);
@@ -156,13 +156,13 @@ function PressAdd() {
     // 보도자료 추가하기 api 요청
   const { mutate: newsmutate, isLoading: userLoading, error: usererror } = useMutation(newsadd, {
     onSuccess: (data) => {
-      console.log(data)
+      
       setNewsAdd(false) // 저장하기가 성공하면 뒤로가기
     },
     onError: (err: AxiosError) => { 
       const Eresponse = err.response?.data
       const { data }: any = Eresponse
-      console.log(data.value)
+      
     },
   })
  
@@ -177,7 +177,7 @@ function PressAdd() {
       press: press,
       image: image,
     }
-    console.log(user)
+   
     newsmutate(user)
 }
 

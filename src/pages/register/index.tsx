@@ -57,7 +57,7 @@ function Legister() {
   useEffect(() => {
    
     const areAllChecked = Object.values(checkboxes).every((value) => value === true);
-    console.log(areAllChecked)
+    
     setEnabled(areAllChecked)
   }, [checkboxes]);
 
@@ -87,16 +87,16 @@ function Legister() {
         setSignupmessage('회원가입이 완료되셨습니다!')
         openModal()
         router.replace('login')
-       console.log(data)
+      
       },
       onError: (err: AxiosError) => { 
-        console.log(err)
+        
       },
     })
     const { mutate: checkidmutate, error: checkiderror } = useMutation(checkid, {
       onSuccess: (data) => {
         setIdmessage('사용 가능한 아이디입니다.')
-       console.log(data)
+       
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
@@ -111,7 +111,7 @@ function Legister() {
     const { mutate: checknummutate, error: checknumerror } = useMutation(checknum, {
       onSuccess: (data) => {
         setNummessage(data)
-       console.log(data)
+       
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
@@ -121,7 +121,7 @@ function Legister() {
 
           openModal()
         }
-        console.log(data.value)
+        
       },
     })
     const { mutate: checkemailmutate, isLoading: emailLoading, error: checkemailerror } = useMutation(emailcheck, {
@@ -129,13 +129,13 @@ function Legister() {
         setemailmessage(data)
         setemaildata('메일이 발송되었습니다.')
         openModal()
-       console.log(data)
+       
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
    
-        console.log(data.value)
+        
       },
     })
     const { mutate: checkconfirmmutate, error: checkconfirmerror } = useMutation(emailconfirm, {
@@ -143,13 +143,13 @@ function Legister() {
         setconfirmmessage(data)
         setConFirmdata('인증되었습니다.')
         openModal()
-       console.log(data)
+       
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
         setconfirmerrmessage(data.value)
-        console.log(data.value)
+        
       },
     })
    

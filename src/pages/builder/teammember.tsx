@@ -40,16 +40,16 @@ function TeamMemberView() {
       },
     ]);
   };
-  console.log(teammembers);
+ 
   //  배열 리스트 삭제/위치 이동시 체크박스 그대로 유지
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
-  console.log(selectedItems);
+ 
 
   // 팀 멤버 삭제 요청api
   const { mutate: deletemutate } = useMutation(teamdelete, {
     onSuccess: (data) => {
-      console.log(data);
+      
     },
     onError: (err: AxiosError) => {
       const Eresponse = err.response?.data;
@@ -69,7 +69,7 @@ function TeamMemberView() {
     const filteredArray: TeamDelete = {
       delete_list: selectedItems.filter((item) => item !== undefined) as number[],
     };
-    console.log(filteredArray);
+    
     deletemutate(filteredArray);
     setTeamMember(updatedProducts);
     setSelectedItems([]);
@@ -164,13 +164,13 @@ function TeamMemberAdd() {
     error: usererror,
   } = useMutation(teamadd, {
     onSuccess: (data) => {
-      console.log(data);
+      
       setTeamAdd(false); // 저장하기가 성공하면 뒤로가기
     },
     onError: (err: AxiosError) => {
       const Eresponse = err.response?.data;
       const { data }: any = Eresponse;
-      console.log(data.value);
+      
     },
   });
 
@@ -178,7 +178,7 @@ function TeamMemberAdd() {
   const token = getCookie('access_token');
   const onValid = async (data: any) => {
     const image = watch('profile');
-    console.log(data);
+   
     const form = new FormData();
     form.append('image', data.profile[0]);
     form.append('name', `${image}`);
@@ -192,7 +192,7 @@ function TeamMemberAdd() {
       });
 
       const avatar = response.data.data.upload_path;
-      console.log(avatar);
+      
       const user = {
         name: data.name,
         group: data.group,

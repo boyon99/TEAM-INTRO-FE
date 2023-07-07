@@ -7,8 +7,10 @@ import { cls } from '@/utils/utile';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import Image from 'next/image'
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { setTimeout } from 'timers';
 
 interface EnterForm {
   password: string;
@@ -32,7 +34,7 @@ function RePass() {
 
   const login_id = data?.login_id
   const biz_num = data?.biz_num
-  console.log(data)
+  
   const [method, setMethod] = useState<"info" | "pass">("info");
     const { register, handleSubmit, watch, reset, getValues, formState: { errors } } = useForm<EnterForm>();
     const email = watch('email')
@@ -40,7 +42,7 @@ function RePass() {
     const newpass = watch('new_password')
     const newpasscon = watch('new_passwordConfirm')
     const code = watch('code')
-    
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -75,12 +77,15 @@ function RePass() {
       onSuccess: (data) => {
         setSignMessage('성공적으로 저장 되었습니다.')
         openModal()
-       console.log(data)
+        setTimeout(() => {
+          router.replace('/dashboard/main')
+        }, 2000)
+          
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
-        console.log(data.value)
+        
       },
     })
     const { mutate: checkemailmutate, isLoading: emailLoading, error: checkemailerror } = useMutation(emailcheck, {
@@ -88,13 +93,13 @@ function RePass() {
         setEmailMessage('메일이 발송되었습니다.')
         setEmailData(data)
         openModal()
-       console.log(data)
+       
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
    
-        console.log(data.value)
+        
       },
     })
     const { mutate: checkconfirmmutate, error: checkconfirmerror } = useMutation(emailconfirm, {
@@ -102,13 +107,13 @@ function RePass() {
         setConFirmMessage('인증되었습니다.')
         setConFirmdata(data)
         openModal()
-       console.log(data)
+       
       },
       onError: (err: AxiosError) => { 
         const Eresponse = err.response?.data
         const { data }: any = Eresponse
         setConFirmErrMessage(data.value)
-        console.log(data.value)
+        
       },
     })
     const checkemailonClick = () => {
@@ -134,11 +139,12 @@ function RePass() {
 
     const { mutate, error } = useMutation(repass, {
       onSuccess: (data) => {
-       console.log(data)
+       
        alert('비밀번호가 변경되었습니다')
+    
       },
       onError: (err: AxiosError) => { 
-        console.log(err)
+       
       },
     })
     // 비밀번호 재설정
@@ -153,7 +159,7 @@ function RePass() {
     const token = getCookie('access_token')
     const onValids = async (data:EnterForm) => {
       const image = watch('image')
-      console.log(data)
+      
       const form = new FormData();
       form.append("image", data.image[0])    
       form.append("name", `${image}`);
@@ -166,9 +172,9 @@ function RePass() {
         },
       })
       
-      console.log(response.data.data.upload_path)
+      
       const avatar = response.data.data.upload_path;
-      console.log(avatar)
+     
       const user = {
         email: data.email,
         profile: avatar,
@@ -179,10 +185,11 @@ function RePass() {
         usermutate(user)
       }
     } catch (error) {
-      console.log(error);
+      
     }
   }
   // 회원 탈퇴
+  const deletetoken = getCookie('access_token')
   const { mutate: deletemutate } = useMutation(deleteuser, {
     onSuccess: (data) => {
      console.log(data)
@@ -192,7 +199,7 @@ function RePass() {
     },
   })
   const userDeleteClick = () => {
-    deletemutate()
+    deletemutate(deletetoken)
   }
   return (
     <div>
@@ -230,31 +237,32 @@ function RePass() {
 
  <form onSubmit={handleSubmit(onValid)} className='w-[500px] h-[70px] m-[0_auto]'>
   
-    <div className='w-[500px] h-[70px] mb-[20px] mt-[104px]'>
+    <div className='w-[500px] h-[70px] mt-[104px] text-right'>
             <Input register={register('password',
-                // {
-                //     required: "Email is required",
-                //     pattern: {
-                //     value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                //     message: "이메일 형식이 아닙니다.",
-                //     },
-                // }
+            {
+                required: '비밀번호는 필수 입력 항목입니다.',
+                pattern: {
+                  value: /^(?=.*[A-Za-z0-9])(?=.*[@!#$%^&+=])(?!.*\s).{10,}$/,
+                  message: '10자 이상의 영문, 숫자, 특수문자 조합을 입력해주세요.',
+                },
+            }
                 )} name="old_repass" label="기존 비밀번호*" type="password" size="large" placeholder='기존 비밀번호를 입력하세요.'/>
                 
+    <span className="text-[13px]/[100%] font-normal text-[#4264da]">{errors.password?.message as string}</span>
     </div> 
-    <div className='w-[500px] mb-[20px] mt-[38px]'>
+    <div className='w-[500px] mb-[20px] mt-[38px] text-right'>
             <Input register={register('new_password',
-                {
-                    required: "Email is required",
-                    // pattern: {
-                    // value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                    // message: "이메일 형식이 아닙니다.",
-                    // },
-                }
+             {
+              required: '새로운 비밀번호는 필수 입력 항목입니다.',
+              pattern: {
+                value: /^(?=.*[A-Za-z0-9])(?=.*[@!#$%^&+=])(?!.*\s).{10,}$/,
+                message: '10자 이상의 영문, 숫자, 특수문자 조합을 입력해주세요.',
+              },
+          }
                 )} name="repass" label="새 비밀번호*" type="password" size="large" placeholder='새 비밀번호를 입력하세요.'/>
-                
+        <span className="text-[13px]/[100%] font-normal text-[#4264da]">{errors.new_password?.message as string}</span>
     </div> 
-    <div className='w-[500px] h-[66px]'>
+    <div className='w-[500px] h-[66px] text-right'>
             <Input register={register('new_passwordConfirm', {
                         required: '비밀번호 확인은 필수 입력 항목입니다.',
                         validate: {
@@ -267,14 +275,14 @@ function RePass() {
                       }
               
                 )} name="repass_check" label="새 비밀번호 확인*" type="password" size="large" placeholder='새 비밀번호를 다시 입력해주세요.'/>
-                
+        <span className="text-[13px]/[100%] font-normal text-[#4264da]">{errors.new_passwordConfirm?.message as string}</span>
     </div> 
     <div className='ml-[160px] mt-[62px]'>
       {oldpass && newpass && newpasscon ?
          <Button disable={true} text="비밀번호 변경" size="xlarge"/> : <Button disable={false} text="비밀번호 변경" size="xlarge"/>
        }
     </div>
-    {errors.new_passwordConfirm?.message as string}
+    {/* {errors.new_passwordConfirm?.message as string} */}
  </form>
  </div>:
  <>
@@ -319,7 +327,7 @@ function RePass() {
  <div className='w-[500px] h-[153px] flex mt-[25px]'>
     <span className='w-[138px] h-[16px] font-bold text-[16px]/[100%] text-GrayScalePrimary-800'>프로필 이미지</span>
        <label className="w-[356px] ml-[4px] cursor-pointer border-[#CFCED7] flex items-center justify-center border-2 border-solid rounded-[4px]">
-    {avatarPreview? <img src={avatarPreview} alt='profile'/> : <svg
+    {avatarPreview? <img src={avatarPreview} className='w-[350px] h-[147px]' alt='profile'/> : <svg
            className="h-12 w-12"
            stroke="currentColor"
            fill="none"
@@ -344,7 +352,7 @@ function RePass() {
  <div className='ml-[160px] mt-[32px]'>
 {avatarPreview?<Button disable={true} text="저장하기" size="xlarge"/>:<Button disable={false} text="저장하기" size="xlarge"/>}
 </div>
-   <button onClick={userDeleteClick} type='button' className='ml-[220px] mt-[32px] text-[#DF4848] text-[18px]'>회원 탈퇴</button>
+   <button onClick={userDeleteClick} type="button" className='ml-[220px] mt-[32px] text-[#DF4848] text-[18px]'>회원 탈퇴</button>
 
 </form></div>: ""}</>
   

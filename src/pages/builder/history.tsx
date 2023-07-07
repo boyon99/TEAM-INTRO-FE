@@ -22,7 +22,7 @@ function HistoryView() {
   } = useForm();
   const { historyadd, setHistoryAdd, historys, setHistorys, widgets, setToggle } = useStore();
   const findWigetToggle = widgets.find((widget) => widget.widget_id === 9);
-  console.log(findWigetToggle?.toggle)
+  
   // 추가하기 버튼 클릭시 빈상자(빈배열)가 생김
   const HistoryAddonClick = () => {
     setHistoryAdd(!historyadd);
@@ -41,17 +41,17 @@ function HistoryView() {
   //  배열 리스트 삭제/위치 이동시 체크박스 그대로 유지
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
-  console.log(selectedItems);
+  
 
   // 제품/서비스 삭제 요청api
   const { mutate: deletemutate } = useMutation(historydelete, {
     onSuccess: (data) => {
-      console.log(data);
+      
     },
     onError: (err: AxiosError) => {
       const Eresponse = err.response?.data;
       const { data }: any = Eresponse;
-      console.log(data.value);
+      
     },
   });
   const handleCheckboxChange = (productId: any) => {
@@ -67,7 +67,7 @@ function HistoryView() {
     const filteredArray: HistoryDelete = {
       delete_list: selectedItems.filter((item) => item !== undefined) as number[],
     };
-    console.log(filteredArray);
+    
     deletemutate(filteredArray);
     setHistorys(updatedProducts);
     setSelectedItems([]);
@@ -144,7 +144,7 @@ function HistoryAdd() {
     error: usererror,
   } = useMutation(historyadd, {
     onSuccess: (data) => {
-      console.log(data);
+      
       //저장하기가 성공하면 결과값의 데이터를 원래 products에 저장, 여기서 사용자가 넣은 이미지 결과를 바로 볼 수 있음
 
       setHistoryAdd(false); // 저장하기가 성공하면 뒤로가기
@@ -152,7 +152,7 @@ function HistoryAdd() {
     onError: (err: AxiosError) => {
       const Eresponse = err.response?.data;
       const { data }: any = Eresponse;
-      console.log(data.value);
+      
     },
   });
 
@@ -160,7 +160,7 @@ function HistoryAdd() {
   const token = getCookie('access_token');
   const onValid = async (data: any) => {
     const image = watch('image');
-    console.log(data);
+   
     const form = new FormData();
     form.append('image', data.image[0]);
     form.append('name', `${image}`);
@@ -174,7 +174,7 @@ function HistoryAdd() {
       });
 
       const avatar = response.data.data.upload_path;
-      console.log(avatar);
+      
       const user = {
         date: data.date,
         title: data.title,
@@ -184,7 +184,7 @@ function HistoryAdd() {
 
       historymutate(user);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 
