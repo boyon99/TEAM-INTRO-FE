@@ -69,17 +69,11 @@ export const updateDownload = async (download: any) => {
 };
 
 export const uploadImage = async (formData: { image: string }) => {
-  const { data } = await axiosInstance({ multi: true }).post<{ upload_path: string }>(
-    '/api/s/user/uploadImage',
-    formData,
-  );
+  const { data } = await axiosInstance({ multi: true }).post<any>('/api/s/user/uploadImage', formData);
   return data;
 };
 
 export const uploadFile = async (formData: { file: string }) => {
-  const { data } = await axiosInstance({ multi: true }).post<{ upload_path: string }>(
-    '/api/s/user/uploadFile',
-    formData,
-  );
+  const { data } = await axiosInstance({ multi: true }).post<any>('/api/s/user/uploadFile', formData);
   return data;
 };
