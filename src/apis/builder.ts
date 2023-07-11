@@ -30,7 +30,6 @@ export const updateIntroPage = async (introPage: updateIntroPageRequest) => {
 export const updateChannel = async (channel: updateChannelRequest) => {
   const { data } = await axiosInstance().patch<any>('/api/s/user/introPage/channel', channel);
   const response = data.data;
-  console.log(response);
   return response;
 };
 
@@ -70,7 +69,6 @@ export const updateDownload = async (download: any) => {
 };
 
 export const uploadImage = async (formData: { image: string }) => {
-  console.log(formData);
   const { data } = await axiosInstance({ multi: true }).post<{ upload_path: string }>(
     '/api/s/user/uploadImage',
     formData,
@@ -79,7 +77,6 @@ export const uploadImage = async (formData: { image: string }) => {
 };
 
 export const uploadFile = async (formData: { file: string }) => {
-  console.log(formData);
   const { data } = await axiosInstance({ multi: true }).post<{ upload_path: string }>(
     '/api/s/user/uploadFile',
     formData,

@@ -30,8 +30,6 @@ function Preview() {
     },
   );
 
-  console.log('download', download);
-
   return (
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 위젯 &#8739; 다운로드" />

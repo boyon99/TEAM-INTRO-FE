@@ -225,7 +225,7 @@ export function Footer({ theme }: HeaderProps) {
           </div>
           <div className="font-[500] text-[12px] flex">
             <div className="w-[70px]">Address</div>
-            <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
+            <div className="font-[300]"></div>
           </div>
         </div>
         <div className="w-[177px] ml-[10px] mt-[87px] text-GrayScaleNeutral-400 mb-[25px]">
@@ -242,7 +242,6 @@ export function Footer({ theme }: HeaderProps) {
           <div className="border w-[110px] pl-[13px] pt-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px] mt-[20px]">
             기업 상세 정보
           </div>
-          {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
           <div className="font-[300] text-[10px] flex ml-[175px] mt-[10px]">주식회사 질링스</div>
           <div className="font-[300] text-[10px] ml-[40px] flex">
             Copyright&#169;Zillinks.Co.Ltd. All Right Reserved
@@ -264,7 +263,7 @@ export function Footer({ theme }: HeaderProps) {
           </div>
           <div className="font-[500] text-[12px] flex">
             <div className="w-[70px]">Address</div>
-            <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
+            <div className="font-[300]"></div>
           </div>
         </div>
         <div className="w-[177px] ml-[10px] mt-[87px] text-white mb-[25px]">
@@ -281,7 +280,6 @@ export function Footer({ theme }: HeaderProps) {
           <div className="border w-[110px] pl-[16px] py-[5px] text-[12px] rounded-[18px] border-GrayScaleNeutral-400 ml-[135px] mt-[20px]">
             기업 상세 정보
           </div>
-          {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
           <div className="font-[300] text-[10px] flex ml-[170px] mt-[10px]">주식회사 질링스</div>
           <div className="font-[300] text-[10px] flex ml-[40px]">
             Copyright&#169;Zillinks.Co.Ltd. All Right Reserved

@@ -172,7 +172,6 @@ export default function Builder() {
             return item;
           });
           setNews(updatedNews);
-          console.log(updatedNews);
         }
       }
     }
