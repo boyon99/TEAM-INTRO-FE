@@ -12,6 +12,7 @@ import { useUploadImage } from '@/hooks/useUploadImage';
 import { useMutation } from '@tanstack/react-query';
 import { updateDownload } from '@/apis/builder';
 import Router from 'next/router';
+import Image from 'next/image';
 
 function Preview() {
   const { widgets, setToggle, download, setDownload } = useStore();
@@ -35,7 +36,13 @@ function Preview() {
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 위젯 &#8739; 다운로드" />
       <div className="font-[700] text-[24px] mt-[16px] flex">
-        <img src="/download.svg" alt="download logo img" className="w-[26px] h-[26px] mr-[4px] translate-y-1" />
+        <Image
+          src="/download.svg"
+          alt="download logo img"
+          className="w-[26px] h-[26px] mr-[4px] translate-y-1"
+          width={26}
+          height={26}
+        />
         다운로드
       </div>
       <div className="w-[260px] font-[500] text-[16px] mt-[16px] text-GrayScalePrimary-700">

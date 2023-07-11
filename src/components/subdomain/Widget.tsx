@@ -147,7 +147,15 @@ export function Header({ theme, data, header_and_footer_status_list }: HeaderPag
   if (theme === 'ThemeA') {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
-        {data.logo === '' ? null : <img src={data.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />}
+        {data.logo === '' ? null : (
+          <Image
+            src={data.logo}
+            className="w-[23px] h-[23px] absolute top-[9px] left-[11px]"
+            alt="company logo image"
+            width={23}
+            height={23}
+          />
+        )}
         <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px] font-[700]">
           {data.company_name}
         </span>
@@ -169,7 +177,15 @@ export function Header({ theme, data, header_and_footer_status_list }: HeaderPag
   } else {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
-        {data.logo === '' ? null : <img src={data.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />}{' '}
+        {data.logo === '' ? null : (
+          <Image
+            src={data.logo}
+            className="w-[23px] h-[23px] absolute top-[9px] left-[11px]"
+            alt="company logo image"
+            width={23}
+            height={23}
+          />
+        )}{' '}
         <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">{data.company_name}</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
           {header_and_footer_status_list?.map((toggle, index) => {
@@ -294,9 +310,21 @@ export function ProductService({ theme, data }: HeaderPageProps) {
                 <div className="w-[250px] h-[259.81px] ml-[18px] mt-[16px] text-center">
                   <span className="font-bold text-[15px]/[100%]">{items.name}</span>
                   {items.image ? (
-                    <img src={items.image} alt="" className="w-[191px] h-[140px] mt-[16px] ml-[30px]" />
+                    <Image
+                      src={items.image}
+                      alt=""
+                      className="w-[191px] h-[140px] mt-[16px] ml-[30px]"
+                      width={191}
+                      height={140}
+                    />
                   ) : (
-                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px] ml-[30px]" />
+                    <Image
+                      src="/productno.png"
+                      alt=""
+                      className="w-[191px] h-[140px] mt-[16px] ml-[30px]"
+                      width={191}
+                      height={140}
+                    />
                   )}
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
                   <p className="font-normal text-[9.84px]/[170%] mt-[8.44px]">{items.description}</p>
@@ -322,9 +350,21 @@ export function ProductService({ theme, data }: HeaderPageProps) {
               >
                 <div className="w-[230px] h-[259.81px] ml-[20px]">
                   {items.image ? (
-                    <img src={items.image} alt="" className="w-[200px] h-[140px] mt-[16px] rounded-2xl ml-[20px]" />
+                    <Image
+                      src={items.image}
+                      alt=""
+                      className="w-[200px] h-[140px] mt-[16px] rounded-2xl ml-[20px]"
+                      width={200}
+                      height={140}
+                    />
                   ) : (
-                    <img src="/productno.png" alt="" className="w-[200px] h-[140px] mt-[16px] rounded-2xl ml-[20px]" />
+                    <Image
+                      src="/productno.png"
+                      alt=""
+                      className="w-[200px] h-[140px] mt-[16px] rounded-2xl ml-[20px]"
+                      width={200}
+                      height={140}
+                    />
                   )}
                   <span className="font-bold text-[20px]/[100%] mt-[26px] flex justify-center">{items.name}</span>
                   <p className="font-bold text-[10.54px] text-center mt-[15px]">{items.title}</p>
@@ -356,9 +396,9 @@ export function TeamMember({ theme, data }: HeaderPageProps) {
             return (
               <div key={team.team_member_element_id} className="w-[220px] h-[337px] ml-[5px]">
                 {team.profile ? (
-                  <img src={team.profile} alt="" className="w-[169px] h-[198px]" />
+                  <Image src={team.profile} alt="" className="w-[169px] h-[198px]" width={169} height={198} />
                 ) : (
-                  <img src="/프로필.png" alt="" className="w-[169px] h-[198px]" />
+                  <Image src="/프로필.png" alt="" className="w-[169px] h-[198px]" width={169} height={198} />
                 )}
                 <div className="w-[169px] h-[337px] mt-[11.4px]">
                   <span className="font-bold text-[11px]/[100% mt-[5px]">{team.name}</span>
@@ -390,9 +430,21 @@ export function TeamMember({ theme, data }: HeaderPageProps) {
             >
               <div className="w-[130px] h-[130px] m-[0_auto] mt-[12px]">
                 {team.profile ? (
-                  <img src={team.profile} alt="" className="w-[130px] h-[130px] rounded-[160px]" />
+                  <Image
+                    src={team.profile}
+                    alt=""
+                    className="w-[130px] h-[130px] rounded-[160px]"
+                    width={130}
+                    height={130}
+                  />
                 ) : (
-                  <img src="/프로필.png" alt="" className="w-[130px] h-[130px] rounded-[160px]" />
+                  <Image
+                    src="/프로필.png"
+                    alt=""
+                    className="w-[130px] h-[130px] rounded-[160px]"
+                    width={130}
+                    height={130}
+                  />
                 )}
               </div>
               <div className="w-[250px] h-[337px] mt-[11.4px]">

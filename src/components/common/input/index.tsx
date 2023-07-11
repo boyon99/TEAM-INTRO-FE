@@ -12,6 +12,7 @@ import { set } from 'react-hook-form';
 import { on } from 'events';
 import useStore from '@/store';
 import { useUploadFile } from '@/hooks/useUploadFile';
+import Image from 'next/image';
 
 // 기본 입력창
 export function BuilderInput({
@@ -94,7 +95,13 @@ export function BuilderUploadImage({ title, ratio, imgSrc, setImgSrc, name, setU
                 className="hidden"
               />
               <label className="file-input__label" htmlFor="file-input">
-                <img src="/union.png" className="w-[20px] h-[20px] m-[auto] mt-[20px]" />
+                <Image
+                  src="/union.png"
+                  className="w-[20px] h-[20px] m-[auto] mt-[20px]"
+                  width={20}
+                  height={20}
+                  alt="file-input add image"
+                />
               </label>
             </div>
             <span className="font-[500] text-[14px] text-GrayScalePrimary-700 mt-[8px] ml-[55px]">
@@ -125,7 +132,7 @@ export function BuilderUploadFile({ title, type }: BuilderUploadFileProps) {
         {file === undefined ? null : (
           <div className="relative overflow-hidden flex">
             <div className="mx-auto flex flex-col mt-[20px]">
-              <img src="/pdf.svg" alt="pdf file img" className="h-[60px] w-[60px] mx-auto" />
+              <Image src="/pdf.svg" alt="pdf file img" className="h-[60px] w-[60px] mx-auto" width={60} height={60} />
               <p className="text-GrayScalePrimary-700 text-[14px]">{file.name}</p>
             </div>
             {/* 삭제 버튼 */}
@@ -163,7 +170,13 @@ export function BuilderUploadFile({ title, type }: BuilderUploadFileProps) {
                 }}
               />
               <label className="file-input__label" htmlFor="file-input">
-                <img src="/union.png" className="w-[20px] h-[20px] m-[auto] mt-[20px]" />
+                <Image
+                  src="/union.png"
+                  className="w-[20px] h-[20px] m-[auto] mt-[20px]"
+                  alt="file add button image"
+                  width={20}
+                  height={20}
+                />
               </label>
             </div>
             <span className="font-[500] text-[14px] text-GrayScalePrimary-700 mt-[8px] ml-[55px]">
@@ -258,7 +271,7 @@ export function BuilderCheckbox({ list, onChange, setChecked, checked, value }: 
           }}
         />
         <span className="text-GrayScalePrimary-150">|</span>
-        <img src={list.img} alt={list.name} width={28} height={16} className="ml-[3px]" />
+        <Image src={list.img} alt={list.name} width={28} height={16} className="ml-[3px]" />
         <input
           type="text"
           placeholder="예: sns 아이디 입력"
