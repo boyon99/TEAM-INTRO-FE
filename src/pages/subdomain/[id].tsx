@@ -79,7 +79,7 @@ function SubDomain() {
       ['postIntroPageUser'],
       () =>
         postIntroPageUser({
-          sub_domain: router.query.id,
+          sub_domain: router.query.id as string,
         }).then((a) => {
           return a.data;
         }),

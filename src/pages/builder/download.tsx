@@ -18,7 +18,7 @@ function Preview() {
   const { widgets, setToggle, download, setDownload } = useStore();
   const findWigetToggle = widgets.find((widget) => widget.widget_id === 12);
   const { mutate: updateDownloadMutation } = useMutation(
-    () => updateDownload({ widget_status: findWigetToggle?.toggle, ...download }),
+    () => updateDownload({ widget_status: findWigetToggle?.toggle as boolean, ...download }),
     {
       onSuccess: (data) => {
         console.log('success', data);

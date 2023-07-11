@@ -14,7 +14,7 @@ function Preview() {
   const { widgets, setToggle, missionVision, setMissionDetail, setVisionDetail, setMissionVision } = useStore();
   const findWigetToggle = widgets.find((widget) => widget.widget_id === 1);
   const { mutate: updateMissionVisionMutation } = useMutation(
-    () => updateMissionVision({ widget_status: findWigetToggle?.toggle, ...missionVision }),
+    () => updateMissionVision({ widget_status: findWigetToggle?.toggle as boolean, ...missionVision }),
     {
       onSuccess: (data) => {
         console.log('success', data);

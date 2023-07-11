@@ -16,7 +16,7 @@ function Preview() {
   const { widgets, setToggle, channel, setChannel } = useStore();
   const findWigetToggle = widgets.find((widget) => widget.widget_id === 14);
   const { mutate: updateChannelMutation } = useMutation(
-    () => updateChannel({ widget_status: findWigetToggle?.toggle, ...channel }),
+    () => updateChannel({ widget_status: findWigetToggle?.toggle as boolean, ...channel }),
     {
       onSuccess: (data) => {
         console.log('success', data);
