@@ -35,11 +35,7 @@ export function KeyVisual({ theme }: HeaderProps) {
           {keyVisual.slogan_detail}
         </span>
         {keyVisual.background === '' ? null : (
-          <Image
-            src={keyVisual.background}
-            className="w-full h-full object-cover absolute"
-            alt="키비주얼 배경 이미지"
-          />
+          <img src={keyVisual.background} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
         )}{' '}
       </section>
     );
@@ -68,11 +64,7 @@ export function KeyVisual({ theme }: HeaderProps) {
           {keyVisual.slogan_detail}
         </span>
         {keyVisual.background === '' ? null : (
-          <Image
-            src={keyVisual.background}
-            className="w-full h-full object-cover absolute"
-            alt="키비주얼 배경 이미지"
-          />
+          <img src={keyVisual.background} className="w-full h-full object-cover absolute" alt="키비주얼 배경 이미지" />
         )}
       </section>
     );
@@ -377,9 +369,15 @@ export function ProductService({ theme }: HeaderProps) {
               >
                 <div className="w-[196.88px] h-[259.81px] ml-[14px]">
                   {items.image ? (
-                    <Image src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
+                    <img src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
                   ) : (
-                    <Image src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px] rounded-2xl" />
+                    <Image
+                      src="/productno.png"
+                      alt=""
+                      className="w-[191px] h-[140px] mt-[16px] rounded-2xl"
+                      width={191}
+                      height={140}
+                    />
                   )}
                   <span className="font-bold text-[20px]/[100%] mt-[16.88px] flex justify-center">{items.name}</span>
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
@@ -426,9 +424,9 @@ export function TeamMember({ theme }: HeaderProps) {
             return (
               <div key={team.team_member_element_id} className="w-[169px] h-[337px] ml-[5px]">
                 {team.profile ? (
-                  <Image src={team.profile} alt="" className="w-[169px] h-[198px]" />
+                  <Image src={team.profile} alt="" className="w-[169px] h-[198px]" width={169} height={198} />
                 ) : (
-                  <Image src="/프로필.png" alt="" className="w-[169px] h-[198px]" />
+                  <Image src="/프로필.png" alt="" className="w-[169px] h-[198px]" width={169} height={198} />
                 )}
                 <div className="w-[169px] h-[337px] mt-[11.4px]">
                   <span className="font-bold text-[11px]/[100%]">{team.name}</span>
@@ -460,9 +458,21 @@ export function TeamMember({ theme }: HeaderProps) {
             >
               <div className="w-[100px] h-[100px] ml-[20px] mt-[16px] mb-[8px]">
                 {team.profile ? (
-                  <Image src={team.profile} alt="" className="w-[100px] h-[100px] rounded-[160px] ml-[13px]" />
+                  <Image
+                    src={team.profile}
+                    alt=""
+                    className="w-[100px] h-[100px] rounded-[160px] ml-[13px]"
+                    width={100}
+                    height={100}
+                  />
                 ) : (
-                  <Image src="/프로필.png" alt="" className="w-[100px] h-[100px] rounded-[160px] ml-[13px]" />
+                  <Image
+                    src="/프로필.png"
+                    alt=""
+                    className="w-[100px] h-[100px] rounded-[160px] ml-[13px]"
+                    width={100}
+                    height={100}
+                  />
                 )}
               </div>
               <div className="w-[160px] h-[337px]">
@@ -526,7 +536,7 @@ export function Press({ theme }: HeaderProps) {
                   <p className="text-[11px]/[170%] text-[#868686] mt-[10px]">{item.description}</p>
                 </div>
                 <div className="w-[141px] h-[74px] ml-[39px] mt-[11.5px] mb-[14px]">
-                  {item.image ? <Image src={item.image} alt="" /> : <Image src="/기사사진.png" alt="" />}
+                  {item.image ? <img src={item.image} alt="" /> : <img src="/기사사진.png" alt="" />}
                 </div>
               </div>
             );
@@ -546,9 +556,21 @@ export function Press({ theme }: HeaderProps) {
             <div key={item.news_element_id} className="w-[720px] flex mb-[20px]">
               <div>
                 {item.image ? (
-                  <Image src={item.image} className="w-[180px] h-[70px] rounded-[24px]" alt="" />
+                  <Image
+                    src={item.image}
+                    className="w-[180px] h-[70px] rounded-[24px]"
+                    alt=""
+                    width={180}
+                    height={70}
+                  />
                 ) : (
-                  <Image src="/기사사진.png" className="w-[180px] h-[70px] rounded-[24px]" alt="" />
+                  <Image
+                    src="/기사사진.png"
+                    className="w-[180px] h-[70px] rounded-[24px]"
+                    alt=""
+                    width={180}
+                    height={70}
+                  />
                 )}
               </div>
               <div className="w-[820px] ml-[40px]">
@@ -697,9 +719,21 @@ export function History({ theme }: HeaderProps) {
                     </div>
                     <div className="w-[85px] h-[85px] absolute right-0">
                       {item.image ? (
-                        <Image src={item.image} className="w-[85px] h-[85px] mt-[10px] rounded-xl" alt="" />
+                        <Image
+                          src={item.image}
+                          className="w-[85px] h-[85px] mt-[10px] rounded-xl"
+                          alt=""
+                          width={85}
+                          height={85}
+                        />
                       ) : (
-                        <Image src="/기본이미지.png" className="w-[85px] h-[85px] mt-[10px]" alt="" />
+                        <Image
+                          src="/기본이미지.png"
+                          className="w-[85px] h-[85px] mt-[10px]"
+                          alt=""
+                          width={85}
+                          height={85}
+                        />
                       )}
                     </div>
                   </div>
@@ -824,7 +858,13 @@ export function Channel({ theme }: HeaderProps) {
             if (channelValues[index * 2]) {
               return (
                 <div className="flex flex-row mr-[4px]" key={index}>
-                  <Image src={items.img} className="w-[60px] h-[60px]" alt="채널 아이템 이미지" />
+                  <Image
+                    src={items.img}
+                    className="w-[60px] h-[60px]"
+                    alt="채널 아이템 이미지"
+                    width={60}
+                    height={60}
+                  />
                 </div>
               );
             } else {
@@ -846,7 +886,13 @@ export function Channel({ theme }: HeaderProps) {
                   className="flex flex-row mr-[4px] bg-white w-[70px] h-[70px] rounded-[14px] drop-shadow-xl mx-[20px] items-center justify-center"
                   key={index}
                 >
-                  <Image src={items.img} className="w-[50px] h-[50px]" alt="체널 아이템 이미지" />
+                  <Image
+                    src={items.img}
+                    className="w-[50px] h-[50px]"
+                    alt="체널 아이템 이미지"
+                    width={50}
+                    height={50}
+                  />
                 </div>
               );
             } else {
