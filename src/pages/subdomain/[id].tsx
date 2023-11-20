@@ -88,47 +88,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(['subdomain', id], () => postIntroPageUser({ sub_domain: id as string }));
 
-  // if (id) {
-  //   try {
-  //     const { data: subDomainData } = await postIntroPageUser({
-  //       sub_domain: id as string,
-  //     });
-
-  //     return {
-  //       props: {
-  //         subDomainData,
-  //         id,
-  //       },
-  //     };
-  //   } catch (error) {
-  //     console.error(error);
-  //     return {
-  //       props: {
-  //         subDomainData: null,
-  //         id,
-  //       },
-  //     };
-  //   }
-  // }
-
   return {
     props: {
-      // subDomainData: null,
       dehydratedState: dehydrate(queryClient),
     },
   };
 };
 
 export default function Page() {
-  // if (subDomainData === null) {
-  //   return <ErrorPage />;
-  // }
-  // if (!subDomainData) {
-  //   return <Loading />;
-  // }
-  // return <div>success</div>;
   const router = useRouter();
-  console.log(router.query.id);
   const {
     data: subDomainData,
     isLoading,
@@ -138,28 +106,3 @@ export default function Page() {
   if (!isSuccess) return <ErrorPage />;
   return <Preview data={subDomainData.data} isLoading={isLoading} isSuccess={isSuccess} />;
 }
-
-// export async function getStaticPaths() {
-//   const response = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
-//   const posts = response.data;
-//   const paths = posts.map((post: any) => ({ params: { id: `${post.id}` } }));
-//   return { paths, fallback: false };
-// }
-
-// export async function getStaticProps({ params }: { params: any }) {
-//   const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
-//   const post = response.data;
-//   return { props: { post } };
-// }
-
-// function PostDetail({ post }: { post: any }) {
-//   return (
-//     <div>
-//       <h5>{post.id}</h5>
-//       <h4>{post.title}</h4>
-//       <p>{post.body}</p>
-//     </div>
-//   );
-// }
-
-// export default PostDetail;

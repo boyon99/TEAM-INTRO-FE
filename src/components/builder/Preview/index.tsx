@@ -40,12 +40,8 @@ export default function Preview() {
             {widget.widget_id === 11 && widget.toggle ? <Press theme={theme.theme_type} /> : null}
             {widget.widget_id === 12 && widget.toggle ? <Download theme={theme.theme_type} /> : null}
             {widget.widget_id === 9 && widget.toggle ? <History theme={theme.theme_type} /> : null}
-            {/* {widget.widget_id === 8 && widget.toggle ? <TeamCulture theme={theme.theme_type} /> : null} */}
             {widget.widget_id === 7 && widget.toggle ? <Result theme={theme.theme_type} /> : null}
-            {/* {widget.widget_id === 13 && widget.toggle ? <Partners theme={theme.theme_type} /> : null} */}
-            {/* {widget.widget_id === 4 && widget.toggle ? <Review theme={theme.theme_type} /> : null} */}
             {widget.widget_id === 14 && widget.toggle ? <Channel theme={theme.theme_type} /> : null}
-            {/* {widget.widget_id === 10 && widget.toggle ? <Patent theme={theme.theme_type} /> : null} */}
           </div>
         ))}
         {/* 푸터 */}
